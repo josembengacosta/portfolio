@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark-theme">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manutenção de Sites e Apps | José Mbenga</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Serviços de manutenção e suporte técnico para sites e aplicativos. Mantenha seu projeto sempre atualizado e seguro. José Mbenga - Especialista em manutenção Angola.">
+    <meta name="keywords" content="manutenção de sites, suporte técnico, atualização de sites, backup, segurança web, Angola, Luanda">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Manutenção de Sites e Apps | José Mbenga">
+    <meta property="og:description" content="Serviços completos de manutenção para manter seu site ou app sempre funcionando perfeitamente.">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../favicon_jm.png" type="image/x-icon">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            /* Cores principais - Dark Theme */
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --success: #10b981;
+            --maintenance: #f59e0b;
+
+            /* Backgrounds */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+
+            /* Textos */
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+
+            /* Bordas */
+            --border: #475569;
+            --border-light: #64748b;
+
+            /* Gradientes */
+            --gradient-primary: linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            --gradient-maintenance: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+            /* Transições */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Light Theme Variables */
+        .light-theme {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --border-light: #cbd5e1;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color var(--transition), color var(--transition);
+        }
+
+        /* Custom Classes */
+        .text-gradient {
+            background: var(--gradient-maintenance);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .service-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all var(--transition);
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--warning);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-maintenance);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .badge-online {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .badge-offline {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .badge-maintenance {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .process-step {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .process-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-maintenance);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            transition: all var(--transition);
+        }
+
+        .feature-item:hover {
+            border-color: var(--warning);
+            transform: translateX(5px);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-maintenance);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .pricing-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+            transition: all var(--transition);
+        }
+
+        .pricing-card:hover {
+            border-color: var(--warning);
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--warning);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Mais Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-maintenance);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .package-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .package-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .package-features li.disabled {
+            color: var(--text-muted);
+        }
+
+        .package-features li.disabled::before {
+            content: '✗';
+            color: var(--text-muted);
+        }
+
+        /* Navbar Custom */
+        .navbar-custom {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .light-theme .navbar-custom {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .btn-custom {
+            padding: 0.75rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all var(--transition);
+            text-decoration: none;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: width var(--transition);
+            z-index: -1;
+        }
+
+        .btn-custom:hover::before {
+            width: 100%;
+        }
+
+        .btn-primary-custom {
+            background: var(--gradient-maintenance);
+            color: white;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--warning);
+            color: var(--warning);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .service-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%);
+        }
+
+        .light-theme .service-hero {
+            background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(241, 245, 249, 0.9) 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        /* Dashboard Mockup */
+        .dashboard-mockup {
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .metric-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-align: center;
+            transition: all var(--transition);
+        }
+
+        .metric-card:hover {
+            border-color: var(--warning);
+            transform: translateY(-3px);
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .uptime-chart {
+            height: 100px;
+            background: var(--bg-primary);
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .chart-bar {
+            position: absolute;
+            bottom: 0.75rem;
+            width: 8px;
+            background: var(--success);
+            border-radius: 2px 2px 0 0;
+            transition: height 0.3s ease;
+        }
+
+        /* Alert Panel */
+        .alert-panel {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--warning);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .alert-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-secondary);
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 4rem;
+            color: var(--warning);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .form-control-custom {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: all var(--transition);
+        }
+
+        .form-control-custom:focus {
+            background: var(--bg-primary);
+            border-color: var(--warning);
+            color: var(--text-primary);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+        }
+
+        /* Footer */
+        .service-footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0 1.5rem;
+        }
+
+        /* Status Indicator */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-online {
+            background: var(--success);
+        }
+
+        .status-offline {
+            background: var(--danger);
+        }
+
+        .status-maintenance {
+            background: var(--warning);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .service-card {
+                margin-bottom: 1.5rem;
+            }
+            
+            .dashboard-mockup {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .metric-card {
+                padding: 0.75rem;
+            }
+            
+            .metric-value {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-element {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .spinning {
+            animation: spin 2s linear infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar-custom navbar-expand-lg sticky-top">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-code me-2"></i>
+                    <span>JM</span>benga
+                </a>
+                <div class="d-flex align-items-center">
+                    <a href="../index.html#contact" class="btn btn-primary-custom me-2">
+                        <i class="fas fa-tools me-2"></i>Contratar Manutenção
+                    </a>
+                    <button class="btn btn-outline-custom" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="service-hero py-5">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill mb-3">
+                        <i class="fas fa-shield-alt me-2"></i>Serviço de Manutenção
+                    </span>
+                    <h1 class="section-title mb-4">
+                        Manutenção <span class="text-gradient">Proativa</span> para seu Site/App
+                    </h1>
+                    <p class="lead mb-4 text-muted">
+                        Mantenha seu site ou aplicativo sempre atualizado, seguro e funcionando perfeitamente. 
+                        Foco total na performance enquanto você foca no seu negócio.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <span class="status-badge badge-online">
+                            <span class="status-dot status-online"></span>
+                            99.9% Uptime
+                        </span>
+                        <span class="status-badge" style="background: rgba(37, 99, 235, 0.1); color: var(--primary);">
+                            <i class="fas fa-clock me-1"></i>
+                            Monitoramento 24/7
+                        </span>
+                        <span class="status-badge" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">
+                            <i class="fas fa-history me-1"></i>
+                            Backup Diário
+                        </span>
+                    </div>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#pricing" class="btn btn-primary-custom">
+                            <i class="fas fa-tag me-2"></i>Ver Planos
+                        </a>
+                        <a href="#contact" class="btn btn-outline-custom">
+                            <i class="fas fa-headset me-2"></i>Suporte Imediato
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="dashboard-mockup">
+                        <div class="dashboard-header">
+                            <h5 class="mb-0">Painel de Monitoramento</h5>
+                            <div class="status-indicator">
+                                <span class="status-dot status-online"></span>
+                                <small class="text-success">Online</small>
+                            </div>
+                        </div>
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <div class="metric-card">
+                                    <div class="metric-value">99.9%</div>
+                                    <div class="metric-label">Uptime</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="metric-card">
+                                    <div class="metric-value">0.8s</div>
+                                    <div class="metric-label">Tempo de Resposta</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="metric-card">
+                                    <div class="metric-value">24</div>
+                                    <div class="metric-label">Backups</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="metric-card">
+                                    <div class="metric-value">100%</div>
+                                    <div class="metric-label">Segurança</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <small class="text-muted">Uptime dos últimos 30 dias</small>
+                                <small class="text-success">99.9%</small>
+                            </div>
+                            <div class="uptime-chart">
+                                <!-- Chart bars will be generated by JS -->
+                            </div>
+                        </div>
+                        <div class="alert-panel">
+                            <div class="alert-header">
+                                <i class="fas fa-check-circle text-success"></i>
+                                <div>
+                                    <h6 class="mb-0">Sistema Estável</h6>
+                                    <small class="text-muted">Última verificação: Agora mesmo</small>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-0 small">
+                                Todos os sistemas operando normalmente. 
+                                <span class="text-success">0 problemas detectados.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Maintenance Matters -->
+    <section class="py-5" id="importance">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Por que Manutenção é Essencial?</h2>
+                <p class="section-subtitle">Um site/app sem manutenção é como uma casa sem manutenção</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div>
+                            <h5 class="h6 mb-2">Segurança Contra Ataques</h5>
+                            <p class="text-muted mb-0">
+                                Hackers exploram vulnerabilidades em versões desatualizadas. Manutenção regular = proteção constante.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div>
+                            <h5 class="h6 mb-2">Performance Otimizada</h5>
+                            <p class="text-muted mb-0">
+                                Sites lentos perdem visitantes. Otimização contínua mantém carregamento rápido.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div>
+                            <h5 class="h6 mb-2">Compatibilidade com Navegadores</h5>
+                            <p class="text-muted mb-0">
+                                Novas versões de navegadores podem quebrar seu site. Atualizações garantem compatibilidade.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h5 class="h6 mb-2">SEO Preservado</h5>
+                            <p class="text-muted mb-0">
+                                Google penaliza sites lentos e com erros. Manutenção mantém seu ranking de busca.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What I Offer -->
+    <section class="py-5 bg-dark bg-opacity-10" id="offer">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Serviços de Manutenção</h2>
+                <p class="section-subtitle">Tudo que seu site ou app precisa para funcionar perfeitamente</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: var(--gradient-maintenance);">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h4 class="mb-3">Atualizações Regulares</h4>
+                        <p class="text-muted mb-3">
+                            Atualização de WordPress, plugins, frameworks e bibliotecas para versões estáveis.
+                        </p>
+                        <ul class="text-muted small mb-0">
+                            <li>Core updates</li>
+                            <li>Plugin/theme updates</li>
+                            <li>Security patches</li>
+                            <li>Compatibility testing</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: var(--danger);">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 class="mb-3">Segurança & Monitoramento</h4>
+                        <p class="text-muted mb-3">
+                            Proteção contra hackers, malware scanning, firewall configuration e logs analysis.
+                        </p>
+                        <ul class="text-muted small mb-0">
+                            <li>Malware scanning</li>
+                            <li>Firewall setup</li>
+                            <li>Security audits</li>
+                            <li>Vulnerability fixes</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: var(--success);">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4 class="mb-3">Backup & Recuperação</h4>
+                        <p class="text-muted mb-3">
+                            Backup automático diário, armazenamento seguro e recuperação rápida em caso de problemas.
+                        </p>
+                        <ul class="text-muted small mb-0">
+                            <li>Backup diário</li>
+                            <li>Armazenamento seguro</li>
+                            <li>Teste de recuperação</li>
+                            <li>Versionamento</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: var(--primary);">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h4 class="mb-3">Otimização de Performance</h4>
+                        <p class="text-muted mb-3">
+                            Otimização de velocidade, caching, compressão de imagens e análise de performance.
+                        </p>
+                        <ul class="text-muted small mb-0">
+                            <li>Speed optimization</li>
+                            <li>Caching setup</li>
+                            <li>Image optimization</li>
+                            <li>Load time monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: var(--secondary);">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4 class="mb-3">Suporte Técnico</h4>
+                        <p class="text-muted mb-3">
+                            Suporte por email, WhatsApp e reuniões para resolver problemas e dúvidas técnicas.
+                        </p>
+                        <ul class="text-muted small mb-0">
+                            <li>Email support</li>
+                            <li>WhatsApp support</li>
+                            <li>Bug fixes</li>
+                            <li>Technical consultation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: #6366f1;">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h4 class="mb-3">Relatórios & Analytics</h4>
+                        <p class="text-muted mb-3">
+                            Relatórios mensais detalhados com métricas de performance, segurança e uptime.
+                        </p>
+                        <ul class="text-muted small mb-0">
+                            <li>Monthly reports</li>
+                            <li>Performance analytics</li>
+                            <li>Security reports</li>
+                            <li>Recommendations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="py-5" id="pricing">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Planos de Manutenção</h2>
+                <p class="section-subtitle">Escolha o plano ideal para seu site ou aplicativo</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing-card">
+                        <h4 class="mb-3">Básico</h4>
+                        <div class="mb-4">
+                            <span class="h2">$99</span>
+                            <span class="text-muted">/mês</span>
+                        </div>
+                        <p class="text-muted mb-4">Para sites pequenos e blogs</p>
+                        <ul class="package-features mb-4">
+                            <li>Atualizações de segurança</li>
+                            <li>Backup semanal</li>
+                            <li>Monitoramento básico</li>
+                            <li>Suporte por email</li>
+                            <li class="disabled">Otimização de performance</li>
+                            <li class="disabled">SSL monitoring</li>
+                            <li class="disabled">Relatórios mensais</li>
+                            <li class="disabled">Suporte prioritário</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline-custom w-100 mt-4">Contratar</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-card popular">
+                        <h4 class="mb-3">Profissional</h4>
+                        <div class="mb-4">
+                            <span class="h2">$199</span>
+                            <span class="text-muted">/mês</span>
+                        </div>
+                        <p class="text-muted mb-4">Para sites empresariais e e-commerces</p>
+                        <ul class="package-features mb-4">
+                            <li>Tudo do plano Básico</li>
+                            <li>Backup diário</li>
+                            <li>Otimização de performance</li>
+                            <li>SSL monitoring</li>
+                            <li>Relatórios mensais</li>
+                            <li>Suporte por WhatsApp</li>
+                            <li class="disabled">Monitoramento 24/7</li>
+                            <li class="disabled">SLA 4h resposta</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary-custom w-100 mt-4">Mais Popular</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-card">
+                        <h4 class="mb-3">Enterprise</h4>
+                        <div class="mb-4">
+                            <span class="h2">$399</span>
+                            <span class="text-muted">/mês</span>
+                        </div>
+                        <p class="text-muted mb-4">Para grandes sites e aplicativos críticos</p>
+                        <ul class="package-features mb-4">
+                            <li>Tudo do plano Profissional</li>
+                            <li>Monitoramento 24/7</li>
+                            <li>SLA 4h resposta</li>
+                            <li>Otimização avançada</li>
+                            <li>Security audits mensais</li>
+                            <li>Consultoria técnica incluída</li>
+                            <li>Reuniões trimestrais</li>
+                            <li>Relatórios detalhados</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline-custom w-100 mt-4">Contratar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5" data-aos="fade-up">
+                <div class="alert alert-dark border-0 bg-dark bg-opacity-10 d-inline-flex align-items-center">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <div class="text-start">
+                        <small class="text-muted">
+                            <strong>Nota:</strong> Preços são para um site/aplicativo. Contato para múltiplos sites ou necessidades específicas.
+                            <br>
+                            <span class="text-warning">* Sem contrato de longo prazo. Cancele quando quiser.</span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Process -->
+    <section class="py-5 bg-dark bg-opacity-10">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Como Funciona</h2>
+                <p class="section-subtitle">Processo transparente e organizado</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="process-step" data-step="1" data-aos="fade-right">
+                        <h4 class="mb-2">1. Análise Inicial</h4>
+                        <p class="text-muted mb-0">
+                            Avaliação completa do site/app: segurança, performance, backups e pontos de melhoria.
+                        </p>
+                    </div>
+                    <div class="process-step" data-step="2" data-aos="fade-right" data-aos-delay="100">
+                        <h4 class="mb-2">2. Implementação</h4>
+                        <p class="text-muted mb-0">
+                            Configuração de monitoramento, backup automático, segurança e ferramentas de otimização.
+                        </p>
+                    </div>
+                    <div class="process-step" data-step="3" data-aos="fade-right" data-aos-delay="200">
+                        <h4 class="mb-2">3. Manutenção Contínua</h4>
+                        <p class="text-muted mb-0">
+                            Atualizações regulares, monitoramento 24/7, otimizações e correções proativas.
+                        </p>
+                    </div>
+                    <div class="process-step" data-step="4" data-aos="fade-right" data-aos-delay="300">
+                        <h4 class="mb-2">4. Suporte & Resolução</h4>
+                        <p class="text-muted mb-0">
+                            Suporte técnico para problemas, dúvidas e implementação de novas funcionalidades.
+                        </p>
+                    </div>
+                    <div class="process-step" data-step="5" data-aos="fade-right" data-aos-delay="400">
+                        <h4 class="mb-2">5. Relatórios & Melhorias</h4>
+                        <p class="text-muted mb-0">
+                            Relatórios mensais com métricas, sugestões de melhorias e planejamento de evolução.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-5" id="faq">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">FAQ</h2>
+                <p class="section-subtitle">Perguntas frequentes sobre manutenção</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="faq-item" data-aos="fade-up">
+                        <div class="faq-question">
+                            <span>Posso cancelar o plano quando quiser?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim, todos os planos são mensais sem contrato de longo prazo. Você pode cancelar a qualquer momento sem multa.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="faq-question">
+                            <span>E se meu site for hackeado durante a manutenção?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Nos planos Profissional e Enterprise, incluo limpeza de malware e recuperação do site sem custo adicional, desde que você tenha seguido todas as recomendações de segurança.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="faq-question">
+                            <span>Você atualiza o conteúdo do site?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>A manutenção é técnica (atualizações, segurança, performance). Atualizações de conteúdo são serviços adicionais que podem ser contratados separadamente.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="faq-question">
+                            <span>Quanto tempo leva para começar?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Em até 24 horas após a contratação, já inicio a análise e implementação das ferramentas básicas de monitoramento e backup.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="faq-question">
+                            <span>E se eu precisar de algo fora do plano?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Todos os planos incluem horas de suporte. Para necessidades extras, trabalho com horas adicionais ou projetos específicos com orçamento separado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Support -->
+    <section class="py-5 bg-dark bg-opacity-25" id="emergency">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+                    <div class="service-icon mx-auto mb-4">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <h2 class="h3 mb-3">Suporte de Emergência</h2>
+                    <p class="text-muted mb-4">
+                        Seu site caiu, foi hackeado ou tem problemas críticos? Ofereço suporte de emergência com resposta em até 2 horas.
+                    </p>
+                    <div class="row g-3 justify-content-center">
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                            <div class="metric-card">
+                                <div class="metric-value">2h</div>
+                                <div class="metric-label">Tempo de Resposta</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="metric-card">
+                                <div class="metric-value">24/7</div>
+                                <div class="metric-label">Disponibilidade</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                            <div class="metric-card">
+                                <div class="metric-value">$150</div>
+                                <div class="metric-label">Taxa de Emergência</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/244922030116?text=URGENTE:%20Preciso%20de%20suporte%20de%20emergência%20para%20meu%20site" 
+                       class="btn btn-primary-custom mt-4" target="_blank">
+                        <i class="fab fa-whatsapp me-2"></i>Suporte de Emergência no WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="py-5" id="contact">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <h2 class="section-title mb-4">Contrate Manutenção</h2>
+                    <p class="text-muted mb-4">
+                        Mantenha seu site ou app sempre seguro, rápido e funcionando perfeitamente.
+                        Preencha o formulário e entrarei em contato em até 2 horas.
+                    </p>
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="service-icon me-3" style="width: 48px; height: 48px;">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Suporte Prioritário</h5>
+                                <p class="text-muted mb-0">Email, WhatsApp e reuniões</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="service-icon me-3" style="width: 48px; height: 48px;">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Segurança Garantida</h5>
+                                <p class="text-muted mb-0">Proteção contra hackers e malware</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="service-icon me-3" style="width: 48px; height: 48px;">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Performance Otimizada</h5>
+                                <p class="text-muted mb-0">Seu site sempre rápido</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="contact-form">
+                        <form id="maintenanceContactForm">
+                            <div class="mb-3">
+                                <label class="form-label">Nome Completo *</label>
+                                <input type="text" class="form-control form-control-custom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email *</label>
+                                <input type="email" class="form-control form-control-custom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">URL do Site/App *</label>
+                                <input type="url" class="form-control form-control-custom" placeholder="https://" required>
+                            </div>
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <label class="form-label">Tecnologia</label>
+                                    <select class="form-control form-control-custom">
+                                        <option value="">Selecione...</option>
+                                        <option value="wordpress">WordPress</option>
+                                        <option value="react">React.js</option>
+                                        <option value="vue">Vue.js</option>
+                                        <option value="angular">Angular</option>
+                                        <option value="laravel">Laravel (PHP)</option>
+                                        <option value="node">Node.js</option>
+                                        <option value="other">Outro</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">Plano de Interesse</label>
+                                    <select class="form-control form-control-custom">
+                                        <option value="">Selecione...</option>
+                                        <option value="basic">Básico ($99/mês)</option>
+                                        <option value="pro">Profissional ($199/mês)</option>
+                                        <option value="enterprise">Enterprise ($399/mês)</option>
+                                        <option value="custom">Personalizado</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Problemas Atuais ou Preocupações</label>
+                                <textarea class="form-control form-control-custom" rows="4" placeholder="Conte-me sobre problemas atuais, lentidão, erros ou preocupações com segurança..."></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Serviços Específicos Necessários</label>
+                                <div class="row g-2">
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="needBackup">
+                                            <label class="form-check-label" for="needBackup">
+                                                Backup & Recovery
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="needSecurity">
+                                            <label class="form-check-label" for="needSecurity">
+                                                Segurança & Firewall
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="needPerformance">
+                                            <label class="form-check-label" for="needPerformance">
+                                                Otimização de Performance
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="needUpdates">
+                                            <label class="form-check-label" for="needUpdates">
+                                                Atualizações Regulares
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom w-100">
+                                <i class="fas fa-paper-plane me-2"></i>Solicitar Proposta
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="service-footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <a href="../index.html" class="logo">
+                        <i class="fas fa-code me-2"></i>
+                        <span>JM</span>benga
+                    </a>
+                    <p class="text-muted mt-2 mb-0">
+                        Manutenção profissional para sites e aplicativos. Segurança, performance e tranquilidade.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-md-end gap-3">
+                        <a href="https://github.com/josembenga" class="btn btn-outline-custom btn-sm" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/jose-mbenga-da-costa" class="btn btn-outline-custom btn-sm" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:josembengadacosta@gmail.com" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/244922030116" class="btn btn-outline-custom btn-sm" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <h6 class="mb-3">Outros Serviços</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="desenvolvimento-web.html" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-code"></i> Desenvolvimento Web
+                        </a>
+                        <a href="aplicativos-mobile.html" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-mobile-alt"></i> Aplicativos Mobile
+                        </a>
+                        <a href="ui-ux-design.html" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-paint-brush"></i> UI/UX Design
+                        </a>
+                        <a href="consultoria-tech.html" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-chart-line"></i> Consultoria Tech
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-md-end">
+                        <p class="text-muted mb-0">
+                            &copy; 2023 José Mbenga. Todos os direitos reservados.
+                            <br>
+                            <small>Manutenção profissional para o mercado Angolano e internacional.</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Theme Toggle
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('light-theme');
+            const icon = this.querySelector('i');
+            icon.className = document.body.classList.contains('light-theme') 
+                ? 'fas fa-sun' 
+                : 'fas fa-moon';
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-theme');
+            document.getElementById('themeToggle').querySelector('i').className = 'fas fa-sun';
+        }
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Generate uptime chart
+        function generateUptimeChart() {
+            const chartContainer = document.querySelector('.uptime-chart');
+            if (!chartContainer) return;
+            
+            chartContainer.innerHTML = '';
+            
+            // Generate 30 bars (one for each day)
+            for (let i = 0; i < 30; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar';
+                
+                // Random height between 60-100 (simulating uptime)
+                const height = 60 + Math.random() * 40;
+                bar.style.height = `${height}%`;
+                bar.style.left = `${(i * (100 / 30))}%`;
+                
+                // Random color based on uptime
+                if (height > 95) {
+                    bar.style.background = 'var(--success)';
+                } else if (height > 85) {
+                    bar.style.background = 'var(--warning)';
+                } else {
+                    bar.style.background = 'var(--danger)';
+                }
+                
+                chartContainer.appendChild(bar);
+            }
+        }
+
+        // Animate metric cards
+        function animateMetricCards() {
+            const metricCards = document.querySelectorAll('.metric-card');
+            metricCards.forEach(card => {
+                const valueElement = card.querySelector('.metric-value');
+                if (!valueElement) return;
+                
+                const originalText = valueElement.textContent;
+                const isPercentage = originalText.includes('%');
+                const targetValue = parseFloat(originalText);
+                
+                if (!isNaN(targetValue)) {
+                    let current = 0;
+                    const increment = targetValue / 30;
+                    const interval = setInterval(() => {
+                        current += increment;
+                        if (current >= targetValue) {
+                            valueElement.textContent = originalText;
+                            clearInterval(interval);
+                        } else {
+                            valueElement.textContent = isPercentage 
+                                ? `${Math.floor(current)}%`
+                                : Math.floor(current).toString();
+                        }
+                    }, 30);
+                }
+            });
+        }
+
+        // Form Submission
+        document.getElementById('maintenanceContactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate URL
+            const urlInput = document.querySelector('input[type="url"]');
+            if (urlInput && !urlInput.value.trim()) {
+                alert('Por favor, informe a URL do seu site ou aplicativo.');
+                urlInput.focus();
+                return;
+            }
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Proposta Solicitada!';
+                
+                // Show success message
+                alert('Obrigado! Recebi sua solicitação de manutenção. Entrarei em contato em até 2 horas com uma proposta detalhada.');
+                
+                // Reset form
+                setTimeout(() => {
+                    this.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
+            }, 2000);
+        });
+
+        // Emergency support button animation
+        const emergencyBtn = document.querySelector('a[href*="URGENTE"]');
+        if (emergencyBtn) {
+            setInterval(() => {
+                emergencyBtn.classList.toggle('btn-primary-custom');
+                emergencyBtn.classList.toggle('btn-danger');
+            }, 2000);
+        }
+
+        // Service card hover effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.service-icon');
+                if (icon) {
+                    icon.style.transform = 'scale(1.1) rotate(5deg)';
+                    icon.classList.add('spinning');
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.service-icon');
+                if (icon) {
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                    icon.classList.remove('spinning');
+                }
+            });
+        });
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            generateUptimeChart();
+            
+            // Animate metrics when they become visible
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateMetricCards();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            const metricsSection = document.querySelector('#pricing');
+            if (metricsSection) {
+                observer.observe(metricsSection);
+            }
+        });
+
+        // Real-time status update simulation
+        function updateStatus() {
+            const statusDot = document.querySelector('.status-dot');
+            const statusText = document.querySelector('.status-indicator small');
+            
+            if (statusDot && statusText) {
+                // Simulate random status changes (95% online, 5% maintenance)
+                const isOnline = Math.random() > 0.05;
+                
+                if (isOnline) {
+                    statusDot.className = 'status-dot status-online';
+                    statusText.className = 'text-success';
+                    statusText.textContent = 'Online';
+                    
+                    // Update uptime chart
+                    generateUptimeChart();
+                } else {
+                    statusDot.className = 'status-dot status-maintenance';
+                    statusText.className = 'text-warning';
+                    statusText.textContent = 'Manutenção';
+                }
+            }
+        }
+
+        // Update status every 30 seconds (simulation)
+        setInterval(updateStatus, 30000);
+    </script>
+</body>
+</html>

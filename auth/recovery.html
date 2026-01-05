@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark-theme">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha | Portfólio José Mbenga</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Recupere o acesso à sua conta usando chave de recuperação ou código por email. José Mbenga - Desenvolvedor Full Stack Angola.">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon_jm.png" type="image/x-icon">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            /* Cores principais - Mantendo o mesmo padrão */
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --success: #10b981;
+
+            /* Backgrounds */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --bg-card: rgba(30, 41, 59, 0.8);
+
+            /* Textos */
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+
+            /* Bordas */
+            --border: #475569;
+            --border-light: #64748b;
+
+            /* Gradientes */
+            --gradient-primary: linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            --gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+            /* Transições */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Light Theme */
+        .light-theme {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --border-light: #cbd5e1;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            transition: background-color var(--transition), color var(--transition);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            animation: gradientMove 20s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(-5%, 5%);
+            }
+            50% {
+                transform: translate(5%, -5%);
+            }
+            75% {
+                transform: translate(-5%, -5%);
+            }
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            opacity: 0.1;
+            filter: blur(40px);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .float-1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            right: -150px;
+            animation-delay: 0s;
+        }
+
+        .float-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -100px;
+            left: -100px;
+            background: var(--gradient-secondary);
+            animation-delay: 5s;
+        }
+
+        .float-3 {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            left: 10%;
+            background: var(--gradient-success);
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-20px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(20px) rotate(240deg);
+            }
+        }
+
+        /* Container */
+        .recovery-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Card */
+        .recovery-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-2xl);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 700px;
+        }
+
+        @media (max-width: 992px) {
+            .recovery-card {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Left Side - Illustration */
+        .recovery-left {
+            background: var(--gradient-primary);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo span {
+            background: rgba(255, 255, 255, 0.2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .welcome-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 400px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .features-list i {
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+
+        .illustration {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .illustration i {
+            font-size: 8rem;
+            opacity: 0.3;
+        }
+
+        /* Right Side - Form */
+        .recovery-right {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .form-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Method Selection */
+        .method-selection {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 0.5rem;
+        }
+
+        .method-btn {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .method-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .method-btn:hover:not(.active) {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: 0.75rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-control.success {
+            border-color: var(--success);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310b981'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.25rem;
+            padding-right: 3rem;
+        }
+
+        .form-control.error {
+            border-color: var(--danger);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ef4444'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.25rem;
+            padding-right: 3rem;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        .input-icon.success {
+            color: var(--success);
+        }
+
+        .input-icon.error {
+            color: var(--danger);
+        }
+
+        /* Validation Messages */
+        .validation-message {
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .validation-message.success {
+            color: var(--success);
+        }
+
+        .validation-message.error {
+            color: var(--danger);
+        }
+
+        .validation-message.info {
+            color: var(--text-muted);
+        }
+
+        /* Verification Code Inputs */
+        .code-container {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .code-input {
+            width: 60px;
+            height: 70px;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: 0.75rem;
+            color: var(--text-primary);
+            transition: all var(--transition);
+        }
+
+        .code-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .code-input.filled {
+            border-color: var(--success);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .code-input.error {
+            border-color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Timer */
+        .timer {
+            text-align: center;
+            margin: 1rem 0;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .timer span {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .timer.expired {
+            color: var(--danger);
+        }
+
+        .timer.expired span {
+            color: var(--danger);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 0.875rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: none;
+        }
+
+        .action-btn.secondary {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .action-btn.secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .action-btn.primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .action-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .action-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Recovery Key Format */
+        .key-format {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .key-format i {
+            color: var(--warning);
+        }
+
+        /* Back to Login Link */
+        .back-link {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .back-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 0.25rem;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .theme-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-size: 1.25rem;
+        }
+
+        .theme-btn:hover {
+            transform: rotate(30deg);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Form Container */
+        .form-container {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+            color: var(--success);
+            font-size: 0.875rem;
+            display: none;
+        }
+
+        .success-message.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Resend Code Button */
+        .resend-btn {
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.875rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            transition: color var(--transition);
+        }
+
+        .resend-btn:hover:not(:disabled) {
+            text-decoration: underline;
+        }
+
+        .resend-btn:disabled {
+            color: var(--text-muted);
+            cursor: not-allowed;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .recovery-left,
+            .recovery-right {
+                padding: 2rem;
+            }
+            
+            .welcome-title {
+                font-size: 1.75rem;
+            }
+            
+            .code-container {
+                gap: 0.5rem;
+            }
+            
+            .code-input {
+                width: 50px;
+                height: 60px;
+                font-size: 1.75rem;
+            }
+            
+            .method-selection {
+                flex-direction: column;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .theme-toggle {
+                top: 1rem;
+                right: 1rem;
+            }
+            
+            .theme-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .recovery-container {
+                margin: 1rem auto;
+            }
+            
+            .recovery-left,
+            .recovery-right {
+                padding: 1.5rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .form-title {
+                font-size: 1.5rem;
+            }
+            
+            .code-input {
+                width: 45px;
+                height: 55px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation"></div>
+    
+    <!-- Floating Elements -->
+    <div class="floating-element float-1"></div>
+    <div class="floating-element float-2"></div>
+    <div class="floating-element float-3"></div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button class="theme-btn" id="themeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Recovery Container -->
+    <div class="recovery-container">
+        <div class="recovery-card">
+            <!-- Left Side - Illustration -->
+            <div class="recovery-left">
+                <div class="left-content">
+                    <div class="logo">
+                        <i class="fas fa-key"></i>
+                        <span>JM</span>benga
+                    </div>
+                    
+                    <h1 class="welcome-title">
+                        Recuperar Acesso
+                    </h1>
+                    
+                    <p class="welcome-subtitle">
+                        Recupere o acesso à sua conta usando uma chave de recuperação ou recebendo um código por email.
+                    </p>
+                    
+                    <ul class="features-list">
+                        <li>
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Recuperação segura e rápida</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>Código de 6 dígitos por email</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-key"></i>
+                            <span>Chave de recuperação de 12-20 dígitos</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Código expira em 10 minutos</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-lock"></i>
+                            <span>Processo 100% seguro</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="illustration">
+                        <i class="fas fa-unlock-alt"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Form -->
+            <div class="recovery-right">
+                <div class="form-header">
+                    <h2 class="form-title">Recuperar Conta</h2>
+                    <p class="form-subtitle">Escolha um método para recuperar seu acesso</p>
+                </div>
+
+                <!-- Method Selection -->
+                <div class="method-selection">
+                    <button class="method-btn active" id="methodEmail" data-method="email">
+                        <i class="fas fa-envelope"></i>
+                        <span>Código por Email</span>
+                    </button>
+                    <button class="method-btn" id="methodKey" data-method="key">
+                        <i class="fas fa-key"></i>
+                        <span>Chave de Recuperação</span>
+                    </button>
+                </div>
+
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Código enviado com sucesso! Verifique seu email.</span>
+                </div>
+
+                <!-- Email Method Form -->
+                <div class="form-container active" id="emailForm">
+                    <form id="emailRecoveryForm">
+                        <div class="form-group">
+                            <label class="form-label" for="recoveryEmail">Email da Conta *</label>
+                            <div class="input-group">
+                                <input type="email" class="form-control" id="recoveryEmail" 
+                                       placeholder="seu@email.com">
+                                <div class="input-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                            </div>
+                            <div class="validation-message info" id="emailValidation">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Digite o email cadastrado na sua conta</span>
+                            </div>
+                        </div>
+
+                        <button type="button" class="action-btn primary" id="sendCodeBtn">
+                            <span>Enviar Código</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+
+                    <!-- Verification Code Section -->
+                    <div id="verificationSection" style="display: none;">
+                        <div class="timer" id="timer">
+                            Código expira em: <span id="timeLeft">10:00</span>
+                        </div>
+
+                        <div class="code-container" id="codeContainer">
+                            <!-- Code inputs will be generated here -->
+                        </div>
+
+                        <div class="action-buttons">
+                            <button type="button" class="action-btn secondary" id="resendCodeBtn" disabled>
+                                <i class="fas fa-redo"></i>
+                                <span>Reenviar Código</span>
+                            </button>
+                            <button type="button" class="action-btn primary" id="verifyCodeBtn" disabled>
+                                <span>Verificar Código</span>
+                                <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Method Form -->
+                <div class="form-container" id="keyForm">
+                    <form id="keyRecoveryForm">
+                        <div class="form-group">
+                            <label class="form-label" for="recoveryUsername">Nome de Usuário *</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="recoveryUsername" 
+                                       placeholder="nome.usuario">
+                                <div class="input-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="validation-message info" id="usernameValidation">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Digite seu nome de usuário cadastrado</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="recoveryKey">Chave de Recuperação *</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="recoveryKey" 
+                                       placeholder="XXXXX-XXXXX-XXXXX-XXXXX">
+                                <div class="input-icon">
+                                    <i class="fas fa-key"></i>
+                                </div>
+                            </div>
+                            <div class="key-format">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Formato: 12-20 dígitos (letras e números)</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="action-btn primary" id="verifyKeyBtn">
+                            <span>Verificar Chave</span>
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Back to Login Link -->
+                <div class="back-link">
+                    Lembrou sua senha?
+                    <a href="login.html" id="backToLogin">Voltar para o login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initThemeToggle();
+            initMethodSelection();
+            initEmailRecovery();
+            initKeyRecovery();
+            initEventListeners();
+            generateCodeInputs();
+        });
+
+        // Theme Toggle
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('light-theme');
+                const icon = this.querySelector('i');
+                icon.className = document.body.classList.contains('light-theme') 
+                    ? 'fas fa-sun' 
+                    : 'fas fa-moon';
+                localStorage.setItem('recoveryTheme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+            });
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('recoveryTheme') || 'dark';
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                themeToggle.querySelector('i').className = 'fas fa-sun';
+            }
+        }
+
+        // Method Selection
+        function initMethodSelection() {
+            const methodEmail = document.getElementById('methodEmail');
+            const methodKey = document.getElementById('methodKey');
+            const emailForm = document.getElementById('emailForm');
+            const keyForm = document.getElementById('keyForm');
+
+            methodEmail.addEventListener('click', function() {
+                methodEmail.classList.add('active');
+                methodKey.classList.remove('active');
+                emailForm.classList.add('active');
+                keyForm.classList.remove('active');
+                document.getElementById('successMessage').classList.remove('active');
+                resetVerificationSection();
+            });
+
+            methodKey.addEventListener('click', function() {
+                methodKey.classList.add('active');
+                methodEmail.classList.remove('active');
+                keyForm.classList.add('active');
+                emailForm.classList.remove('active');
+                document.getElementById('successMessage').classList.remove('active');
+                resetVerificationSection();
+            });
+        }
+
+        // Email Recovery
+        function initEmailRecovery() {
+            const emailInput = document.getElementById('recoveryEmail');
+            const sendCodeBtn = document.getElementById('sendCodeBtn');
+            const verifyCodeBtn = document.getElementById('verifyCodeBtn');
+            const resendCodeBtn = document.getElementById('resendCodeBtn');
+
+            // Email validation
+            emailInput.addEventListener('input', function() {
+                validateEmail(this);
+            });
+
+            // Send code button
+            sendCodeBtn.addEventListener('click', function() {
+                if (validateEmail(emailInput)) {
+                    sendVerificationCode();
+                }
+            });
+
+            // Verify code button
+            verifyCodeBtn.addEventListener('click', function() {
+                verifyCode();
+            });
+
+            // Resend code button
+            resendCodeBtn.addEventListener('click', function() {
+                if (!this.disabled) {
+                    resendVerificationCode();
+                }
+            });
+        }
+
+        // Key Recovery
+        function initKeyRecovery() {
+            const usernameInput = document.getElementById('recoveryUsername');
+            const keyInput = document.getElementById('recoveryKey');
+            const verifyKeyBtn = document.getElementById('verifyKeyBtn');
+
+            // Username validation
+            usernameInput.addEventListener('input', function() {
+                validateUsername(this);
+            });
+
+            // Key validation
+            keyInput.addEventListener('input', function() {
+                validateRecoveryKey(this);
+            });
+
+            // Form submission
+            document.getElementById('keyRecoveryForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (validateKeyRecovery()) {
+                    verifyRecoveryKey();
+                }
+            });
+        }
+
+        // Event Listeners
+        function initEventListeners() {
+            // Back to login link
+            document.getElementById('backToLogin').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'login.html';
+            });
+        }
+
+        // Generate Code Inputs
+        function generateCodeInputs() {
+            const container = document.getElementById('codeContainer');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 6; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.maxLength = '1';
+                input.className = 'code-input';
+                input.dataset.index = i;
+                
+                // Auto-focus and move to next input
+                input.addEventListener('input', function(e) {
+                    const value = this.value.replace(/[^0-9]/g, '');
+                    this.value = value;
+                    
+                    if (value && this.nextElementSibling && this.nextElementSibling.classList.contains('code-input')) {
+                        this.nextElementSibling.focus();
+                    }
+                    
+                    updateCodeInputs();
+                });
+                
+                // Handle paste
+                input.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const pasteData = e.clipboardData.getData('text').replace(/[^0-9]/g, '');
+                    const inputs = container.querySelectorAll('.code-input');
+                    
+                    for (let j = 0; j < Math.min(pasteData.length, 6); j++) {
+                        if (inputs[j]) {
+                            inputs[j].value = pasteData[j];
+                        }
+                    }
+                    
+                    updateCodeInputs();
+                    if (inputs[Math.min(pasteData.length, 5)]) {
+                        inputs[Math.min(pasteData.length, 5)].focus();
+                    }
+                });
+                
+                // Handle backspace
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && !this.value && this.previousElementSibling) {
+                        this.previousElementSibling.focus();
+                    }
+                });
+                
+                container.appendChild(input);
+            }
+        }
+
+        // Update Code Inputs Style
+        function updateCodeInputs() {
+            const inputs = document.querySelectorAll('.code-input');
+            const verifyBtn = document.getElementById('verifyCodeBtn');
+            let allFilled = true;
+            
+            inputs.forEach(input => {
+                if (input.value) {
+                    input.classList.add('filled');
+                    input.classList.remove('error');
+                } else {
+                    input.classList.remove('filled');
+                    allFilled = false;
+                }
+            });
+            
+            // Enable verify button if all inputs are filled
+            verifyBtn.disabled = !allFilled;
+        }
+
+        // Validate Email
+        function validateEmail(input) {
+            const email = input.value.trim();
+            const validation = document.getElementById('emailValidation');
+            const icon = input.parentElement.querySelector('.input-icon i');
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (email === '') {
+                input.classList.remove('success', 'error');
+                icon.className = 'fas fa-envelope';
+                validation.className = 'validation-message info';
+                validation.innerHTML = '<i class="fas fa-info-circle"></i><span>Digite o email cadastrado na sua conta</span>';
+                return false;
+            }
+            
+            if (!emailRegex.test(email)) {
+                input.classList.remove('success');
+                input.classList.add('error');
+                icon.className = 'fas fa-exclamation-circle error';
+                validation.className = 'validation-message error';
+                validation.innerHTML = '<i class="fas fa-times-circle"></i><span>Email inválido</span>';
+                return false;
+            }
+            
+            // Simulate checking if email exists
+            setTimeout(() => {
+                const validEmails = ['jose@example.com', 'admin@example.com', 'teste@email.com'];
+                
+                if (validEmails.includes(email.toLowerCase())) {
+                    input.classList.remove('error');
+                    input.classList.add('success');
+                    icon.className = 'fas fa-check-circle success';
+                    validation.className = 'validation-message success';
+                    validation.innerHTML = '<i class="fas fa-check-circle"></i><span>Email encontrado</span>';
+                } else {
+                    input.classList.remove('success');
+                    input.classList.add('error');
+                    icon.className = 'fas fa-exclamation-circle error';
+                    validation.className = 'validation-message error';
+                    validation.innerHTML = '<i class="fas fa-times-circle"></i><span>Email não cadastrado</span>';
+                }
+            }, 500);
+            
+            return true;
+        }
+
+        // Validate Username
+        function validateUsername(input) {
+            const username = input.value.trim();
+            const validation = document.getElementById('usernameValidation');
+            const icon = input.parentElement.querySelector('.input-icon i');
+            
+            const usernameRegex = /^[a-zA-Z0-9.]{3,20}$/;
+            
+            if (username === '') {
+                input.classList.remove('success', 'error');
+                icon.className = 'fas fa-user';
+                validation.className = 'validation-message info';
+                validation.innerHTML = '<i class="fas fa-info-circle"></i><span>Digite seu nome de usuário cadastrado</span>';
+                return false;
+            }
+            
+            if (!usernameRegex.test(username)) {
+                input.classList.remove('success');
+                input.classList.add('error');
+                icon.className = 'fas fa-exclamation-circle error';
+                validation.className = 'validation-message error';
+                validation.innerHTML = '<i class="fas fa-times-circle"></i><span>Username inválido</span>';
+                return false;
+            }
+            
+            // Simulate checking if username exists
+            setTimeout(() => {
+                const validUsers = ['jose.mbenga', 'admin', 'usuario123'];
+                
+                if (validUsers.includes(username.toLowerCase())) {
+                    input.classList.remove('error');
+                    input.classList.add('success');
+                    icon.className = 'fas fa-check-circle success';
+                    validation.className = 'validation-message success';
+                    validation.innerHTML = '<i class="fas fa-check-circle"></i><span>Username encontrado</span>';
+                } else {
+                    input.classList.remove('success');
+                    input.classList.add('error');
+                    icon.className = 'fas fa-exclamation-circle error';
+                    validation.className = 'validation-message error';
+                    validation.innerHTML = '<i class="fas fa-times-circle"></i><span>Username não encontrado</span>';
+                }
+            }, 500);
+            
+            return true;
+        }
+
+        // Validate Recovery Key
+        function validateRecoveryKey(input) {
+            const key = input.value.replace(/\s+/g, '').toUpperCase();
+            const icon = input.parentElement.querySelector('.input-icon i');
+            
+            // Format key (XXXXX-XXXXX-XXXXX-XXXXX)
+            if (key.length > 0) {
+                const formatted = key.replace(/(.{5})(?=.)/g, '$1-');
+                input.value = formatted.substring(0, 23); // Max 19 chars + 4 dashes
+            }
+            
+            // Validate format: 12-20 alphanumeric characters
+            const cleanKey = key.replace(/[^A-Z0-9]/g, '');
+            const isValid = cleanKey.length >= 12 && cleanKey.length <= 20 && /^[A-Z0-9]+$/.test(cleanKey);
+            
+            if (cleanKey === '') {
+                input.classList.remove('success', 'error');
+                icon.className = 'fas fa-key';
+                return false;
+            }
+            
+            if (isValid) {
+                input.classList.remove('error');
+                input.classList.add('success');
+                icon.className = 'fas fa-check-circle success';
+            } else {
+                input.classList.remove('success');
+                input.classList.add('error');
+                icon.className = 'fas fa-exclamation-circle error';
+            }
+            
+            return isValid;
+        }
+
+        // Send Verification Code
+        function sendVerificationCode() {
+            const email = document.getElementById('recoveryEmail').value;
+            const sendBtn = document.getElementById('sendCodeBtn');
+            const originalText = sendBtn.innerHTML;
+            
+            // Show loading
+            sendBtn.innerHTML = '<span class="spinner"></span><span> Enviando...</span>';
+            sendBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Reset button
+                sendBtn.innerHTML = originalText;
+                sendBtn.disabled = false;
+                
+                // Show success message
+                const successMsg = document.getElementById('successMessage');
+                successMsg.innerHTML = `<i class="fas fa-check-circle"></i><span>Código enviado para <strong>${email}</strong></span>`;
+                successMsg.classList.add('active');
+                
+                // Show verification section
+                document.getElementById('verificationSection').style.display = 'block';
+                
+                // Start timer
+                startTimer(10); // 10 minutes
+                
+                // Disable resend button for 60 seconds
+                const resendBtn = document.getElementById('resendCodeBtn');
+                resendBtn.disabled = true;
+                let cooldown = 60;
+                
+                const cooldownInterval = setInterval(() => {
+                    resendBtn.innerHTML = `<i class="fas fa-redo"></i><span>Reenviar (${cooldown}s)</span>`;
+                    cooldown--;
+                    
+                    if (cooldown < 0) {
+                        clearInterval(cooldownInterval);
+                        resendBtn.innerHTML = '<i class="fas fa-redo"></i><span>Reenviar Código</span>';
+                        resendBtn.disabled = false;
+                    }
+                }, 1000);
+                
+                // Auto-focus first code input
+                const firstInput = document.querySelector('.code-input');
+                if (firstInput) firstInput.focus();
+                
+                // Generate and log a test code (for demo purposes)
+                const testCode = Math.floor(100000 + Math.random() * 900000);
+                console.log(`Código de verificação para ${email}: ${testCode}`);
+                console.log('Em produção, este código seria enviado por email');
+                
+            }, 1500);
+        }
+
+        // Start Timer
+        function startTimer(minutes) {
+            const timerElement = document.getElementById('timer');
+            const timeLeftElement = document.getElementById('timeLeft');
+            const verifyBtn = document.getElementById('verifyCodeBtn');
+            const resendBtn = document.getElementById('resendCodeBtn');
+            
+            let timeLeft = minutes * 60; // Convert to seconds
+            
+            const timerInterval = setInterval(() => {
+                const minutesLeft = Math.floor(timeLeft / 60);
+                const secondsLeft = timeLeft % 60;
+                
+                timeLeftElement.textContent = `${minutesLeft.toString().padStart(2, '0')}:${secondsLeft.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerElement.classList.add('expired');
+                    timeLeftElement.textContent = '00:00';
+                    verifyBtn.disabled = true;
+                    resendBtn.disabled = false;
+                    
+                    // Mark all code inputs as expired
+                    document.querySelectorAll('.code-input').forEach(input => {
+                        input.classList.add('error');
+                        input.disabled = true;
+                    });
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+
+        // Verify Code
+        function verifyCode() {
+            const inputs = document.querySelectorAll('.code-input');
+            const verifyBtn = document.getElementById('verifyCodeBtn');
+            const originalText = verifyBtn.innerHTML;
+            
+            // Get entered code
+            let enteredCode = '';
+            inputs.forEach(input => {
+                enteredCode += input.value;
+            });
+            
+            // Show loading
+            verifyBtn.innerHTML = '<span class="spinner"></span><span> Verificando...</span>';
+            verifyBtn.disabled = true;
+            
+            // Simulate API verification
+            setTimeout(() => {
+                // In a real app, this would verify against the backend
+                // For demo, accept any 6-digit code
+                if (enteredCode.length === 6 && /^\d+$/.test(enteredCode)) {
+                    // Success - redirect to password reset page
+                    alert('Código verificado com sucesso! Redirecionando para redefinição de senha...');
+                    localStorage.setItem('recoveryEmail', document.getElementById('recoveryEmail').value);
+                    window.location.href = 'reset-password.html';
+                } else {
+                    // Error
+                    verifyBtn.innerHTML = originalText;
+                    verifyBtn.disabled = false;
+                    
+                    // Show error on inputs
+                    inputs.forEach(input => {
+                        input.classList.add('error');
+                    });
+                    
+                    // Shake animation
+                    const container = document.getElementById('codeContainer');
+                    container.style.animation = 'none';
+                    setTimeout(() => {
+                        container.style.animation = 'shake 0.5s ease';
+                    }, 10);
+                    
+                    // Remove animation after it plays
+                    setTimeout(() => {
+                        container.style.animation = '';
+                    }, 500);
+                    
+                    alert('Código inválido. Por favor, tente novamente.');
+                }
+            }, 1500);
+        }
+
+        // Resend Verification Code
+        function resendVerificationCode() {
+            const email = document.getElementById('recoveryEmail').value;
+            const resendBtn = document.getElementById('resendCodeBtn');
+            
+            if (!email) {
+                alert('Por favor, insira seu email primeiro.');
+                return;
+            }
+            
+            // Show loading
+            resendBtn.innerHTML = '<span class="spinner"></span><span> Reenviando...</span>';
+            resendBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Reset resend button with new cooldown
+                let cooldown = 60;
+                
+                const cooldownInterval = setInterval(() => {
+                    resendBtn.innerHTML = `<i class="fas fa-redo"></i><span>Reenviar (${cooldown}s)</span>`;
+                    cooldown--;
+                    
+                    if (cooldown < 0) {
+                        clearInterval(cooldownInterval);
+                        resendBtn.innerHTML = '<i class="fas fa-redo"></i><span>Reenviar Código</span>';
+                        resendBtn.disabled = false;
+                    }
+                }, 1000);
+                
+                // Show success message
+                const successMsg = document.getElementById('successMessage');
+                successMsg.innerHTML = `<i class="fas fa-check-circle"></i><span>Novo código enviado para <strong>${email}</strong></span>`;
+                successMsg.classList.add('active');
+                
+                // Clear existing code inputs
+                document.querySelectorAll('.code-input').forEach(input => {
+                    input.value = '';
+                    input.classList.remove('filled', 'error');
+                });
+                
+                // Update verification button state
+                document.getElementById('verifyCodeBtn').disabled = true;
+                
+                // Focus first input
+                const firstInput = document.querySelector('.code-input');
+                if (firstInput) firstInput.focus();
+                
+                // Generate and log new test code
+                const newCode = Math.floor(100000 + Math.random() * 900000);
+                console.log(`Novo código de verificação para ${email}: ${newCode}`);
+                
+            }, 1500);
+        }
+
+        // Validate Key Recovery
+        function validateKeyRecovery() {
+            const username = document.getElementById('recoveryUsername').value.trim();
+            const key = document.getElementById('recoveryKey').value.replace(/[^A-Z0-9]/g, '');
+            
+            let isValid = true;
+            
+            if (!username) {
+                showValidationError('recoveryUsername', 'Nome de usuário é obrigatório');
+                isValid = false;
+            }
+            
+            if (!key) {
+                showValidationError('recoveryKey', 'Chave de recuperação é obrigatória');
+                isValid = false;
+            } else if (key.length < 12 || key.length > 20) {
+                showValidationError('recoveryKey', 'Chave deve ter entre 12 e 20 dígitos');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+
+        // Verify Recovery Key
+        function verifyRecoveryKey() {
+            const verifyBtn = document.getElementById('verifyKeyBtn');
+            const originalText = verifyBtn.innerHTML;
+            
+            // Show loading
+            verifyBtn.innerHTML = '<span class="spinner"></span><span> Verificando...</span>';
+            verifyBtn.disabled = true;
+            
+            // Simulate API verification
+            setTimeout(() => {
+                // In a real app, this would verify against the backend
+                // For demo, accept any valid format
+                const key = document.getElementById('recoveryKey').value.replace(/[^A-Z0-9]/g, '');
+                const username = document.getElementById('recoveryUsername').value;
+                
+                if (key.length >= 12 && key.length <= 20 && username) {
+                    // Success - redirect to password reset page
+                    alert('Chave verificada com sucesso! Redirecionando para redefinição de senha...');
+                    localStorage.setItem('recoveryUsername', username);
+                    window.location.href = 'reset-password.html';
+                } else {
+                    // Error
+                    verifyBtn.innerHTML = originalText;
+                    verifyBtn.disabled = false;
+                    alert('Chave de recuperação inválida ou nome de usuário incorreto.');
+                }
+            }, 1500);
+        }
+
+        // Show Validation Error
+        function showValidationError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            field.classList.add('error');
+            
+            // Show temporary error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'validation-message error';
+            errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i><span>${message}</span>`;
+            errorDiv.style.animation = 'fadeIn 0.3s ease';
+            
+            const parent = field.parentElement.parentElement;
+            const existingError = parent.querySelector('.validation-message.error');
+            if (existingError) {
+                existingError.remove();
+            }
+            
+            parent.appendChild(errorDiv);
+            
+            // Remove error after 3 seconds
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 3000);
+        }
+
+        // Reset Verification Section
+        function resetVerificationSection() {
+            document.getElementById('verificationSection').style.display = 'none';
+            document.getElementById('successMessage').classList.remove('active');
+            document.querySelectorAll('.code-input').forEach(input => {
+                input.value = '';
+                input.classList.remove('filled', 'error');
+            });
+            document.getElementById('verifyCodeBtn').disabled = true;
+        }
+
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

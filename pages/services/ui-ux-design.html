@@ -1,0 +1,2380 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark-theme">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Design | José Mbenga</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Design de interfaces e experiência do usuário premium. Mobile apps, websites, dashboards. Design thinking, prototipagem, design systems. José Mbenga - UI/UX Designer Angola.">
+    <meta name="keywords" content="UI design, UX design, design de interfaces, experiência do usuário, prototipagem, design thinking, Angola, Luanda">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="UI/UX Design | José Mbenga">
+    <meta property="og:description" content="Design premium de interfaces e experiência do usuário para produtos digitais em Angola.">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../favicon_jm.png" type="image/x-icon">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            /* Cores principais - Dark Theme */
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --success: #10b981;
+            --uiux: #ec4899;
+            --uiux-light: #f472b6;
+            --uiux-dark: #db2777;
+
+            /* Backgrounds */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+
+            /* Textos */
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+
+            /* Bordas */
+            --border: #475569;
+            --border-light: #64748b;
+
+            /* Gradientes */
+            --gradient-primary: linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            --gradient-uiux: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+            --gradient-uiux-dark: linear-gradient(135deg, #db2777 0%, #ec4899 100%);
+            --gradient-creative: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+            /* Transições */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Light Theme Variables */
+        .light-theme {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --border-light: #cbd5e1;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color var(--transition), color var(--transition);
+        }
+
+        /* Custom Classes */
+        .text-gradient {
+            background: var(--gradient-uiux);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .service-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all var(--transition);
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--uiux);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-uiux);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .design-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .badge-ui {
+            background: rgba(236, 72, 153, 0.1);
+            color: #ec4899;
+        }
+
+        .light-theme .badge-ui {
+            background: rgba(236, 72, 153, 0.05);
+        }
+
+        .badge-ux {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6;
+        }
+
+        .badge-research {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .process-step {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .process-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-uiux);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .tool-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            transition: all var(--transition);
+        }
+
+        .tool-item:hover {
+            border-color: var(--uiux);
+            transform: translateY(-3px);
+        }
+
+        .pricing-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+            transition: all var(--transition);
+        }
+
+        .pricing-card:hover {
+            border-color: var(--uiux);
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--uiux);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Mais Procurado';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-uiux);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .package-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .package-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .package-features li.disabled {
+            color: var(--text-muted);
+        }
+
+        .package-features li.disabled::before {
+            content: '✗';
+            color: var(--text-muted);
+        }
+
+        /* Navbar Custom */
+        .navbar-custom {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .light-theme .navbar-custom {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .btn-custom {
+            padding: 0.75rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all var(--transition);
+            text-decoration: none;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: width var(--transition);
+            z-index: -1;
+        }
+
+        .btn-custom:hover::before {
+            width: 100%;
+        }
+
+        .btn-primary-custom {
+            background: var(--gradient-uiux);
+            color: white;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--uiux);
+            color: var(--uiux);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .service-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%);
+        }
+
+        .light-theme .service-hero {
+            background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(241, 245, 249, 0.9) 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        /* Design Showcase */
+        .design-showcase {
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .design-header {
+            background: var(--bg-tertiary);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .design-mockup {
+            padding: 2rem;
+            text-align: center;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mockup-screen {
+            width: 100%;
+            max-width: 300px;
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 0 auto;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff6b6b);
+            background-size: 600% 600%;
+            animation: gradientMove 3s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .screen-content {
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .content-item {
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            animation: pulse 2s infinite;
+        }
+
+        .content-item:nth-child(2) { width: 80%; }
+        .content-item:nth-child(3) { width: 60%; }
+        .content-item:nth-child(4) { width: 90%; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .design-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .stat-good { color: var(--success); }
+        .stat-warning { color: var(--warning); }
+        .stat-primary { color: var(--uiux); }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .portfolio-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--uiux);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .portfolio-img {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-secondary);
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 4rem;
+            color: var(--uiux);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .form-control-custom {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: all var(--transition);
+        }
+
+        .form-control-custom:focus {
+            background: var(--bg-primary);
+            border-color: var(--uiux);
+            color: var(--text-primary);
+            box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+        }
+
+        /* Footer */
+        .service-footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .service-card {
+                margin-bottom: 1.5rem;
+            }
+            
+            .design-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .mockup-screen {
+                max-width: 250px;
+                padding: 1rem;
+            }
+            
+            .stat-card {
+                padding: 0.75rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-element {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Design Process */
+        .design-process {
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            padding: 2rem;
+            border-left: 4px solid var(--uiux);
+        }
+
+        .benefit-metric {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-primary);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+        }
+
+        .benefit-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-uiux);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+        }
+
+        /* Design Principles */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .principle-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition);
+        }
+
+        .principle-card:hover {
+            border-color: var(--uiux);
+            transform: translateY(-5px);
+        }
+
+        .principle-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-uiux);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+        }
+
+        /* Design Deliverables */
+        .deliverables-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .deliverable-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            transition: all var(--transition);
+        }
+
+        .deliverable-item:hover {
+            background: var(--uiux);
+            color: white;
+            border-color: var(--uiux);
+            transform: translateY(-3px);
+        }
+
+        .deliverable-item:hover .deliverable-icon {
+            color: white;
+        }
+
+        .deliverable-icon {
+            color: var(--uiux);
+            font-size: 1.25rem;
+        }
+
+        /* Design Tools Carousel */
+        .tools-carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem;
+            padding: 1rem 0;
+            scrollbar-width: none;
+        }
+
+        .tools-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tool-card {
+            flex: 0 0 auto;
+            width: 120px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition);
+        }
+
+        .tool-card:hover {
+            border-color: var(--uiux);
+            transform: translateY(-5px);
+        }
+
+        .tool-logo {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        /* Color Palette */
+        .color-palette {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .color-item {
+            width: 40px;
+            height: 40px;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: transform var(--transition);
+        }
+
+        .color-item:hover {
+            transform: scale(1.1);
+        }
+
+        /* Design System Preview */
+        .design-system {
+            background: var(--bg-tertiary);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .component-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .component-item {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar-custom navbar-expand-lg sticky-top">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-paint-brush me-2"></i>
+                    <span>JM</span>benga
+                </a>
+                <div class="d-flex align-items-center">
+                    <a href="#contact" class="btn btn-primary-custom me-2">
+                        <i class="fas fa-palette me-2"></i>Pedir Orçamento
+                    </a>
+                    <button class="btn btn-outline-custom" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="service-hero py-5">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill mb-3">
+                        <i class="fas fa-palette me-2"></i>Design Digital Premium
+                    </span>
+                    <h1 class="section-title mb-4">
+                        UI/UX <span class="text-gradient">Design</span> que Converte
+                    </h1>
+                    <p class="lead mb-4 text-muted">
+                        Crio interfaces intuitivas e experiências memoráveis que engajam usuários, aumentam conversões e destacam sua marca no mercado digital.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <span class="design-badge badge-ui">
+                            <i class="fas fa-layer-group me-1"></i> UI Design
+                        </span>
+                        <span class="design-badge badge-ux">
+                            <i class="fas fa-user-check me-1"></i> UX Research
+                        </span>
+                        <span class="design-badge badge-research">
+                            <i class="fas fa-mobile-alt me-1"></i> Mobile First
+                        </span>
+                    </div>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#portfolio" class="btn btn-primary-custom">
+                            <i class="fas fa-eye me-2"></i>Ver Portfólio
+                        </a>
+                        <a href="#process" class="btn btn-outline-custom">
+                            <i class="fas fa-sitemap me-2"></i>Ver Processo
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="design-showcase floating-element">
+                        <div class="design-header">
+                            <h6 class="mb-0">Showcase de Design</h6>
+                            <small class="text-muted">App Fintech - Design System</small>
+                        </div>
+                        <div class="design-mockup">
+                            <div class="mockup-screen">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div class="d-flex gap-2">
+                                        <div style="width: 12px; height: 12px; background: #ff6b6b; border-radius: 50%;"></div>
+                                        <div style="width: 12px; height: 12px; background: #feca57; border-radius: 50%;"></div>
+                                        <div style="width: 12px; height: 12px; background: #54a0ff; border-radius: 50%;"></div>
+                                    </div>
+                                    <div style="width: 100px; height: 5px; background: #e2e8f0; border-radius: 10px;"></div>
+                                </div>
+                                <div class="screen-content">
+                                    <div class="content-item"></div>
+                                    <div class="content-item"></div>
+                                    <div class="content-item"></div>
+                                    <div class="content-item"></div>
+                                    <div class="mt-3" style="display: flex; gap: 0.5rem;">
+                                        <div style="flex: 1; height: 40px; background: #4ecdc4; border-radius: 0.5rem;"></div>
+                                        <div style="flex: 1; height: 40px; background: #ff6b6b; border-radius: 0.5rem;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="design-stats">
+                            <div class="stat-card">
+                                <div class="stat-value stat-primary">+47%</div>
+                                <div class="stat-label">Engajamento</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value stat-good">-32%</div>
+                                <div class="stat-label">Taxa de Saída</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value stat-warning">2.3s</div>
+                                <div class="stat-label">Velocidade Média</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value stat-primary">98%</div>
+                                <div class="stat-label">Satisfação</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Design Matters -->
+    <section class="py-5 bg-dark bg-opacity-10">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Por que Investir em Design?</h2>
+                <p class="section-subtitle">Design não é apenas estética - é estratégia de negócio</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card text-center">
+                        <div class="service-icon mx-auto mb-4" style="background: var(--uiux);">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="mb-3">Conversão & ROI</h4>
+                        <p class="text-muted mb-3">
+                            Bom design pode aumentar conversões em até 200%. Cada dólar investido retorna em média $100 em ROI.
+                        </p>
+                        <div class="text-start small">
+                            <h6 class="text-muted mb-2">Impacto Mensurável:</h6>
+                            <ul class="text-muted">
+                                <li>Aumento de conversões</li>
+                                <li>Redução de bounce rate</li>
+                                <li>Maior valor por cliente</li>
+                                <li>Redução de suporte</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card text-center">
+                        <div class="service-icon mx-auto mb-4" style="background: var(--primary);">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 class="mb-3">Experiência do Usuário</h4>
+                        <p class="text-muted mb-3">
+                            UX bem pensada reduz frustração, aumenta satisfação e cria lealdade à marca.
+                        </p>
+                        <div class="text-start small">
+                            <h6 class="text-muted mb-2">Benefícios:</h6>
+                            <ul class="text-muted">
+                                <li>Usabilidade intuitiva</li>
+                                <li>Acessibilidade inclusiva</li>
+                                <li>Navegação eficiente</li>
+                                <li>Feedback positivo constante</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card text-center">
+                        <div class="service-icon mx-auto mb-4" style="background: var(--success);">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h4 class="mb-3">Diferenciação Competitiva</h4>
+                        <p class="text-muted mb-3">
+                            Em mercados saturados, design excelente é o que separa produtos medíocres de líderes.
+                        </p>
+                        <div class="text-start small">
+                            <h6 class="text-muted mb-2">Vantagens:</h6>
+                            <ul class="text-muted">
+                                <li>Identidade visual única</li>
+                                <li>Posicionamento premium</li>
+                                <li>Reconhecimento de marca</li>
+                                <li>Preferência do usuário</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="py-5" id="services">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Serviços de UI/UX Design</h2>
+                <p class="section-subtitle">Soluções completas de design para produtos digitais</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: var(--gradient-uiux);">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4 class="mb-3">UI Design Mobile</h4>
+                        <p class="text-muted mb-3">
+                            Interfaces responsivas e intuitivas para apps iOS e Android. Design systems, componentes reutilizáveis, animações fluidas.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-dark">iOS/Android</span>
+                            <span class="badge bg-dark">React Native</span>
+                            <span class="badge bg-dark">Design Systems</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: var(--gradient-primary);">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <h4 class="mb-3">Web Design Responsivo</h4>
+                        <p class="text-muted mb-3">
+                            Websites e aplicações web com foco em usabilidade e conversão. Design adaptativo para todos dispositivos.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-dark">Responsive</span>
+                            <span class="badge bg-dark">Landing Pages</span>
+                            <span class="badge bg-dark">E-commerce</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: var(--gradient-secondary);">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h4 class="mb-3">Dashboard & Data Viz</h4>
+                        <p class="text-muted mb-3">
+                            Interfaces complexas para dashboards empresariais. Visualização de dados clara e tomada de decisão facilitada.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-dark">Data Visualization</span>
+                            <span class="badge bg-dark">Admin Panels</span>
+                            <span class="badge bg-dark">Analytics</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: #8b5cf6;">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4 class="mb-3">UX Research & Testing</h4>
+                        <p class="text-muted mb-3">
+                            Pesquisa com usuários, testes de usabilidade, análise de concorrência e definição de personas.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-dark">User Testing</span>
+                            <span class="badge bg-dark">Personas</span>
+                            <span class="badge bg-dark">User Journey</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: #f59e0b;">
+                            <i class="fas fa-brush"></i>
+                        </div>
+                        <h4 class="mb-3">Brand & Visual Identity</h4>
+                        <p class="text-muted mb-3">
+                            Identidade visual completa: logos, paleta de cores, tipografia, iconografia e guidelines de marca.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-dark">Branding</span>
+                            <span class="badge bg-dark">Logo Design</span>
+                            <span class="badge bg-dark">Style Guides</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: #ef4444;">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h4 class="mb-3">Design Systems</h4>
+                        <p class="text-muted mb-3">
+                            Sistemas de design escaláveis com componentes reutilizáveis, documentação e design tokens.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-dark">Component Libraries</span>
+                            <span class="badge bg-dark">Design Tokens</span>
+                            <span class="badge bg-dark">Documentation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Process -->
+    <section class="py-5 bg-dark bg-opacity-10" id="process">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Meu Processo de Design</h2>
+                <p class="section-subtitle">Metodologia estruturada para resultados excepcionais</p>
+            </div>
+            <div class="design-process" data-aos="fade-up">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h4 class="mb-3">Design Thinking Aplicado</h4>
+                        <p class="text-muted mb-4">
+                            Trabalho com abordagem de Design Thinking, focando no usuário final em cada etapa. Cada projeto é único, mas seguimos um processo comprovado.
+                        </p>
+                        
+                        <div class="process-step" data-step="1">
+                            <h6 class="mb-1">1. Descoberta & Pesquisa</h6>
+                            <p class="text-muted mb-0 small">Entendimento profundo do negócio, usuários e concorrência</p>
+                        </div>
+                        <div class="process-step" data-step="2">
+                            <h6 class="mb-1">2. Definição & Estratégia</h6>
+                            <p class="text-muted mb-0 small">Personas, user journeys, arquitetura de informação</p>
+                        </div>
+                        <div class="process-step" data-step="3">
+                            <h6 class="mb-1">3. Ideação & Wireframes</h6>
+                            <p class="text-muted mb-0 small">Brainstorming, sketches, wireframes de baixa fidelidade</p>
+                        </div>
+                        <div class="process-step" data-step="4">
+                            <h6 class="mb-1">4. Prototipagem & Testes</h6>
+                            <p class="text-muted mb-0 small">Protótipos interativos, testes de usabilidade, iterações</p>
+                        </div>
+                        <div class="process-step" data-step="5">
+                            <h6 class="mb-1">5. UI Design & Refinamento</h6>
+                            <p class="text-muted mb-0 small">Design visual, micro-interações, design system</p>
+                        </div>
+                        <div class="process-step" data-step="6">
+                            <h6 class="mb-1">6. Handoff & Implementação</h6>
+                            <p class="text-muted mb-0 small">Documentação, specs, colaboração com desenvolvedores</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4 class="mb-3 text-center">O Que Você Recebe</h4>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="benefit-metric">
+                                    <div class="benefit-number">100%</div>
+                                    <div class="stat-label">Figma Files</div>
+                                    <small class="text-muted">Com acesso completo</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="benefit-metric">
+                                    <div class="benefit-number">3-5</div>
+                                    <div class="stat-label">Iterações</div>
+                                    <small class="text-muted">Até você ficar satisfeito</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="benefit-metric">
+                                    <div class="benefit-number">24/7</div>
+                                    <div class="stat-label">Suporte</div>
+                                    <small class="text-muted">Durante o projeto</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="benefit-metric">
+                                    <div class="benefit-number">✓</div>
+                                    <div class="stat-label">Responsivo</div>
+                                    <small class="text-muted">Mobile, tablet, desktop</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h6 class="mb-2">Design Deliverables:</h6>
+                            <div class="deliverables-list">
+                                <span class="deliverable-item">
+                                    <i class="deliverable-icon fas fa-file-invoice"></i>
+                                    <span>Style Guide</span>
+                                </span>
+                                <span class="deliverable-item">
+                                    <i class="deliverable-icon fas fa-sitemap"></i>
+                                    <span>Wireframes</span>
+                                </span>
+                                <span class="deliverable-item">
+                                    <i class="deliverable-icon fas fa-play-circle"></i>
+                                    <span>Protótipos</span>
+                                </span>
+                                <span class="deliverable-item">
+                                    <i class="deliverable-icon fas fa-palette"></i>
+                                    <span>UI Kit</span>
+                                </span>
+                                <span class="deliverable-item">
+                                    <i class="deliverable-icon fas fa-code"></i>
+                                    <span>Dev Handoff</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="py-5" id="portfolio">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Projetos de Design</h2>
+                <p class="section-subtitle">Casos reais de design que entregaram resultados</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-aos="fade-up">
+                    <div class="portfolio-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <h5 class="mb-2">App Fintech Angola</h5>
+                        <p class="text-muted small mb-3">Redesign completo de app bancário mobile, aumentando conversões em 47%.</p>
+                        <div class="color-palette">
+                            <div class="color-item" style="background: #4f46e5;" title="Índigo"></div>
+                            <div class="color-item" style="background: #06b6d4;" title="Ciano"></div>
+                            <div class="color-item" style="background: #10b981;" title="Verde"></div>
+                            <div class="color-item" style="background: #f8fafc;" title="Branco"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-img" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <h5 class="mb-2">E-commerce Fashion</h5>
+                        <p class="text-muted small mb-3">Design de plataforma de moda com aumento de 32% em vendas mobile.</p>
+                        <div class="color-palette">
+                            <div class="color-item" style="background: #ec4899;" title="Rosa"></div>
+                            <div class="color-item" style="background: #f472b6;" title="Rosa Claro"></div>
+                            <div class="color-item" style="background: #f8fafc;" title="Branco"></div>
+                            <div class="color-item" style="background: #1e293b;" title="Preto"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="portfolio-img" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <h5 class="mb-2">HealthTech Dashboard</h5>
+                        <p class="text-muted small mb-3">Interface para gestão de clínicas médicas com foco em usabilidade.</p>
+                        <div class="color-palette">
+                            <div class="color-item" style="background: #0ea5e9;" title="Azul"></div>
+                            <div class="color-item" style="background: #10b981;" title="Verde"></div>
+                            <div class="color-item" style="background: #f8fafc;" title="Branco"></div>
+                            <div class="color-item" style="background: #64748b;" title="Cinza"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Principles -->
+    <section class="py-5 bg-dark bg-opacity-10">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Princípios de Design</h2>
+                <p class="section-subtitle">Filosofia que guia cada decisão de design</p>
+            </div>
+            <div class="principles-grid">
+                <div class="principle-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="principle-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h5 class="mb-2">User-Centric</h5>
+                    <p class="text-muted small">O usuário está no centro de cada decisão. Design baseado em necessidades reais.</p>
+                </div>
+                <div class="principle-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="principle-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h5 class="mb-2">Simplicidade</h5>
+                    <p class="text-muted small">Menos é mais. Interfaces limpas, intuitivas e sem elementos desnecessários.</p>
+                </div>
+                <div class="principle-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="principle-icon">
+                        <i class="fas fa-universal-access"></i>
+                    </div>
+                    <h5 class="mb-2">Acessibilidade</h5>
+                    <p class="text-muted small">Design inclusivo para todos. Conformidade WCAG 2.1 AA.</p>
+                </div>
+                <div class="principle-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="principle-icon">
+                        <i class="fas fa-expand-alt"></i>
+                    </div>
+                    <h5 class="mb-2">Consistência</h5>
+                    <p class="text-muted small">Padrões visuais consistentes criam confiança e reduzem curva de aprendizado.</p>
+                </div>
+                <div class="principle-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="principle-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h5 class="mb-2">Performance</h5>
+                    <p class="text-muted small">Design otimizado para velocidade. Cada milissegundo importa.</p>
+                </div>
+                <div class="principle-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="principle-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h5 class="mb-2">Delight</h5>
+                    <p class="text-muted small">Micro-interações que encantam e criam experiências memoráveis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Tools -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Ferramentas de Design</h2>
+                <p class="section-subtitle">Tecnologia de ponta para criar designs excepcionais</p>
+            </div>
+            <div class="tools-carousel">
+                <div class="tool-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="tool-logo fab fa-figma" style="color: #F24E1E;"></i>
+                    <h6 class="mb-0">Figma</h6>
+                    <small class="text-muted">Design & Prototyping</small>
+                </div>
+                <div class="tool-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="tool-logo fab fa-adobe" style="color: #FF0000;"></i>
+                    <h6 class="mb-0">Adobe XD</h6>
+                    <small class="text-muted">UI/UX Design</small>
+                </div>
+                <div class="tool-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="tool-logo fas fa-paint-brush" style="color: #2BC7E9;"></i>
+                    <h6 class="mb-0">Illustrator</h6>
+                    <small class="text-muted">Vector Graphics</small>
+                </div>
+                <div class="tool-card" data-aos="fade-up" data-aos-delay="400">
+                    <i class="tool-logo fas fa-image" style="color: #31A8FF;"></i>
+                    <h6 class="mb-0">Photoshop</h6>
+                    <small class="text-muted">Photo Editing</small>
+                </div>
+                <div class="tool-card" data-aos="fade-up" data-aos-delay="500">
+                    <i class="tool-logo fas fa-video" style="color: #00C4CC;"></i>
+                    <h6 class="mb-0">After Effects</h6>
+                    <small class="text-muted">Motion Design</small>
+                </div>
+                <div class="tool-card" data-aos="fade-up" data-aos-delay="600">
+                    <i class="tool-logo fas fa-cube" style="color: #FF6B35;"></i>
+                    <h6 class="mb-0">Blender</h6>
+                    <small class="text-muted">3D Design</small>
+                </div>
+                <div class="tool-card" data-aos="fade-up" data-aos-delay="700">
+                    <i class="tool-logo fab fa-invision" style="color: #FF3366;"></i>
+                    <h6 class="mb-0">InVision</h6>
+                    <small class="text-muted">Prototyping</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design System Preview -->
+    <section class="py-5 bg-dark bg-opacity-10">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Design Systems</h2>
+                <p class="section-subtitle">Sistemas escaláveis para produtos que crescem</p>
+            </div>
+            <div class="design-system" data-aos="fade-up">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h4 class="mb-3">Por que Design Systems?</h4>
+                        <p class="text-muted mb-4">
+                            Design Systems não são apenas bibliotecas de componentes. São ecossistemas vivos que garantem consistência, aceleram desenvolvimento e escalam com seu produto.
+                        </p>
+                        <div class="component-showcase">
+                            <div class="component-item">Buttons</div>
+                            <div class="component-item">Inputs</div>
+                            <div class="component-item">Cards</div>
+                            <div class="component-item">Modals</div>
+                            <div class="component-item">Navigation</div>
+                            <div class="component-item">Data Tables</div>
+                            <div class="component-item">Forms</div>
+                            <div class="component-item">Alerts</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="benefit-metric">
+                            <div class="benefit-number">-65%</div>
+                            <div class="stat-label">Tempo de Desenvolvimento</div>
+                            <small class="text-muted">Com design system implementado</small>
+                        </div>
+                        <div class="mt-4">
+                            <h6 class="mb-2">O que inclui um Design System:</h6>
+                            <div class="package-features">
+                                <li>Biblioteca de componentes reutilizáveis</li>
+                                <li>Design tokens (cores, tipografia, espaçamento)</li>
+                                <li>Guidelines de uso e acessibilidade</li>
+                                <li>Documentação para desenvolvedores</li>
+                                <li>Kits para Figma/Adobe XD</li>
+                                <li>Exemplos de uso e boas práticas</li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="py-5" id="pricing">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Planos de Design</h2>
+                <p class="section-subtitle">Soluções flexíveis para diferentes necessidades</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing-card">
+                        <h4 class="mb-3">UI Design Básico</h4>
+                        <div class="mb-4">
+                            <span class="h2">$800+</span>
+                            <span class="text-muted">/ projeto</span>
+                        </div>
+                        <ul class="package-features">
+                            <li>1-3 telas principais</li>
+                            <li>Design responsivo</li>
+                            <li>Paleta de cores</li>
+                            <li>Tipografia selecionada</li>
+                            <li>2 revisões</li>
+                            <li class="disabled">UX Research</li>
+                            <li class="disabled">Design System</li>
+                            <li class="disabled">Prototipagem interativa</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline-custom w-100 mt-4">Pedir Orçamento</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-card popular">
+                        <h4 class="mb-3">UI/UX Completo</h4>
+                        <div class="mb-4">
+                            <span class="h2">$2,500+</span>
+                            <span class="text-muted">/ projeto</span>
+                        </div>
+                        <ul class="package-features">
+                            <li>5-10 telas</li>
+                            <li>Pesquisa de usuários</li>
+                            <li>Wireframes & Protótipos</li>
+                            <li>Testes de usabilidade</li>
+                            <li>Design responsivo</li>
+                            <li>UI Kit básico</li>
+                            <li>5 revisões</li>
+                            <li class="disabled">Design System completo</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary-custom w-100 mt-4">Mais Popular</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-card">
+                        <h4 class="mb-3">Design System Pro</h4>
+                        <div class="mb-4">
+                            <span class="h2">$5,000+</span>
+                            <span class="text-muted">/ projeto</span>
+                        </div>
+                        <ul class="package-features">
+                            <li>Design System completo</li>
+                            <li>30+ componentes</li>
+                            <li>Documentação detalhada</li>
+                            <li>Design tokens</li>
+                            <li>Acessibilidade WCAG 2.1</li>
+                            <li>Treinamento da equipe</li>
+                            <li>Revisões ilimitadas</li>
+                            <li>Suporte 1 mês</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline-custom w-100 mt-4">Solicitar Proposta</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5" data-aos="fade-up">
+                <div class="alert alert-dark border-0 bg-dark bg-opacity-10 d-inline-flex align-items-center">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <div class="text-start">
+                        <small class="text-muted">
+                            <strong>Nota:</strong> Todos os projetos incluem arquivos Figma editáveis e suporte durante o desenvolvimento.
+                            <br>
+                            <span class="text-primary">* Preços para projetos em Angola. Design para apps iOS/Android pode variar.</span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-5 bg-dark bg-opacity-10" id="faq">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">FAQ de Design</h2>
+                <p class="section-subtitle">Perguntas frequentes sobre serviços de UI/UX</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="faq-item" data-aos="fade-up">
+                        <div class="faq-question">
+                            <span>Qual a diferença entre UI e UX Design?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>UX (User Experience)</strong> foca na experiência completa do usuário: usabilidade, funcionalidade, pesquisa, arquitetura de informação. <strong>UI (User Interface)</strong> é a parte visual: cores, tipografia, botões, layouts. UX é sobre como funciona, UI é sobre como parece. Trabalham juntos.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="faq-question">
+                            <span>Quanto tempo leva um projeto de design?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Depende da complexidade. Um landing page: 1-2 semanas. App mobile completo: 4-8 semanas. Design System: 6-12 semanas. Após o briefing, forneço cronograma detalhado com milestones.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="faq-question">
+                            <span>Você trabalha com quais ferramentas?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Principalmente Figma (para design colaborativo e prototipagem). Também Adobe XD, Illustrator, Photoshop, e After Effects para animações. Os arquivos são entregues em formatos editáveis.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="faq-question">
+                            <span>Você entrega os arquivos fonte?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim, você recebe todos os arquivos fonte editáveis (Figma, XD, etc.) com direitos completos de uso. Também forneço formatos para desenvolvimento (SVG, PNG, PDF specs).</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="faq-question">
+                            <span>Você trabalha com equipes de desenvolvimento?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim, frequentemente! Forneço specs técnicas, guias de estilo, e estou disponível para reuniões com desenvolvedores durante a implementação para garantir fidelidade ao design.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">O Que Dizem Clientes de Design</h2>
+                <p class="section-subtitle">Experiências de quem investiu em design premium</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <div class="mb-3">
+                            <div class="rating-container mb-2">
+                                <div class="stars">
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="mb-3">"O redesign do nosso app bancário feito pelo José aumentou nossas conversões em 47% em apenas 3 meses. A experiência do usuário está tão intuitiva que reduzimos o suporte em 30%."</p>
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                        <span class="text-white fw-bold">MF</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Maria Fernandes</h6>
+                                    <small class="text-muted">Product Manager, Banco Digital</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <div class="mb-3">
+                            <div class="rating-container mb-2">
+                                <div class="stars">
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="mb-3">"Contratamos o José para criar nosso Design System. Hoje nossa equipe de desenvolvimento é 3x mais produtiva. A consistência visual em todos os produtos elevou nossa marca para outro nível."</p>
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <div class="rounded-circle bg-success d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                        <span class="text-white fw-bold">PC</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Pedro Costa</h6>
+                                    <small class="text-muted">CTO, HealthTech Startup</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card">
+                        <div class="mb-3">
+                            <div class="rating-container mb-2">
+                                <div class="stars">
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="mb-3">"Como e-commerce de moda, design é tudo. O trabalho do José não só é visualmente impressionante, mas aumentou nossas vendas mobile em 32%. A experiência de compra está fluida e elegante."</p>
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                        <span class="text-white fw-bold">IS</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Isabel Santos</h6>
+                                    <small class="text-muted">CEO, Fashion E-commerce</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="py-5 bg-dark bg-opacity-10" id="contact">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <h2 class="section-title mb-4">Vamos Criar Algo Incrível Juntos</h2>
+                    <p class="text-muted mb-4">
+                        Tem um projeto em mente? Vamos conversar sobre suas necessidades de design e como posso ajudar a transformar sua visão em realidade.
+                    </p>
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="service-icon me-3" style="width: 48px; height: 48px; background: var(--gradient-uiux);">
+                                <i class="fas fa-comment-dots"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Consulta Gratuita</h5>
+                                <p class="text-muted mb-0">30 minutos para discutir seu projeto</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="service-icon me-3" style="width: 48px; height: 48px; background: var(--gradient-uiux);">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Proposta Personalizada</h5>
+                                <p class="text-muted mb-0">Orçamento detalhado e cronograma</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="service-icon me-3" style="width: 48px; height: 48px; background: var(--gradient-uiux);">
+                                <i class="fab fa-figma"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Protótipo Rápido</h5>
+                                <p class="text-muted mb-0">Mockup inicial em 48 horas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="contact-form">
+                        <form id="designContactForm">
+                            <div class="mb-3">
+                                <label class="form-label">Nome Completo *</label>
+                                <input type="text" class="form-control form-control-custom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email *</label>
+                                <input type="email" class="form-control form-control-custom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Empresa/Projeto</label>
+                                <input type="text" class="form-control form-control-custom">
+                            </div>
+                            <div class="row g-2 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Tipo de Projeto</label>
+                                    <select class="form-control form-control-custom">
+                                        <option value="">Selecione...</option>
+                                        <option value="mobile">App Mobile</option>
+                                        <option value="web">Website</option>
+                                        <option value="dashboard">Dashboard</option>
+                                        <option value="branding">Branding</option>
+                                        <option value="design-system">Design System</option>
+                                        <option value="other">Outro</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Orçamento Aproximado</label>
+                                    <select class="form-control form-control-custom">
+                                        <option value="">Selecione...</option>
+                                        <option value="basic">$500 - $1,500</option>
+                                        <option value="standard">$1,500 - $5,000</option>
+                                        <option value="premium">$5,000+</option>
+                                        <option value="notsure">Não tenho certeza</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Descreva Seu Projeto *</label>
+                                <textarea class="form-control form-control-custom" rows="4" placeholder="Conte-me sobre sua ideia, objetivos, público-alvo, concorrentes, e qualquer referência visual que goste..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom w-100">
+                                <i class="fas fa-palette me-2"></i>Enviar Briefing de Design
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="service-footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <a href="../index.html" class="logo">
+                        <i class="fas fa-paint-brush me-2"></i>
+                        <span>JM</span>benga
+                    </a>
+                    <p class="text-muted mt-2 mb-0">
+                        Design digital premium para produtos que encantam e convertem.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-md-end gap-3">
+                        <a href="https://github.com/josembenga" class="btn btn-outline-custom btn-sm" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/jose-mbenga-da-costa" class="btn btn-outline-custom btn-sm" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:josembengadacosta@gmail.com" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/244922030116" class="btn btn-outline-custom btn-sm" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <h6 class="mb-3">Outros Serviços</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="desenvolvimento-web.html" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-code"></i> Desenvolvimento Web
+                        </a>
+                        <a href="aplicativos-mobile.html" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-mobile-alt"></i> Aplicativos Mobile
+                        </a>
+                        <a href="consultoria-tech.html" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-brain"></i> Consultoria Tech
+                        </a>
+                        <a href="manutencao.html" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-tools"></i> Manutenção
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-md-end">
+                        <p class="text-muted mb-0">
+                            &copy; 2023 José Mbenga. Todos os direitos reservados.
+                            <br>
+                            <small>Design disponível para todo Angola e internacionalmente.</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <div class="whatsapp-float" id="whatsappFloat">
+        <a href="https://wa.me/244922030116" class="whatsapp-icon" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <div class="whatsapp-tooltip">
+            <span>Precisa de ajuda rápida com design?</span>
+            <small>Clique para falar no WhatsApp</small>
+            <button class="close-float" id="closeFloat">&times;</button>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Theme Toggle
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('light-theme');
+            const icon = this.querySelector('i');
+            icon.className = document.body.classList.contains('light-theme') 
+                ? 'fas fa-sun' 
+                : 'fas fa-moon';
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-theme');
+            document.getElementById('themeToggle').querySelector('i').className = 'fas fa-sun';
+        }
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Design Contact Form
+        document.getElementById('designContactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Get project type
+                const projectType = this.querySelector('select').value;
+                const projectLabels = {
+                    'mobile': 'App Mobile',
+                    'web': 'Website',
+                    'dashboard': 'Dashboard',
+                    'branding': 'Branding',
+                    'design-system': 'Design System',
+                    'other': 'Outro tipo de projeto'
+                };
+                
+                // Show notification toast
+                showToast('Briefing de design enviado com sucesso! Entrarei em contato em até 24h.', 'success');
+                
+                // Open WhatsApp as fallback
+                window.open('https://wa.me/244922030116?text=Olá%20José,%20acabei%20de%20enviar%20o%20briefing%20de%20design%20para%20' + encodeURIComponent(projectLabels[projectType] || 'meu projeto'), '_blank');
+                
+                setTimeout(() => {
+                    this.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+
+        // Animate stats
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-value');
+            stats.forEach(stat => {
+                const text = stat.textContent;
+                stat.style.opacity = '0.5';
+                
+                if (text.includes('%') || text.includes('+') || text.includes('-')) {
+                    stat.textContent = '0%';
+                    
+                    const targetValue = parseFloat(text.replace(/[^\d.-]/g, ''));
+                    const isNegative = text.includes('-');
+                    const isPositive = text.includes('+');
+                    const prefix = isNegative ? '-' : (isPositive ? '+' : '');
+                    const suffix = text.includes('s') ? 's' : (text.includes('%') ? '%' : '');
+                    
+                    let startValue = 0;
+                    const duration = 2000;
+                    const increment = targetValue / (duration / 16);
+                    
+                    const timer = setInterval(() => {
+                        startValue += increment;
+                        if (startValue >= targetValue) {
+                            stat.textContent = text;
+                            stat.style.opacity = '1';
+                            clearInterval(timer);
+                        } else {
+                            stat.textContent = prefix + Math.floor(startValue) + suffix;
+                        }
+                    }, 16);
+                }
+            });
+        }
+
+        // Initialize stats animation when in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.design-showcase');
+        if (statsSection) observer.observe(statsSection);
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // WhatsApp Float
+        const whatsappFloat = document.getElementById('whatsappFloat');
+        const closeFloatBtn = document.getElementById('closeFloat');
+        
+        // Check if user previously closed the float
+        if (!localStorage.getItem('whatsappFloatClosed')) {
+            setTimeout(() => {
+                whatsappFloat.classList.add('show');
+            }, 3000);
+        }
+
+        closeFloatBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            whatsappFloat.classList.remove('show');
+            localStorage.setItem('whatsappFloatClosed', 'true');
+        });
+
+        // Auto-hide float after 30 seconds
+        setTimeout(() => {
+            whatsappFloat.classList.remove('show');
+        }, 30000);
+
+        // Rating Stars System
+        document.querySelectorAll('.stars').forEach(starsContainer => {
+            const stars = starsContainer.querySelectorAll('.star');
+            stars.forEach(star => {
+                if (star.classList.contains('filled')) {
+                    star.style.color = '#fbbf24'; // Yellow for filled stars
+                }
+            });
+        });
+
+        // Toast Notification System
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast-notification toast-${type}`;
+            toast.innerHTML = `
+                <div class="toast-content">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'} me-2"></i>
+                    ${message}
+                </div>
+                <button class="toast-close">&times;</button>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Show toast
+            setTimeout(() => toast.classList.add('show'), 10);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 5000);
+            
+            // Close button
+            toast.querySelector('.toast-close').addEventListener('click', () => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            });
+        }
+
+        // Mobile Menu Toggle
+        function initMobileMenu() {
+            const navbarToggler = document.createElement('button');
+            navbarToggler.className = 'navbar-toggler d-lg-none';
+            navbarToggler.innerHTML = '<i class="fas fa-bars"></i>';
+            navbarToggler.style.cssText = `
+                background: transparent;
+                border: 1px solid var(--border);
+                color: var(--text-primary);
+                border-radius: 0.5rem;
+                padding: 0.5rem 1rem;
+                font-size: 1.25rem;
+            `;
+            
+            document.querySelector('.navbar-custom .container .d-flex').prepend(navbarToggler);
+        }
+
+        // Initialize on mobile
+        if (window.innerWidth < 992) {
+            initMobileMenu();
+        }
+
+        // Color palette hover effect
+        document.querySelectorAll('.color-item').forEach(color => {
+            color.addEventListener('mouseenter', function() {
+                const colorCode = this.style.backgroundColor;
+                const tooltip = document.createElement('div');
+                tooltip.className = 'color-tooltip';
+                tooltip.textContent = colorCode;
+                tooltip.style.cssText = `
+                    position: absolute;
+                    background: var(--bg-secondary);
+                    color: var(--text-primary);
+                    padding: 0.25rem 0.5rem;
+                    border-radius: 0.25rem;
+                    font-size: 0.75rem;
+                    transform: translateY(-100%);
+                    border: 1px solid var(--border);
+                `;
+                this.appendChild(tooltip);
+            });
+            
+            color.addEventListener('mouseleave', function() {
+                const tooltip = this.querySelector('.color-tooltip');
+                if (tooltip) tooltip.remove();
+            });
+        });
+    </script>
+
+    <!-- Add CSS for new components -->
+    <style>
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float.show {
+            transform: translateX(0);
+        }
+
+        .whatsapp-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: var(--shadow-xl);
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-tooltip {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            max-width: 200px;
+        }
+
+        .whatsapp-tooltip span {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .whatsapp-tooltip small {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .close-float {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.2rem;
+            line-height: 1;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .close-float:hover {
+            color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-uiux);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            z-index: 1001;
+        }
+
+        .progress-bar {
+            height: 3px;
+            background: var(--gradient-uiux);
+            width: 0%;
+            transition: width 0.25s ease;
+        }
+
+        /* Toast Notifications */
+        .toast-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-width: 300px;
+            max-width: 400px;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 9999;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .toast-notification.show {
+            transform: translateX(0);
+        }
+
+        .toast-success {
+            border-left: 4px solid var(--success);
+        }
+
+        .toast-info {
+            border-left: 4px solid var(--uiux);
+        }
+
+        .toast-content {
+            display: flex;
+            align-items: center;
+            color: var(--text-primary);
+        }
+
+        .toast-close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.5rem;
+            line-height: 1;
+            padding: 0 0 0 1rem;
+        }
+
+        .toast-close:hover {
+            color: var(--danger);
+        }
+
+        /* Mobile Responsive Adjustments */
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                bottom: 10px;
+                right: 10px;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+
+            .whatsapp-tooltip {
+                max-width: 150px;
+                margin-bottom: 10px;
+            }
+
+            .whatsapp-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .back-to-top {
+                bottom: 70px;
+                right: 10px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .toast-notification {
+                left: 10px;
+                right: 10px;
+                max-width: none;
+                min-width: auto;
+            }
+
+            .deliverables-list {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+
+            .deliverable-item {
+                font-size: 0.875rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .mockup-screen {
+                max-width: 250px;
+                padding: 1rem;
+            }
+            
+            .stat-card {
+                padding: 0.75rem;
+            }
+            
+            .portfolio-item {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* Rating Stars Fix */
+        .stars {
+            color: #e5e7eb; /* Gray for empty stars */
+        }
+
+        .stars .filled {
+            color: #fbbf24; /* Yellow for filled stars */
+        }
+
+        /* Color Tooltip */
+        .color-tooltip {
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        /* Design-specific animations */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .gradient-animated {
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+        }
+    </style>
+</body>
+</html>

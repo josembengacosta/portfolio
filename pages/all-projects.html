@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark-theme">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Completo | José Mbenga</title>
+    <meta name="theme-color" content="#0f172a" />
+
+    <!-- SEO -->
+    <meta name="description"
+        content="Portfólio completo com 35+ projetos de desenvolvimento web, mobile, UI/UX design e consultoria tech por José Mbenga">
+    <meta name="keywords"
+        content="portfólio projetos, desenvolvimento web Angola, José Mbenga projetos, web developer Angola, full stack developer">
+    <meta name="author" content="José Mbenga" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="José Mbenga | Desenvolvedor Web Full Stack" />
+    <meta property="og:description"
+        content="Transformo ideias em experiências digitais excepcionais com código limpo e design moderno." />
+    <meta property="og:image" content="https://jmbenga.com/og-image.jpg" />
+    <meta property="og:url" content="https://jmbenga.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="José Mbenga | Desenvolvedor Web Full Stack" />
+    <meta name="twitter:description" content="Especialista em desenvolvimento web moderno e performático." />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/img/svg/favicon_jm.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="../assets/img/svg/favicon_jm.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/fontawesome-free/css/all.min.css" />
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/all-projects.css" />
+</head>
+
+<body>
+    <!-- Simple Navigation -->
+    <nav class="simple-nav">
+        <button class="btn btn-outline btn-icon" id="backButton" title="Voltar">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="nav-buttons">
+            <a href="../index.html#contact" class="btn btn-primary" id="contactButton">
+                <i class="fas fa-paper-plane"></i>
+                <span>Contato</span>
+            </a>
+            <button class="btn btn-outline btn-icon" id="themeToggle" title="Alternar tema">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="hero-title">
+                    Todos o<span class="text-gradient">s Projectos</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Explore todos os 35+ projetos de desenvolvimento web, aplicativos mobile, design UI/UX
+                    e consultoria tech que realizei nos últimos 5 anos.
+                </p>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">35+</div>
+                        <div class="stat-label">Projetos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">Clientes</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Anos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Tecnologias</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Filter Section -->
+        <section class="filter-section" data-aos="fade-up">
+            <div class="filter-header">
+                <div>
+                    <h2 class="filter-title">Filtrar Projetos</h2>
+                    <div class="filter-count" id="filterCount">35 projetos</div>
+                </div>
+                <button class="btn btn-outline" id="resetFilters">
+                    <i class="fas fa-redo"></i>
+                    <span>Resetar</span>
+                </button>
+            </div>
+
+            <div class="filter-tags">
+                <button class="filter-tag active" data-filter="all">
+                    <i class="fas fa-th-large"></i>
+                    <span>Todos</span>
+                </button>
+                <button class="filter-tag" data-filter="web">
+                    <i class="fas fa-code"></i>
+                    <span>Web Dev</span>
+                </button>
+                <button class="filter-tag" data-filter="mobile">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Mobile Apps</span>
+                </button>
+                <button class="filter-tag" data-filter="design">
+                    <i class="fas fa-paint-brush"></i>
+                    <span>UI/UX Design</span>
+                </button>
+                <button class="filter-tag" data-filter="consulting">
+                    <i class="fas fa-brain"></i>
+                    <span>Consultoria</span>
+                </button>
+                <button class="filter-tag" data-tech="react">
+                    <i class="fab fa-react"></i>
+                    <span>React</span>
+                </button>
+                <button class="filter-tag" data-tech="node">
+                    <i class="fab fa-node-js"></i>
+                    <span>Node.js</span>
+                </button>
+                <button class="filter-tag" data-tech="vue">
+                    <i class="fab fa-vuejs"></i>
+                    <span>Vue.js</span>
+                </button>
+            </div>
+
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" id="searchInput"
+                    placeholder="Buscar projetos por nome, tecnologia ou descrição...">
+            </div>
+        </section>
+
+        <!-- Projects Grid -->
+        <section class="projects-section">
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projetos serão inseridos via JavaScript -->
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState">
+                <div class="empty-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3 class="empty-title">Nenhum projeto encontrado</h3>
+                <p class="empty-text">
+                    Tente ajustar seus filtros ou termos de busca para encontrar o que procura.
+                </p>
+                <button class="btn btn-primary" id="resetEmptyFilters">
+                    <i class="fas fa-redo"></i>
+                    Resetar Filtros
+                </button>
+            </div>
+
+            <!-- Load More -->
+            <div class="load-more" id="loadMoreContainer">
+                <button class="btn btn-outline" id="loadMoreBtn">
+                    <i class="fas fa-plus"></i>
+                    Carregar Mais Projetos
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../assets/js/all-projects.js"></script>
+</body>
+
+</html>

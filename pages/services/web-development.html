@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark-theme">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desenvolvimento Web | José Mbenga</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Desenvolvimento Web profissional - Criação de sites, sistemas web e aplicações customizadas. José Mbenga - Desenvolvedor Full Stack.">
+    <meta name="keywords" content="desenvolvimento web, sites, aplicações web, Angola, Luanda, frontend, backend">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Desenvolvimento Web | José Mbenga">
+    <meta property="og:description" content="Criação de sites e sistemas web profissionais com as melhores tecnologias do mercado.">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../favicon_jm.png" type="image/x-icon">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+       <link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="../../assets/fontawesome-free/css/all.min.css" />
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            /* Cores principais - Dark Theme */
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --success: #10b981;
+
+            /* Backgrounds */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+
+            /* Textos */
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+
+            /* Bordas */
+            --border: #475569;
+            --border-light: #64748b;
+
+            /* Gradientes */
+            --gradient-primary: linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+            /* Transições */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Light Theme Variables */
+        .light-theme {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --border-light: #cbd5e1;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color var(--transition), color var(--transition);
+        }
+
+        /* Custom Classes */
+        .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .service-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all var(--transition);
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-primary);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .process-step {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .process-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .tech-stack-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            transition: all var(--transition);
+        }
+
+        .tech-stack-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .pricing-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+            transition: all var(--transition);
+        }
+
+        .pricing-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Mais Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .package-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .package-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .package-features li.disabled {
+            color: var(--text-muted);
+        }
+
+        .package-features li.disabled::before {
+            content: '✗';
+            color: var(--text-muted);
+        }
+
+        /* Navbar Custom */
+        .navbar-custom {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .light-theme .navbar-custom {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .btn-custom {
+            padding: 0.75rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all var(--transition);
+            text-decoration: none;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: width var(--transition);
+            z-index: -1;
+        }
+
+        .btn-custom:hover::before {
+            width: 100%;
+        }
+
+        .btn-primary-custom {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .service-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%);
+        }
+
+        .light-theme .service-hero {
+            background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(241, 245, 249, 0.9) 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-secondary);
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .form-control-custom {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: all var(--transition);
+        }
+
+        .form-control-custom:focus {
+            background: var(--bg-primary);
+            border-color: var(--primary);
+            color: var(--text-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Footer */
+        .service-footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .service-card {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-element {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar-custom navbar-expand-lg sticky-top">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-code me-2"></i>
+                    <span>JM</span>benga
+                </a>
+                <div class="d-flex align-items-center">
+                    <a href="../index.html#contact" class="btn btn-primary-custom me-2">
+                        <i class="fas fa-paper-plane me-2"></i>Orçamento
+                    </a>
+                    <button class="btn btn-outline-custom" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="service-hero py-5">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill mb-3">
+                        <i class="fas fa-rocket me-2"></i>Serviço Premium
+                    </span>
+                    <h1 class="section-title mb-4">
+                        Desenvolvimento <span class="text-gradient">Web</span> Profissional
+                    </h1>
+                    <p class="lead mb-4 text-muted">
+                        Crio sites e sistemas web modernos, performáticos e escaláveis que convertem visitantes em clientes.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#portfolio" class="btn btn-primary-custom">
+                            <i class="fas fa-eye me-2"></i>Ver Projetos
+                        </a>
+                        <a href="#pricing" class="btn btn-outline-custom">
+                            <i class="fas fa-tag me-2"></i>Ver Preços
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="text-center">
+                        <div class="position-relative d-inline-block">
+                            <div class="service-icon floating-element mx-auto mb-3">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="floating-element" style="
+                                position: absolute;
+                                top: -20px;
+                                right: -20px;
+                                width: 100px;
+                                height: 100px;
+                                background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+                                z-index: -1;
+                            "></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What I Offer -->
+    <section class="py-5" id="offer">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">O Que Ofereço</h2>
+                <p class="section-subtitle">Soluções web completas para impulsionar seu negócio digital</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: var(--gradient-primary);">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h4 class="mb-3">Sites Institucionais</h4>
+                        <p class="text-muted mb-0">
+                            Websites profissionais que transmitem credibilidade e apresentam sua empresa ao mundo.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: var(--gradient-secondary);">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h4 class="mb-3">E-commerce</h4>
+                        <p class="text-muted mb-0">
+                            Lojas online completas com carrinho, checkout e sistema de gestão de produtos.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: var(--gradient-warning);">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="mb-3">Sistemas Web</h4>
+                        <p class="text-muted mb-0">
+                            Aplicações web personalizadas para gestão, dashboards e automação de processos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Process -->
+    <section class="py-5 bg-dark bg-opacity-10">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Meu Processo</h2>
+                <p class="section-subtitle">Metodologia ágil e transparente para entregas de qualidade</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="process-step" data-step="1" data-aos="fade-right">
+                        <h4 class="mb-2">1. Discovery & Planning</h4>
+                        <p class="text-muted mb-0">
+                            Análise detalhada do projeto, definição de requisitos, planejamento de arquitetura e cronograma.
+                        </p>
+                    </div>
+                    <div class="process-step" data-step="2" data-aos="fade-right" data-aos-delay="100">
+                        <h4 class="mb-2">2. UI/UX Design</h4>
+                        <p class="text-muted mb-0">
+                            Criação de wireframes, protótipos e design visual focado na experiência do usuário.
+                        </p>
+                    </div>
+                    <div class="process-step" data-step="3" data-aos="fade-right" data-aos-delay="200">
+                        <h4 class="mb-2">3. Development</h4>
+                        <p class="text-muted mb-0">
+                            Implementação usando as melhores práticas de código, com desenvolvimento ágil e iterativo.
+                        </p>
+                    </div>
+                    <div class="process-step" data-step="4" data-aos="fade-right" data-aos-delay="300">
+                        <h4 class="mb-2">4. Testing & Quality</h4>
+                        <p class="text-muted mb-0">
+                            Testes rigorosos de funcionalidade, performance, segurança e responsividade.
+                        </p>
+                    </div>
+                    <div class="process-step" data-step="5" data-aos="fade-right" data-aos-delay="400">
+                        <h4 class="mb-2">5. Deployment & Launch</h4>
+                        <p class="text-muted mb-0">
+                            Configuração de servidores, deploy da aplicação e monitoramento pós-lançamento.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="py-5" id="tech">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Tecnologias</h2>
+                <p class="section-subtitle">Ferramentas modernas para resultados excepcionais</p>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="tech-stack-item">
+                        <i class="fab fa-react fa-2x" style="color: #61DAFB;"></i>
+                        <div>
+                            <h6 class="mb-0">React.js</h6>
+                            <small class="text-muted">Frontend Moderno</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tech-stack-item">
+                        <i class="fab fa-node-js fa-2x" style="color: #339933;"></i>
+                        <div>
+                            <h6 class="mb-0">Node.js</h6>
+                            <small class="text-muted">Backend Rápido</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="tech-stack-item">
+                        <i class="fas fa-database fa-2x" style="color: #47A248;"></i>
+                        <div>
+                            <h6 class="mb-0">MongoDB</h6>
+                            <small class="text-muted">Banco de Dados</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="tech-stack-item">
+                        <i class="fab fa-js fa-2x" style="color: #F7DF1E;"></i>
+                        <div>
+                            <h6 class="mb-0">JavaScript</h6>
+                            <small class="text-muted">ES6+ Moderno</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="py-5 bg-dark bg-opacity-10" id="pricing">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Preços</h2>
+                <p class="section-subtitle">Planos transparentes sem surpresas</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing-card">
+                        <h4 class="mb-3">Site Básico</h4>
+                        <div class="mb-4">
+                            <span class="h2">$1,500</span>
+                            <span class="text-muted">/ projeto</span>
+                        </div>
+                        <ul class="package-features">
+                            <li>Até 5 páginas</li>
+                            <li>Design responsivo</li>
+                            <li>SEO básico</li>
+                            <li>Formulário de contato</li>
+                            <li class="disabled">Sistema de login</li>
+                            <li class="disabled">Dashboard admin</li>
+                            <li class="disabled">Integração API</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline-custom w-100 mt-4">Solicitar</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-card popular">
+                        <h4 class="mb-3">Site Profissional</h4>
+                        <div class="mb-4">
+                            <span class="h2">$3,500</span>
+                            <span class="text-muted">/ projeto</span>
+                        </div>
+                        <ul class="package-features">
+                            <li>Até 10 páginas</li>
+                            <li>Design premium</li>
+                            <li>SEO avançado</li>
+                            <li>Sistema de blog</li>
+                            <li>Galeria de imagens</li>
+                            <li>Dashboard básico</li>
+                            <li class="disabled">E-commerce</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary-custom w-100 mt-4">Mais Popular</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-card">
+                        <h4 class="mb-3">E-commerce</h4>
+                        <div class="mb-4">
+                            <span class="h2">$5,000+</span>
+                            <span class="text-muted">/ projeto</span>
+                        </div>
+                        <ul class="package-features">
+                            <li>Loja online completa</li>
+                            <li>Carrinho & Checkout</li>
+                            <li>Gestão de produtos</li>
+                            <li>Pagamentos online</li>
+                            <li>Dashboard avançado</li>
+                            <li>Relatórios de vendas</li>
+                            <li>Suporte prioritário</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline-custom w-100 mt-4">Personalizar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5" data-aos="fade-up">
+                <p class="text-muted">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Preços podem variar conforme complexidade. Entre em contato para um orçamento personalizado.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-5" id="faq">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">FAQ</h2>
+                <p class="section-subtitle">Perguntas frequentes sobre desenvolvimento web</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="faq-item" data-aos="fade-up">
+                        <div class="faq-question">
+                            <span>Quanto tempo leva para desenvolver um site?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>O tempo varia conforme a complexidade. Um site básico leva 2-3 semanas, sites profissionais 4-6 semanas, e e-commerces 8-12 semanas.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="faq-question">
+                            <span>Você fornece manutenção pós-lançamento?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim, ofereço planos de manutenção mensal que incluem atualizações, backup, segurança e suporte técnico.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="faq-question">
+                            <span>Posso gerenciar o conteúdo do site sozinho?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim, todos os sites incluem CMS (Sistema de Gerenciamento de Conteúdo) para você atualizar textos, imagens e produtos facilmente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Preview -->
+    <section class="py-5 bg-dark bg-opacity-10" id="portfolio">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Projetos de Web</h2>
+                <p class="section-subtitle">Veja alguns dos sites e sistemas que desenvolvi</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="img-fluid rounded mb-3" alt="E-commerce">
+                        <h4 class="mb-2">E-commerce Platform</h4>
+                        <p class="text-muted mb-3">Loja online completa com sistema de pagamentos</p>
+                        <a href="../project-demo.html?id=1" class="btn btn-outline-custom btn-sm">Ver Demo</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="img-fluid rounded mb-3" alt="Dashboard">
+                        <h4 class="mb-2">Analytics Dashboard</h4>
+                        <p class="text-muted mb-3">Dashboard empresarial com gráficos em tempo real</p>
+                        <a href="../project-demo.html?id=2" class="btn btn-outline-custom btn-sm">Ver Demo</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="img-fluid rounded mb-3" alt="Portfolio">
+                        <h4 class="mb-2">Portfolio Website</h4>
+                        <p class="text-muted mb-3">Site de portfólio moderno com animações</p>
+                        <a href="../project-demo.html?id=3" class="btn btn-outline-custom btn-sm">Ver Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="py-5" id="contact">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <h2 class="section-title mb-4">Vamos Criar Algo Incrível</h2>
+                    <p class="text-muted mb-4">
+                        Pronto para transformar sua ideia em realidade? Preencha o formulário e entrarei em contato em até 24 horas.
+                    </p>
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="service-icon me-3" style="width: 48px; height: 48px;">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Email</h5>
+                                <a href="mailto:josembengadacosta@gmail.com" class="text-muted">
+                                    josembengadacosta@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="service-icon me-3" style="width: 48px; height: 48px;">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">WhatsApp</h5>
+                                <a href="https://wa.me/244922030116" class="text-muted">
+                                    (+244) 922 030 116
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="contact-form">
+                        <form id="serviceContactForm">
+                            <div class="mb-3">
+                                <label class="form-label">Nome Completo *</label>
+                                <input type="text" class="form-control form-control-custom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email *</label>
+                                <input type="email" class="form-control form-control-custom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Tipo de Projeto</label>
+                                <select class="form-control form-control-custom">
+                                    <option value="">Selecione...</option>
+                                    <option value="site">Site Institucional</option>
+                                    <option value="ecommerce">E-commerce</option>
+                                    <option value="sistema">Sistema Web</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Mensagem *</label>
+                                <textarea class="form-control form-control-custom" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom w-100">
+                                <i class="fas fa-paper-plane me-2"></i>Enviar Solicitação
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="service-footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <a href="../index.html" class="logo">
+                        <i class="fas fa-code me-2"></i>
+                        <span>JM</span>benga
+                    </a>
+                    <p class="text-muted mt-2 mb-0">
+                        Desenvolvimento web de alta qualidade para empresas e empreendedores.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-md-end gap-3">
+                        <a href="https://github.com/josembenga" class="btn btn-outline-custom btn-sm" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/jose-mbenga-da-costa" class="btn btn-outline-custom btn-sm" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:josembengadacosta@gmail.com" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/244922030116" class="btn btn-outline-custom btn-sm" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <h6 class="mb-3">Outros Serviços</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="aplicativos-mobile.html" class="btn btn-outline-custom btn-sm">Aplicativos Mobile</a>
+                        <a href="ui-ux-design.html" class="btn btn-outline-custom btn-sm">UI/UX Design</a>
+                        <a href="consultoria-tech.html" class="btn btn-outline-custom btn-sm">Consultoria Tech</a>
+                        <a href="manutencao.html" class="btn btn-outline-custom btn-sm">Manutenção</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-md-end">
+                        <p class="text-muted mb-0">
+                            &copy; 2023 José Mbenga. Todos os direitos reservados.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Theme Toggle
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('light-theme');
+            const icon = this.querySelector('i');
+            icon.className = document.body.classList.contains('light-theme') 
+                ? 'fas fa-sun' 
+                : 'fas fa-moon';
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-theme');
+            document.getElementById('themeToggle').querySelector('i').className = 'fas fa-sun';
+        }
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Form Submission
+        document.getElementById('serviceContactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Enviado!';
+                
+                // Show success message
+                alert('Obrigado! Entrarei em contato em até 24 horas úteis.');
+                
+                // Reset form
+                setTimeout(() => {
+                    this.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

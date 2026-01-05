@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark-theme">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erro Interno | José Mbenga</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Erro interno do servidor - José Mbenga Desenvolvedor Full Stack">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Erro Interno do Servidor | José Mbenga">
+    <meta property="og:description" content="Ocorreu um erro interno no servidor. Nossa equipe já foi notificada.">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon_jm.png" type="image/x-icon">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <style>
+        :root {
+            /* Cores principais - Dark Theme */
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+
+            /* Backgrounds */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+
+            /* Textos */
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+
+            /* Bordas */
+            --border: #475569;
+            --border-light: #64748b;
+
+            /* Gradientes */
+            --gradient-primary: linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            --gradient-danger: linear-gradient(135deg, #ef4444 0%, #f59e0b 100%);
+
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+            /* Transições */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Light Theme Variables */
+        .light-theme {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --border-light: #cbd5e1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color var(--transition), color var(--transition);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Server Error Animation */
+        .server-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(37, 99, 235, 0.08) 0%, transparent 60%);
+            animation: serverPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes serverPulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Server Room Grid */
+        .server-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            background-image: 
+                linear-gradient(rgba(37, 99, 235, 0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.2) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        /* Server Rack Animation */
+        .server-rack {
+            position: absolute;
+            width: 300px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            opacity: 0.05;
+        }
+
+        .server-unit {
+            position: absolute;
+            width: 280px;
+            height: 40px;
+            background: linear-gradient(90deg, 
+                rgba(37, 99, 235, 0.3) 0%, 
+                rgba(139, 92, 246, 0.3) 50%, 
+                rgba(239, 68, 68, 0.3) 100%);
+            border-radius: 4px;
+            animation: serverUnit 3s infinite;
+        }
+
+        @keyframes serverUnit {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header */
+        .header {
+            padding: 2rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: transform var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo span {
+            background: var(--gradient-danger);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 200px);
+            padding: 3rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .error-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Error Code */
+        .error-code {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .error-number {
+            font-size: clamp(8rem, 20vw, 15rem);
+            font-weight: 900;
+            line-height: 1;
+            margin: 0;
+            position: relative;
+            display: inline-block;
+            background: var(--gradient-danger);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: errorGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes errorGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.3));
+            }
+            50% {
+                filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.6));
+            }
+        }
+
+        /* Error Sparks */
+        .error-spark {
+            position: absolute;
+            width: 4px;
+            height: 20px;
+            background: var(--danger);
+            border-radius: 2px;
+            animation: spark 0.5s ease-out;
+        }
+
+        @keyframes spark {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        /* Error Message */
+        .error-title {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            position: relative;
+            display: inline-block;
+        }
+
+        .error-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-danger);
+            border-radius: 2px;
+            animation: linePulse 2s infinite;
+        }
+
+        @keyframes linePulse {
+            0%, 100% {
+                width: 100px;
+            }
+            50% {
+                width: 200px;
+            }
+        }
+
+        .error-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Error Console */
+        .error-console {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .console-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .console-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .console-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background: var(--danger);
+        }
+
+        .dot-yellow {
+            background: var(--warning);
+        }
+
+        .dot-green {
+            background: var(--accent);
+        }
+
+        .console-title {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .console-output {
+            font-family: 'Courier New', monospace;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .error-line {
+            color: var(--danger);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Status Timeline */
+        .status-timeline {
+            max-width: 600px;
+            margin: 3rem auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            transition: all var(--transition);
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            border-color: var(--primary);
+        }
+
+        .timeline-status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .status-investigating {
+            background: var(--warning);
+            animation: pulse 1.5s infinite;
+        }
+
+        .status-identified {
+            background: var(--primary);
+            animation: pulse 2s infinite;
+        }
+
+        .status-fixing {
+            background: var(--accent);
+            animation: pulse 1s infinite;
+        }
+
+        .status-resolved {
+            background: var(--accent);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-time {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0.75rem;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            min-width: 200px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: width var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-danger);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Status Update Form */
+        .status-form {
+            max-width: 600px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+        }
+
+        .form-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: all var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Server Stats */
+        .server-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-danger);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--danger);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-danger);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
+            background: var(--bg-secondary);
+            margin-top: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-danger);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            z-index: 1000;
+            box-shadow: var(--shadow-xl);
+            transition: all var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(180deg);
+        }
+
+        /* Live Status */
+        .live-status {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--danger);
+            animation: statusPulse 1s infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        .status-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Error Details */
+        .error-details {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+        }
+
+        .details-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .details-content {
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .details-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.25rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .details-label {
+            color: var(--text-muted);
+        }
+
+        .details-value {
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .error-number {
+                font-size: clamp(6rem, 15vw, 10rem);
+            }
+
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .server-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .live-status {
+                top: 1rem;
+                right: 1rem;
+                left: 1rem;
+                justify-content: center;
+            }
+
+            .server-rack {
+                width: 200px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-number {
+                font-size: 5rem;
+            }
+
+            .error-title {
+                font-size: 1.5rem;
+            }
+
+            .error-subtitle {
+                font-size: 1rem;
+            }
+
+            .error-console {
+                padding: 1rem;
+            }
+
+            .console-output {
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Accessibility */
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--danger);
+            color: white;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--danger);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #dc2626;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Animations -->
+    <div class="server-bg"></div>
+    <div class="server-grid"></div>
+    
+    <!-- Server Rack Animation -->
+    <div class="server-rack" id="serverRack">
+        <!-- Server units will be generated by JavaScript -->
+    </div>
+
+    <!-- Live Status Indicator -->
+    <div class="live-status">
+        <div class="status-indicator"></div>
+        <span class="status-text">ERRO 500 - EM INVESTIGAÇÃO</span>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <i class="fas fa-server"></i>
+                <span>JM</span>benga
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="error-content">
+                <!-- Error Code -->
+                <div class="error-code">
+                    <h1 class="error-number">500</h1>
+                    <!-- Sparks will be generated by JavaScript -->
+                </div>
+
+                <!-- Error Message -->
+                <h2 class="error-title">Erro Interno do Servidor</h2>
+                <p class="error-subtitle">
+                    Algo deu errado em nossos servidores. Nossa equipe técnica já foi notificada.
+                </p>
+
+                <!-- Server Stats -->
+                <div class="server-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="stat-value" id="serverLoad">85%</div>
+                        <div class="stat-label">Carga do Servidor</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="stat-value" id="responseTime">1.2s</div>
+                        <div class="stat-label">Tempo de Resposta</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-value" id="errorRate">0.1%</div>
+                        <div class="stat-label">Taxa de Erro</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-value" id="uptime">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                </div>
+
+                <!-- Error Console -->
+                <div class="error-console">
+                    <div class="console-header">
+                        <div class="console-dots">
+                            <div class="console-dot dot-red"></div>
+                            <div class="console-dot dot-yellow"></div>
+                            <div class="console-dot dot-green"></div>
+                        </div>
+                        <span class="console-title">terminal ~/server-error.log</span>
+                    </div>
+                    <div class="console-output" id="consoleOutput">
+<span class="error-line">[ERROR] 500 - Internal Server Error</span>
+Timestamp: <span id="errorTimestamp"></span>
+Request ID: <span id="requestId"></span>
+Endpoint: <span id="endpoint"></span>
+Method: GET
+User-Agent: <span id="userAgent"></span>
+
+Stack Trace:
+  at Database.connect (database.js:45)
+  at UserController.getProfile (controller.js:89)
+  at Router.handle (router.js:156)
+  at Server.processRequest (server.js:234)
+
+Status: <span class="error-line">INVESTIGATING</span>
+Assigned to: DevOps Team
+Priority: HIGH
+ETA: <span id="etaTime">30 minutes</span>
+                    </div>
+                </div>
+
+                <!-- Error Details -->
+                <div class="error-details">
+                    <h3 class="details-title">
+                        <i class="fas fa-info-circle"></i>
+                        Detalhes do Erro
+                    </h3>
+                    <div class="details-content">
+                        <div class="details-row">
+                            <span class="details-label">Código do Erro:</span>
+                            <span class="details-value">HTTP 500</span>
+                        </div>
+                        <div class="details-row">
+                            <span class="details-label">Tipo:</span>
+                            <span class="details-value">Internal Server Error</span>
+                        </div>
+                        <div class="details-row">
+                            <span class="details-label">Servidor:</span>
+                            <span class="details-value">web-01.production</span>
+                        </div>
+                        <div class="details-row">
+                            <span class="details-label">Timezone:</span>
+                            <span class="details-value">GMT+1 (Angola)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Timeline -->
+                <div class="status-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-status status-investigating"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">Agora</div>
+                            <div>Investigando a causa raiz</div>
+                        </div>
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-status status-identified"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">5 min atrás</div>
+                            <div>Erro identificado no banco de dados</div>
+                        </div>
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-status status-fixing"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-time">10 min atrás</div>
+                            <div>Equipe DevOps acionada</div>
+                        </div>
+                        <i class="fas fa-tools"></i>
+                    </div>
+                </div>
+
+                <!-- Status Update Form -->
+                <div class="status-form">
+                    <h3 class="form-title">Receba Atualizações</h3>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Seu Email</label>
+                        <input type="email" id="email" class="form-input" placeholder="seu@email.com">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="subscribeBtn" style="width: 100%;">
+                        <i class="fas fa-bell"></i>
+                        Notificar-me quando resolver
+                    </button>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="btn-group">
+                    <a href="/" class="btn btn-primary">
+                        <i class="fas fa-redo"></i>
+                        Tentar Novamente
+                    </a>
+                    <a href="javascript:location.reload()" class="btn btn-secondary">
+                        <i class="fas fa-sync-alt"></i>
+                        Recarregar Página
+                    </a>
+                    <a href="mailto:support@jmbenga.com" class="btn btn-outline">
+                        <i class="fas fa-headset"></i>
+                        Suporte Técnico
+                    </a>
+                </div>
+
+                <!-- Technical Info -->
+                <div style="margin-top: 3rem; color: var(--text-muted); font-size: 0.875rem; text-align: center;">
+                    <p>
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Dica:</strong> 
+                        Limpe o cache do navegador ou tente novamente em alguns minutos enquanto resolvemos o problema.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 José Mbenga. Erro 500 - Erro Interno do Servidor</p>
+            <div class="footer-links">
+                <a href="/" class="footer-link">Home</a>
+                <a href="/status" class="footer-link">Status do Sistema</a>
+                <a href="/privacy" class="footer-link">Privacidade</a>
+                <a href="mailto:josembengadacosta@gmail.com" class="footer-link">Reportar Problema</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ============================================
+        // PÁGINA 500 - SCRIPT COMPLETO
+        // ============================================
+
+        // Configurações
+        const CONFIG = {
+            errorId: generateErrorId(),
+            serverLoad: 85,
+            responseTime: 1200,
+            errorRate: 0.1,
+            uptime: 99.9,
+            etaMinutes: 30
+        };
+
+        // ============================================
+        // 1. INICIALIZAÇÃO
+        // ============================================
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initThemeSystem();
+            initServerRack();
+            initErrorSparks();
+            initConsoleOutput();
+            initStatsAnimation();
+            initServerEffects();
+            initStatusUpdates();
+            initSubscribeForm();
+            initRealTimeUpdates();
+            initErrorTracking();
+        });
+
+        // ============================================
+        // 2. GERAR ID DO ERRO
+        // ============================================
+
+        function generateErrorId() {
+            const timestamp = Date.now();
+            const random = Math.random().toString(36).substr(2, 9);
+            return `ERR-${timestamp}-${random}`.toUpperCase();
+        }
+
+        // ============================================
+        // 3. SISTEMA DE TEMA
+        // ============================================
+
+        function initThemeSystem() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle?.querySelector('i');
+
+            if (!themeToggle || !themeIcon) return;
+
+            // Detectar tema salvo
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+            // Aplicar tema
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                themeIcon.className = 'fas fa-sun';
+            } else if (savedTheme === 'dark') {
+                document.body.classList.remove('light-theme');
+                themeIcon.className = 'fas fa-moon';
+            } else if (prefersDark.matches) {
+                document.body.classList.remove('light-theme');
+                themeIcon.className = 'fas fa-moon';
+            } else {
+                document.body.classList.add('light-theme');
+                themeIcon.className = 'fas fa-sun';
+            }
+
+            // Alternar tema
+            themeToggle.addEventListener('click', function () {
+                const isLightTheme = document.body.classList.toggle('light-theme');
+
+                if (isLightTheme) {
+                    themeIcon.className = 'fas fa-sun';
+                    localStorage.setItem('theme', 'light');
+                    showNotification('Tema claro ativado');
+                } else {
+                    themeIcon.className = 'fas fa-moon';
+                    localStorage.setItem('theme', 'dark');
+                    showNotification('Tema escuro ativado');
+                }
+            });
+        }
+
+        // ============================================
+        // 4. SERVER RACK ANIMATION
+        // ============================================
+
+        function initServerRack() {
+            const serverRack = document.getElementById('serverRack');
+            if (!serverRack) return;
+
+            // Criar unidades do servidor
+            for (let i = 0; i < 8; i++) {
+                const unit = document.createElement('div');
+                unit.className = 'server-unit';
+                unit.style.top = `${i * 45}px`;
+                unit.style.animationDelay = `${i * 0.5}s`;
+                serverRack.appendChild(unit);
+            }
+
+            // Animar unidades aleatoriamente
+            setInterval(() => {
+                const units = document.querySelectorAll('.server-unit');
+                const randomUnit = units[Math.floor(Math.random() * units.length)];
+                
+                // Efeito de erro aleatório
+                randomUnit.style.animation = 'none';
+                randomUnit.style.background = 'var(--gradient-danger)';
+                
+                setTimeout(() => {
+                    randomUnit.style.animation = 'serverUnit 3s infinite';
+                    randomUnit.style.background = 'linear-gradient(90deg, rgba(37, 99, 235, 0.3) 0%, rgba(139, 92, 246, 0.3) 50%, rgba(239, 68, 68, 0.3) 100%)';
+                }, 500);
+            }, 3000);
+        }
+
+        // ============================================
+        // 5. ERROR SPARKS ANIMATION
+        // ============================================
+
+        function initErrorSparks() {
+            const errorCode = document.querySelector('.error-code');
+            if (!errorCode) return;
+
+            // Criar faíscas aleatórias
+            setInterval(() => {
+                createSpark();
+            }, 300);
+
+            function createSpark() {
+                const spark = document.createElement('div');
+                spark.className = 'error-spark';
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 150;
+                const x = Math.cos(angle) * distance;
+                const y = Math.sin(angle) * distance;
+                
+                spark.style.left = `calc(50% + ${x}px)`;
+                spark.style.top = `calc(50% + ${y}px)`;
+                spark.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                errorCode.appendChild(spark);
+                
+                // Remover após animação
+                setTimeout(() => {
+                    spark.remove();
+                }, 500);
+            }
+        }
+
+        // ============================================
+        // 6. CONSOLE OUTPUT
+        // ============================================
+
+        function initConsoleOutput() {
+            // Atualizar informações no console
+            document.getElementById('errorTimestamp').textContent = new Date().toISOString();
+            document.getElementById('requestId').textContent = CONFIG.errorId;
+            document.getElementById('endpoint').textContent = window.location.pathname;
+            document.getElementById('userAgent').textContent = navigator.userAgent.substring(0, 50) + '...';
+            document.getElementById('etaTime').textContent = `${CONFIG.etaMinutes} minutes`;
+
+            // Efeito de digitação no console
+            const consoleOutput = document.getElementById('consoleOutput');
+            const originalText = consoleOutput.textContent;
+            consoleOutput.textContent = '';
+
+            let i = 0;
+            function typeConsole() {
+                if (i < originalText.length) {
+                    consoleOutput.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeConsole, 10);
+                }
+            }
+
+            // Iniciar após 1 segundo
+            setTimeout(typeConsole, 1000);
+        }
+
+        // ============================================
+        // 7. STATS ANIMATION
+        // ============================================
+
+        function initStatsAnimation() {
+            // Animar estatísticas
+            animateStat('serverLoad', CONFIG.serverLoad, '%');
+            animateStat('responseTime', CONFIG.responseTime, 'ms');
+            animateStat('errorRate', CONFIG.errorRate, '%');
+            animateStat('uptime', CONFIG.uptime, '%');
+
+            function animateStat(elementId, target, suffix = '') {
+                const element = document.getElementById(elementId);
+                if (!element) return;
+
+                let current = 0;
+                const increment = target / 100;
+                const duration = 2000;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        element.textContent = target + suffix;
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(current) + suffix;
+                    }
+                }, duration / 100);
+            }
+        }
+
+        // ============================================
+        // 8. SERVER EFFECTS
+        // ============================================
+
+        function initServerEffects() {
+            // Efeito de carga do servidor
+            setInterval(() => {
+                const loadElement = document.getElementById('serverLoad');
+                if (loadElement) {
+                    const currentLoad = parseInt(loadElement.textContent);
+                    const newLoad = Math.max(70, Math.min(95, currentLoad + (Math.random() * 10 - 5)));
+                    loadElement.textContent = Math.round(newLoad) + '%';
+                }
+            }, 5000);
+
+            // Efeito de tempo de resposta
+            setInterval(() => {
+                const timeElement = document.getElementById('responseTime');
+                if (timeElement) {
+                    const currentTime = parseInt(timeElement.textContent);
+                    const newTime = Math.max(800, Math.min(3000, currentTime + (Math.random() * 400 - 200)));
+                    timeElement.textContent = Math.round(newTime) + 'ms';
+                }
+            }, 3000);
+        }
+
+        // ============================================
+        // 9. STATUS UPDATES
+        // ============================================
+
+        function initStatusUpdates() {
+            // Simular atualizações de status
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            let currentStatus = 0;
+
+            setInterval(() => {
+                if (currentStatus < timelineItems.length) {
+                    const item = timelineItems[currentStatus];
+                    
+                    // Adicionar classe de animação
+                    item.style.animation = 'pulse 1s ease-in-out';
+                    
+                    setTimeout(() => {
+                        item.style.animation = '';
+                    }, 1000);
+
+                    currentStatus++;
+                }
+            }, 15000); // A cada 15 segundos
+        }
+
+        // ============================================
+        // 10. SUBSCRIBE FORM
+        // ============================================
+
+        function initSubscribeForm() {
+            const subscribeBtn = document.getElementById('subscribeBtn');
+            const emailInput = document.getElementById('email');
+
+            if (!subscribeBtn || !emailInput) return;
+
+            subscribeBtn.addEventListener('click', function () {
+                const email = emailInput.value.trim();
+
+                if (!email) {
+                    showNotification('Por favor, insira seu email', 'warning');
+                    emailInput.focus();
+                    return;
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    showNotification('Email inválido', 'error');
+                    emailInput.focus();
+                    return;
+                }
+
+                // Simular inscrição
+                subscribeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Inscrevendo...';
+                subscribeBtn.disabled = true;
+
+                setTimeout(() => {
+                    showNotification('Inscrição realizada! Você receberá atualizações por email.', 'success');
+                    emailInput.value = '';
+                    subscribeBtn.innerHTML = '<i class="fas fa-check"></i> Inscrito com Sucesso';
+                    
+                    // Simular notificação de resolução
+                    setTimeout(() => {
+                        showNotification('Problema resolvido! O serviço foi restaurado.', 'success');
+                        updateStatusToResolved();
+                    }, 60000); // Após 1 minuto (em produção seria tempo real)
+                }, 1500);
+            });
+
+            // Permitir Enter para enviar
+            emailInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    subscribeBtn.click();
+                }
+            });
+        }
+
+        function updateStatusToResolved() {
+            // Atualizar indicador de status
+            const statusIndicator = document.querySelector('.status-indicator');
+            const statusText = document.querySelector('.status-text');
+            
+            if (statusIndicator) {
+                statusIndicator.style.background = 'var(--accent)';
+                statusIndicator.style.animation = 'none';
+            }
+            
+            if (statusText) {
+                statusText.textContent = 'ERRO RESOLVIDO - SERVIÇO RESTAURADO';
+            }
+
+            // Atualizar timeline
+            const timeline = document.querySelector('.status-timeline');
+            const resolvedItem = document.createElement('div');
+            resolvedItem.className = 'timeline-item';
+            resolvedItem.innerHTML = `
+                <div class="timeline-status status-resolved"></div>
+                <div class="timeline-content">
+                    <div class="timeline-time">Agora</div>
+                    <div>Problema resolvido e serviço restaurado</div>
+                </div>
+                <i class="fas fa-check-circle"></i>
+            `;
+            
+            timeline.prepend(resolvedItem);
+
+            // Atualizar console
+            const consoleOutput = document.getElementById('consoleOutput');
+            if (consoleOutput) {
+                consoleOutput.innerHTML += '\n\n[INFO] Problema resolvido às ' + new Date().toLocaleTimeString();
+                consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            }
+        }
+
+        // ============================================
+        // 11. REAL-TIME UPDATES
+        // ============================================
+
+        function initRealTimeUpdates() {
+            // Simular atualizações em tempo real
+            setInterval(() => {
+                // Atualizar ETA
+                const etaElement = document.getElementById('etaTime');
+                if (etaElement) {
+                    const currentEta = parseInt(etaElement.textContent);
+                    if (currentEta > 5) {
+                        const newEta = currentEta - Math.floor(Math.random() * 2);
+                        etaElement.textContent = `${newEta} minutes`;
+                    } else if (currentEta > 0) {
+                        etaElement.textContent = `${currentEta - 1} minutes`;
+                    }
+                }
+            }, 30000); // A cada 30 segundos
+        }
+
+        // ============================================
+        // 12. ERROR TRACKING
+        // ============================================
+
+        function initErrorTracking() {
+            // Simular envio de dados de erro
+            const errorData = {
+                errorId: CONFIG.errorId,
+                url: window.location.href,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                referrer: document.referrer || 'Direct',
+                errorCode: 500,
+                server: 'web-01.production'
+            };
+
+            console.log('Erro 500 registrado:', errorData);
+
+            // Em produção, enviaria para serviço de monitoramento
+            // Ex: Sentry, LogRocket, etc.
+        }
+
+        // ============================================
+        // 13. NOTIFICATION SYSTEM
+        // ============================================
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            let icon = 'fa-info-circle';
+            let bgColor = 'var(--primary)';
+            
+            switch (type) {
+                case 'success':
+                    icon = 'fa-check-circle';
+                    bgColor = 'var(--accent)';
+                    break;
+                case 'error':
+                    icon = 'fa-exclamation-circle';
+                    bgColor = 'var(--danger)';
+                    break;
+                case 'warning':
+                    icon = 'fa-exclamation-triangle';
+                    bgColor = 'var(--warning)';
+                    break;
+            }
+
+            notification.innerHTML = `
+                <i class="fas ${icon}"></i>
+                <span>${message}</span>
+            `;
+
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--bg-secondary);
+                color: var(--text-primary);
+                padding: 1rem 1.5rem;
+                border-radius: 0.75rem;
+                border-left: 4px solid ${bgColor};
+                box-shadow: var(--shadow-xl);
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                z-index: 10000;
+                transform: translateX(150%);
+                transition: transform 0.3s ease;
+            `;
+
+            document.body.appendChild(notification);
+
+            // Animar entrada
+            requestAnimationFrame(() => {
+                notification.style.transform = 'translateX(0)';
+            });
+
+            // Auto-remover
+            setTimeout(() => {
+                notification.style.transform = 'translateX(150%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // ============================================
+        // 14. AUTO-RECOVERY SIMULATION
+        // ============================================
+
+        // Simular recuperação automática após 2 minutos
+        setTimeout(() => {
+            if (window.location.pathname.includes('500')) {
+                showNotification('Serviço está sendo restaurado automaticamente...', 'info');
+                
+                setTimeout(() => {
+                    // Redirecionar para home após recuperação
+                    const shouldRedirect = confirm('O serviço foi restaurado! Deseja voltar para a página inicial?');
+                    if (shouldRedirect) {
+                        window.location.href = '/';
+                    }
+                }, 10000);
+            }
+        }, 120000); // Após 2 minutos
+
+        // ============================================
+        // 15. KEYBOARD SHORTCUTS
+        // ============================================
+
+        document.addEventListener('keydown', function (e) {
+            // Ctrl + R para recarregar
+            if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+                e.preventDefault();
+                window.location.reload();
+            }
+
+            // Ctrl + H para home
+            if ((e.ctrlKey || e.metaKey) && e.key === 'h') {
+                e.preventDefault();
+                window.location.href = '/';
+            }
+
+            // Esc para focar no email
+            if (e.key === 'Escape') {
+                const emailInput = document.getElementById('email');
+                if (emailInput) {
+                    emailInput.focus();
+                }
+            }
+        });
+
+        // ============================================
+        // FIM DO SCRIPT
+        // ============================================
+
+        // Exportar para console (desenvolvimento)
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            window._500Page = {
+                generateErrorId,
+                showNotification,
+                updateStatusToResolved,
+                CONFIG
+            };
+        }
+    </script>
+</body>
+
+</html>

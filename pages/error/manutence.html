@@ -1,0 +1,2110 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark-theme">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manutenção em Andamento | José Mbenga</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Site em manutenção - José Mbenga Desenvolvedor Full Stack">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Manutenção em Andamento | José Mbenga">
+    <meta property="og:description" content="Estamos fazendo algumas melhorias. Voltamos em breve!">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon_jm.png" type="image/x-icon">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <style>
+        :root {
+            /* Cores principais - Dark Theme */
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --warning: #f59e0b;
+            --info: #0ea5e9;
+
+            /* Backgrounds */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+
+            /* Textos */
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+
+            /* Bordas */
+            --border: #475569;
+            --border-light: #64748b;
+
+            /* Gradientes */
+            --gradient-primary: linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            --gradient-progress: linear-gradient(90deg, #10b981 0%, #0ea5e9 50%, #8b5cf6 100%);
+
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+            /* Transições */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Light Theme Variables */
+        .light-theme {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --border-light: #cbd5e1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color var(--transition), color var(--transition);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Maintenance Animation */
+        .maintenance-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 60%);
+            animation: maintenancePulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes maintenancePulse {
+            0% {
+                opacity: 1;
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                opacity: 0.9;
+                filter: hue-rotate(20deg);
+            }
+        }
+
+        /* Construction Elements */
+        .construction-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+            background-image: 
+                linear-gradient(90deg, rgba(245, 158, 11, 0.2) 1px, transparent 1px),
+                linear-gradient(rgba(245, 158, 11, 0.2) 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: gridConstruction 20s linear infinite;
+        }
+
+        @keyframes gridConstruction {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(-100px, -100px);
+            }
+        }
+
+        /* Construction Tools */
+        .tool-animation {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+            font-size: 3rem;
+            animation: toolFloat 15s linear infinite;
+        }
+
+        .tool-hammer {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .tool-wrench {
+            top: 40%;
+            right: 15%;
+            animation-delay: 3s;
+        }
+
+        .tool-screwdriver {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 6s;
+        }
+
+        .tool-gear {
+            bottom: 20%;
+            right: 25%;
+            animation-delay: 9s;
+        }
+
+        .tool-code {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            animation-delay: 12s;
+        }
+
+        @keyframes toolFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(90deg);
+            }
+            50% {
+                transform: translateY(0) rotate(180deg);
+            }
+            75% {
+                transform: translateY(20px) rotate(270deg);
+            }
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header */
+        .header {
+            padding: 2rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: transform var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo span {
+            background: var(--gradient-warning);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 200px);
+            padding: 3rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .maintenance-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Maintenance Icon */
+        .maintenance-icon {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .gear-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        .gear {
+            position: absolute;
+            font-size: 8rem;
+            color: var(--warning);
+            animation: gearSpin 10s linear infinite;
+        }
+
+        .gear-large {
+            top: 0;
+            left: 0;
+        }
+
+        .gear-medium {
+            top: 60px;
+            right: 0;
+            font-size: 6rem;
+            animation-direction: reverse;
+            animation-duration: 7s;
+        }
+
+        .gear-small {
+            bottom: 0;
+            left: 80px;
+            font-size: 4rem;
+            animation-duration: 5s;
+        }
+
+        .maintenance-icon-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: var(--primary);
+            z-index: 2;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes gearSpin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes iconPulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        /* Maintenance Message */
+        .maintenance-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            position: relative;
+            display: inline-block;
+        }
+
+        .maintenance-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: var(--gradient-warning);
+            border-radius: 2px;
+        }
+
+        .maintenance-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .maintenance-description {
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 1.125rem;
+            line-height: 1.7;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Countdown Timer */
+        .countdown-container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-progress);
+            animation: progressBar 60s linear infinite;
+        }
+
+        @keyframes progressBar {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 0%;
+            }
+        }
+
+        .countdown-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .countdown-item {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--warning);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .countdown-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-warning);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .countdown-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .countdown-progress {
+            width: 100%;
+            height: 6px;
+            background: var(--bg-tertiary);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .countdown-progress-bar {
+            height: 100%;
+            background: var(--gradient-progress);
+            width: 75%;
+            border-radius: 3px;
+            animation: progressWidth 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes progressWidth {
+            0% {
+                width: 70%;
+            }
+            100% {
+                width: 80%;
+            }
+        }
+
+        .eta-text {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* Timeline Regressiva */
+        .timeline-container {
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--gradient-warning);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 50%;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            transition: all var(--transition);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--warning);
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: 1.5rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gradient-warning);
+            border: 3px solid var(--bg-primary);
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-marker {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-marker {
+            left: -10px;
+        }
+
+        .timeline-time {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .timeline-content {
+            color: var(--text-primary);
+        }
+
+        .timeline-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--warning);
+            color: white;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .status-completed {
+            background: var(--accent);
+        }
+
+        .status-in-progress {
+            background: var(--warning);
+            animation: statusPulse 1.5s infinite;
+        }
+
+        .status-pending {
+            background: var(--text-muted);
+        }
+
+        @keyframes statusPulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        /* Notification Form */
+        .notification-container {
+            max-width: 600px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notification-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .notification-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-checkbox input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .form-checkbox label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0.75rem;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            min-width: 200px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: width var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-warning);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Maintenance Stats */
+        .maintenance-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--warning);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-warning);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--warning);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-warning);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Live Updates */
+        .live-updates {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1rem 1.5rem;
+            z-index: 1000;
+            box-shadow: var(--shadow-xl);
+            max-width: 300px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all var(--transition);
+        }
+
+        .live-updates.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .update-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .update-icon {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: updatePulse 2s infinite;
+        }
+
+        .update-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .update-content {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .close-update {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.875rem;
+            padding: 0.25rem;
+            border-radius: 0.25rem;
+            transition: all var(--transition-fast);
+        }
+
+        .close-update:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        @keyframes updatePulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
+            background: var(--bg-secondary);
+            margin-top: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-warning);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            z-index: 1000;
+            box-shadow: var(--shadow-xl);
+            transition: all var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(180deg);
+        }
+
+        /* Progress Animation */
+        .progress-wave {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            z-index: -1;
+            opacity: 0.1;
+            background: linear-gradient(transparent, var(--warning));
+            animation: wave 10s linear infinite;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .maintenance-title {
+                font-size: clamp(1.5rem, 4vw, 2.5rem);
+            }
+
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: calc(100% - 60px);
+                left: 60px !important;
+                text-align: left !important;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-marker,
+            .timeline-item:nth-child(even) .timeline-marker {
+                left: -40px;
+            }
+
+            .maintenance-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .live-updates {
+                right: 1rem;
+                left: 1rem;
+                max-width: none;
+            }
+
+            .gear-container {
+                width: 150px;
+                height: 150px;
+            }
+
+            .gear-large {
+                font-size: 6rem;
+            }
+
+            .gear-medium {
+                font-size: 4rem;
+                top: 40px;
+            }
+
+            .gear-small {
+                font-size: 3rem;
+                left: 60px;
+            }
+
+            .maintenance-icon-text {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .countdown-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .countdown-item {
+                padding: 1rem;
+            }
+
+            .countdown-value {
+                font-size: 2rem;
+            }
+
+            .notification-container {
+                padding: 1.5rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Accessibility */
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--warning);
+            color: white;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--warning);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d97706;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Animations -->
+    <div class="maintenance-bg"></div>
+    <div class="construction-grid"></div>
+    <div class="progress-wave"></div>
+    
+    <!-- Construction Tools -->
+    <div class="tool-animation tool-hammer">
+        <i class="fas fa-hammer"></i>
+    </div>
+    <div class="tool-animation tool-wrench">
+        <i class="fas fa-wrench"></i>
+    </div>
+    <div class="tool-animation tool-screwdriver">
+        <i class="fas fa-screwdriver"></i>
+    </div>
+    <div class="tool-animation tool-gear">
+        <i class="fas fa-cog"></i>
+    </div>
+    <div class="tool-animation tool-code">
+        <i class="fas fa-code"></i>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Live Updates -->
+    <div class="live-updates" id="liveUpdates">
+        <button class="close-update" id="closeUpdate" aria-label="Fechar atualização">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="update-header">
+            <div class="update-icon"></div>
+            <span class="update-title" id="updateTitle">Atualização em Tempo Real</span>
+        </div>
+        <div class="update-content" id="updateContent">
+            Iniciando atualização do banco de dados...
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <i class="fas fa-tools"></i>
+                <span>JM</span>benga
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="maintenance-content">
+                <!-- Maintenance Icon -->
+                <div class="maintenance-icon">
+                    <div class="gear-container">
+                        <div class="gear gear-large">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="gear gear-medium">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="gear gear-small">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="maintenance-icon-text">
+                            <i class="fas fa-wrench"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maintenance Message -->
+                <h1 class="maintenance-title">Site em Manutenção</h1>
+                <p class="maintenance-subtitle">
+                    Estamos trabalhando duro para melhorar sua experiência
+                </p>
+                <p class="maintenance-description">
+                    Estamos realizando atualizações importantes no sistema para trazer novas funcionalidades 
+                    e melhorar o desempenho. O site estará de volta em breve, melhor do que nunca!
+                </p>
+
+                <!-- Countdown Timer -->
+                <div class="countdown-container">
+                    <h2 class="countdown-title">
+                        <i class="fas fa-clock"></i>
+                        Tempo Restante
+                    </h2>
+                    <div class="countdown-grid">
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="countdownDays">00</div>
+                            <div class="countdown-label">Dias</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="countdownHours">00</div>
+                            <div class="countdown-label">Horas</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="countdownMinutes">00</div>
+                            <div class="countdown-label">Minutos</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="countdownSeconds">00</div>
+                            <div class="countdown-label">Segundos</div>
+                        </div>
+                    </div>
+                    <div class="countdown-progress">
+                        <div class="countdown-progress-bar"></div>
+                    </div>
+                    <div class="eta-text">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Previsão de conclusão: <strong id="etaDate">--/--/----</strong> às <strong id="etaTime">--:--</strong></span>
+                    </div>
+                </div>
+
+                <!-- Maintenance Stats -->
+                <div class="maintenance-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="stat-value" id="progressPercentage">75%</div>
+                        <div class="stat-label">Progresso</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="stat-value" id="completedTasks">8/12</div>
+                        <div class="stat-label">Tarefas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-value" id="teamMembers">5</div>
+                        <div class="stat-label">Equipe</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="stat-value" id="performanceGain">40%</div>
+                        <div class="stat-label">Performance</div>
+                    </div>
+                </div>
+
+                <!-- Timeline Regressiva -->
+                <div class="timeline-container">
+                    <h2 class="timeline-title">
+                        <i class="fas fa-project-diagram"></i>
+                        Linha Temporal do Progresso
+                    </h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-time" id="timelineTime1">00:00</div>
+                            <div class="timeline-content">
+                                <strong>Conclusão e Testes Finais</strong>
+                                <p>Validação de todas as funcionalidades</p>
+                                <span class="timeline-status status-pending">Pendente</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-time" id="timelineTime2">00:00</div>
+                            <div class="timeline-content">
+                                <strong>Otimização de Performance</strong>
+                                <p>Melhorias na velocidade e SEO</p>
+                                <span class="timeline-status status-pending">Pendente</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-time" id="timelineTime3">00:00</div>
+                            <div class="timeline-content">
+                                <strong>Implementação de Novos Recursos</strong>
+                                <p>Adição de funcionalidades solicitadas</p>
+                                <span class="timeline-status status-in-progress">Em Andamento</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-time" id="timelineTime4">00:00</div>
+                            <div class="timeline-content">
+                                <strong>Atualização do Banco de Dados</strong>
+                                <p>Migração e otimização de dados</p>
+                                <span class="timeline-status status-completed">Concluído</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-time" id="timelineTime5">00:00</div>
+                            <div class="timeline-content">
+                                <strong>Backup e Preparação</strong>
+                                <p>Cópia de segurança dos dados</p>
+                                <span class="timeline-status status-completed">Concluído</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notification Form -->
+                <div class="notification-container">
+                    <h2 class="notification-title">
+                        <i class="fas fa-bell"></i>
+                        Notifique-me quando voltar!
+                    </h2>
+                    <form id="notificationForm" novalidate>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Seu Email</label>
+                            <input type="email" id="email" class="form-input" 
+                                   placeholder="seu@email.com" required>
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="updatesCheckbox" checked>
+                            <label for="updatesCheckbox">
+                                Também quero receber atualizações do progresso
+                            </label>
+                        </div>
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="newsletterCheckbox">
+                            <label for="newsletterCheckbox">
+                                Inscrever-me na newsletter do portfólio
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i>
+                            Me notificar quando voltar
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="btn-group">
+                    <a href="javascript:location.reload()" class="btn btn-primary">
+                        <i class="fas fa-sync-alt"></i>
+                        Verificar Status
+                    </a>
+                    <a href="mailto:josembengadacosta@gmail.com" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Contato Emergencial
+                    </a>
+                    <a href="https://github.com/josembenga" target="_blank" class="btn btn-outline">
+                        <i class="fab fa-github"></i>
+                        Ver GitHub
+                    </a>
+                </div>
+
+                <!-- Quick Info -->
+                <div style="margin-top: 3rem; color: var(--text-muted); font-size: 0.875rem; text-align: center;">
+                    <p>
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Dica:</strong> 
+                        Esta manutenção trará melhorias significativas na performance, 
+                        novas funcionalidades e uma experiência de usuário aprimorada.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 José Mbenga. Site em manutenção programada.</p>
+            <div class="footer-links">
+                <a href="/status" class="footer-link">Status do Sistema</a>
+                <a href="/updates" class="footer-link">Atualizações</a>
+                <a href="/privacy" class="footer-link">Privacidade</a>
+                <a href="https://twitter.com" target="_blank" class="footer-link">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ============================================
+        // PÁGINA DE MANUTENÇÃO - SCRIPT COMPLETO
+        // ============================================
+
+        // Configurações
+        const MAINTENANCE_CONFIG = {
+            endDate: new Date(Date.now() + 2 * 60 * 60 * 1000), // 2 horas a partir de agora
+            progress: 75,
+            totalTasks: 12,
+            completedTasks: 8,
+            teamMembers: 5,
+            performanceGain: 40,
+            timelineUpdates: [
+                { time: 120, status: 'completed', label: 'Backup e Preparação' },
+                { time: 90, status: 'completed', label: 'Atualização do Banco de Dados' },
+                { time: 60, status: 'in-progress', label: 'Implementação de Novos Recursos' },
+                { time: 30, status: 'pending', label: 'Otimização de Performance' },
+                { time: 0, status: 'pending', label: 'Conclusão e Testes Finais' }
+            ],
+            liveUpdates: [
+                "Iniciando atualização do banco de dados...",
+                "Migrando dados para nova estrutura...",
+                "Otimizando consultas SQL...",
+                "Implementando novos recursos...",
+                "Realizando testes de performance...",
+                "Preparando deploy final..."
+            ]
+        };
+
+        // ============================================
+        // 1. INICIALIZAÇÃO
+        // ============================================
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initThemeSystem();
+            initCountdownTimer();
+            initProgressStats();
+            initTimelineUpdates();
+            initNotificationForm();
+            initLiveUpdates();
+            initToolAnimations();
+            initAutoRefresh();
+            initMaintenanceTracking();
+        });
+
+        // ============================================
+        // 2. SISTEMA DE TEMA
+        // ============================================
+
+        function initThemeSystem() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle?.querySelector('i');
+
+            if (!themeToggle || !themeIcon) return;
+
+            // Detectar tema salvo
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+            // Aplicar tema
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                themeIcon.className = 'fas fa-sun';
+            } else if (savedTheme === 'dark') {
+                document.body.classList.remove('light-theme');
+                themeIcon.className = 'fas fa-moon';
+            } else if (prefersDark.matches) {
+                document.body.classList.remove('light-theme');
+                themeIcon.className = 'fas fa-moon';
+            } else {
+                document.body.classList.add('light-theme');
+                themeIcon.className = 'fas fa-sun';
+            }
+
+            // Alternar tema
+            themeToggle.addEventListener('click', function () {
+                const isLightTheme = document.body.classList.toggle('light-theme');
+
+                if (isLightTheme) {
+                    themeIcon.className = 'fas fa-sun';
+                    localStorage.setItem('theme', 'light');
+                    showNotification('Tema claro ativado');
+                } else {
+                    themeIcon.className = 'fas fa-moon';
+                    localStorage.setItem('theme', 'dark');
+                    showNotification('Tema escuro ativado');
+                }
+            });
+        }
+
+        // ============================================
+        // 3. COUNTDOWN TIMER REGRESSIVO
+        // ============================================
+
+        function initCountdownTimer() {
+            const endDate = MAINTENANCE_CONFIG.endDate;
+            
+            // Atualizar data de previsão
+            document.getElementById('etaDate').textContent = formatDate(endDate);
+            document.getElementById('etaTime').textContent = formatTime(endDate);
+
+            // Iniciar contador
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            function updateCountdown() {
+                const now = new Date();
+                const timeLeft = endDate - now;
+
+                if (timeLeft <= 0) {
+                    // Manutenção concluída
+                    document.getElementById('countdownDays').textContent = '00';
+                    document.getElementById('countdownHours').textContent = '00';
+                    document.getElementById('countdownMinutes').textContent = '00';
+                    document.getElementById('countdownSeconds').textContent = '00';
+                    
+                    // Verificar se deve redirecionar
+                    checkMaintenanceCompletion();
+                    return;
+                }
+
+                // Calcular dias, horas, minutos, segundos
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                // Atualizar display
+                document.getElementById('countdownDays').textContent = days.toString().padStart(2, '0');
+                document.getElementById('countdownHours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('countdownMinutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('countdownSeconds').textContent = seconds.toString().padStart(2, '0');
+
+                // Atualizar timeline
+                updateTimelineTimes(timeLeft);
+            }
+
+            function formatDate(date) {
+                return date.toLocaleDateString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+            }
+
+            function formatTime(date) {
+                return date.toLocaleTimeString('pt-BR', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+        }
+
+        // ============================================
+        // 4. ATUALIZAR TIMELINE REGRESSIVA
+        // ============================================
+
+        function updateTimelineTimes(timeLeft) {
+            const minutesLeft = Math.floor(timeLeft / (1000 * 60));
+            
+            MAINTENANCE_CONFIG.timelineUpdates.forEach((update, index) => {
+                const timeElement = document.getElementById(`timelineTime${index + 1}`);
+                if (timeElement) {
+                    if (minutesLeft >= update.time) {
+                        const hours = Math.floor(update.time / 60);
+                        const minutes = update.time % 60;
+                        timeElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+                    } else {
+                        timeElement.textContent = 'Próximo';
+                    }
+                }
+            });
+        }
+
+        // ============================================
+        // 5. ESTATÍSTICAS DE PROGRESSO
+        // ============================================
+
+        function initProgressStats() {
+            // Animar estatísticas
+            animateStat('progressPercentage', MAINTENANCE_CONFIG.progress, '%');
+            animateStat('completedTasks', `${MAINTENANCE_CONFIG.completedTasks}/${MAINTENANCE_CONFIG.totalTasks}`);
+            animateStat('teamMembers', MAINTENANCE_CONFIG.teamMembers);
+            animateStat('performanceGain', MAINTENANCE_CONFIG.performanceGain, '%');
+
+            // Simular progresso incremental
+            setInterval(() => {
+                const progressElement = document.getElementById('progressPercentage');
+                const currentProgress = parseInt(progressElement.textContent);
+                
+                if (currentProgress < 100) {
+                    const increment = Math.random() * 0.5;
+                    const newProgress = Math.min(100, currentProgress + increment);
+                    progressElement.textContent = Math.round(newProgress) + '%';
+                    
+                    // Atualizar tarefas completadas
+                    const tasksElement = document.getElementById('completedTasks');
+                    const [completed, total] = tasksElement.textContent.split('/').map(Number);
+                    if (completed < total && newProgress >= (completed / total) * 100) {
+                        const newCompleted = Math.min(total, completed + 1);
+                        tasksElement.textContent = `${newCompleted}/${total}`;
+                    }
+                }
+            }, 10000); // A cada 10 segundos
+        }
+
+        function animateStat(elementId, target, suffix = '') {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            let current = 0;
+            const targetValue = typeof target === 'string' ? target : Number(target);
+            const duration = 1500;
+
+            if (typeof targetValue === 'number') {
+                const increment = targetValue / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= targetValue) {
+                        element.textContent = targetValue + suffix;
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(current) + suffix;
+                    }
+                }, duration / 100);
+            } else {
+                element.textContent = targetValue;
+            }
+        }
+
+        // ============================================
+        // 6. ATUALIZAÇÕES DA TIMELINE
+        // ============================================
+
+        function initTimelineUpdates() {
+            // Atualizar status da timeline
+            MAINTENANCE_CONFIG.timelineUpdates.forEach((update, index) => {
+                const timelineItem = document.querySelectorAll('.timeline-item')[index];
+                if (timelineItem) {
+                    const statusElement = timelineItem.querySelector('.timeline-status');
+                    if (statusElement) {
+                        statusElement.className = `timeline-status status-${update.status}`;
+                    }
+                }
+            });
+
+            // Simular progresso na timeline
+            setInterval(() => {
+                const now = new Date();
+                const timeLeft = MAINTENANCE_CONFIG.endDate - now;
+                const minutesLeft = Math.floor(timeLeft / (1000 * 60));
+
+                MAINTENANCE_CONFIG.timelineUpdates.forEach((update, index) => {
+                    if (minutesLeft <= update.time && update.status === 'pending') {
+                        update.status = 'in-progress';
+                        updateTimelineStatus(index, 'in-progress');
+                        
+                        // Mostrar atualização ao vivo
+                        showLiveUpdate(`Iniciando: ${update.label}`);
+                    } else if (minutesLeft <= update.time - 30 && update.status === 'in-progress') {
+                        update.status = 'completed';
+                        updateTimelineStatus(index, 'completed');
+                        
+                        // Mostrar atualização ao vivo
+                        showLiveUpdate(`Concluído: ${update.label}`);
+                    }
+                });
+            }, 30000); // Verificar a cada 30 segundos
+        }
+
+        function updateTimelineStatus(index, status) {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            if (timelineItems[index]) {
+                const statusElement = timelineItems[index].querySelector('.timeline-status');
+                if (statusElement) {
+                    statusElement.className = `timeline-status status-${status}`;
+                    statusElement.textContent = status === 'completed' ? 'Concluído' : 
+                                               status === 'in-progress' ? 'Em Andamento' : 'Pendente';
+                }
+            }
+        }
+
+        // ============================================
+        // 7. FORMULÁRIO DE NOTIFICAÇÃO
+        // ============================================
+
+        function initNotificationForm() {
+            const notificationForm = document.getElementById('notificationForm');
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+
+            if (!notificationForm) return;
+
+            notificationForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const email = emailInput.value.trim();
+                const wantsUpdates = document.getElementById('updatesCheckbox').checked;
+                const wantsNewsletter = document.getElementById('newsletterCheckbox').checked;
+
+                // Validar email
+                if (!email) {
+                    showError(emailInput, emailError, 'Por favor, insira seu email');
+                    return;
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    showError(emailInput, emailError, 'Por favor, insira um email válido');
+                    return;
+                }
+
+                // Limpar erro
+                clearError(emailInput, emailError);
+
+                // Simular envio
+                const submitBtn = notificationForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+                submitBtn.disabled = true;
+
+                // Simular API call
+                setTimeout(() => {
+                    // Sucesso
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Inscrito com Sucesso!';
+                    submitBtn.style.background = 'var(--gradient-secondary)';
+                    
+                    // Mostrar confirmação
+                    showNotification(
+                        `Ótimo! Vamos te notificar em <strong>${email}</strong> quando o site voltar.`, 
+                        'success'
+                    );
+
+                    // Salvar no localStorage
+                    saveNotificationSubscription(email, wantsUpdates, wantsNewsletter);
+
+                    // Reset após 3 segundos
+                    setTimeout(() => {
+                        notificationForm.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = '';
+                    }, 3000);
+
+                }, 1500);
+            });
+
+            // Validação em tempo real
+            emailInput.addEventListener('input', function () {
+                clearError(emailInput, emailError);
+            });
+
+            function showError(input, errorElement, message) {
+                input.classList.add('error');
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+                input.focus();
+            }
+
+            function clearError(input, errorElement) {
+                input.classList.remove('error');
+                errorElement.textContent = '';
+                errorElement.style.display = 'none';
+            }
+
+            function saveNotificationSubscription(email, updates, newsletter) {
+                const subscription = {
+                    email: email,
+                    wantsUpdates: updates,
+                    wantsNewsletter: newsletter,
+                    subscribedAt: new Date().toISOString(),
+                    maintenanceEnd: MAINTENANCE_CONFIG.endDate.toISOString()
+                };
+
+                // Salvar no localStorage
+                let subscriptions = JSON.parse(localStorage.getItem('maintenanceSubscriptions') || '[]');
+                subscriptions.push(subscription);
+                localStorage.setItem('maintenanceSubscriptions', JSON.stringify(subscriptions));
+
+                console.log('Inscrição salva:', subscription);
+            }
+        }
+
+        // ============================================
+        // 8. ATUALIZAÇÕES EM TEMPO REAL
+        // ============================================
+
+        function initLiveUpdates() {
+            const liveUpdates = document.getElementById('liveUpdates');
+            const closeUpdate = document.getElementById('closeUpdate');
+            const updateTitle = document.getElementById('updateTitle');
+            const updateContent = document.getElementById('updateContent');
+
+            let updateIndex = 0;
+
+            // Mostrar atualizações periodicamente
+            setInterval(() => {
+                if (updateIndex < MAINTENANCE_CONFIG.liveUpdates.length) {
+                    showLiveUpdate(MAINTENANCE_CONFIG.liveUpdates[updateIndex]);
+                    updateIndex++;
+                }
+            }, 30000); // A cada 30 segundos
+
+            // Botão de fechar
+            closeUpdate.addEventListener('click', function () {
+                liveUpdates.classList.remove('show');
+            });
+
+            // Auto-fechar após 10 segundos
+            setInterval(() => {
+                liveUpdates.classList.remove('show');
+            }, 10000);
+        }
+
+        function showLiveUpdate(message) {
+            const liveUpdates = document.getElementById('liveUpdates');
+            const updateContent = document.getElementById('updateContent');
+            
+            if (liveUpdates && updateContent) {
+                updateContent.textContent = message;
+                liveUpdates.classList.add('show');
+                
+                // Auto-esconder após 8 segundos
+                setTimeout(() => {
+                    liveUpdates.classList.remove('show');
+                }, 8000);
+            }
+        }
+
+        // ============================================
+        // 9. ANIMAÇÕES DAS FERRAMENTAS
+        // ============================================
+
+        function initToolAnimations() {
+            // Criar animações aleatórias para ferramentas
+            const tools = document.querySelectorAll('.tool-animation');
+            tools.forEach((tool, index) => {
+                tool.style.animationDelay = `${index * 3}s`;
+                
+                // Adicionar efeito de brilho aleatório
+                setInterval(() => {
+                    if (Math.random() > 0.7) {
+                        tool.style.filter = 'drop-shadow(0 0 10px rgba(245, 158, 11, 0.5))';
+                        setTimeout(() => {
+                            tool.style.filter = 'none';
+                        }, 500);
+                    }
+                }, 3000);
+            });
+        }
+
+        // ============================================
+        // 10. AUTO-REFRESH E VERIFICAÇÃO
+        // ============================================
+
+        function initAutoRefresh() {
+            // Verificar se a manutenção acabou a cada 30 segundos
+            setInterval(() => {
+                checkMaintenanceCompletion();
+            }, 30000);
+
+            // Botão de verificar status
+            document.querySelector('a[href="javascript:location.reload()"]').addEventListener('click', function (e) {
+                e.preventDefault();
+                showNotification('Verificando status da manutenção...', 'info');
+                
+                setTimeout(() => {
+                    if (Math.random() > 0.8) {
+                        // Simular manutenção concluída
+                        checkMaintenanceCompletion(true);
+                    } else {
+                        showNotification('A manutenção ainda está em andamento.', 'info');
+                    }
+                }, 1000);
+            });
+        }
+
+        function checkMaintenanceCompletion(force = false) {
+            const now = new Date();
+            const timeLeft = MAINTENANCE_CONFIG.endDate - now;
+
+            if (timeLeft <= 0 || force) {
+                // Manutenção concluída
+                const shouldRedirect = confirm(
+                    '🎉 Manutenção concluída com sucesso!\n\n' +
+                    'O site está pronto para uso. Deseja ser redirecionado agora?'
+                );
+
+                if (shouldRedirect) {
+                    // Notificar inscritos (simulação)
+                    notifySubscribers();
+                    
+                    // Redirecionar para home
+                    window.location.href = '/';
+                }
+            }
+        }
+
+        function notifySubscribers() {
+            const subscriptions = JSON.parse(localStorage.getItem('maintenanceSubscriptions') || '[]');
+            
+            subscriptions.forEach(sub => {
+                console.log(`Notificação enviada para: ${sub.email}`);
+                // Em produção, enviaria email real aqui
+            });
+
+            // Limpar inscrições após notificação
+            localStorage.removeItem('maintenanceSubscriptions');
+        }
+
+        // ============================================
+        // 11. RASTREAMENTO DE MANUTENÇÃO
+        // ============================================
+
+        function initMaintenanceTracking() {
+            const maintenanceData = {
+                startTime: new Date().toISOString(),
+                scheduledEnd: MAINTENANCE_CONFIG.endDate.toISOString(),
+                reason: 'Atualização de sistema e novas funcionalidades',
+                version: '2.0.0',
+                userAgent: navigator.userAgent,
+                pageViews: 1
+            };
+
+            // Salvar no localStorage para tracking
+            localStorage.setItem('maintenanceVisit', JSON.stringify(maintenanceData));
+
+            // Em produção, enviaria para analytics
+            console.log('Visita de manutenção registrada:', maintenanceData);
+        }
+
+        // ============================================
+        // 12. SISTEMA DE NOTIFICAÇÕES
+        // ============================================
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            let icon = 'fa-info-circle';
+            let bgColor = 'var(--primary)';
+            
+            switch (type) {
+                case 'success':
+                    icon = 'fa-check-circle';
+                    bgColor = 'var(--accent)';
+                    break;
+                case 'error':
+                    icon = 'fa-exclamation-circle';
+                    bgColor = 'var(--danger)';
+                    break;
+                case 'warning':
+                    icon = 'fa-exclamation-triangle';
+                    bgColor = 'var(--warning)';
+                    break;
+            }
+
+            notification.innerHTML = `
+                <i class="fas ${icon}"></i>
+                <span>${message}</span>
+            `;
+
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--bg-secondary);
+                color: var(--text-primary);
+                padding: 1rem 1.5rem;
+                border-radius: 0.75rem;
+                border-left: 4px solid ${bgColor};
+                box-shadow: var(--shadow-xl);
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                z-index: 10000;
+                transform: translateX(150%);
+                transition: transform 0.3s ease;
+            `;
+
+            document.body.appendChild(notification);
+
+            // Animar entrada
+            requestAnimationFrame(() => {
+                notification.style.transform = 'translateX(0)';
+            });
+
+            // Auto-remover
+            setTimeout(() => {
+                notification.style.transform = 'translateX(150%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // ============================================
+        // 13. EFEITOS ESPECIAIS
+        // ============================================
+
+        // Efeito de digitação no título
+        const title = document.querySelector('.maintenance-title');
+        if (title) {
+            const originalText = title.textContent;
+            title.textContent = '';
+            let i = 0;
+            
+            function typeTitle() {
+                if (i < originalText.length) {
+                    title.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeTitle, 50);
+                }
+            }
+            
+            setTimeout(typeTitle, 500);
+        }
+
+        // Efeito de partículas de construção
+        setInterval(() => {
+            createConstructionParticle();
+        }, 2000);
+
+        function createConstructionParticle() {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: ${Math.random() * 4 + 2}px;
+                height: ${Math.random() * 4 + 2}px;
+                background: var(--warning);
+                border-radius: 50%;
+                opacity: ${Math.random() * 0.5 + 0.3};
+                top: ${Math.random() * 100}%;
+                left: ${Math.random() * 100}%;
+                z-index: -1;
+                animation: particleFall ${Math.random() * 3 + 2}s linear forwards;
+            `;
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 5000);
+        }
+
+        // Adicionar estilo para a animação da partícula
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes particleFall {
+                0% {
+                    transform: translateY(-100px) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ============================================
+        // 14. KEYBOARD SHORTCUTS
+        // ============================================
+
+        document.addEventListener('keydown', function (e) {
+            // R para recarregar
+            if (e.key === 'r' && e.ctrlKey) {
+                e.preventDefault();
+                location.reload();
+            }
+
+            // S para se inscrever
+            if (e.key === 's' && !e.ctrlKey) {
+                e.preventDefault();
+                document.getElementById('email').focus();
+            }
+
+            // T para alternar tema
+            if (e.key === 't' && e.ctrlKey) {
+                e.preventDefault();
+                document.getElementById('themeToggle').click();
+            }
+        });
+
+        // ============================================
+        // FIM DO SCRIPT
+        // ============================================
+
+        // Exportar para console (desenvolvimento)
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            window._MaintenancePage = {
+                MAINTENANCE_CONFIG,
+                showNotification,
+                checkMaintenanceCompletion,
+                notifySubscribers
+            };
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark-theme">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>José Mbenga | Desenvolvedor Web Full Stack</title>
+  <meta name="theme-color" content="#0f172a" />
+
+  <!-- SEO -->
+  <meta name="description"
+    content="José Mbenga - Desenvolvedor Web Full Stack especializado em React, Vue.js, Node.js. Crio experiências digitais excepcionais com foco em performance e design." />
+  <meta name="keywords"
+    content="desenvolvedor web, frontend, backend, full stack, Angola, portfolio, react, vue, node.js, javascript" />
+  <meta name="author" content="José Mbenga" />
+  <meta name="robots" content="index, follow" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Meta tags PWA -->
+  <meta name="application-name" content="JMbenga Dev">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#0f172a">
+  <meta name="msapplication-TileImage" content="assets/img/icons/icon-144x144.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="José Mbenga | Desenvolvedor Web Full Stack" />
+  <meta property="og:description"
+    content="Transformo ideias em experiências digitais excepcionais com código limpo e design moderno." />
+  <meta property="og:image" content="https://jmbenga.com/og-image.jpg" />
+  <meta property="og:url" content="https://jmbenga.com" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="José Mbenga | Desenvolvedor Web Full Stack" />
+  <meta name="twitter:description" content="Especialista em desenvolvimento web moderno e performático." />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/img/svg/favicon_jm.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="assets/img/svg/favicon_jm.png" />
+
+  <!--  Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="assets/fontawesome-free/css/all.min.css" />
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- Manifest -->
+  <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+
+  <!-- Icons para iOS -->
+  <link rel="apple-touch-icon" href="assets/img/icons/icon-192x192.png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/improvements.css" />
+  <link rel="stylesheet" href="assets/css/particles.css" />
+
+  <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => {
+                        console.log('Service Worker registrado:', reg);
+                        
+                        // Verificar atualizações
+                        reg.addEventListener('updatefound', () => {
+                            console.log('Nova versão do Service Worker encontrada!');
+                        });
+                    })
+                    .catch(err => {
+                        console.log('Service Worker falhou:', err);
+                    });
+                    
+                // Ouvir mensagens do SW
+                navigator.serviceWorker.addEventListener('message', event => {
+                    const { type, data } = event.data;
+                    if (type === 'SW_ACTIVATED') {
+                        console.log('SW atualizado para versão:', data.version);
+                        // Recarregar página se necessário
+                        window.location.reload();
+                    }
+                });
+            });
+        }
+    </script>
+</head>
+
+<body>
+  <!-- Loading Screen -->
+  <div class="loading" id="loading">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Notification Container -->
+  <div class="notification-container" id="notificationContainer"></div>
+
+  <!-- WhatsApp Float -->
+  <div class="whatsapp-float" id="whatsappFloat">
+    <a href="https://wa.me/244922030116?text=Olá%20José,%20vim%20do%20seu%20portfólio" target="_blank"
+      rel="noopener noreferrer">
+      <i class="fab fa-whatsapp"></i>
+      <span>Vamos conversar?</span>
+    </a>
+    <button class="close-whatsapp" aria-label="Fechar WhatsApp">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <!-- Language Switcher -->
+  <!-- <div class="language-switcher" id="languageSwitcher">
+        <button data-lang="pt" class="active">PT</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="fr">FR</button>
+      </div> -->
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav-container">
+        <a href="index.html" class="logo d-flex align-items-center gap-2 text-decoration-none">
+          <i class="fas fa-code fs-4 text-gradient"></i>
+          <span class="fs-3 fw-bold text-gradient">JM</span>
+          <span class="fs-3 fw-bold">benga</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="nav-desktop">
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="#about" class="nav-link">Sobre</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#projects" class="nav-link">Projetos</a>
+          <a href="#testimonials" class="nav-link">Depoimentos</a>
+           <a href="pages/reviews-feedback.html" class="nav-link">Feedback</a>
+          <a href="#contact" class="nav-link">Contato</a>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Offcanvas Menu -->
+  <div class="offcanvas" id="offcanvas">
+    <div class="offcanvas-header">
+      <a href="#home" class="logo d-flex align-items-center gap-2 text-decoration-none">
+        <i class="fas fa-code fs-4 text-gradient"></i>
+        <span class="fs-3 fw-bold text-gradient">JM</span>
+        <span class="fs-3 fw-bold">benga</span>
+      </a>
+      <button class="close-menu" id="closeCanvas" aria-label="Fechar menu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="offcanvas-body">
+      <a href="#home" class="offcanvas-link" data-offcanvas>Home</a>
+      <a href="#about" class="offcanvas-link" data-offcanvas>Sobre</a>
+      <a href="#skills" class="offcanvas-link" data-offcanvas>Skills</a>
+      <a href="#projects" class="offcanvas-link" data-offcanvas>Projetos</a>
+      <a href="#testimonials" class="offcanvas-link" data-offcanvas>Depoimentos</a>
+      <a href="#contact" class="offcanvas-link" data-offcanvas>Contato</a>
+
+      <div class="offcanvas-social">
+        <a href="https://github.com/josembengacosta" class="social-link" target="_blank" rel="noopener noreferrer"
+          aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/josembengadacosta" class="social-link" target="_blank"
+          rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://wa.me/244922030116" class="social-link" target="_blank" rel="noopener noreferrer"
+          aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="mailto:josembengadacosta@gmail.com" class="social-link" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="floating-element shape-1"></div>
+    <div class="floating-element shape-2"></div>
+
+    <!-- Particles Container -->
+    <div id="particles-js" class="particles-container"></div>
+
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Text Content (First on mobile) -->
+        <div class="hero-text">
+          <div class="hero-badge">
+            <i class="fas fa-code"></i>
+            <span>Desenvolvedor Full Stack & UI/UX Designer</span>
+          </div>
+
+          <h1>Olá, sou <span class="text-gradient">José Mbenga</span></h1>
+
+          <div class="typing-container">
+            <span class="typed-text">Especialista em </span>
+            <span class="typing"
+              data-words='["React.js", "Vue.js", "Node.js", "UI/UX Design", "Sistemas Escaláveis", "APIs REST", "Mobile Apps"]'></span>
+          </div>
+
+          <p class="hero-subtitle">
+            Transformo ideias complexas em soluções digitais elegantes e
+            performáticas. Mais de 3 anos criando experiências excepcionais
+            para clientes globais.
+          </p>
+
+          <!-- Tech Stack (adaptable) -->
+          <div class="floating-tech-stack">
+            <div class="tech-item" aria-label="React.js">
+              <i class="fab fa-react"></i>
+              <span>React</span>
+            </div>
+            <div class="tech-item" aria-label="Vue.js">
+              <i class="fab fa-vuejs"></i>
+              <span>Vue.js</span>
+            </div>
+            <div class="tech-item" aria-label="Node.js">
+              <i class="fab fa-node-js"></i>
+              <span>Node.js</span>
+            </div>
+            <div class="tech-item" aria-label="JavaScript">
+              <i class="fab fa-js"></i>
+              <span>JavaScript</span>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn-primary">
+              <i class="fas fa-paper-plane"></i>
+              <span>Iniciar Projeto</span>
+            </a>
+            <a href="#projects" class="btn btn-secondary">
+              <i class="fas fa-eye"></i>
+              <span>Ver Trabalhos</span>
+            </a>
+            <a href="pages/all-projects.html" class="btn btn-outline">
+              <i class="fas fa-list"></i>
+              <span>Todos Projetos</span>
+            </a>
+          </div>
+
+          <!-- Stats -->
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number" data-count="50">0</div>
+              <div class="stat-label">Projetos</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-count="3">0</div>
+              <div class="stat-label">Anos Exp</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-count="100">0</div>
+              <div class="stat-label">Clientes</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Content (Second on mobile) -->
+        <div class="hero-visual">
+          <div class="code-editor" aria-label="Editor de código mostrando habilidades">
+            <div class="editor-header">
+              <span class="dot red" aria-hidden="true"></span>
+              <span class="dot yellow" aria-hidden="true"></span>
+              <span class="dot green" aria-hidden="true"></span>
+              <span class="editor-title">portfolio.js</span>
+            </div>
+            <pre class="code-snippet">
+<code><span class="comment">// José Mbenga Da Costa - Full Stack Developer</span>
+<span class="keyword">const</span> <span class="variable">skills</span> = { 
+<span class="variable">frontend</span>: [<span class="string">'React'</span>, <span class="string">'Vue.js'</span>, <span class="string">'TypeScript'</span>],
+<span class="variable">backend</span>: [<span class="string">'PHP'</span>, <span class="string">'Express'</span>, <span class="string">'MySQL'</span>], 
+<span class="variable">tools</span>: [<span class="string">'Git'</span>, <span class="string">'Bootstrap'</span>, <span class="string">'AWS'</span>, <span class="string">'Figma'</span>]
+};
+
+<span class="keyword">const</span> <span class="function">buildProject</span> = (<span class="variable">idea</span>) <span class="keyword">=&gt;</span> { 
+  <span class="keyword">return</span> 
+<span class="function">transformIdeaToDigitalExperience</span>(<span class="variable">idea</span>);
+ };
+
+<span class="comment">// Disponível para novos projetos</span>
+<span class="keyword">const</span> <span class="variable">available</span> = <span class="keyword">true</span>;
+<span class="keyword">const</span> <span class="variable">contact</span> = <span class="string">'<s>josembengadacosta@gmail.com</s>'</span>;</code>
+</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title">Minha Jornada</h2>
+      <p class="section-subtitle">
+        Da paixão pelo código à excelência em desenvolvimento
+      </p>
+
+      <div class="about-grid">
+        <div class="about-image">
+          <div class="image-wrapper">
+            <img src="assets/img/photo/josembengadacosta.png" alt="José Mbenga" loading="lazy" />
+            <div class="image-badge">
+              <i class="fas fa-code"></i>
+              Full Stack Developer
+            </div>
+          </div>
+
+          <div class="about-highlights mt-4">
+            <div class="highlight-card">
+              <div class="highlight-icon">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <h4>50+ Projetos</h4>
+              <p>Entregues com sucesso</p>
+            </div>
+
+            <div class="highlight-card">
+              <div class="highlight-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h4>100+ Clientes</h4>
+              <p>Satisfeitos globalmente</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-content">
+          <h3>Inovando com código desde 2023</h3>
+          <p>
+            Sou José Mbenga, desenvolvedor Full Stack com mais de 3 anos de
+            experiência criando soluções digitais inovadoras. Minha paixão é
+            transformar ideias complexas em interfaces intuitivas e sistemas
+            eficientes.
+          </p>
+          <p>
+            Especializado em JavaScript moderno, React, Node.js e arquitetura
+            de sistemas escaláveis. Acredito que o bom código vai além da
+            funcionalidade — deve ser elegante, eficiente e sustentável.
+          </p>
+
+          <div class="about-details mt-4">
+            <div class="detail-card">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h5>Localização</h5>
+                <p>Angola, Luanda</p>
+                <small>Disponível para projetos remotos</small>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <i class="fas fa-graduation-cap"></i>
+              <div>
+                <h5>Formação</h5>
+                <p>Engenharia Informática</p>
+                <small>+5 Certificações Tech</small>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <i class="fas fa-language"></i>
+              <div>
+                <h5>Idiomas</h5>
+                <p>Português, Inglês, Francês, Lingala</p>
+                <small>Fluente em 4 idiomas</small>
+              </div>
+            </div>
+
+            <div class="detail-card">
+              <i class="fas fa-briefcase"></i>
+              <div>
+                <h5>Experiência</h5>
+                <p>3+ Anos</p>
+                <small>Desenvolvimento Web Full Stack</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline -->
+          <div class="about-timeline mt-5">
+            <div class="timeline-item">
+              <div class="timeline-year">2023</div>
+              <div class="timeline-content">
+                <h4>Início como Desenvolvedor Freelancer</h4>
+                <p>Primeiros projetos web para clientes locais em Angola</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2023</div>
+              <div class="timeline-content">
+                <h4>Expansão Internacional</h4>
+                <p>Clientes globais e projetos em escala empresarial</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2024</div>
+              <div class="timeline-content">
+                <h4>Foco em UI/UX & Performance</h4>
+                <p>Otimização avançada e experiências de usuário premium</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2025</div>
+              <div class="timeline-content">
+                <h4>Especialização em React.js</h4>
+                <p>Certificação Udemy e projetos avançados com React</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2026</div>
+              <div class="timeline-content">
+                <h4>Desenvolvimento Full Stack</h4>
+                <p>Projetos completos com Node.js, Express e MongoDB</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="cv-jose-mbenga.pdf" download class="btn btn-primary">
+              <i class="fas fa-download"></i>
+              Baixar CV
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              <i class="fas fa-comment"></i>
+              Fale Comigo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section" id="skills">
+    <div class="container">
+      <h2 class="section-title">Minhas Skills</h2>
+      <p class="section-subtitle">Tecnologias e ferramentas que domino</p>
+
+      <div class="skills-grid">
+        <!-- Frontend Skills -->
+        <div class="skill-category">
+          <div class="skill-header">
+            <div class="skill-icon">
+              <i class="fas fa-paint-brush"></i>
+            </div>
+            <div>
+              <h3>Frontend</h3>
+              <p class="skill-subtitle">Experiência do usuário</p>
+            </div>
+          </div>
+
+          <div class="skill-items">
+            <div class="skill-item">
+              <div class="skill-name">
+                <i class="fab fa-html5"></i>
+                HTML5
+              </div>
+              <span class="skill-level">Avançado</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="95" style="width: 0"></div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-name">
+                <i class="fab fa-css3-alt"></i>
+                CSS3 & SASS
+              </div>
+              <span class="skill-level">Avançado</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="90" style="width: 0"></div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-name">
+                <i class="fab fa-js"></i>
+                JavaScript ES6+
+              </div>
+              <span class="skill-level">Avançado</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="85" style="width: 0"></div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-name">
+                <i class="fab fa-react"></i>
+                React.js
+              </div>
+              <span class="skill-level">Intermediário</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="75" style="width: 0"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend Skills -->
+        <div class="skill-category">
+          <div class="skill-header">
+            <div class="skill-icon">
+              <i class="fas fa-server"></i>
+            </div>
+            <div>
+              <h3>Backend</h3>
+              <p class="skill-subtitle">Lógica e dados</p>
+            </div>
+          </div>
+
+          <div class="skill-items">
+            <div class="skill-item">
+              <div class="skill-name">
+                <i class="fab fa-node-js"></i>
+                Node.js
+              </div>
+              <span class="skill-level">Intermediário</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="70" style="width: 0"></div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-name">
+                <i class="fab fa-php"></i>
+                PHP & Laravel
+              </div>
+              <span class="skill-level">Intermediário</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="75" style="width: 0"></div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-name">
+                <i class="fas fa-database"></i>
+                MySQL & MongoDB
+              </div>
+              <span class="skill-level">Intermediário</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="80" style="width: 0"></div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-name">
+                <i class="fas fa-code-branch"></i>
+                Git & GitHub
+              </div>
+              <span class="skill-level">Avançado</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-width="90" style="width: 0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Skills -->
+      <div class="row">
+        <div class="col-12">
+          <div class="skill-category">
+            <div class="skill-header mb-4">
+              <div class="skill-icon">
+                <i class="fas fa-tools"></i>
+              </div>
+              <div>
+                <h3>Outras Habilidades</h3>
+                <p class="skill-subtitle" style="
+                      color: var(--text-muted);
+                      font-size: 0.875rem;
+                      margin-top: 0.25rem;
+                    ">
+                  Ferramentas e tecnologias complementares
+                </p>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Vue.js</span>
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">Express.js</span>
+              <span class="tech-tag">REST APIs</span>
+              <span class="tech-tag">GraphQL</span>
+              <span class="tech-tag">Docker</span>
+              <span class="tech-tag">AWS</span>
+              <span class="tech-tag">Firebase</span>
+              <span class="tech-tag">Figma</span>
+              <span class="tech-tag">Adobe XD</span>
+              <span class="tech-tag">SEO</span>
+              <span class="tech-tag">PWA</span>
+              <span class="tech-tag">Scrum</span>
+              <span class="tech-tag">Agile</span>
+              <span class="tech-tag">Jest</span>
+              <span class="tech-tag">Cypress</span>
+              <span class="tech-tag">Webpack</span>
+              <span class="tech-tag">Vite</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section" id="projects">
+    <div class="container">
+      <h2 class="section-title">Projetos em Destaque</h2>
+      <p class="section-subtitle">
+        Uma seleção dos meus trabalhos mais recentes
+      </p>
+
+      <div class="project-filters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="mobile">Mobile</button>
+        <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card" data-category="fullstack">
+          <div class="project-image">
+            <img
+              src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="E-commerce Platform" loading="lazy" />
+            <div class="project-overlay">
+              <a href="#" class="btn btn-primary btn-sm">
+                <i class="fas fa-eye"></i>
+                <span>Preview</span>
+              </a>
+              <a href="#" class="btn btn-secondary btn-sm">
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">E-commerce Platform</h3>
+            <p class="project-description">
+              Plataforma completa de e-commerce com carrinho, checkout e
+              dashboard administrativo.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">Stripe</span>
+            </div>
+            <div class="project-links">
+              <a href="pages/project-demo.html" class="btn btn-outline btn-sm">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Live Demo</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card" data-category="web">
+          <div class="project-image">
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Dashboard Analytics" loading="lazy" />
+            <div class="project-overlay">
+              <a href="#" class="btn btn-primary btn-sm">
+                <i class="fas fa-eye"></i>
+                <span>Preview</span>
+              </a>
+              <a href="#" class="btn btn-secondary btn-sm">
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Analytics Dashboard</h3>
+            <p class="project-description">
+              Dashboard interativo para visualização de dados com gráficos em
+              tempo real.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">Vue.js</span>
+              <span class="tech-tag">Chart.js</span>
+              <span class="tech-tag">REST API</span>
+              <span class="tech-tag">SASS</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-outline btn-sm">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Live Demo</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card" data-category="mobile">
+          <div class="project-image">
+            <img
+              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Fitness App" loading="lazy" />
+            <div class="project-overlay">
+              <a href="#" class="btn btn-primary btn-sm">
+                <i class="fas fa-eye"></i>
+                <span>Preview</span>
+              </a>
+              <a href="#" class="btn btn-secondary btn-sm">
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Fitness Tracker</h3>
+            <p class="project-description">
+              Aplicativo móvel para acompanhamento de exercícios e progresso
+              físico.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">React Native</span>
+              <span class="tech-tag">Firebase</span>
+              <span class="tech-tag">Redux</span>
+              <span class="tech-tag">Chart.js</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-outline btn-sm">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Live Demo</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card" data-category="web">
+          <div class="project-image">
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Portfolio Website" loading="lazy" />
+            <div class="project-overlay">
+              <a href="#" class="btn btn-primary btn-sm">
+                <i class="fas fa-eye"></i>
+                <span>Preview</span>
+              </a>
+              <a href="#" class="btn btn-secondary btn-sm">
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Portfolio Website</h3>
+            <p class="project-description">
+              Site de portfólio moderno e responsivo com animações e design
+              elegante.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">AOS</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-outline btn-sm">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Live Demo</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card" data-category="fullstack">
+          <div class="project-image">
+            <img
+              src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Task Management App" loading="lazy" />
+            <div class="project-overlay">
+              <a href="#" class="btn btn-primary btn-sm">
+                <i class="fas fa-eye"></i>
+                <span>Preview</span>
+              </a>
+              <a href="#" class="btn btn-secondary btn-sm">
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Task Manager Pro</h3>
+            <p class="project-description">
+              Sistema completo de gerenciamento de tarefas com equipes e
+              prazos.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Express.js</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">JWT</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-outline btn-sm">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Live Demo</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card" data-category="mobile">
+          <div class="project-image">
+            <img
+              src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Weather App" loading="lazy" />
+            <div class="project-overlay">
+              <a href="#" class="btn btn-primary btn-sm">
+                <i class="fas fa-eye"></i>
+                <span>Preview</span>
+              </a>
+              <a href="#" class="btn btn-secondary btn-sm">
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Weather Forecast</h3>
+            <p class="project-description">
+              Aplicativo de previsão do tempo com localização automática e
+              notificações.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">React Native</span>
+              <span class="tech-tag">Weather API</span>
+              <span class="tech-tag">Geolocation</span>
+              <span class="tech-tag">Push Notifications</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-outline btn-sm">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Live Demo</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- View All Projects Button -->
+      <div class="text-center mt-5">
+        <a href="pages/all-projects.html" class="btn btn-primary">
+          <i class="fas fa-list me-2"></i>
+          Ver Todos os Projetos (50+)
+        </a>
+        <p class="mt-3" style="color: var(--text-muted)">
+          +47 projetos adicionais disponíveis com detalhes completos, código
+          fonte e demonstrações
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section testimonials-section" id="testimonials">
+    <div id="testimonials-particles"></div>
+
+    <div class="container">
+      <h2 class="section-title">O Que Dizem Sobre Mim</h2>
+      <p class="section-subtitle">
+        Feedback de clientes e parceiros que confiaram no meu trabalho
+      </p>
+
+      <div class="testimonials-slider">
+        <div class="testimonial-track">
+          <!-- Testimonial 1 -->
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              "José transformou nossa ideia em um produto incrível em tempo
+              recorde. Profissionalismo e qualidade excepcionais. Recomendo
+              fortemente!"
+            </div>
+            <div class="testimonial-author">
+              <img
+                src="https://images.unsplash.com/photo-1494790108755-2616b786d4d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                data-src="https://images.unsplash.com/photo-1494790108755-2616b786d4d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                alt="Maria Silva" loading="lazy" />
+              <div>
+                <h5>Maria Silva</h5>
+                <p>CEO, TechStartup Angola</p>
+                <div class="testimonial-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              "Trabalho impecável! José não só entregou um site excelente como
+              também nos orientou em toda a jornada digital. Parceiro
+              estratégico!"
+            </div>
+            <div class="testimonial-author">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                data-src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                alt="Carlos Santos" loading="lazy" />
+              <div>
+                <h5>Carlos Santos</h5>
+                <p>Diretor, Santos & Associados</p>
+                <div class="testimonial-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              "O aplicativo que o José desenvolveu superou todas as
+              expectativas. Performance excepcional e código limpo. Voltaremos
+              a contratar!"
+            </div>
+            <div class="testimonial-author">
+              <img
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                data-src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                alt="Ana Pereira" loading="lazy" />
+              <div>
+                <h5>Ana Pereira</h5>
+                <p>Gerente de Produto, HealthTech</p>
+                <div class="testimonial-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 4 -->
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              "Como desenvolvedor freelancer, José trouxe expertise técnica
+              que nosso time interno não tinha. Entrega sempre antes do
+              prazo!"
+            </div>
+            <div class="testimonial-author">
+              <img
+                src="https://images.unsplash.com/photo-1507591064344-4c6ce005-128?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                data-src="https://images.unsplash.com/photo-1507591064344-4c6ce005-128?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                alt="João Fernandes" loading="lazy" />
+              <div>
+                <h5>João Fernandes</h5>
+                <p>CTO, FinTech Solutions</p>
+                <div class="testimonial-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="testimonial-nav">
+          <button class="testimonial-prev" aria-label="Depoimento anterior">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="testimonial-next" aria-label="Próximo depoimento">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- Dots -->
+        <div class="testimonial-dots">
+          <span class="testimonial-dot active" data-index="0"></span>
+          <span class="testimonial-dot" data-index="1"></span>
+          <span class="testimonial-dot" data-index="2"></span>
+          <span class="testimonial-dot" data-index="3"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Vamos Conversar</h2>
+      <p class="section-subtitle">
+        Pronto para transformar sua ideia em realidade?
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Entre em Contato</h3>
+          <p>
+            Estou disponível para novos projetos e oportunidades. Vamos criar
+            algo incrível juntos!
+          </p>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:josembengadacosta@gmail.com" class="contact-link" style="text-decoration: none;">
+                josembengadacosta@gmail.com
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div>
+              <h4>Telefone</h4>
+              <a href="tel:+244922030116" class="contact-link" style="text-decoration: none;">
+                (+244) 922 030 116
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h4>Localização</h4>
+              <p class="contact-text">Angola, Luanda</p>
+              <small class="contact-note">Disponível para projetos remotos</small>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div>
+              <h4>Horário Comercial</h4>
+              <p class="contact-text">Segunda - Sexta</p>
+              <small class="contact-note">9:00 - 18:00 (GMT+1)</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <form id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="name" class="form-label">Nome Completo *</label>
+              <input type="text" id="name" name="name" class="form-input" required placeholder="Seu nome completo" />
+              <div class="error-message" id="nameError">
+                Nome deve ter pelo menos 3 caracteres
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">Email *</label>
+              <input type="email" id="email" name="email" class="form-input" required placeholder="seu@email.com"
+                autocomplete="on" />
+              <div class="error-message" id="emailError">
+                Por favor, insira um email válido
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone" class="form-label">Telefone (Opcional)</label>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="(XX) XXXXX-XXXX" />
+              <div class="error-message" id="phoneError">
+                Formato inválido. Use (XX) XXXXX-XXXX
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject" class="form-label">Assunto *</label>
+              <select id="subject" name="subject" class="form-input" required>
+                <option value="" disabled selected>
+                  Selecione um assunto
+                </option>
+                <option value="orcamento">Orçamento de Projeto</option>
+                <option value="freelance">Oportunidade Freelance</option>
+                <option value="colaboracao">Colaboração</option>
+                <option value="duvida">Dúvida Técnica</option>
+                <option value="outro">Outro</option>
+              </select>
+              <div class="error-message" id="subjectError">
+                Por favor, selecione um assunto
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Mensagem *</label>
+              <textarea id="message" name="message" class="form-input" required
+                placeholder="Descreva seu projeto ou dúvida..."></textarea>
+              <div class="error-message" id="messageError">
+                Mensagem deve ter pelo menos 10 caracteres
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+              <i class="fas fa-paper-plane"></i>
+              Enviar Mensagem
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Pronto para Iniciar seu Próximo Projeto?</h2>
+        <p>
+          Vamos transformar sua ideia em realidade. Com desenvolvimento ágil,
+          código limpo e resultados excepcionais, seu sucesso é garantido.
+        </p>
+
+        <div class="cta-actions">
+          <a href="#contact" class="btn btn-primary">
+            <i class="fas fa-paper-plane"></i>
+            Solicitar Orçamento
+          </a>
+          <a href="https://wa.me/244922030116" class="btn btn-secondary" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            Conversar no WhatsApp
+          </a>
+        </div>
+
+        <div class="cta-stats">
+          <div class="cta-stat">
+            <span class="number">24h</span>
+            <span class="label">Resposta Garantida</span>
+          </div>
+          <div class="cta-stat">
+            <span class="number">100%</span>
+            <span class="label">Satisfação do Cliente</span>
+          </div>
+          <div class="cta-stat">
+            <span class="number">15d</span>
+            <span class="label">Entrega Média</span>
+          </div>
+          <div class="cta-stat">
+            <span class="number">50+</span>
+            <span class="label">Projetos Concluídos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#home" class="logo mb-3">
+            <i class="fas fa-code"></i>
+            <span>JM</span>benga
+          </a>
+          <p style="color: var(--text-secondary)">
+            Transformando ideias em experiências digitais excepcionais com
+            código limpo e design inovador.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Links Rápidos</h4>
+          <ul class="footer-links">
+            <li><a href="#home" class="footer-link">Home</a></li>
+            <li><a href="#about" class="footer-link">Sobre</a></li>
+            <li><a href="#skills" class="footer-link">Skills</a></li>
+            <li><a href="#projects" class="footer-link">Projetos</a></li>
+            <li><a href="#contact" class="footer-link">Contato</a></li>
+            <li><a href="#testimonials" class="footer-link">Depoimentos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Serviços</h4>
+          <ul class="footer-links">
+            <li>
+              <a href="pages/services/web-development.html" class="footer-link">Desenvolvimento Web</a>
+            </li>
+            <li>
+              <a href="pages/services/mobile-apps.html" class="footer-link">Aplicativos Mobile</a>
+            </li>
+            <li><a href="pages/services/ui-ux-design.html" class="footer-link">UI/UX Design</a></li>
+            <li>
+              <a href="pages/services/tech-consulting..html" class="footer-link">Consultoria Tech</a>
+            </li>
+            <li><a href="pages/services/maintenance1.html" class="footer-link">Manutenção</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Conecte-se</h4>
+          <div class="offcanvas-social" style="border: none; padding: 0">
+            <a href="https://github.com/josembenga" class="social-link" target="_blank" rel="noopener noreferrer"
+              aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/jose-mbenga-da-costa" class="social-link" target="_blank"
+              rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://wa.me/244922030116" class="social-link" target="_blank" rel="noopener noreferrer"
+              aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="mailto:josembengadacosta@gmail.com" class="social-link" aria-label="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          <p>&copy; 2026 José Mbenga Da Costa. Todos os direitos reservados.</p>
+        </div>
+        <div class="footer-newsletter">
+          <input type="email" id="newsletterEmail" placeholder="Receba novidades por email" />
+          <button type="button" id="newsletterBtn">Inscrever</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Logo após o seu script principal -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="assets/js/improvements.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Schema Markup for SEO -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "José Mbenga",
+      "jobTitle": "Desenvolvedor Web Full Stack",
+      "url": "https://jmbenga.com",
+      "sameAs": [
+        "https://github.com/josembenga",
+        "https://linkedin.com/in/jose-mbenga-da-costa"
+      ],
+      "knowsAbout": [
+        "Web Development",
+        "Frontend",
+        "Backend",
+        "UI/UX Design"
+      ],
+      "description": "Desenvolvedor Web Full Stack especializado em criar experiências digitais inovadoras.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "AO"
+      },
+      "email": "josembengadacosta@gmail.com",
+      "telephone": "+244922030116"
+    }
+  </script>
+</body>
+
+</html>

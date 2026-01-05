@@ -1,0 +1,2480 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark-theme">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Temporariamente Suspenso | José Mbenga</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Site temporariamente suspenso - José Mbenga Desenvolvedor Full Stack">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Site Temporariamente Suspenso | José Mbenga">
+    <meta property="og:description" content="Este site está temporariamente suspenso. Retornaremos em breve.">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon_jm.png" type="image/x-icon">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <style>
+        :root {
+            /* Cores principais - Dark Theme */
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #0ea5e9;
+            --muted: #6b7280;
+
+            /* Backgrounds */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+
+            /* Textos */
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+
+            /* Bordas */
+            --border: #475569;
+            --border-light: #64748b;
+
+            /* Gradientes */
+            --gradient-primary: linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            --gradient-danger: linear-gradient(135deg, #ef4444 0%, #f59e0b 100%);
+            --gradient-muted: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%);
+
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+            /* Transições */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Light Theme Variables */
+        .light-theme {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --border-light: #cbd5e1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color var(--transition), color var(--transition);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Suspension Animation */
+        .suspension-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(107, 114, 128, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(156, 163, 175, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(75, 85, 99, 0.08) 0%, transparent 60%);
+            animation: suspensionPulse 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes suspensionPulse {
+            0% {
+                opacity: 1;
+                filter: brightness(1);
+            }
+            100% {
+                opacity: 0.95;
+                filter: brightness(0.95);
+            }
+        }
+
+        /* Suspension Grid */
+        .suspension-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: 
+                linear-gradient(90deg, rgba(107, 114, 128, 0.2) 2px, transparent 2px),
+                linear-gradient(rgba(107, 114, 128, 0.2) 2px, transparent 2px);
+            background-size: 80px 80px;
+            animation: gridSuspension 40s linear infinite;
+        }
+
+        @keyframes gridSuspension {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(-80px, -80px);
+            }
+        }
+
+        /* Suspension Elements */
+        .suspension-element {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+            font-size: 2rem;
+            animation: elementFloat 20s linear infinite;
+        }
+
+        .element-pause {
+            top: 15%;
+            left: 8%;
+            animation-delay: 0s;
+        }
+
+        .element-clock {
+            top: 35%;
+            right: 12%;
+            animation-delay: 4s;
+        }
+
+        .element-lock {
+            bottom: 25%;
+            left: 15%;
+            animation-delay: 8s;
+        }
+
+        .element-calendar {
+            bottom: 18%;
+            right: 20%;
+            animation-delay: 12s;
+        }
+
+        .element-cloud {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            animation-delay: 16s;
+        }
+
+        @keyframes elementFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-15px) rotate(45deg) scale(1.1);
+            }
+            50% {
+                transform: translateY(0) rotate(90deg) scale(1);
+            }
+            75% {
+                transform: translateY(15px) rotate(135deg) scale(0.9);
+            }
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header */
+        .header {
+            padding: 2rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: transform var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo span {
+            background: var(--gradient-muted);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Status Banner */
+        .status-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--gradient-muted);
+            color: white;
+            padding: 0.75rem 0;
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: 500;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .status-banner i {
+            animation: bannerPulse 2s infinite;
+        }
+
+        @keyframes bannerPulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 200px);
+            padding: 3rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .suspension-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Suspension Icon */
+        .suspension-icon {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .icon-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto;
+        }
+
+        .icon-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid var(--muted);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .icon-circle-outer {
+            width: 180px;
+            height: 180px;
+            top: 20px;
+            left: 20px;
+            animation: circlePulse 3s ease-in-out infinite;
+        }
+
+        .icon-circle-inner {
+            width: 120px;
+            height: 120px;
+            top: 50px;
+            left: 50px;
+            animation: circlePulse 3s ease-in-out infinite reverse;
+        }
+
+        .suspension-main-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5rem;
+            color: var(--muted);
+            z-index: 2;
+            animation: iconSuspension 4s ease-in-out infinite;
+        }
+
+        @keyframes circlePulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.2;
+            }
+        }
+
+        @keyframes iconSuspension {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            }
+            33% {
+                transform: translate(-50%, -50%) scale(1.05) rotate(120deg);
+            }
+            66% {
+                transform: translate(-50%, -50%) scale(1.05) rotate(240deg);
+            }
+        }
+
+        /* Suspension Message */
+        .suspension-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            position: relative;
+            display: inline-block;
+        }
+
+        .suspension-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: var(--gradient-muted);
+            border-radius: 2px;
+        }
+
+        .suspension-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .suspension-description {
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 1.125rem;
+            line-height: 1.7;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Reason Card */
+        .reason-card {
+            max-width: 600px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--muted);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reason-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .reason-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-muted);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .reason-title {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .reason-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .reason-details {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .detail-label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .detail-value {
+            color: var(--text-secondary);
+        }
+
+        /* Suspension Timeline */
+        .suspension-timeline {
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--gradient-muted);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all var(--transition);
+        }
+
+        .timeline-item:hover {
+            transform: translateX(5px);
+            border-color: var(--muted);
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-date {
+            min-width: 120px;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            background: var(--gradient-muted);
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 600;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--muted);
+            color: white;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .status-active {
+            background: var(--danger);
+            animation: statusActive 2s infinite;
+        }
+
+        .status-upcoming {
+            background: var(--warning);
+        }
+
+        .status-completed {
+            background: var(--accent);
+        }
+
+        @keyframes statusActive {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        /* Suspension Duration */
+        .duration-container {
+            max-width: 600px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .duration-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .duration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .duration-item {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .duration-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-muted);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .duration-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .duration-progress {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .duration-progress-bar {
+            height: 100%;
+            background: var(--gradient-muted);
+            border-radius: 4px;
+            width: 30%;
+            transition: width 1s ease;
+        }
+
+        /* Alternative Access */
+        .alternative-container {
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .alternative-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .alternative-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .alternative-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alternative-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .alternative-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .alternative-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .alternative-content h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .alternative-content p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Contact Form */
+        .contact-container {
+            max-width: 600px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .contact-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all var(--transition);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-checkbox input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .form-checkbox label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0.75rem;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            min-width: 200px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: width var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--muted);
+            color: var(--muted);
+        }
+
+        .btn-outline:hover {
+            background: var(--muted);
+            color: white;
+        }
+
+        /* Suspension Stats */
+        .suspension-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--muted);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-muted);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--muted);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-muted);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
+            background: var(--bg-secondary);
+            margin-top: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-muted);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            z-index: 1000;
+            box-shadow: var(--shadow-xl);
+            transition: all var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(180deg);
+        }
+
+        /* Suspension Notice */
+        .suspension-notice {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1rem 1.5rem;
+            z-index: 1000;
+            box-shadow: var(--shadow-xl);
+            max-width: 300px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all var(--transition);
+        }
+
+        .suspension-notice.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .notice-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .notice-icon {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--danger);
+            animation: noticePulse 2s infinite;
+        }
+
+        .notice-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .notice-content {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .close-notice {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.875rem;
+            padding: 0.25rem;
+            border-radius: 0.25rem;
+            transition: all var(--transition-fast);
+        }
+
+        .close-notice:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        @keyframes noticePulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .suspension-title {
+                font-size: clamp(1.5rem, 4vw, 2.5rem);
+            }
+
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .duration-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .alternative-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                gap: 1rem;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .timeline-date {
+                min-width: auto;
+                width: 100%;
+            }
+
+            .icon-container {
+                width: 180px;
+                height: 180px;
+            }
+
+            .suspension-main-icon {
+                font-size: 4rem;
+            }
+
+            .suspension-notice {
+                left: 1rem;
+                right: 1rem;
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .duration-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .suspension-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .reason-card {
+                padding: 1.5rem;
+            }
+
+            .contact-container {
+                padding: 1.5rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Accessibility */
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--muted);
+            color: white;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--muted);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Animations -->
+    <div class="suspension-bg"></div>
+    <div class="suspension-grid"></div>
+    
+    <!-- Suspension Elements -->
+    <div class="suspension-element element-pause">
+        <i class="fas fa-pause-circle"></i>
+    </div>
+    <div class="suspension-element element-clock">
+        <i class="fas fa-clock"></i>
+    </div>
+    <div class="suspension-element element-lock">
+        <i class="fas fa-lock"></i>
+    </div>
+    <div class="suspension-element element-calendar">
+        <i class="fas fa-calendar-alt"></i>
+    </div>
+    <div class="suspension-element element-cloud">
+        <i class="fas fa-cloud"></i>
+    </div>
+
+    <!-- Status Banner -->
+    <div class="status-banner">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span>SITE TEMPORARIAMENTE SUSPENSO - Retorno previsto em <strong id="bannerEta"></strong></span>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Suspension Notice -->
+    <div class="suspension-notice" id="suspensionNotice">
+        <button class="close-notice" id="closeNotice" aria-label="Fechar aviso">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="notice-header">
+            <div class="notice-icon"></div>
+            <span class="notice-title">Aviso de Suspensão</span>
+        </div>
+        <div class="notice-content" id="noticeContent">
+            Esta suspensão é temporária. Estamos trabalhando para resolver a situação o mais rápido possível.
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <i class="fas fa-pause"></i>
+                <span>JM</span>benga
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="suspension-content">
+                <!-- Suspension Icon -->
+                <div class="suspension-icon">
+                    <div class="icon-container">
+                        <div class="icon-circle icon-circle-outer"></div>
+                        <div class="icon-circle icon-circle-inner"></div>
+                        <div class="suspension-main-icon">
+                            <i class="fas fa-pause"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suspension Message -->
+                <h1 class="suspension-title">Site Temporariamente Suspenso</h1>
+                <p class="suspension-subtitle">
+                    Pedimos desculpas pelo inconveniente
+                </p>
+                <p class="suspension-description">
+                    Este site está temporariamente indisponível devido a circunstâncias técnicas necessárias. 
+                    Estamos trabalhando para resolver a situação e retomar o serviço o mais breve possível.
+                </p>
+
+                <!-- Reason Card -->
+                <div class="reason-card">
+                    <div class="reason-header">
+                        <div class="reason-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <h2 class="reason-title">Motivo da Suspensão</h2>
+                    </div>
+                    <div class="reason-content">
+                        <p id="suspensionReason">
+                            Estamos realizando atualizações críticas de infraestrutura e segurança para garantir 
+                            a melhor experiência e proteção dos dados. Esta suspensão preventiva é necessária 
+                            para implementar melhorias significativas.
+                        </p>
+                        <div class="reason-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Tipo:</span>
+                                <span class="detail-value" id="suspensionType">Manutenção Planejada</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Iniciada em:</span>
+                                <span class="detail-value" id="suspensionStart">--/--/---- --:--</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Responsável:</span>
+                                <span class="detail-value">Equipe Técnica</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suspension Duration -->
+                <div class="duration-container">
+                    <h2 class="duration-title">
+                        <i class="fas fa-hourglass-half"></i>
+                        Duração da Suspensão
+                    </h2>
+                    <div class="duration-grid">
+                        <div class="duration-item">
+                            <div class="duration-value" id="durationDays">00</div>
+                            <div class="duration-label">Dias</div>
+                        </div>
+                        <div class="duration-item">
+                            <div class="duration-value" id="durationHours">00</div>
+                            <div class="duration-label">Horas</div>
+                        </div>
+                        <div class="duration-item">
+                            <div class="duration-value" id="durationMinutes">00</div>
+                            <div class="duration-label">Minutos</div>
+                        </div>
+                        <div class="duration-item">
+                            <div class="duration-value" id="durationSeconds">00</div>
+                            <div class="duration-label">Segundos</div>
+                        </div>
+                    </div>
+                    <div class="duration-progress">
+                        <div class="duration-progress-bar" id="durationProgress"></div>
+                    </div>
+                    <div style="color: var(--text-muted); font-size: 0.875rem;">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Previsão de retorno: <strong id="returnDate">--/--/----</strong> às <strong id="returnTime">--:--</strong></span>
+                    </div>
+                </div>
+
+                <!-- Suspension Stats -->
+                <div class="suspension-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-clock"></i>
+                        </div>
+                        <div class="stat-value" id="suspendedUsers">1.2K</div>
+                        <div class="stat-label">Usuários Afetados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="stat-value" id="servicesAffected">8</div>
+                        <div class="stat-label">Serviços</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="stat-value" id="supportTickets">45</div>
+                        <div class="stat-label">Tickets</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="stat-value" id="securityLevel">HIGH</div>
+                        <div class="stat-label">Segurança</div>
+                    </div>
+                </div>
+
+                <!-- Suspension Timeline -->
+                <div class="suspension-timeline">
+                    <h2 class="timeline-title">
+                        <i class="fas fa-history"></i>
+                        Linha do Tempo da Suspensão
+                    </h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date" id="timelineDate1">--/-- --:--</div>
+                            <div class="timeline-content">
+                                <strong>Detecção do Problema</strong>
+                                <p>Identificação da necessidade de suspensão</p>
+                                <span class="timeline-status status-completed">Concluído</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date" id="timelineDate2">--/-- --:--</div>
+                            <div class="timeline-content">
+                                <strong>Análise Técnica</strong>
+                                <p>Avaliação completa da situação</p>
+                                <span class="timeline-status status-completed">Concluído</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date" id="timelineDate3">--/-- --:--</div>
+                            <div class="timeline-content">
+                                <strong>Implementação de Solução</strong>
+                                <p>Aplicação das correções necessárias</p>
+                                <span class="timeline-status status-active">Em Andamento</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date" id="timelineDate4">--/-- --:--</div>
+                            <div class="timeline-content">
+                                <strong>Testes e Validação</strong>
+                                <p>Verificação da estabilidade do sistema</p>
+                                <span class="timeline-status status-upcoming">Próximo</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date" id="timelineDate5">--/-- --:--</div>
+                            <div class="timeline-content">
+                                <strong>Retorno do Serviço</strong>
+                                <p>Reativação completa do site</p>
+                                <span class="timeline-status status-upcoming">Próximo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alternative Access -->
+                <div class="alternative-container">
+                    <h2 class="alternative-title">
+                        <i class="fas fa-external-link-alt"></i>
+                        Acesso Alternativo
+                    </h2>
+                    <div class="alternative-grid">
+                        <div class="alternative-card">
+                            <div class="alternative-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="alternative-content">
+                                <h3>Portfólio no GitHub</h3>
+                                <p>Acesse meus projetos e código-fonte enquanto o site está suspenso</p>
+                                <a href="https://github.com/josembenga" target="_blank" class="btn btn-secondary btn-sm" style="min-width: auto; padding: 0.5rem 1rem;">
+                                    Acessar GitHub
+                                </a>
+                            </div>
+                        </div>
+                        <div class="alternative-card">
+                            <div class="alternative-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div class="alternative-content">
+                                <h3>Perfil no LinkedIn</h3>
+                                <p>Conecte-se profissionalmente e veja minhas experiências</p>
+                                <a href="https://linkedin.com/in/jose-mbenga-da-costa" target="_blank" class="btn btn-secondary btn-sm" style="min-width: auto; padding: 0.5rem 1rem;">
+                                    Acessar LinkedIn
+                                </a>
+                            </div>
+                        </div>
+                        <div class="alternative-card">
+                            <div class="alternative-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="alternative-content">
+                                <h3>Currículo (PDF)</h3>
+                                <p>Baixe uma cópia do meu currículo atualizado em PDF</p>
+                                <a href="cv-jose-mbenga.pdf" download class="btn btn-secondary btn-sm" style="min-width: auto; padding: 0.5rem 1rem;">
+                                    Baixar CV
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-container">
+                    <h2 class="contact-title">
+                        <i class="fas fa-envelope"></i>
+                        Receba Atualizações
+                    </h2>
+                    <form id="contactForm" novalidate>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Seu Email</label>
+                            <input type="email" id="email" class="form-input" 
+                                   placeholder="seu@email.com" required>
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="concern" class="form-label">Seu Interesse</label>
+                            <select id="concern" class="form-select" required>
+                                <option value="" disabled selected>Selecione uma opção</option>
+                                <option value="client">Sou Cliente/Parceiro</option>
+                                <option value="recruiter">Recrutador/Oportunidade</option>
+                                <option value="colleague">Colega Desenvolvedor</option>
+                                <option value="other">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="urgency" class="form-label">Urgência do Contato</label>
+                            <select id="urgency" class="form-select">
+                                <option value="low" selected>Baixa - Apenas para atualizações</option>
+                                <option value="medium">Média - Contato nas próximas horas</option>
+                                <option value="high">Alta - Contato urgente necessário</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Mensagem (Opcional)</label>
+                            <textarea id="message" class="form-textarea" 
+                                      placeholder="Deixe sua mensagem ou pergunta..."></textarea>
+                        </div>
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="notifyReturn" checked>
+                            <label for="notifyReturn">
+                                Notificar-me quando o site retornar
+                            </label>
+                        </div>
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="emergencyContact">
+                            <label for="emergencyContact">
+                                Permitir contato emergencial por WhatsApp
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Solicitação
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="refreshStatus">
+                        <i class="fas fa-sync-alt"></i>
+                        Verificar Status
+                    </button>
+                    <a href="mailto:josembengadacosta@gmail.com" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Email de Emergência
+                    </a>
+                    <a href="https://wa.me/244922030116" target="_blank" class="btn btn-outline">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp (Emergência)
+                    </a>
+                </div>
+
+                <!-- Important Notice -->
+                <div style="margin-top: 3rem; padding: 1.5rem; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--danger); border-radius: 0.75rem; color: var(--danger); font-size: 0.875rem; text-align: left;">
+                    <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                        <i class="fas fa-exclamation-circle" style="font-size: 1.25rem;"></i>
+                        <div>
+                            <strong style="display: block; margin-bottom: 0.5rem;">Importante:</strong>
+                            <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">
+                                Durante esta suspensão, todos os serviços relacionados ao site estão temporariamente indisponíveis. 
+                                Dados críticos estão seguros e serão restaurados integralmente após a resolução.
+                            </p>
+                            <p style="color: var(--text-muted); font-size: 0.75rem;">
+                                <i class="fas fa-shield-alt"></i>
+                                Protocolo de segurança ativo: <strong>SSP-2024</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 José Mbenga. Site temporariamente suspenso.</p>
+            <div class="footer-links">
+                <a href="/status" class="footer-link">Status do Sistema</a>
+                <a href="/support" class="footer-link">Suporte Técnico</a>
+                <a href="/privacy" class="footer-link">Política de Privacidade</a>
+                <a href="/terms" class="footer-link">Termos de Serviço</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.75rem; color: var(--text-muted);">
+                <i class="fas fa-clock"></i>
+                Última atualização: <span id="lastUpdate">--/--/---- --:--:--</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ============================================
+        // PÁGINA DE SUSPENSÃO - SCRIPT COMPLETO
+        // ============================================
+
+        // Configurações
+        const SUSPENSION_CONFIG = {
+            startDate: new Date(Date.now() - 1 * 60 * 60 * 1000), // 1 hora atrás
+            expectedEndDate: new Date(Date.now() + 3 * 60 * 60 * 1000), // 3 horas a partir de agora
+            reason: "Atualização crítica de segurança e infraestrutura",
+            type: "Manutenção Planejada",
+            severity: "medium", // low, medium, high, critical
+            affectedServices: ["Site Principal", "API", "Banco de Dados", "CDN", "Email", "Autenticação", "Backups", "Monitoramento"],
+            teamSize: 5,
+            protocol: "SSP-2024",
+            updateInterval: 30000 // 30 segundos
+        };
+
+        // ============================================
+        // 1. INICIALIZAÇÃO
+        // ============================================
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initThemeSystem();
+            initSuspensionTimer();
+            initSuspensionDetails();
+            initTimelineUpdates();
+            initStats();
+            initContactForm();
+            initSuspensionNotice();
+            initStatusRefresh();
+            initAutoUpdates();
+            initSuspensionTracking();
+            initEmergencyProtocol();
+        });
+
+        // ============================================
+        // 2. SISTEMA DE TEMA
+        // ============================================
+
+        function initThemeSystem() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle?.querySelector('i');
+
+            if (!themeToggle || !themeIcon) return;
+
+            // Detectar tema salvo
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+            // Aplicar tema
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                themeIcon.className = 'fas fa-sun';
+            } else if (savedTheme === 'dark') {
+                document.body.classList.remove('light-theme');
+                themeIcon.className = 'fas fa-moon';
+            } else if (prefersDark.matches) {
+                document.body.classList.remove('light-theme');
+                themeIcon.className = 'fas fa-moon';
+            } else {
+                document.body.classList.add('light-theme');
+                themeIcon.className = 'fas fa-sun';
+            }
+
+            // Alternar tema
+            themeToggle.addEventListener('click', function () {
+                const isLightTheme = document.body.classList.toggle('light-theme');
+
+                if (isLightTheme) {
+                    themeIcon.className = 'fas fa-sun';
+                    localStorage.setItem('theme', 'light');
+                    showNotification('Tema claro ativado');
+                } else {
+                    themeIcon.className = 'fas fa-moon';
+                    localStorage.setItem('theme', 'dark');
+                    showNotification('Tema escuro ativado');
+                }
+            });
+        }
+
+        // ============================================
+        // 3. TIMER DE SUSPENSÃO
+        // ============================================
+
+        function initSuspensionTimer() {
+            const expectedEnd = SUSPENSION_CONFIG.expectedEndDate;
+            
+            // Atualizar datas de exibição
+            updateDisplayDates();
+            
+            // Iniciar timer
+            updateSuspensionTimer();
+            const timerInterval = setInterval(updateSuspensionTimer, 1000);
+
+            // Verificar se a suspensão acabou
+            function checkSuspensionEnd() {
+                const now = new Date();
+                if (now >= expectedEnd) {
+                    clearInterval(timerInterval);
+                    handleSuspensionEnd();
+                }
+            }
+
+            setInterval(checkSuspensionEnd, 30000); // Verificar a cada 30 segundos
+
+            function updateDisplayDates() {
+                // Data de início
+                document.getElementById('suspensionStart').textContent = 
+                    formatDateTime(SUSPENSION_CONFIG.startDate);
+                
+                // Data de retorno
+                document.getElementById('returnDate').textContent = 
+                    formatDate(expectedEnd);
+                document.getElementById('returnTime').textContent = 
+                    formatTime(expectedEnd);
+                
+                // Banner ETA
+                document.getElementById('bannerEta').textContent = 
+                    `${formatDate(expectedEnd)} às ${formatTime(expectedEnd)}`;
+                
+                // Última atualização
+                document.getElementById('lastUpdate').textContent = 
+                    formatDateTime(new Date());
+            }
+
+            function updateSuspensionTimer() {
+                const now = new Date();
+                const timePassed = now - SUSPENSION_CONFIG.startDate;
+                const totalDuration = expectedEnd - SUSPENSION_CONFIG.startDate;
+                const timeLeft = expectedEnd - now;
+
+                if (timeLeft <= 0) {
+                    // Suspensão concluída
+                    document.getElementById('durationDays').textContent = '00';
+                    document.getElementById('durationHours').textContent = '00';
+                    document.getElementById('durationMinutes').textContent = '00';
+                    document.getElementById('durationSeconds').textContent = '00';
+                    
+                    // Atualizar progresso para 100%
+                    document.getElementById('durationProgress').style.width = '100%';
+                    return;
+                }
+
+                // Calcular tempo passado
+                const days = Math.floor(timePassed / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timePassed % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timePassed % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timePassed % (1000 * 60)) / 1000);
+
+                // Atualizar display
+                document.getElementById('durationDays').textContent = days.toString().padStart(2, '0');
+                document.getElementById('durationHours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('durationMinutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('durationSeconds').textContent = seconds.toString().padStart(2, '0');
+
+                // Atualizar progresso
+                const progressPercent = (timePassed / totalDuration) * 100;
+                document.getElementById('durationProgress').style.width = `${Math.min(progressPercent, 100)}%`;
+
+                // Atualizar timeline
+                updateTimelineDates(timePassed);
+            }
+
+            function formatDate(date) {
+                return date.toLocaleDateString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+            }
+
+            function formatTime(date) {
+                return date.toLocaleTimeString('pt-BR', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+
+            function formatDateTime(date) {
+                return `${formatDate(date)} ${formatTime(date)}`;
+            }
+        }
+
+        // ============================================
+        // 4. DETALHES DA SUSPENSÃO
+        // ============================================
+
+        function initSuspensionDetails() {
+            // Definir motivo da suspensão
+            document.getElementById('suspensionReason').textContent = SUSPENSION_CONFIG.reason;
+            document.getElementById('suspensionType').textContent = SUSPENSION_CONFIG.type;
+
+            // Atualizar título do banner baseado na severidade
+            const severityColors = {
+                low: '#10b981',
+                medium: '#f59e0b',
+                high: '#ef4444',
+                critical: '#dc2626'
+            };
+
+            const severityTexts = {
+                low: 'BAIXA',
+                medium: 'MÉDIA',
+                high: 'ALTA',
+                critical: 'CRÍTICA'
+            };
+
+            const banner = document.querySelector('.status-banner');
+            if (banner) {
+                banner.style.background = `linear-gradient(135deg, ${severityColors[SUSPENSION_CONFIG.severity]} 0%, ${severityColors[SUSPENSION_CONFIG.severity]}90 100%)`;
+            }
+
+            // Atualizar nível de segurança
+            document.getElementById('securityLevel').textContent = 
+                SUSPENSION_CONFIG.severity.toUpperCase();
+        }
+
+        // ============================================
+        // 5. ATUALIZAÇÕES DA TIMELINE
+        // ============================================
+
+        function updateTimelineDates(timePassed) {
+            const timelineDates = [
+                SUSPENSION_CONFIG.startDate,
+                new Date(SUSPENSION_CONFIG.startDate.getTime() + 15 * 60 * 1000), // +15 min
+                new Date(SUSPENSION_CONFIG.startDate.getTime() + 45 * 60 * 1000), // +45 min
+                new Date(SUSPENSION_CONFIG.startDate.getTime() + 90 * 60 * 1000), // +1.5h
+                SUSPENSION_CONFIG.expectedEndDate
+            ];
+
+            timelineDates.forEach((date, index) => {
+                const element = document.getElementById(`timelineDate${index + 1}`);
+                if (element) {
+                    if (date <= new Date()) {
+                        element.textContent = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+                    } else {
+                        element.textContent = '--/-- --:--';
+                    }
+                }
+            });
+        }
+
+        function initTimelineUpdates() {
+            // Simular progresso na timeline
+            setInterval(() => {
+                const now = new Date();
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                
+                // Atualizar status baseado no tempo
+                if (now >= SUSPENSION_CONFIG.expectedEndDate) {
+                    // Todas concluídas
+                    timelineItems.forEach(item => {
+                        const status = item.querySelector('.timeline-status');
+                        if (status) {
+                            status.className = 'timeline-status status-completed';
+                            status.textContent = 'Concluído';
+                        }
+                    });
+                }
+            }, 30000); // A cada 30 segundos
+        }
+
+        // ============================================
+        // 6. ESTATÍSTICAS DINÂMICAS
+        // ============================================
+
+        function initStats() {
+            // Estatísticas iniciais
+            const stats = {
+                suspendedUsers: 1200,
+                servicesAffected: SUSPENSION_CONFIG.affectedServices.length,
+                supportTickets: 45,
+                securityLevel: SUSPENSION_CONFIG.severity.toUpperCase()
+            };
+
+            // Atualizar estatísticas
+            Object.keys(stats).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = stats[key];
+                }
+            });
+
+            // Simular aumento de tickets
+            setInterval(() => {
+                const ticketsElement = document.getElementById('supportTickets');
+                if (ticketsElement) {
+                    const current = parseInt(ticketsElement.textContent);
+                    const increment = Math.floor(Math.random() * 3); // 0-2 novos tickets
+                    ticketsElement.textContent = current + increment;
+                }
+            }, 60000); // A cada minuto
+
+            // Simular aumento de usuários afetados
+            setInterval(() => {
+                const usersElement = document.getElementById('suspendedUsers');
+                if (usersElement) {
+                    const current = parseInt(usersElement.textContent);
+                    const increment = Math.floor(Math.random() * 10); // 0-9 novos usuários
+                    usersElement.textContent = current + increment;
+                    
+                    // Formatar com K se necessário
+                    if (current + increment >= 1000) {
+                        usersElement.textContent = `${((current + increment) / 1000).toFixed(1)}K`;
+                    }
+                }
+            }, 120000); // A cada 2 minutos
+        }
+
+        // ============================================
+        // 7. FORMULÁRIO DE CONTATO
+        // ============================================
+
+        function initContactForm() {
+            const contactForm = document.getElementById('contactForm');
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+
+            if (!contactForm) return;
+
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const email = emailInput.value.trim();
+                const concern = document.getElementById('concern').value;
+                const urgency = document.getElementById('urgency').value;
+                const message = document.getElementById('message').value;
+                const notifyReturn = document.getElementById('notifyReturn').checked;
+                const emergencyContact = document.getElementById('emergencyContact').checked;
+
+                // Validar email
+                if (!email) {
+                    showError(emailInput, emailError, 'Por favor, insira seu email');
+                    return;
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    showError(emailInput, emailError, 'Por favor, insira um email válido');
+                    return;
+                }
+
+                if (!concern) {
+                    showNotification('Por favor, selecione seu interesse', 'warning');
+                    document.getElementById('concern').focus();
+                    return;
+                }
+
+                // Limpar erro
+                clearError(emailInput, emailError);
+
+                // Simular envio
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+                submitBtn.disabled = true;
+
+                // Preparar dados
+                const formData = {
+                    email: email,
+                    concern: concern,
+                    urgency: urgency,
+                    message: message || 'Nenhuma mensagem fornecida',
+                    notifyReturn: notifyReturn,
+                    emergencyContact: emergencyContact,
+                    submittedAt: new Date().toISOString(),
+                    suspensionId: generateSuspensionId()
+                };
+
+                // Simular API call
+                setTimeout(() => {
+                    // Sucesso
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Solicitação Enviada!';
+                    submitBtn.style.background = 'var(--gradient-secondary)';
+                    
+                    // Mostrar confirmação
+                    const urgencyText = {
+                        low: 'baixa urgência',
+                        medium: 'média urgência',
+                        high: 'alta urgência'
+                    }[urgency];
+
+                    showNotification(
+                        `Solicitação registrada com sucesso! Você será contatado com ${urgencyText}.`, 
+                        'success'
+                    );
+
+                    // Salvar no localStorage
+                    saveContactRequest(formData);
+
+                    // Se permitiu contato emergencial, mostrar botão do WhatsApp
+                    if (emergencyContact && urgency === 'high') {
+                        showEmergencyWhatsAppButton(email, message);
+                    }
+
+                    // Reset após 3 segundos
+                    setTimeout(() => {
+                        contactForm.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = '';
+                    }, 3000);
+
+                }, 1500);
+            });
+
+            // Validação em tempo real
+            emailInput.addEventListener('input', function () {
+                clearError(emailInput, emailError);
+            });
+
+            function showError(input, errorElement, message) {
+                input.classList.add('error');
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+                input.focus();
+            }
+
+            function clearError(input, errorElement) {
+                input.classList.remove('error');
+                errorElement.textContent = '';
+                errorElement.style.display = 'none';
+            }
+
+            function generateSuspensionId() {
+                const timestamp = Date.now();
+                const random = Math.random().toString(36).substr(2, 6);
+                return `SUSP-${timestamp}-${random}`.toUpperCase();
+            }
+
+            function saveContactRequest(data) {
+                let requests = JSON.parse(localStorage.getItem('suspensionContactRequests') || '[]');
+                requests.push(data);
+                localStorage.setItem('suspensionContactRequests', JSON.stringify(requests));
+
+                console.log('Solicitação de contato salva:', data);
+            }
+
+            function showEmergencyWhatsAppButton(email, message) {
+                const whatsappButton = document.createElement('a');
+                whatsappButton.href = `https://wa.me/244922030116?text=Emergência%20Suspensão%20-%20Email:%20${encodeURIComponent(email)}%20-%20Mensagem:%20${encodeURIComponent(message.substring(0, 100))}`;
+                whatsappButton.target = '_blank';
+                whatsappButton.className = 'btn btn-primary';
+                whatsappButton.style.marginTop = '1rem';
+                whatsappButton.style.width = '100%';
+                whatsappButton.innerHTML = '<i class="fab fa-whatsapp"></i> Contato Imediato via WhatsApp';
+                
+                const contactContainer = document.querySelector('.contact-container');
+                contactContainer.appendChild(whatsappButton);
+                
+                // Remover após 5 minutos
+                setTimeout(() => {
+                    whatsappButton.remove();
+                }, 300000);
+            }
+        }
+
+        // ============================================
+        // 8. NOTIFICAÇÃO DE SUSPENSÃO
+        // ============================================
+
+        function initSuspensionNotice() {
+            const suspensionNotice = document.getElementById('suspensionNotice');
+            const closeNotice = document.getElementById('closeNotice');
+            const noticeContent = document.getElementById('noticeContent');
+
+            // Mostrar notificação após 5 segundos
+            setTimeout(() => {
+                suspensionNotice.classList.add('show');
+            }, 5000);
+
+            // Botão de fechar
+            closeNotice.addEventListener('click', function () {
+                suspensionNotice.classList.remove('show');
+            });
+
+            // Atualizar conteúdo baseado na severidade
+            const severityNotices = {
+                low: 'Esta suspensão é de baixa prioridade e será resolvida em breve.',
+                medium: 'A suspensão está sendo tratada com prioridade. Pedimos paciência.',
+                high: 'Suspensão crítica em andamento. Equipe técnica trabalhando 24/7.',
+                critical: 'SITUAÇÃO CRÍTICA: Todas as equipes mobilizadas para resolução.'
+            };
+
+            noticeContent.textContent = severityNotices[SUSPENSION_CONFIG.severity];
+
+            // Auto-fechar após 15 segundos
+            setTimeout(() => {
+                suspensionNotice.classList.remove('show');
+            }, 15000);
+        }
+
+        // ============================================
+        // 9. ATUALIZAÇÃO DE STATUS
+        // ============================================
+
+        function initStatusRefresh() {
+            const refreshBtn = document.getElementById('refreshStatus');
+            
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', function () {
+                    // Simular verificação de status
+                    refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verificando...';
+                    refreshBtn.disabled = true;
+
+                    setTimeout(() => {
+                        // Simular resposta
+                        const now = new Date();
+                        const timeLeft = SUSPENSION_CONFIG.expectedEndDate - now;
+                        const minutesLeft = Math.floor(timeLeft / (1000 * 60));
+
+                        if (minutesLeft <= 0) {
+                            showNotification('A suspensão foi concluída! O site está retornando...', 'success');
+                        } else if (minutesLeft <= 30) {
+                            showNotification(`Status: Suspensão em fase final. ${minutesLeft} minutos restantes.`, 'info');
+                        } else {
+                            showNotification(`Status: Suspensão ainda em andamento. ${Math.floor(minutesLeft / 60)}h ${minutesLeft % 60}min restantes.`, 'info');
+                        }
+
+                        // Atualizar última atualização
+                        document.getElementById('lastUpdate').textContent = 
+                            formatDateTime(new Date());
+
+                        // Restaurar botão
+                        refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Verificar Status';
+                        refreshBtn.disabled = false;
+                    }, 1000);
+                });
+            }
+        }
+
+        // ============================================
+        // 10. ATUALIZAÇÕES AUTOMÁTICAS
+        // ============================================
+
+        function initAutoUpdates() {
+            // Atualizar hora da última atualização
+            setInterval(() => {
+                document.getElementById('lastUpdate').textContent = 
+                    formatDateTime(new Date());
+            }, 60000); // A cada minuto
+
+            // Atualizar progresso da barra
+            setInterval(() => {
+                const now = new Date();
+                const timePassed = now - SUSPENSION_CONFIG.startDate;
+                const totalDuration = SUSPENSION_CONFIG.expectedEndDate - SUSPENSION_CONFIG.startDate;
+                const progressPercent = (timePassed / totalDuration) * 100;
+                
+                if (progressPercent <= 100) {
+                    const progressBar = document.getElementById('durationProgress');
+                    if (progressBar) {
+                        progressBar.style.width = `${progressPercent}%`;
+                        
+                        // Mudar cor baseado no progresso
+                        if (progressPercent >= 90) {
+                            progressBar.style.background = 'var(--gradient-secondary)';
+                        } else if (progressPercent >= 70) {
+                            progressBar.style.background = 'var(--gradient-warning)';
+                        }
+                    }
+                }
+            }, 10000); // A cada 10 segundos
+        }
+
+        // ============================================
+        // 11. RASTREAMENTO DE SUSPENSÃO
+        // ============================================
+
+        function initSuspensionTracking() {
+            const suspensionData = {
+                id: generateSuspensionId(),
+                startTime: SUSPENSION_CONFIG.startDate.toISOString(),
+                expectedEnd: SUSPENSION_CONFIG.expectedEndDate.toISOString(),
+                reason: SUSPENSION_CONFIG.reason,
+                type: SUSPENSION_CONFIG.type,
+                severity: SUSPENSION_CONFIG.severity,
+                affectedServices: SUSPENSION_CONFIG.affectedServices,
+                userAgent: navigator.userAgent,
+                pageViews: 1,
+                lastUpdate: new Date().toISOString()
+            };
+
+            // Salvar no localStorage
+            let suspensions = JSON.parse(localStorage.getItem('suspensionTracking') || '[]');
+            suspensions.push(suspensionData);
+            localStorage.setItem('suspensionTracking', JSON.stringify(suspensions));
+
+            // Em produção, enviaria para analytics/service
+            console.log('Suspensão registrada:', suspensionData);
+        }
+
+        // ============================================
+        // 12. PROTOCOLO DE EMERGÊNCIA
+        // ============================================
+
+        function initEmergencyProtocol() {
+            // Verificar se é uma suspensão crítica
+            if (SUSPENSION_CONFIG.severity === 'critical' || SUSPENSION_CONFIG.severity === 'high') {
+                // Adicionar banner de emergência
+                const emergencyBanner = document.createElement('div');
+                emergencyBanner.className = 'status-banner';
+                emergencyBanner.style.background = 'linear-gradient(135deg, #dc2626 0%, #ef4444 100%)';
+                emergencyBanner.style.position = 'fixed';
+                emergencyBanner.style.top = '40px'; // Abaixo do banner principal
+                emergencyBanner.innerHTML = `
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>PROTOCOLO DE EMERGÊNCIA ${SUSPENSION_CONFIG.protocol} ATIVADO</span>
+                `;
+                document.body.appendChild(emergencyBanner);
+
+                // Adicionar contagem regressiva crítica
+                const criticalCountdown = document.createElement('div');
+                criticalCountdown.id = 'criticalCountdown';
+                criticalCountdown.style.cssText = `
+                    position: fixed;
+                    top: 80px;
+                    left: 0;
+                    width: 100%;
+                    background: rgba(220, 38, 38, 0.9);
+                    color: white;
+                    padding: 0.5rem;
+                    text-align: center;
+                    font-size: 0.875rem;
+                    font-weight: 600;
+                    z-index: 1001;
+                    font-family: 'Courier New', monospace;
+                `;
+                document.body.appendChild(criticalCountdown);
+
+                // Atualizar contagem regressiva crítica
+                function updateCriticalCountdown() {
+                    const now = new Date();
+                    const timeLeft = SUSPENSION_CONFIG.expectedEndDate - now;
+                    
+                    if (timeLeft > 0) {
+                        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                        
+                        criticalCountdown.textContent = 
+                            `TEMPO CRÍTICO: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    } else {
+                        criticalCountdown.textContent = 'TEMPO ESGOTADO - RESOLUÇÃO EM CURSO';
+                    }
+                }
+
+                setInterval(updateCriticalCountdown, 1000);
+                updateCriticalCountdown();
+            }
+        }
+
+        // ============================================
+        // 13. TRATAMENTO DO FIM DA SUSPENSÃO
+        // ============================================
+
+        function handleSuspensionEnd() {
+            // Mostrar mensagem de conclusão
+            const completionMessage = document.createElement('div');
+            completionMessage.id = 'completionMessage';
+            completionMessage.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(16, 185, 129, 0.95);
+                color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                text-align: center;
+                padding: 2rem;
+                animation: fadeIn 0.5s ease;
+            `;
+
+            completionMessage.innerHTML = `
+                <i class="fas fa-check-circle" style="font-size: 4rem; margin-bottom: 1.5rem;"></i>
+                <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Suspensão Concluída!</h1>
+                <p style="font-size: 1.25rem; margin-bottom: 2rem; max-width: 600px;">
+                    O site foi restaurado com sucesso. Todas as funcionalidades estão disponíveis.
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                    <button id="redirectHome" class="btn" style="background: white; color: #10b981; min-width: 200px;">
+                        <i class="fas fa-home"></i> Ir para o Site
+                    </button>
+                    <button id="viewReport" class="btn" style="background: transparent; border: 2px solid white; color: white; min-width: 200px;">
+                        <i class="fas fa-file-alt"></i> Ver Relatório
+                    </button>
+                </div>
+                <p style="margin-top: 2rem; font-size: 0.875rem; opacity: 0.8;">
+                    Redirecionando automaticamente em <span id="redirectCountdown">10</span> segundos
+                </p>
+            `;
+
+            document.body.appendChild(completionMessage);
+
+            // Contagem regressiva para redirecionamento
+            let countdown = 10;
+            const countdownElement = document.getElementById('redirectCountdown');
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+                
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = '/';
+                }
+            }, 1000);
+
+            // Botão de redirecionamento
+            document.getElementById('redirectHome').addEventListener('click', function () {
+                clearInterval(countdownInterval);
+                window.location.href = '/';
+            });
+
+            // Botão de relatório
+            document.getElementById('viewReport').addEventListener('click', function () {
+                showSuspensionReport();
+            });
+
+            // Notificar inscritos
+            notifySubscribersOfRestoration();
+        }
+
+        function notifySubscribersOfRestoration() {
+            const requests = JSON.parse(localStorage.getItem('suspensionContactRequests') || '[]');
+            const subscribers = requests.filter(r => r.notifyReturn);
+            
+            subscribers.forEach(sub => {
+                console.log(`Notificando ${sub.email} sobre restauração`);
+                // Em produção, enviaria email real aqui
+            });
+        }
+
+        function showSuspensionReport() {
+            const reportData = {
+                duration: SUSPENSION_CONFIG.expectedEndDate - SUSPENSION_CONFIG.startDate,
+                reason: SUSPENSION_CONFIG.reason,
+                type: SUSPENSION_CONFIG.type,
+                severity: SUSPENSION_CONFIG.severity,
+                affectedServices: SUSPENSION_CONFIG.affectedServices.length,
+                resolution: "Atualizações de segurança implementadas com sucesso",
+                timestamp: new Date().toISOString()
+            };
+
+            alert(`RELATÓRIO DE SUSPENSÃO\n\n` +
+                  `Duração: ${Math.floor(reportData.duration / (1000 * 60))} minutos\n` +
+                  `Motivo: ${reportData.reason}\n` +
+                  `Tipo: ${reportData.type}\n` +
+                  `Severidade: ${reportData.severity.toUpperCase()}\n` +
+                  `Serviços Afetados: ${reportData.affectedServices}\n` +
+                  `Resolução: ${reportData.resolution}\n\n` +
+                  `Relatório completo foi salvo no sistema.`);
+        }
+
+        // ============================================
+        // 14. SISTEMA DE NOTIFICAÇÕES
+        // ============================================
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            let icon = 'fa-info-circle';
+            let bgColor = 'var(--primary)';
+            
+            switch (type) {
+                case 'success':
+                    icon = 'fa-check-circle';
+                    bgColor = 'var(--accent)';
+                    break;
+                case 'error':
+                    icon = 'fa-exclamation-circle';
+                    bgColor = 'var(--danger)';
+                    break;
+                case 'warning':
+                    icon = 'fa-exclamation-triangle';
+                    bgColor = 'var(--warning)';
+                    break;
+            }
+
+            notification.innerHTML = `
+                <i class="fas ${icon}"></i>
+                <span>${message}</span>
+            `;
+
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--bg-secondary);
+                color: var(--text-primary);
+                padding: 1rem 1.5rem;
+                border-radius: 0.75rem;
+                border-left: 4px solid ${bgColor};
+                box-shadow: var(--shadow-xl);
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                z-index: 10000;
+                transform: translateX(150%);
+                transition: transform 0.3s ease;
+            `;
+
+            document.body.appendChild(notification);
+
+            // Animar entrada
+            requestAnimationFrame(() => {
+                notification.style.transform = 'translateX(0)';
+            });
+
+            // Auto-remover
+            setTimeout(() => {
+                notification.style.transform = 'translateX(150%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // ============================================
+        // 15. EFEITOS ESPECIAIS
+        // ============================================
+
+        // Efeito de digitação no título
+        const title = document.querySelector('.suspension-title');
+        if (title) {
+            const originalText = title.textContent;
+            title.textContent = '';
+            let i = 0;
+            
+            function typeTitle() {
+                if (i < originalText.length) {
+                    title.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeTitle, 50);
+                }
+            }
+            
+            setTimeout(typeTitle, 500);
+        }
+
+        // Efeito de elementos flutuantes
+        const elements = document.querySelectorAll('.suspension-element');
+        elements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 2}s`;
+            
+            // Adicionar efeito de piscar aleatório
+            setInterval(() => {
+                if (Math.random() > 0.8) {
+                    el.style.opacity = '0.2';
+                    setTimeout(() => {
+                        el.style.opacity = '0.1';
+                    }, 500);
+                }
+            }, 3000);
+        });
+
+        // ============================================
+        // 16. KEYBOARD SHORTCUTS
+        // ============================================
+
+        document.addEventListener('keydown', function (e) {
+            // F5 para refresh
+            if (e.key === 'F5') {
+                e.preventDefault();
+                document.getElementById('refreshStatus').click();
+            }
+
+            // Ctrl + S para status
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                showNotification('Status da suspensão atualizado', 'info');
+                document.getElementById('lastUpdate').textContent = formatDateTime(new Date());
+            }
+
+            // Ctrl + C para contato
+            if (e.ctrlKey && e.key === 'c') {
+                e.preventDefault();
+                document.getElementById('email').focus();
+            }
+
+            // Esc para fechar notificações
+            if (e.key === 'Escape') {
+                document.getElementById('suspensionNotice').classList.remove('show');
+            }
+        });
+
+        // ============================================
+        // FIM DO SCRIPT
+        // ============================================
+
+        // Exportar para console (desenvolvimento)
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            window._SuspensionPage = {
+                SUSPENSION_CONFIG,
+                showNotification,
+                handleSuspensionEnd,
+                formatDateTime
+            };
+        }
+    </script>
+</body>
+
+</html>

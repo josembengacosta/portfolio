@@ -1,0 +1,1780 @@
+
+<!DOCTYPE html>
+<html lang="pt-br" class="dark-theme">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultoria Tech | José Mbenga</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Consultoria técnica especializada para empresas e startups. Arquitetura de software, code review, migração tecnológica e mentoria. José Mbenga - Consultor Tech Angola.">
+    <meta name="keywords" content="consultoria tech, arquitetura de software, code review, migração tecnológica, mentoria, Angola, Luanda">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Consultoria Tech | José Mbenga">
+    <meta property="og:description" content="Consultoria técnica especializada para empresas e startups em Angola. Soluções tech personalizadas.">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../favicon_jm.png" type="image/x-icon">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            /* Cores principais - Dark Theme */
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --success: #10b981;
+            --consulting: #6366f1;
+
+            /* Backgrounds */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+
+            /* Textos */
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+
+            /* Bordas */
+            --border: #475569;
+            --border-light: #64748b;
+
+            /* Gradientes */
+            --gradient-primary: linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            --gradient-consulting: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+            /* Transições */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Light Theme Variables */
+        .light-theme {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --border-light: #cbd5e1;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color var(--transition), color var(--transition);
+        }
+
+        /* Custom Classes */
+        .text-gradient {
+            background: var(--gradient-consulting);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .service-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all var(--transition);
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--consulting);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-consulting);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .consulting-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .badge-strategy {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+        }
+
+        .light-theme .badge-strategy {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .badge-code {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+        }
+
+        .badge-infra {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+
+        .process-step {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .process-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-consulting);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .expertise-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            transition: all var(--transition);
+        }
+
+        .expertise-item:hover {
+            border-color: var(--consulting);
+            transform: translateY(-3px);
+        }
+
+        .pricing-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+            transition: all var(--transition);
+        }
+
+        .pricing-card:hover {
+            border-color: var(--consulting);
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--consulting);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Mais Procurado';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-consulting);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .package-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .package-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .package-features li.disabled {
+            color: var(--text-muted);
+        }
+
+        .package-features li.disabled::before {
+            content: '✗';
+            color: var(--text-muted);
+        }
+
+        /* Navbar Custom */
+        .navbar-custom {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        .light-theme .navbar-custom {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .btn-custom {
+            padding: 0.75rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all var(--transition);
+            text-decoration: none;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: width var(--transition);
+            z-index: -1;
+        }
+
+        .btn-custom:hover::before {
+            width: 100%;
+        }
+
+        .btn-primary-custom {
+            background: var(--gradient-consulting);
+            color: white;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--consulting);
+            color: var(--consulting);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .service-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%);
+        }
+
+        .light-theme .service-hero {
+            background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(241, 245, 249, 0.9) 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        /* Consulting Dashboard */
+        .consulting-dashboard {
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            background: var(--bg-tertiary);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding: 1.5rem;
+        }
+
+        .metric-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .metric-good { color: var(--success); }
+        .metric-warning { color: var(--warning); }
+        .metric-primary { color: var(--consulting); }
+
+        .dashboard-projects {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .project-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-status {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 0.75rem;
+        }
+
+        .status-completed { background: var(--success); }
+        .status-in-progress { background: var(--warning); }
+        .status-planned { background: var(--consulting); }
+
+        /* FAQ */
+        .faq-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-secondary);
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 4rem;
+            color: var(--consulting);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .form-control-custom {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: all var(--transition);
+        }
+
+        .form-control-custom:focus {
+            background: var(--bg-primary);
+            border-color: var(--consulting);
+            color: var(--text-primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Footer */
+        .service-footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+            
+            .service-card {
+                margin-bottom: 1.5rem;
+            }
+            
+            .dashboard-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .dashboard-metrics {
+                grid-template-columns: 1fr;
+            }
+            
+            .metric-card {
+                padding: 0.75rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-element {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Case Study */
+        .case-study {
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            padding: 2rem;
+            border-left: 4px solid var(--consulting);
+        }
+
+        .impact-metric {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-primary);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+        }
+
+        .impact-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-consulting);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient-consulting);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -23px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--consulting);
+            border: 3px solid var(--bg-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar-custom navbar-expand-lg sticky-top">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-code me-2"></i>
+                    <span>JM</span>benga
+                </a>
+                <div class="d-flex align-items-center">
+                    <a href="../index.html#contact" class="btn btn-primary-custom me-2">
+                        <i class="fas fa-calendar-check me-2"></i>Agendar Consulta
+                    </a>
+                    <button class="btn btn-outline-custom" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="service-hero py-5">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill mb-3">
+                        <i class="fas fa-chart-line me-2"></i>Consultoria Especializada
+                    </span>
+                    <h1 class="section-title mb-4">
+                        Consultoria <span class="text-gradient">Tech</span> para Empresas
+                    </h1>
+                    <p class="lead mb-4 text-muted">
+                        Ajudo empresas e startups a tomar decisões tech inteligentes, otimizar sistemas existentes e escalar com tecnologia.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <span class="consulting-badge badge-strategy">
+                            <i class="fas fa-chess-board me-1"></i> Estratégia Tech
+                        </span>
+                        <span class="consulting-badge badge-code">
+                            <i class="fas fa-code me-1"></i> Code Review
+                        </span>
+                        <span class="consulting-badge badge-infra">
+                            <i class="fas fa-server me-1"></i> Arquitetura
+                        </span>
+                    </div>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#services" class="btn btn-primary-custom">
+                            <i class="fas fa-list me-2"></i>Ver Serviços
+                        </a>
+                        <a href="#casestudy" class="btn btn-outline-custom">
+                            <i class="fas fa-chart-bar me-2"></i>Ver Case Study
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="consulting-dashboard floating-element">
+                        <div class="dashboard-header">
+                            <h6 class="mb-0">Dashboard de Consultoria</h6>
+                            <small class="text-muted">Impacto Médio dos Projetos</small>
+                        </div>
+                        <div class="dashboard-metrics">
+                            <div class="metric-card">
+                                <div class="metric-value metric-primary">+40%</div>
+                                <div class="metric-label">Performance</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value metric-good">-60%</div>
+                                <div class="metric-label">Custos Tech</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value metric-warning">+3x</div>
+                                <div class="metric-label">Escalabilidade</div>
+                            </div>
+                        </div>
+                        <div class="dashboard-projects">
+                            <h6 class="mb-3">Projetos Recentes</h6>
+                            <div class="project-item">
+                                <div class="d-flex align-items-center">
+                                    <div class="project-status status-completed"></div>
+                                    <span>Migração para Cloud</span>
+                                </div>
+                                <small class="text-muted">Startup Fintech</small>
+                            </div>
+                            <div class="project-item">
+                                <div class="d-flex align-items-center">
+                                    <div class="project-status status-in-progress"></div>
+                                    <span>Otimização de Banco de Dados</span>
+                                </div>
+                                <small class="text-muted">E-commerce</small>
+                            </div>
+                            <div class="project-item">
+                                <div class="d-flex align-items-center">
+                                    <div class="project-status status-planned"></div>
+                                    <span>Arquitetura Microservices</span>
+                                </div>
+                                <small class="text-muted">HealthTech</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who I Help -->
+    <section class="py-5 bg-dark bg-opacity-10">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Para Quem é Esta Consultoria?</h2>
+                <p class="section-subtitle">Ajudo diferentes tipos de empresas com desafios tech específicos</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card text-center">
+                        <div class="service-icon mx-auto mb-4" style="background: var(--consulting);">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4 class="mb-3">Startups</h4>
+                        <p class="text-muted mb-3">
+                            Escolha a stack tecnológica certa desde o início, construa MVP eficiente e prepare-se para escalar.
+                        </p>
+                        <div class="text-start small">
+                            <h6 class="text-muted mb-2">Desafios Comuns:</h6>
+                            <ul class="text-muted">
+                                <li>Qual tecnologia escolher?</li>
+                                <li>Como construir MVP rápido?</li>
+                                <li>Quando contratar primeiro dev?</li>
+                                <li>Como evitar tech debt?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card text-center">
+                        <div class="service-icon mx-auto mb-4" style="background: var(--primary);">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h4 class="mb-3">PMEs & Empresas</h4>
+                        <p class="text-muted mb-3">
+                            Otimize sistemas existentes, reduza custos tech, migre para tecnologias modernas e digitalize processos.
+                        </p>
+                        <div class="text-start small">
+                            <h6 class="text-muted mb-2">Desafios Comuns:</h6>
+                            <ul class="text-muted">
+                                <li>Sistemas legados lentos</li>
+                                <li>Altos custos de manutenção</li>
+                                <li>Falta de documentação</li>
+                                <li>Dificuldade em encontrar bons devs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card text-center">
+                        <div class="service-icon mx-auto mb-4" style="background: var(--success);">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 class="mb-3">Equipes de Desenvolvimento</h4>
+                        <p class="text-muted mb-3">
+                            Mentoria técnica, code reviews, definição de padrões, otimização de processos e resolução de problemas complexos.
+                        </p>
+                        <div class="text-start small">
+                            <h6 class="text-muted mb-2">Desafios Comuns:</h6>
+                            <ul class="text-muted">
+                                <li>Baixa velocidade de entrega</li>
+                                <li>Muitos bugs em produção</li>
+                                <li>Falta de padrões de código</li>
+                                <li>Dificuldades técnicas complexas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="py-5" id="services">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Serviços de Consultoria</h2>
+                <p class="section-subtitle">Soluções técnicas personalizadas para seus desafios específicos</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: var(--gradient-consulting);">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <h4 class="mb-3">Arquitetura de Software</h4>
+                        <p class="text-muted mb-3">
+                            Design de arquiteturas escaláveis, escolha de padrões (monolith vs microservices), definição de APIs e contratos.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-dark">System Design</span>
+                            <span class="badge bg-dark">API Design</span>
+                            <span class="badge bg-dark">Scalability</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: var(--gradient-primary);">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4 class="mb-3">Code Review & Audit</h4>
+                        <p class="text-muted mb-3">
+                            Análise profunda do código existente, identificação de problemas, sugestões de refatoração e melhoria de qualidade.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-dark">Quality Audit</span>
+                            <span class="badge bg-dark">Security Review</span>
+                            <span class="badge bg-dark">Best Practices</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: var(--gradient-secondary);">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h4 class="mb-3">Migração Tecnológica</h4>
+                        <p class="text-muted mb-3">
+                            Planejamento e execução de migrações: legado para moderno, mudança de banco de dados, upgrade de frameworks.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-dark">Legacy Modernization</span>
+                            <span class="badge bg-dark">Database Migration</span>
+                            <span class="badge bg-dark">Cloud Migration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: #8b5cf6;">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h4 class="mb-3">Mentoria Técnica</h4>
+                        <p class="text-muted mb-3">
+                            Sessões one-on-one ou em grupo para desenvolvimento de skills, resolução de problemas e crescimento profissional.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-dark">Pair Programming</span>
+                            <span class="badge bg-dark">Tech Leadership</span>
+                            <span class="badge bg-dark">Career Growth</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: #f59e0b;">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h4 class="mb-3">Otimização de Performance</h4>
+                        <p class="text-muted mb-3">
+                            Análise e otimização de performance: aplicações, bancos de dados, APIs e infraestrutura.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-dark">Load Testing</span>
+                            <span class="badge bg-dark">Query Optimization</span>
+                            <span class="badge bg-dark">Caching Strategy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-card">
+                        <div class="service-icon" style="background: #ef4444;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 class="mb-3">Auditoria de Segurança</h4>
+                        <p class="text-muted mb-3">
+                            Identificação de vulnerabilidades, recomendações de segurança, compliance e proteção contra ataques.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-dark">Security Audit</span>
+                            <span class="badge bg-dark">Penetration Testing</span>
+                            <span class="badge bg-dark">Compliance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study -->
+    <section class="py-5 bg-dark bg-opacity-10" id="casestudy">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Case Study: Startup Fintech</h2>
+                <p class="section-subtitle">Como ajudei uma startup Angolana a escalar sua plataforma</p>
+            </div>
+            <div class="case-study" data-aos="fade-up">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h4 class="mb-3">Desafio Inicial</h4>
+                        <p class="text-muted mb-4">
+                            Uma startup fintech em Luanda estava enfrentando lentidão na plataforma durante horários de pico,
+                            dificuldades para adicionar novos recursos e custos de infraestrutura crescendo exponencialmente.
+                            O sistema monolítico inicial não estava preparado para o crescimento de 300% em 6 meses.
+                        </p>
+                        
+                        <h4 class="mb-3">Solução Implementada</h4>
+                        <div class="timeline mb-4">
+                            <div class="timeline-item">
+                                <h6 class="mb-1">1. Análise e Diagnóstico</h6>
+                                <p class="text-muted mb-0 small">Auditoria completa do código e infraestrutura</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h6 class="mb-1">2. Redesenho da Arquitetura</h6>
+                                <p class="text-muted mb-0 small">Migração planejada para microservices</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h6 class="mb-1">3. Otimização de Banco de Dados</h6>
+                                <p class="text-muted mb-0 small">Indexação, caching e query optimization</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h6 class="mb-1">4. Implementação Cloud</h6>
+                                <p class="text-muted mb-0 small">Migração para AWS com auto-scaling</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h6 class="mb-1">5. Treinamento da Equipe</h6>
+                                <p class="text-muted mb-0 small">Mentoria em práticas DevOps e microservices</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4 class="mb-3 text-center">Resultados Alcançados</h4>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="impact-metric">
+                                    <div class="impact-number">10x</div>
+                                    <div class="metric-label">Mais Transações</div>
+                                    <small class="text-muted">Capacidade de processamento</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="impact-metric">
+                                    <div class="impact-number">-65%</div>
+                                    <div class="metric-label">Custos de Infra</div>
+                                    <small class="text-muted">Com otimização cloud</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="impact-metric">
+                                    <div class="impact-number">0.2s</div>
+                                    <div class="metric-label">Tempo de Resposta</div>
+                                    <small class="text-muted">Média (era 2.8s)</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="impact-metric">
+                                    <div class="impact-number">99.9%</div>
+                                    <div class="metric-label">Disponibilidade</div>
+                                    <small class="text-muted">Uptime mensal</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <blockquote class="blockquote">
+                                <p class="text-muted mb-0">
+                                    <i class="fas fa-quote-left me-2 text-primary"></i>
+                                    A consultoria do José transformou nossa capacidade técnica. Em 3 meses, passamos de sobrevivendo para escalando.
+                                    <i class="fas fa-quote-right ms-2 text-primary"></i>
+                                </p>
+                                <footer class="blockquote-footer mt-2">CEO, Fintech Startup Angola</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Expertise -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Minha Expertise</h2>
+                <p class="section-subtitle">Áreas técnicas onde posso agregar mais valor</p>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="expertise-item flex-column text-center">
+                        <i class="fab fa-react fa-3x mb-2" style="color: #61DAFB;"></i>
+                        <div>
+                            <h6 class="mb-1">Frontend Moderno</h6>
+                            <small class="text-muted">React, Vue, TypeScript</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="expertise-item flex-column text-center">
+                        <i class="fas fa-server fa-3x mb-2" style="color: #339933;"></i>
+                        <div>
+                            <h6 class="mb-1">Backend & APIs</h6>
+                            <small class="text-muted">Node.js, REST, GraphQL</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="expertise-item flex-column text-center">
+                        <i class="fas fa-database fa-3x mb-2" style="color: #47A248;"></i>
+                        <div>
+                            <h6 class="mb-1">Banco de Dados</h6>
+                            <small class="text-muted">SQL, NoSQL, Optimization</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="expertise-item flex-column text-center">
+                        <i class="fas fa-cloud fa-3x mb-2" style="color: #FF9900;"></i>
+                        <div>
+                            <h6 class="mb-1">Cloud & DevOps</h6>
+                            <small class="text-muted">AWS, Docker, CI/CD</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="500">
+                    <div class="expertise-item flex-column text-center">
+                        <i class="fas fa-shield-alt fa-3x mb-2" style="color: #FF6B6B;"></i>
+                        <div>
+                            <h6 class="mb-1">Segurança</h6>
+                            <small class="text-muted">OWASP, Pentesting, Auth</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="600">
+                    <div class="expertise-item flex-column text-center">
+                        <i class="fas fa-chart-line fa-3x mb-2" style="color: #4ECDC4;"></i>
+                        <div>
+                            <h6 class="mb-1">Performance</h6>
+                            <small class="text-muted">Monitoring, Optimization</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="700">
+                    <div class="expertise-item flex-column text-center">
+                        <i class="fas fa-mobile-alt fa-3x mb-2" style="color: #8b5cf6;"></i>
+                        <div>
+                            <h6 class="mb-1">Mobile</h6>
+                            <small class="text-muted">React Native, PWA</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="800">
+                    <div class="expertise-item flex-column text-center">
+                        <i class="fas fa-code-branch fa-3x mb-2" style="color: #FFD166;"></i>
+                        <div>
+                            <h6 class="mb-1">Arquitetura</h6>
+                            <small class="text-muted">Microservices, DDD, Event-Driven</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How I Work -->
+    <section class="py-5 bg-dark bg-opacity-10">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Como Trabalho</h2>
+                <p class="section-subtitle">Processo estruturado para resultados mensuráveis</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="process-step" data-step="1" data-aos="fade-right">
+                        <h4 class="mb-2">1. Discovery Session</h4>
+                        <p class="text-muted mb-0">
+                            Sessão inicial gratuita para entender seus desafios, objetivos e contexto específico.
+                        </p>
+                    </div>
+                    <div class="process-step" data-step="2" data-aos="fade-right" data-aos-delay="100">
+                        <h4 class="mb-2">2. Análise Técnica</h4>
+                        <p class="text-muted mb-0">
+                            Auditoria do código, arquitetura, performance e segurança. Identificação de pontos críticos.
+                        </p>
+                    </div>
+                    <div class="process-step" data-step="3" data-aos="fade-right" data-aos-delay="200">
+                        <h4 class="mb-2">3. Plano de Ação</h4>
+                        <p class="text-muted mb-0">
+                            Proposta detalhada com recomendações, prioridades, cronograma e KPIs mensuráveis.
+                        </p>
+                    </div>
+                    <div class="process-step" data-step="4" data-aos="fade-right" data-aos-delay="300">
+                        <h4 class="mb-2">4. Implementação</h4>
+                        <p class="text-muted mb-0">
+                            Execução hands-on ou guiada, dependendo do formato escolhido (consultoria ou implementação).
+                        </p>
+                    </div>
+                    <div class="process-step" data-step="5" data-aos="fade-right" data-aos-delay="400">
+                        <h4 class="mb-2">5. Mentoria & Transferência</h4>
+                        <p class="text-muted mb-0">
+                            Treinamento da equipe, documentação e transferência de conhecimento para sustentabilidade.
+                        </p>
+                    </div>
+                    <div class="process-step" data-step="6" data-aos="fade-right" data-aos-delay="500">
+                        <h4 class="mb-2">6. Follow-up & Ajustes</h4>
+                        <p class="text-muted mb-0">
+                            Acompanhamento pós-implementação, ajustes finos e medição de resultados.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="py-5" id="pricing">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Formatos de Consultoria</h2>
+                <p class="section-subtitle">Escolha o formato que melhor se adapta às suas necessidades</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing-card">
+                        <h4 class="mb-3">Sessão Pontual</h4>
+                        <div class="mb-4">
+                            <span class="h2">$80</span>
+                            <span class="text-muted">/ hora</span>
+                        </div>
+                        <ul class="package-features">
+                            <li>Consultoria por hora</li>
+                            <li>Análise específica</li>
+                            <li>Recomendações técnicas</li>
+                            <li>Resposta a dúvidas pontuais</li>
+                            <li>Relatório resumido</li>
+                            <li class="disabled">Implementação hands-on</li>
+                            <li class="disabled">Acompanhamento contínuo</li>
+                            <li class="disabled">Treinamento da equipe</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline-custom w-100 mt-4">Agendar Sessão</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-card popular">
+                        <h4 class="mb-3">Pacote Mensal</h4>
+                        <div class="mb-4">
+                            <span class="h2">$500</span>
+                            <span class="text-muted">/ mês</span>
+                        </div>
+                        <ul class="package-features">
+                            <li>Até 10 horas/mês</li>
+                            <li>Code reviews regulares</li>
+                            <li>Arquitetura e planejamento</li>
+                            <li>Sessões de mentoria</li>
+                            <li>Suporte por WhatsApp</li>
+                            <li>Relatórios mensais</li>
+                            <li class="disabled">Implementação completa</li>
+                            <li class="disabled">Treinamento intensivo</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary-custom w-100 mt-4">Mais Procurado</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-card">
+                        <h4 class="mb-3">Projeto Completo</h4>
+                        <div class="mb-4">
+                            <span class="h2">$1,500+</span>
+                            <span class="text-muted">/ projeto</span>
+                        </div>
+                        <ul class="package-features">
+                            <li>Análise completa</li>
+                            <li>Implementação hands-on</li>
+                            <li>Migração tecnológica</li>
+                            <li>Treinamento da equipe</li>
+                            <li>Documentação técnica</li>
+                            <li>Acompanhamento 1 mês</li>
+                            <li>Relatório detalhado</li>
+                            <li>Garantia de resultados</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline-custom w-100 mt-4">Solicitar Proposta</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5" data-aos="fade-up">
+                <div class="alert alert-dark border-0 bg-dark bg-opacity-10 d-inline-flex align-items-center">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <div class="text-start">
+                        <small class="text-muted">
+                            <strong>Nota:</strong> Todos os formatos começam com uma sessão discovery gratuita de 30 minutos.
+                            <br>
+                            <span class="text-primary">* Preços para empresas Angolanas, contacte para orçamento internacional</span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-5 bg-dark bg-opacity-10" id="faq">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">FAQ</h2>
+                <p class="section-subtitle">Perguntas frequentes sobre consultoria tech</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="faq-item" data-aos="fade-up">
+                        <div class="faq-question">
+                            <span>Qual a diferença entre consultoria e desenvolvimento?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Na consultoria, eu analiso, recomendo e guio. No desenvolvimento, implemento diretamente. Na consultoria, seu time aprende e se capacita. No desenvolvimento, eu entrego o produto pronto. Muitas vezes combinamos ambos: consultoria para definir a direção e desenvolvimento para implementação crítica.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="faq-question">
+                            <span>Você trabalha remotamente ou presencial?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Ambos! 90% do trabalho pode ser feito remotamente com reuniões via Zoom/Teams. Para empresas em Luanda, posso fazer sessões presenciais quando necessário. Para treinamentos intensivos ou kickoffs importantes, recomendo sessões presenciais ou híbridas.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="faq-question">
+                            <span>Quanto tempo dura um projeto de consultoria?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Depende da complexidade. Uma sessão pontual pode ser 1-2 horas. Um pacote mensal geralmente dura 3-6 meses. Projetos completos variam de 2 semanas a 3 meses. A sessão discovery gratuita ajuda a estimar o tempo necessário.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="faq-question">
+                            <span>Você assina NDA (Acordo de Confidencialidade)?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim, assino NDA antes de qualquer acesso a código ou informações sensíveis. Tenho um modelo padrão que pode ser adaptado conforme necessário. A confidencialidade é fundamental no trabalho de consultoria.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="faq-question">
+                            <span>Você fornece referências de clientes anteriores?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim, posso fornecer referências após a sessão discovery, conforme apropriado. Muitos clientes preferem manter o anonimato, mas tenho cases genéricos (como o apresentado nesta página) que mostram resultados sem revelar informações confidenciais.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">O Que Dizem Meus Clientes</h2>
+                <p class="section-subtitle">Experiências de empresas que trabalharam comigo</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <div class="mb-3">
+                            <div class="rating-container mb-2">
+                                <div class="stars">
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="mb-3">"Contratamos o José para uma consultoria de arquitetura quando estávamos migrando para microservices. Suas recomendações nos salvaram meses de trabalho e dezenas de milhares de dólares em refatoração."</p>
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                        <span class="text-white fw-bold">CR</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Carlos Ribeiro</h6>
+                                    <small class="text-muted">CTO, TechScale Angola</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <div class="mb-3">
+                            <div class="rating-container mb-2">
+                                <div class="stars">
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="mb-3">"Como não-tech founder, estava perdido nas decisões técnicas. A mentoria do José me deu clareza para contratar a primeira equipe, escolher as tecnologias e estabelecer processos que nos permitiram escalar 3x mais rápido."</p>
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <div class="rounded-circle bg-success d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                        <span class="text-white fw-bold">AM</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Ana Miguel</h6>
+                                    <small class="text-muted">CEO, EduTech Startup</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card">
+                        <div class="mb-3">
+                            <div class="rating-container mb-2">
+                                <div class="stars">
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                    <i class="star filled fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="mb-3">"Nosso sistema legado em PHP estava nos travando. O José não só planejou a migração para Node.js como treinou nossa equipe no processo. Hoje temos velocidade de desenvolvimento 5x maior e muito menos bugs."</p>
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                        <span class="text-white fw-bold">LS</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">Luís Santos</h6>
+                                    <small class="text-muted">Tech Lead, E-commerce</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="py-5 bg-dark bg-opacity-10" id="contact">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <h2 class="section-title mb-4">Vamos Conversar Sobre Seus Desafios Tech</h2>
+                    <p class="text-muted mb-4">
+                        Agende uma sessão discovery gratuita de 30 minutos para discutir seus desafios e como posso ajudar.
+                    </p>
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="service-icon me-3" style="width: 48px; height: 48px; background: var(--gradient-consulting);">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Sessão Discovery Gratuita</h5>
+                                <p class="text-muted mb-0">30 minutos para entender seus desafios</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="service-icon me-3" style="width: 48px; height: 48px; background: var(--gradient-consulting);">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Proposta Personalizada</h5>
+                                <p class="text-muted mb-0">Recomendações específicas para seu caso</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="service-icon me-3" style="width: 48px; height: 48px; background: var(--gradient-consulting);">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">WhatsApp Rápido</h5>
+                                <a href="https://wa.me/244922030116" class="text-muted">
+                                    (+244) 922 030 116
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="contact-form">
+                        <form id="consultingContactForm">
+                            <div class="mb-3">
+                                <label class="form-label">Nome Completo *</label>
+                                <input type="text" class="form-control form-control-custom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email *</label>
+                                <input type="email" class="form-control form-control-custom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Empresa</label>
+                                <input type="text" class="form-control form-control-custom">
+                            </div>
+                            <div class="row g-2 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Tipo de Empresa</label>
+                                    <select class="form-control form-control-custom">
+                                        <option value="">Selecione...</option>
+                                        <option value="startup">Startup</option>
+                                        <option value="sme">PME</option>
+                                        <option value="enterprise">Grande Empresa</option>
+                                        <option value="agency">Agência</option>
+                                        <option value="other">Outro</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Formato de Interesse</label>
+                                    <select class="form-control form-control-custom">
+                                        <option value="">Selecione...</option>
+                                        <option value="hourly">Sessão Pontual ($80/h)</option>
+                                        <option value="monthly">Pacote Mensal ($500/mês)</option>
+                                        <option value="project">Projeto Completo</option>
+                                        <option value="notsure">Não tenho certeza</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Descreva Seu Desafio *</label>
+                                <textarea class="form-control form-control-custom" rows="4" placeholder="Conte-me sobre seu projeto, tecnologias usadas, equipe, e os principais desafios que está enfrentando..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom w-100">
+                                <i class="fas fa-calendar-check me-2"></i>Agendar Sessão Discovery Gratuita
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="service-footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <a href="../index.html" class="logo">
+                        <i class="fas fa-code me-2"></i>
+                        <span>JM</span>benga
+                    </a>
+                    <p class="text-muted mt-2 mb-0">
+                        Consultoria técnica especializada para o mercado Angolano.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-md-end gap-3">
+                        <a href="https://github.com/josembenga" class="btn btn-outline-custom btn-sm" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/jose-mbenga-da-costa" class="btn btn-outline-custom btn-sm" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:josembengadacosta@gmail.com" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/244922030116" class="btn btn-outline-custom btn-sm" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <h6 class="mb-3">Outros Serviços</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="desenvolvimento-web.html" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-code"></i> Desenvolvimento Web
+                        </a>
+                        <a href="aplicativos-mobile.html" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-mobile-alt"></i> Aplicativos Mobile
+                        </a>
+                        <a href="ui-ux-design.html" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-paint-brush"></i> UI/UX Design
+                        </a>
+                        <a href="manutencao.html" class="btn btn-outline-custom btn-sm">
+                            <i class="fas fa-tools"></i> Manutenção
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-md-end">
+                        <p class="text-muted mb-0">
+                            &copy; 2023 José Mbenga. Todos os direitos reservados.
+                            <br>
+                            <small>Consultoria disponível para todo Angola e internacionalmente.</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Theme Toggle
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('light-theme');
+            const icon = this.querySelector('i');
+            icon.className = document.body.classList.contains('light-theme') 
+                ? 'fas fa-sun' 
+                : 'fas fa-moon';
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-theme');
+            document.getElementById('themeToggle').querySelector('i').className = 'fas fa-sun';
+        }
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Consulting Contact Form
+        document.getElementById('consultingContactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Agendando...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Get consulting format
+                const format = this.querySelector('select').value;
+                const formatLabels = {
+                    'hourly': 'Sessão Pontual ($80/hora)',
+                    'monthly': 'Pacote Mensal ($500/mês)',
+                    'project': 'Projeto Completo',
+                    'notsure': 'Não tenho certeza'
+                };
+                
+                // Show notification toast
+                showToast('Sessão discovery agendada com sucesso! Entrarei em contato em até 24h.', 'success');
+                
+                // Open calendar booking as fallback
+                window.open('https://wa.me/244922030116?text=Olá%20José,%20gostaria%20de%20agendar%20a%20sessão%20discovery%20de%20consultoria.', '_blank');
+                
+                setTimeout(() => {
+                    this.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+
+        // Animate metrics
+        function animateMetrics() {
+            const metrics = document.querySelectorAll('.metric-value');
+            metrics.forEach(metric => {
+                const text = metric.textContent;
+                metric.style.opacity = '0.5';
+                metric.textContent = '0';
+                
+                const targetValue = parseFloat(text.replace(/[^\d.-]/g, ''));
+                const isNegative = text.includes('-');
+                const prefix = isNegative ? '-' : '+';
+                
+                let startValue = 0;
+                const duration = 2000;
+                const increment = targetValue / (duration / 16);
+                
+                const timer = setInterval(() => {
+                    startValue += increment;
+                    if (startValue >= targetValue) {
+                        metric.textContent = text;
+                        metric.style.opacity = '1';
+                        clearInterval(timer);
+                    } else {
+                        metric.textContent = prefix + Math.floor(startValue) + (text.includes('%') ? '%' : '');
+                    }
+                }, 16);
+            });
+        }
+
+        // Initialize metrics animation when in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateMetrics();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const metricsSection = document.querySelector('.consulting-dashboard');
+        if (metricsSection) observer.observe(metricsSection);
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // WhatsApp Float
+        const whatsappFloat = document.getElementById('whatsappFloat');
+        const closeFloatBtn = document.getElementById('closeFloat');
+        
+        // Check if user previously closed the float
+        if (!localStorage.getItem('whatsappFloatClosed')) {
+            setTimeout(() => {
+                whatsappFloat.classList.add('show');
+            }, 3000);
+        }
+
+        closeFloatBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            whatsappFloat.classList.remove('show');
+            localStorage.setItem('whatsappFloatClosed', 'true');
+        });
+
+        // Auto-hide float after 30 seconds
+        setTimeout(() => {
+            whatsappFloat.classList.remove('show');
+        }, 30000);
+
+        // Rating Stars System
+        document.querySelectorAll('.stars').forEach(starsContainer => {
+            const stars = starsContainer.querySelectorAll('.star');
+            stars.forEach(star => {
+                if (star.classList.contains('filled')) {
+                    star.style.color = '#fbbf24'; // Yellow for filled stars
+                }
+            });
+        });
+
+        // Toast Notification System
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast-notification toast-${type}`;
+            toast.innerHTML = `
+                <div class="toast-content">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'} me-2"></i>
+                    ${message}
+                </div>
+                <button class="toast-close">&times;</button>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Show toast
+            setTimeout(() => toast.classList.add('show'), 10);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 5000);
+            
+            // Close button
+            toast.querySelector('.toast-close').addEventListener('click', () => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            });
+        }
+
+        // Mobile Menu Toggle (for future use)
+        function initMobileMenu() {
+            const navbarToggler = document.createElement('button');
+            navbarToggler.className = 'navbar-toggler d-lg-none';
+            navbarToggler.innerHTML = '<i class="fas fa-bars"></i>';
+            navbarToggler.style.cssText = `
+                background: transparent;
+                border: 1px solid var(--border);
+                color: var(--text-primary);
+                border-radius: 0.5rem;
+                padding: 0.5rem 1rem;
+                font-size: 1.25rem;
+            `;
+            
+            document.querySelector('.navbar-custom .container .d-flex').prepend(navbarToggler);
+        }
+
+        // Initialize on mobile
+        if (window.innerWidth < 992) {
+            initMobileMenu();
+        }
+    </script>
+</body>
+</html>

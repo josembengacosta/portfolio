@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>José Mbenga | Desenvolvedor Web Full Stack</title>
+  <title>José Mbenga da Costa | Desenvolvedor Web Full Stack</title>
   <meta name="theme-color" content="#0f172a" />
 
   <!-- SEO -->
@@ -57,7 +57,7 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
   <!-- Manifest -->
-  <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+  <link rel="manifest" href="/manifest.json">
 
   <!-- Icons para iOS -->
   <link rel="apple-touch-icon" href="assets/img/icons/icon-192x192.png">
@@ -68,34 +68,88 @@
   <link rel="stylesheet" href="assets/css/particles.css" />
 
   <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(reg => {
-                        console.log('Service Worker registrado:', reg);
-                        
-                        // Verificar atualizações
-                        reg.addEventListener('updatefound', () => {
-                            console.log('Nova versão do Service Worker encontrada!');
-                        });
-                    })
-                    .catch(err => {
-                        console.log('Service Worker falhou:', err);
-                    });
-                    
-                // Ouvir mensagens do SW
-                navigator.serviceWorker.addEventListener('message', event => {
-                    const { type, data } = event.data;
-                    if (type === 'SW_ACTIVATED') {
-                        console.log('SW atualizado para versão:', data.version);
-                        // Recarregar página se necessário
-                        window.location.reload();
-                    }
-                });
-            });
-        }
-    </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        // VERIFIQUE O CAMINHO CORRETO DO SEU SERVICE WORKER
+        navigator.serviceWorker.register('/sw.js') // ou '/service-worker.js'
+          .then(reg => {
+            console.log('✅ Service Worker registrado:', reg.scope);
+
+            // Verificar se pode instalar PWA
+            checkPWAInstallation();
+          })
+          .catch(err => {
+            console.log('❌ Service Worker falhou:', err);
+          });
+      });
+    }
+
+    function checkPWAInstallation() {
+      // Verificar critérios de instalação
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+      const isInstalled = window.navigator.standalone || isStandalone;
+
+      if (isInstalled) {
+        console.log('✅ PWA instalado');
+      } else {
+        console.log('⚠️ PWA não instalado');
+        showInstallPrompt();
+      }
+    }
+
+    function showInstallPrompt() {
+      // Aguardar evento beforeinstallprompt
+      let deferredPrompt;
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+
+        // Mostrar botão de instalação após 5 segundos
+        setTimeout(() => {
+          const installBtn = document.createElement('button');
+          installBtn.className = 'install-pwa-btn';
+          installBtn.innerHTML = '<i class="fas fa-download"></i> Instalar App';
+          installBtn.style.cssText = `
+                    position: fixed;
+                    bottom: 100px;
+                    right: 20px;
+                    z-index: 9999;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    border: none;
+                    padding: 12px 24px;
+                    border-radius: 50px;
+                    font-weight: bold;
+                    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                `;
+
+          installBtn.onclick = async () => {
+            if (!deferredPrompt) return;
+
+            deferredPrompt.prompt();
+            const {
+              outcome
+            } = await deferredPrompt.userChoice;
+
+            if (outcome === 'accepted') {
+              console.log('✅ Usuário aceitou instalar PWA');
+              installBtn.remove();
+            }
+
+            deferredPrompt = null;
+          };
+
+          document.body.appendChild(installBtn);
+        }, 5000);
+      });
+    }
+  </script>
 </head>
 
 <body>
@@ -156,7 +210,7 @@
           <a href="#skills" class="nav-link">Skills</a>
           <a href="#projects" class="nav-link">Projetos</a>
           <a href="#testimonials" class="nav-link">Depoimentos</a>
-           <a href="pages/reviews-feedback.html" class="nav-link">Feedback</a>
+          <a href="pages/reviews-feedback.html" class="nav-link">Feedback</a>
           <a href="#contact" class="nav-link">Contato</a>
         </div>
 

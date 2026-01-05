@@ -2,7 +2,7 @@
     "name": "José Mbenga | Dev Full Stack",
     "short_name": "JMbenga Dev",
     "description": "Portfólio de José Mbenga - Especialista em Desenvolvimento Web Full Stack, UI/UX Design e Soluções Tech Inovadoras",
-    "start_url": "/",
+    "start_url": "/index.html?source=pwa",
     "display": "standalone",
     "background_color": "#0f172a",
     "theme_color": "#2563eb",

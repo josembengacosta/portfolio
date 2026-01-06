@@ -1384,6 +1384,315 @@
   <script src="./assets/js/pwa-install.js"></script>
   <script src="./assets/js/pwa-native.js"></script>
 
+  <!-- Sistema de Instalação PWA SIMPLIFICADO -->
+<script>
+// Sistema de Instalação PWA - José Mbenga
+document.addEventListener('DOMContentLoaded', function() {
+    let deferredPrompt;
+    let installButton = null;
+    
+    console.log('🚀 Sistema PWA iniciado');
+    
+    // 1. Verificar se já está instalado
+    function isPWAInstalled() {
+        return window.matchMedia('(display-mode: standalone)').matches || 
+               window.navigator.standalone === true;
+    }
+    
+    // 2. Verificar requisitos
+    function canInstallPWA() {
+        const isHTTPS = window.location.protocol === 'https:' || 
+                       window.location.hostname === 'localhost';
+        const hasManifest = document.querySelector('link[rel="manifest"]') !== null;
+        const hasSW = 'serviceWorker' in navigator;
+        
+        return isHTTPS && hasManifest && hasSW && !isPWAInstalled();
+    }
+    
+    // 3. Criar botão de instalação MINIMALISTA
+    function createInstallButton() {
+        // Remover botão existente
+        if (installButton) installButton.remove();
+        
+        // Criar novo botão
+        installButton = document.createElement('button');
+        installButton.id = 'pwa-install-btn';
+        installButton.className = 'pwa-install-btn';
+        installButton.innerHTML = `
+            <i class="fas fa-download"></i>
+            <span>Instalar App</span>
+        `;
+        
+        // Estilos inline (não depende de CSS externo)
+        installButton.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        `;
+        
+        // Animação de entrada
+        setTimeout(() => {
+            installButton.style.opacity = '1';
+            installButton.style.transform = 'translateY(0)';
+        }, 1000);
+        
+        // Efeitos hover
+        installButton.addEventListener('mouseenter', () => {
+            installButton.style.transform = 'translateY(-2px)';
+            installButton.style.boxShadow = '0 6px 20px rgba(37, 99, 235, 0.6)';
+        });
+        
+        installButton.addEventListener('mouseleave', () => {
+            installButton.style.transform = 'translateY(0)';
+            installButton.style.boxShadow = '0 4px 15px rgba(37, 99, 235, 0.4)';
+        });
+        
+        // Clique para instalar
+        installButton.addEventListener('click', installPWA);
+        
+        document.body.appendChild(installButton);
+        
+        // Adicionar animação CSS
+        if (!document.querySelector('#pwa-pulse-animation')) {
+            const style = document.createElement('style');
+            style.id = 'pwa-pulse-animation';
+            style.textContent = `
+                @keyframes pulse {
+                    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+                    70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+                    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        console.log('🔼 Botão de instalação criado');
+    }
+    
+    // 4. Instalar PWA
+    async function installPWA() {
+        if (!deferredPrompt) {
+            console.log('⚠️ Usando fallback para instalação manual');
+            showManualInstructions();
+            return;
+        }
+        
+        try {
+            console.log('🎪 Mostrando prompt de instalação...');
+            deferredPrompt.prompt();
+            
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log('👤 Usuário escolheu:', outcome);
+            
+            if (outcome === 'accepted') {
+                console.log('✅ Instalação iniciada');
+                showNotification('🎉 App sendo instalado...', 'success');
+                if (installButton) installButton.remove();
+            } else {
+                console.log('❌ Instalação cancelada');
+                showNotification('Instalação cancelada. Você pode instalar depois!', 'info');
+            }
+            
+            deferredPrompt = null;
+            
+        } catch (error) {
+            console.error('❌ Erro na instalação:', error);
+            showManualInstructions();
+        }
+    }
+    
+    // 5. Mostrar instruções manuais
+    function showManualInstructions() {
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const isAndroid = /Android/.test(navigator.userAgent);
+        const isChrome = /Chrome/.test(navigator.userAgent) && !/Edg/.test(navigator.userAgent);
+        
+        let message = '';
+        
+        if (isIOS) {
+            message = '📱 <strong>iPhone/iPad:</strong><br>1. Toque no ícone de compartilhar (↑)<br>2. Role para baixo<br>3. Toque em "Adicionar à Tela de Início"';
+        } else if (isAndroid && isChrome) {
+            message = '📱 <strong>Android/Chrome:</strong><br>1. Toque nos 3 pontos (⋮)<br>2. Toque em "Adicionar à tela inicial"';
+        } else if (isChrome) {
+            message = '💻 <strong>Chrome Desktop:</strong><br>1. Clique no ícone 📥 na barra de endereço<br>2. Selecione "Instalar"';
+        } else {
+            message = '🌐 <strong>Outros navegadores:</strong><br>No menu, procure por "Instalar aplicativo" ou "Adicionar à tela inicial"';
+        }
+        
+        showNotification(message, 'info', 8000);
+    }
+    
+    // 6. Mostrar notificação
+    function showNotification(content, type = 'info', duration = 5000) {
+        // Remover notificações antigas
+        const oldNotif = document.querySelector('.pwa-notification');
+        if (oldNotif) oldNotif.remove();
+        
+        const notification = document.createElement('div');
+        notification.className = `pwa-notification ${type}`;
+        
+        if (typeof content === 'string' && content.includes('<')) {
+            notification.innerHTML = content;
+        } else {
+            notification.textContent = content;
+        }
+        
+        // Estilos
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? '#10b981' : 
+                        type === 'error' ? '#ef4444' : 
+                        type === 'warning' ? '#f59e0b' : '#2563eb'};
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 10000;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            animation: slideInRight 0.3s ease;
+            max-width: 300px;
+            font-size: 14px;
+            line-height: 1.5;
+        `;
+        
+        // Botão fechar
+        const closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+        closeBtn.style.cssText = `
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+        closeBtn.onclick = () => {
+            notification.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        };
+        
+        notification.appendChild(closeBtn);
+        document.body.appendChild(notification);
+        
+        // Animação CSS
+        if (!document.querySelector('#notif-animations')) {
+            const style = document.createElement('style');
+            style.id = 'notif-animations';
+            style.textContent = `
+                @keyframes slideInRight {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOutRight {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Auto-remover
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }
+        }, duration);
+    }
+    
+    // 7. Event Listeners
+    
+    // Evento principal do PWA
+    window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('🎪 beforeinstallprompt disparado!');
+        e.preventDefault();
+        deferredPrompt = e;
+        
+        // Mostrar botão após 3 segundos
+        setTimeout(() => {
+            if (canInstallPWA() && deferredPrompt) {
+                createInstallButton();
+            }
+        }, 3000);
+    });
+    
+    // Quando instala
+    window.addEventListener('appinstalled', () => {
+        console.log('✅ PWA instalado!');
+        deferredPrompt = null;
+        if (installButton) installButton.remove();
+        showNotification('🎉 App instalado com sucesso!', 'success');
+    });
+    
+    // 8. Inicialização
+    
+    // Verificar se pode mostrar botão imediatamente
+    setTimeout(() => {
+        if (canInstallPWA()) {
+            console.log('✅ Tudo pronto para instalação');
+            // Se já tem deferredPrompt, mostrar botão
+            if (deferredPrompt) {
+                createInstallButton();
+            }
+        } else {
+            console.log('❌ Não pode instalar:', {
+                https: window.location.protocol === 'https:',
+                manifest: !!document.querySelector('link[rel="manifest"]'),
+                sw: 'serviceWorker' in navigator,
+                installed: isPWAInstalled()
+            });
+        }
+    }, 2000);
+    
+    // 9. Debug helper (opcional)
+    window.debugPWA = function() {
+        console.log('🔍 DEBUG PWA:');
+        console.log('- HTTPS:', window.location.protocol === 'https:');
+        console.log('- Manifest:', document.querySelector('link[rel="manifest"]')?.href);
+        console.log('- Service Worker:', 'serviceWorker' in navigator);
+        console.log('- Instalado:', isPWAInstalled());
+        console.log('- deferredPrompt:', !!deferredPrompt);
+        console.log('- URL:', window.location.href);
+        
+        // Testar Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistration().then(reg => {
+                console.log('- SW registrado:', !!reg);
+                if (reg) console.log('- SW escopo:', reg.scope);
+            });
+        }
+        
+        alert(`PWA Status:\n• HTTPS: ${window.location.protocol === 'https:' ? '✅' : '❌'}\n• Manifest: ${document.querySelector('link[rel="manifest"]') ? '✅' : '❌'}\n• Service Worker: ${'serviceWorker' in navigator ? '✅' : '❌'}\n• Instalado: ${isPWAInstalled() ? '✅' : '❌'}`);
+    };
+});
+</script>
+
   <!-- Schema Markup for SEO -->
   <script type="application/ld+json">
     {

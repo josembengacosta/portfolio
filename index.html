@@ -185,6 +185,33 @@
       }
     }
   </style>
+
+  <!-- No <head> do seu HTML, adicione: -->
+  <style>
+    /* OVERRIDE PARA SPLASH CENTRALIZADO */
+    .app-splash {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+    }
+
+    .app-splash div {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    /* Garantir que o ícone e texto fiquem no centro */
+    .app-splash i,
+    .app-splash h2,
+    .app-splash p {
+      text-align: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+  </style>
 </head>
 
 <body>

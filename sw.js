@@ -26,7 +26,7 @@ const URLS_TO_CACHE = [
 
 // ========== INSTALAÇÃO ==========
 self.addEventListener('install', event => {
-  console.log(`📦 SW v${APP_VERSION} instalando...`);
+  console.log(`SW v${APP_VERSION} instalando...`);
   
   event.waitUntil(
     caches.open(CACHE_NAME)

@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" 
+    content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover">
   <title>José Mbenga da Costa | Desenvolvedor Web Full Stack</title>
 
   <!-- Theme Color Dinâmico -->
@@ -211,6 +211,34 @@
       margin-left: auto !important;
       margin-right: auto !important;
     }
+
+    /* ========== FIX PWA SCROLL ========== */
+html, body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    height: 100% !important;
+    position: relative !important;
+}
+
+/* Quando PWA instalado */
+@media (display-mode: standalone) {
+    body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        touch-action: pan-y !important;
+        overscroll-behavior-y: auto !important;
+    }
+    
+    .header {
+        padding-top: env(safe-area-inset-top);
+    }
+    
+    /* Ajuste para conteúdo não ficar atrás do header */
+    .hero {
+        padding-top: calc(6rem + env(safe-area-inset-top)) !important;
+    }
+}
   </style>
 </head>
 

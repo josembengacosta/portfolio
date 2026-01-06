@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+        content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover">
     <title>Críticas & Avaliações | José Mbenga</title>
 
     <!-- SEO -->
@@ -2034,7 +2034,7 @@
             document.querySelectorAll('.service-tab').forEach(tab => {
                 tab.addEventListener('click', function () {
                     document.querySelectorAll('.service-tab').forEach(t => t.classList.remove(
-                    'active'));
+                        'active'));
                     this.classList.add('active');
                     currentService = this.dataset.service;
                     currentPage = 1;
@@ -2214,7 +2214,7 @@
 
                 // In a real app, this would send to a backend
                 showToast('Report enviado. Obrigado por ajudar a manter as avaliações de qualidade.',
-                'success');
+                    'success');
                 modal.classList.remove('active');
             });
         }

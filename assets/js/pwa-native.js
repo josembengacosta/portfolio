@@ -1,5 +1,5 @@
-// assets/js/pwa-native.js
-// Comportamento de app nativo para PWA
+// assets/js/pwa-native.js - VERSÃO CORRIGIDA (SCROLL FUNCIONAL)
+// Comportamento de app nativo para PWA - SEM BLOQUEAR SCROLL
 
 document.addEventListener('DOMContentLoaded', function() {
     // Verificar se está em modo app
@@ -7,25 +7,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const isPWA = window.navigator.standalone || isStandalone;
     
     if (isPWA) {
-        console.log('📱 Executando como app nativo');
+        console.log('📱 Executando como app nativo (scroll corrigido)');
         
         // Adicionar classe ao body
         document.body.classList.add('pwa-native', 'pwa-installed');
         
-        // 1. Splash screen personalizada
+        // 1. Splash screen personalizada (opcional)
         createSplashScreen();
         
         // 2. Navegação tipo app
         initNativeNavigation();
         
-        // 3. Gestos como app
+        // 3. Gestos como app (SEM BLOQUEAR SCROLL)
         initTouchGestures();
         
         // 4. Comportamento offline
         initOfflineBehavior();
-        
-        // 5. Atualizações em background
-        initBackgroundSync();
     }
     
     // Função para criar splash screen
@@ -42,6 +39,21 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         
+        // Estilos inline para garantir funcionamento
+        splash.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        `;
+        
         document.body.appendChild(splash);
         
         // Remover após 2 segundos
@@ -53,10 +65,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Navegação tipo app
     function initNativeNavigation() {
-        // História de navegação
+        // História de navegação (opcional)
         let history = [];
         
-        // Botão voltar personalizado (opcional)
         if ('navigation' in window) {
             window.navigation.addEventListener('navigate', (event) => {
                 history.push({
@@ -65,43 +76,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         }
-        
-        // Prevenir saída acidental
-        window.addEventListener('beforeunload', (e) => {
-            if (history.length > 1) {
-                e.preventDefault();
-                e.returnValue = '';
-                return 'Deseja sair do app?';
-            }
-        });
     }
     
-    // Gestos touch como app nativo
+    // Gestos touch como app nativo - VERSÃO CORRIGIDA (NÃO BLOQUEIA SCROLL)
     function initTouchGestures() {
-        let startX, startY, distX, distY;
+        let startX, startY, startTime;
         const threshold = 100; // Mínimo de 100px para gesto
         const allowedTime = 500; // Máximo 500ms
         
+        // Usar passive: true para melhor performance
         document.addEventListener('touchstart', (e) => {
             const touch = e.touches[0];
             startX = touch.pageX;
             startY = touch.pageY;
             startTime = new Date().getTime();
-            e.preventDefault();
-        }, false);
+        }, { passive: true });
         
-        document.addEventListener('touchmove', (e) => {
-            e.preventDefault(); // Prevenir scroll nativo
-        }, { passive: false });
+        // REMOVI O EVENTO TOUCHMOVE QUE BLOQUEAVA SCROLL
         
         document.addEventListener('touchend', (e) => {
             const touch = e.changedTouches[0];
-            distX = touch.pageX - startX;
-            distY = touch.pageY - startY;
+            const distX = touch.pageX - startX;
+            const distY = touch.pageY - startY;
             const elapsedTime = new Date().getTime() - startTime;
             
-            // Swipe direito para voltar (como iOS)
-            if (Math.abs(distX) >= threshold && Math.abs(distY) <= 100 && elapsedTime <= allowedTime) {
+            // Swipe direito para voltar (como iOS) - apenas se horizontal
+            if (Math.abs(distX) >= threshold && 
+                Math.abs(distY) <= 100 && // Garante que é movimento horizontal
+                elapsedTime <= allowedTime) {
+                
                 if (distX > 0) {
                     // Swipe direito - voltar
                     if (window.history.length > 1) {
@@ -109,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
             }
-        }, false);
+        }, { passive: true });
     }
     
     // Comportamento offline
@@ -122,15 +125,6 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('offline', () => {
             showNativeToast('📶 Modo offline ativado', 'warning');
         });
-    }
-    
-    // Sincronização em background
-    function initBackgroundSync() {
-        if ('serviceWorker' in navigator && 'SyncManager' in window) {
-            navigator.serviceWorker.ready.then(registration => {
-                registration.sync.register('sync-data');
-            });
-        }
     }
     
     // Toast nativo
@@ -157,9 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
             font-weight: 500;
         `;
         
-        document.body.appendChild(toast);
-        
-        // Animação CSS
+        // Adicionar animação CSS se não existir
         if (!document.querySelector('#toast-animations')) {
             const style = document.createElement('style');
             style.id = 'toast-animations';
@@ -176,6 +168,8 @@ document.addEventListener('DOMContentLoaded', function() {
             document.head.appendChild(style);
         }
         
+        document.body.appendChild(toast);
+        
         // Remover após 3 segundos
         setTimeout(() => {
             toast.style.animation = 'toastOut 0.3s ease';
@@ -183,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
     
-    // Expor funções globalmente
+    // Expor funções globalmente (opcional)
     window.PWANative = {
         showToast: showNativeToast,
         isNativeApp: isPWA

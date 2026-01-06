@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+        content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover">
     <title>Manutenção de Sites e Apps | José Mbenga</title>
 
     <!-- SEO -->
@@ -1555,7 +1555,8 @@
                 };
 
                 alert(
-                    `EMERGÊNCIA REGISTRADA!\n\nTipo: ${emergencyLabels[emergencyType]}\n\nAcabei de receber seu pedido de emergência e já estou analisando. Entrarei em contato pelo WhatsApp em até 2 horas.\n\nEnquanto isso, não faça alterações no site.`);
+                    `EMERGÊNCIA REGISTRADA!\n\nTipo: ${emergencyLabels[emergencyType]}\n\nAcabei de receber seu pedido de emergência e já estou analisando. Entrarei em contato pelo WhatsApp em até 2 horas.\n\nEnquanto isso, não faça alterações no site.`
+                    );
 
                 // Also open WhatsApp as fallback
                 window.open('https://wa.me/244922030116?text=EMERGÊNCIA%20REGISTRADA:%20' +
@@ -1589,7 +1590,8 @@
                 };
 
                 alert(
-                    `ANÁLISE GRATUITA SOLICITADA!\n\nPlano de interesse: ${planLabels[plan]}\n\nObrigado! Recebi sua solicitação de análise gratuita. Em até 24 horas úteis entrarei em contato com:\n\n1. Relatório completo do seu site\n2. Recomendações específicas\n3. Orçamento personalizado\n4. 30% desconto no primeiro mês`);
+                    `ANÁLISE GRATUITA SOLICITADA!\n\nPlano de interesse: ${planLabels[plan]}\n\nObrigado! Recebi sua solicitação de análise gratuita. Em até 24 horas úteis entrarei em contato com:\n\n1. Relatório completo do seu site\n2. Recomendações específicas\n3. Orçamento personalizado\n4. 30% desconto no primeiro mês`
+                    );
 
                 setTimeout(() => {
                     this.reset();

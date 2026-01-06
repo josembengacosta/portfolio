@@ -9,7 +9,7 @@
   "display_override": ["window-controls-overlay", "standalone"],
   
   "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "theme_color": "#0f172a",  
   
   "orientation": "portrait-primary",
   

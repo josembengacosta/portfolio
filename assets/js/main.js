@@ -32,7 +32,6 @@
             initBackToTop();
             initNotifications();
             initNewsletter();
-            initEasterEgg();
             initPerformanceOptimizations();
             initPWASystem();
 
@@ -773,56 +772,6 @@
             });
         }
 
-        // ============================================
-        // 14. EASTER EGG (KONAMI CODE)
-        // ============================================
-
-        // function initEasterEgg() {
-        //     const konamiCode = [
-        //         'ArrowUp', 'ArrowUp',
-        //         'ArrowDown', 'ArrowDown',
-        //         'ArrowLeft', 'ArrowRight',
-        //         'ArrowLeft', 'ArrowRight',
-        //         'b', 'a'
-        //     ];
-
-        //     let konamiIndex = 0;
-
-        //     document.addEventListener('keydown', (e) => {
-        //         // Reset se não for a tecla esperada
-        //         if (e.key !== konamiCode[konamiIndex]) {
-        //             konamiIndex = 0;
-        //             return;
-        //         }
-
-        //         konamiIndex++;
-
-        //         if (konamiIndex === konamiCode.length) {
-        //             // Easter egg ativado!
-        //             document.body.classList.add('easter-egg');
-        //             showNotification('🎮 Easter egg desbloqueado! Você é um verdadeiro desenvolvedor!',
-        //                 'success');
-
-        //             // Adicionar efeitos especiais
-        //             const colors = ['#2563eb', '#8b5cf6', '#10b981', '#f59e0b', '#ef4444'];
-        //             let colorIndex = 0;
-
-        //             const interval = setInterval(() => {
-        //                 document.documentElement.style.setProperty('--primary', colors[colorIndex]);
-        //                 colorIndex = (colorIndex + 1) % colors.length;
-        //             }, 500);
-
-        //             // Remover após 10 segundos
-        //             setTimeout(() => {
-        //                 clearInterval(interval);
-        //                 document.body.classList.remove('easter-egg');
-        //                 document.documentElement.style.setProperty('--primary', '#2563eb');
-        //             }, 10000);
-
-        //             konamiIndex = 0;
-        //         }
-        //     });
-        // }
 
         // ============================================
         // 15. OTIMIZAÇÕES DE PERFORMANCE

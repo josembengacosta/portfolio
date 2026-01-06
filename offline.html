@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br" class="dark-theme">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Offline | José Mbenga</title>
     <meta name="theme-color" content="#0f172a" />
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
             /* Cores principais - Dark Theme */
@@ -115,8 +118,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
         }
 
         /* Typography */
@@ -253,8 +263,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .connection-status.connected {
@@ -314,23 +331,23 @@
             .offline-container {
                 padding: 2rem 1.5rem;
             }
-            
+
             h1 {
                 font-size: 2rem;
             }
-            
+
             .offline-icon {
                 font-size: 4rem;
             }
-            
+
             .button-group {
                 flex-direction: column;
             }
-            
+
             .btn {
                 width: 100%;
             }
-            
+
             .theme-toggle {
                 top: 1rem;
                 right: 1rem;
@@ -343,15 +360,15 @@
             body {
                 padding: 1rem;
             }
-            
+
             .offline-container {
                 padding: 1.5rem 1rem;
             }
-            
+
             h1 {
                 font-size: 1.75rem;
             }
-            
+
             .offline-icon {
                 font-size: 3.5rem;
             }
@@ -382,6 +399,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Theme Toggle -->
     <button class="theme-toggle" id="themeToggle">
@@ -392,14 +410,14 @@
         <div class="offline-icon">
             <i class="fas fa-wifi-slash"></i>
         </div>
-        
+
         <h1>Você está offline</h1>
-        
+
         <p class="subtitle">
-            Parece que sua conexão com a internet foi interrompida. 
+            Parece que sua conexão com a internet foi interrompida.
             Mas não se preocupe, ainda há coisas que você pode fazer!
         </p>
-        
+
         <div class="offline-info">
             <h3><i class="fas fa-lightbulb"></i> O que você ainda pode fazer:</h3>
             <ul>
@@ -409,29 +427,29 @@
                 <li><i class="fas fa-check-circle"></i> Aguardar reconexão automática</li>
             </ul>
         </div>
-        
+
         <!-- Progress Indicator -->
         <div class="progress-indicator" id="progressIndicator">
             <div class="progress-bar" id="progressBar"></div>
         </div>
-        
+
         <!-- Connection Status -->
         <div class="connection-status" id="connectionStatus">
             <i class="fas fa-spinner fa-spin"></i>
             <span>Verificando conexão...</span>
         </div>
-        
+
         <div class="button-group">
             <button class="btn btn-primary" id="retryBtn">
                 <i class="fas fa-sync-alt"></i>
                 Tentar reconectar
             </button>
-            
+
             <button class="btn btn-outline" id="backBtn">
                 <i class="fas fa-arrow-left"></i>
                 Voltar à página anterior
             </button>
-            
+
             <button class="btn btn-outline" id="homeBtn">
                 <i class="fas fa-home"></i>
                 Ir para a página inicial
@@ -443,17 +461,17 @@
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('i');
-        
+
         // Load saved theme
         const savedTheme = localStorage.getItem('jm-theme') || 'dark';
         if (savedTheme === 'light') {
             document.body.classList.add('light-theme');
             themeIcon.className = 'fas fa-sun';
         }
-        
-        themeToggle.addEventListener('click', function() {
+
+        themeToggle.addEventListener('click', function () {
             const isLight = document.body.classList.toggle('light-theme');
-            
+
             if (isLight) {
                 themeIcon.className = 'fas fa-sun';
                 localStorage.setItem('jm-theme', 'light');
@@ -476,15 +494,15 @@
             connectionStatus.style.display = 'flex';
             connectionStatus.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Verificando conexão...</span>';
             connectionStatus.classList.remove('connected');
-            
+
             // Simulate progress
             let progress = 0;
             progressIndicator.style.display = 'block';
-            
+
             const progressInterval = setInterval(() => {
                 progress += 10;
                 progressBar.style.width = `${progress}%`;
-                
+
                 if (progress >= 100) {
                     clearInterval(progressInterval);
                     simulateNetworkCheck();
@@ -496,18 +514,20 @@
             setTimeout(() => {
                 if (navigator.onLine) {
                     // Connection restored
-                    connectionStatus.innerHTML = '<i class="fas fa-check-circle"></i><span>Conexão restaurada! Redirecionando...</span>';
+                    connectionStatus.innerHTML =
+                        '<i class="fas fa-check-circle"></i><span>Conexão restaurada! Redirecionando...</span>';
                     connectionStatus.classList.add('connected');
-                    
+
                     // Redirect to home after 2 seconds
                     setTimeout(() => {
                         window.location.href = '/';
                     }, 2000);
                 } else {
                     // Still offline
-                    connectionStatus.innerHTML = '<i class="fas fa-times-circle"></i><span>Ainda offline. Tente verificar sua rede.</span>';
+                    connectionStatus.innerHTML =
+                        '<i class="fas fa-times-circle"></i><span>Ainda offline. Tente verificar sua rede.</span>';
                     connectionStatus.classList.remove('connected');
-                    
+
                     // Hide progress after 3 seconds
                     setTimeout(() => {
                         connectionStatus.style.display = 'none';
@@ -519,12 +539,12 @@
         }
 
         // Retry Connection
-        retryBtn.addEventListener('click', function() {
+        retryBtn.addEventListener('click', function () {
             retryBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Reconectando...';
             retryBtn.disabled = true;
-            
+
             checkConnection();
-            
+
             // Reset button after check
             setTimeout(() => {
                 retryBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Tentar reconectar';
@@ -533,7 +553,7 @@
         });
 
         // Back Button
-        backBtn.addEventListener('click', function() {
+        backBtn.addEventListener('click', function () {
             if (window.history.length > 1) {
                 window.history.back();
             } else {
@@ -542,26 +562,28 @@
         });
 
         // Home Button
-        homeBtn.addEventListener('click', function() {
+        homeBtn.addEventListener('click', function () {
             window.location.href = '/';
         });
 
         // Online/Offline Events
-        window.addEventListener('online', function() {
-            connectionStatus.innerHTML = '<i class="fas fa-wifi"></i><span>Conectado! A página será recarregada...</span>';
+        window.addEventListener('online', function () {
+            connectionStatus.innerHTML =
+                '<i class="fas fa-wifi"></i><span>Conectado! A página será recarregada...</span>';
             connectionStatus.classList.add('connected');
             connectionStatus.style.display = 'flex';
-            
+
             setTimeout(() => {
                 window.location.reload();
             }, 1500);
         });
 
-        window.addEventListener('offline', function() {
-            connectionStatus.innerHTML = '<i class="fas fa-wifi-slash"></i><span>Você ficou offline novamente</span>';
+        window.addEventListener('offline', function () {
+            connectionStatus.innerHTML =
+                '<i class="fas fa-wifi-slash"></i><span>Você ficou offline novamente</span>';
             connectionStatus.classList.remove('connected');
             connectionStatus.style.display = 'flex';
-            
+
             setTimeout(() => {
                 connectionStatus.style.display = 'none';
             }, 3000);
@@ -578,23 +600,23 @@
         }, 30000);
 
         // Add some interactive elements
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Add click effect to buttons
             const buttons = document.querySelectorAll('.btn');
             buttons.forEach(btn => {
-                btn.addEventListener('mousedown', function() {
+                btn.addEventListener('mousedown', function () {
                     this.style.transform = 'scale(0.95)';
                 });
-                
-                btn.addEventListener('mouseup', function() {
+
+                btn.addEventListener('mouseup', function () {
                     this.style.transform = '';
                 });
-                
-                btn.addEventListener('mouseleave', function() {
+
+                btn.addEventListener('mouseleave', function () {
                     this.style.transform = '';
                 });
             });
-            
+
             // Add animation to icon
             const icon = document.querySelector('.offline-icon');
             setInterval(() => {
@@ -606,4 +628,5 @@
         });
     </script>
 </body>
+
 </html>

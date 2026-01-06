@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Recuperar Senha | Portfólio José Mbenga</title>
 
     <!-- SEO -->
-    <meta name="description" content="Recupere o acesso à sua conta usando chave de recuperação ou código por email. José Mbenga - Desenvolvedor Full Stack Angola.">
-    
+    <meta name="description"
+        content="Recupere o acesso à sua conta usando chave de recuperação ou código por email. José Mbenga - Desenvolvedor Full Stack Angola.">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon_jm.png" type="image/x-icon">
 
@@ -18,7 +20,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -109,7 +112,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: 
+            background:
                 radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
@@ -117,15 +120,20 @@
         }
 
         @keyframes gradientMove {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translate(0, 0);
             }
+
             25% {
                 transform: translate(-5%, 5%);
             }
+
             50% {
                 transform: translate(5%, -5%);
             }
+
             75% {
                 transform: translate(-5%, -5%);
             }
@@ -168,12 +176,16 @@
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0) rotate(0deg);
             }
+
             33% {
                 transform: translateY(-20px) rotate(120deg);
             }
+
             66% {
                 transform: translateY(20px) rotate(240deg);
             }
@@ -649,6 +661,7 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -697,38 +710,39 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+
             .recovery-left,
             .recovery-right {
                 padding: 2rem;
             }
-            
+
             .welcome-title {
                 font-size: 1.75rem;
             }
-            
+
             .code-container {
                 gap: 0.5rem;
             }
-            
+
             .code-input {
                 width: 50px;
                 height: 60px;
                 font-size: 1.75rem;
             }
-            
+
             .method-selection {
                 flex-direction: column;
             }
-            
+
             .action-buttons {
                 flex-direction: column;
             }
-            
+
             .theme-toggle {
                 top: 1rem;
                 right: 1rem;
             }
-            
+
             .theme-btn {
                 width: 40px;
                 height: 40px;
@@ -740,20 +754,20 @@
             .recovery-container {
                 margin: 1rem auto;
             }
-            
+
             .recovery-left,
             .recovery-right {
                 padding: 1.5rem;
             }
-            
+
             .logo {
                 font-size: 1.5rem;
             }
-            
+
             .form-title {
                 font-size: 1.5rem;
             }
-            
+
             .code-input {
                 width: 45px;
                 height: 55px;
@@ -766,7 +780,7 @@
 <body>
     <!-- Background Animation -->
     <div class="bg-animation"></div>
-    
+
     <!-- Floating Elements -->
     <div class="floating-element float-1"></div>
     <div class="floating-element float-2"></div>
@@ -789,15 +803,15 @@
                         <i class="fas fa-key"></i>
                         <span>JM</span>benga
                     </div>
-                    
+
                     <h1 class="welcome-title">
                         Recuperar Acesso
                     </h1>
-                    
+
                     <p class="welcome-subtitle">
                         Recupere o acesso à sua conta usando uma chave de recuperação ou recebendo um código por email.
                     </p>
-                    
+
                     <ul class="features-list">
                         <li>
                             <i class="fas fa-shield-alt"></i>
@@ -820,7 +834,7 @@
                             <span>Processo 100% seguro</span>
                         </li>
                     </ul>
-                    
+
                     <div class="illustration">
                         <i class="fas fa-unlock-alt"></i>
                     </div>
@@ -858,8 +872,7 @@
                         <div class="form-group">
                             <label class="form-label" for="recoveryEmail">Email da Conta *</label>
                             <div class="input-group">
-                                <input type="email" class="form-control" id="recoveryEmail" 
-                                       placeholder="seu@email.com">
+                                <input type="email" class="form-control" id="recoveryEmail" placeholder="seu@email.com">
                                 <div class="input-icon">
                                     <i class="fas fa-envelope"></i>
                                 </div>
@@ -905,8 +918,8 @@
                         <div class="form-group">
                             <label class="form-label" for="recoveryUsername">Nome de Usuário *</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="recoveryUsername" 
-                                       placeholder="nome.usuario">
+                                <input type="text" class="form-control" id="recoveryUsername"
+                                    placeholder="nome.usuario">
                                 <div class="input-icon">
                                     <i class="fas fa-user"></i>
                                 </div>
@@ -920,8 +933,8 @@
                         <div class="form-group">
                             <label class="form-label" for="recoveryKey">Chave de Recuperação *</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="recoveryKey" 
-                                       placeholder="XXXXX-XXXXX-XXXXX-XXXXX">
+                                <input type="text" class="form-control" id="recoveryKey"
+                                    placeholder="XXXXX-XXXXX-XXXXX-XXXXX">
                                 <div class="input-icon">
                                     <i class="fas fa-key"></i>
                                 </div>
@@ -950,10 +963,10 @@
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
         // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             initThemeToggle();
             initMethodSelection();
             initEmailRecovery();
@@ -965,13 +978,14 @@
         // Theme Toggle
         function initThemeToggle() {
             const themeToggle = document.getElementById('themeToggle');
-            themeToggle.addEventListener('click', function() {
+            themeToggle.addEventListener('click', function () {
                 document.body.classList.toggle('light-theme');
                 const icon = this.querySelector('i');
-                icon.className = document.body.classList.contains('light-theme') 
-                    ? 'fas fa-sun' 
-                    : 'fas fa-moon';
-                localStorage.setItem('recoveryTheme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+                icon.className = document.body.classList.contains('light-theme') ?
+                    'fas fa-sun' :
+                    'fas fa-moon';
+                localStorage.setItem('recoveryTheme', document.body.classList.contains('light-theme') ?
+                    'light' : 'dark');
             });
 
             // Load saved theme
@@ -989,7 +1003,7 @@
             const emailForm = document.getElementById('emailForm');
             const keyForm = document.getElementById('keyForm');
 
-            methodEmail.addEventListener('click', function() {
+            methodEmail.addEventListener('click', function () {
                 methodEmail.classList.add('active');
                 methodKey.classList.remove('active');
                 emailForm.classList.add('active');
@@ -998,7 +1012,7 @@
                 resetVerificationSection();
             });
 
-            methodKey.addEventListener('click', function() {
+            methodKey.addEventListener('click', function () {
                 methodKey.classList.add('active');
                 methodEmail.classList.remove('active');
                 keyForm.classList.add('active');
@@ -1016,24 +1030,24 @@
             const resendCodeBtn = document.getElementById('resendCodeBtn');
 
             // Email validation
-            emailInput.addEventListener('input', function() {
+            emailInput.addEventListener('input', function () {
                 validateEmail(this);
             });
 
             // Send code button
-            sendCodeBtn.addEventListener('click', function() {
+            sendCodeBtn.addEventListener('click', function () {
                 if (validateEmail(emailInput)) {
                     sendVerificationCode();
                 }
             });
 
             // Verify code button
-            verifyCodeBtn.addEventListener('click', function() {
+            verifyCodeBtn.addEventListener('click', function () {
                 verifyCode();
             });
 
             // Resend code button
-            resendCodeBtn.addEventListener('click', function() {
+            resendCodeBtn.addEventListener('click', function () {
                 if (!this.disabled) {
                     resendVerificationCode();
                 }
@@ -1047,17 +1061,17 @@
             const verifyKeyBtn = document.getElementById('verifyKeyBtn');
 
             // Username validation
-            usernameInput.addEventListener('input', function() {
+            usernameInput.addEventListener('input', function () {
                 validateUsername(this);
             });
 
             // Key validation
-            keyInput.addEventListener('input', function() {
+            keyInput.addEventListener('input', function () {
                 validateRecoveryKey(this);
             });
 
             // Form submission
-            document.getElementById('keyRecoveryForm').addEventListener('submit', function(e) {
+            document.getElementById('keyRecoveryForm').addEventListener('submit', function (e) {
                 e.preventDefault();
                 if (validateKeyRecovery()) {
                     verifyRecoveryKey();
@@ -1068,7 +1082,7 @@
         // Event Listeners
         function initEventListeners() {
             // Back to login link
-            document.getElementById('backToLogin').addEventListener('click', function(e) {
+            document.getElementById('backToLogin').addEventListener('click', function (e) {
                 e.preventDefault();
                 window.location.href = 'login.html';
             });
@@ -1078,51 +1092,52 @@
         function generateCodeInputs() {
             const container = document.getElementById('codeContainer');
             container.innerHTML = '';
-            
+
             for (let i = 0; i < 6; i++) {
                 const input = document.createElement('input');
                 input.type = 'text';
                 input.maxLength = '1';
                 input.className = 'code-input';
                 input.dataset.index = i;
-                
+
                 // Auto-focus and move to next input
-                input.addEventListener('input', function(e) {
+                input.addEventListener('input', function (e) {
                     const value = this.value.replace(/[^0-9]/g, '');
                     this.value = value;
-                    
-                    if (value && this.nextElementSibling && this.nextElementSibling.classList.contains('code-input')) {
+
+                    if (value && this.nextElementSibling && this.nextElementSibling.classList.contains(
+                            'code-input')) {
                         this.nextElementSibling.focus();
                     }
-                    
+
                     updateCodeInputs();
                 });
-                
+
                 // Handle paste
-                input.addEventListener('paste', function(e) {
+                input.addEventListener('paste', function (e) {
                     e.preventDefault();
                     const pasteData = e.clipboardData.getData('text').replace(/[^0-9]/g, '');
                     const inputs = container.querySelectorAll('.code-input');
-                    
+
                     for (let j = 0; j < Math.min(pasteData.length, 6); j++) {
                         if (inputs[j]) {
                             inputs[j].value = pasteData[j];
                         }
                     }
-                    
+
                     updateCodeInputs();
                     if (inputs[Math.min(pasteData.length, 5)]) {
                         inputs[Math.min(pasteData.length, 5)].focus();
                     }
                 });
-                
+
                 // Handle backspace
-                input.addEventListener('keydown', function(e) {
+                input.addEventListener('keydown', function (e) {
                     if (e.key === 'Backspace' && !this.value && this.previousElementSibling) {
                         this.previousElementSibling.focus();
                     }
                 });
-                
+
                 container.appendChild(input);
             }
         }
@@ -1132,7 +1147,7 @@
             const inputs = document.querySelectorAll('.code-input');
             const verifyBtn = document.getElementById('verifyCodeBtn');
             let allFilled = true;
-            
+
             inputs.forEach(input => {
                 if (input.value) {
                     input.classList.add('filled');
@@ -1142,7 +1157,7 @@
                     allFilled = false;
                 }
             });
-            
+
             // Enable verify button if all inputs are filled
             verifyBtn.disabled = !allFilled;
         }
@@ -1152,17 +1167,18 @@
             const email = input.value.trim();
             const validation = document.getElementById('emailValidation');
             const icon = input.parentElement.querySelector('.input-icon i');
-            
+
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
+
             if (email === '') {
                 input.classList.remove('success', 'error');
                 icon.className = 'fas fa-envelope';
                 validation.className = 'validation-message info';
-                validation.innerHTML = '<i class="fas fa-info-circle"></i><span>Digite o email cadastrado na sua conta</span>';
+                validation.innerHTML =
+                    '<i class="fas fa-info-circle"></i><span>Digite o email cadastrado na sua conta</span>';
                 return false;
             }
-            
+
             if (!emailRegex.test(email)) {
                 input.classList.remove('success');
                 input.classList.add('error');
@@ -1171,11 +1187,11 @@
                 validation.innerHTML = '<i class="fas fa-times-circle"></i><span>Email inválido</span>';
                 return false;
             }
-            
+
             // Simulate checking if email exists
             setTimeout(() => {
                 const validEmails = ['jose@example.com', 'admin@example.com', 'teste@email.com'];
-                
+
                 if (validEmails.includes(email.toLowerCase())) {
                     input.classList.remove('error');
                     input.classList.add('success');
@@ -1187,10 +1203,11 @@
                     input.classList.add('error');
                     icon.className = 'fas fa-exclamation-circle error';
                     validation.className = 'validation-message error';
-                    validation.innerHTML = '<i class="fas fa-times-circle"></i><span>Email não cadastrado</span>';
+                    validation.innerHTML =
+                        '<i class="fas fa-times-circle"></i><span>Email não cadastrado</span>';
                 }
             }, 500);
-            
+
             return true;
         }
 
@@ -1199,17 +1216,18 @@
             const username = input.value.trim();
             const validation = document.getElementById('usernameValidation');
             const icon = input.parentElement.querySelector('.input-icon i');
-            
+
             const usernameRegex = /^[a-zA-Z0-9.]{3,20}$/;
-            
+
             if (username === '') {
                 input.classList.remove('success', 'error');
                 icon.className = 'fas fa-user';
                 validation.className = 'validation-message info';
-                validation.innerHTML = '<i class="fas fa-info-circle"></i><span>Digite seu nome de usuário cadastrado</span>';
+                validation.innerHTML =
+                    '<i class="fas fa-info-circle"></i><span>Digite seu nome de usuário cadastrado</span>';
                 return false;
             }
-            
+
             if (!usernameRegex.test(username)) {
                 input.classList.remove('success');
                 input.classList.add('error');
@@ -1218,26 +1236,28 @@
                 validation.innerHTML = '<i class="fas fa-times-circle"></i><span>Username inválido</span>';
                 return false;
             }
-            
+
             // Simulate checking if username exists
             setTimeout(() => {
                 const validUsers = ['jose.mbenga', 'admin', 'usuario123'];
-                
+
                 if (validUsers.includes(username.toLowerCase())) {
                     input.classList.remove('error');
                     input.classList.add('success');
                     icon.className = 'fas fa-check-circle success';
                     validation.className = 'validation-message success';
-                    validation.innerHTML = '<i class="fas fa-check-circle"></i><span>Username encontrado</span>';
+                    validation.innerHTML =
+                    '<i class="fas fa-check-circle"></i><span>Username encontrado</span>';
                 } else {
                     input.classList.remove('success');
                     input.classList.add('error');
                     icon.className = 'fas fa-exclamation-circle error';
                     validation.className = 'validation-message error';
-                    validation.innerHTML = '<i class="fas fa-times-circle"></i><span>Username não encontrado</span>';
+                    validation.innerHTML =
+                        '<i class="fas fa-times-circle"></i><span>Username não encontrado</span>';
                 }
             }, 500);
-            
+
             return true;
         }
 
@@ -1245,23 +1265,23 @@
         function validateRecoveryKey(input) {
             const key = input.value.replace(/\s+/g, '').toUpperCase();
             const icon = input.parentElement.querySelector('.input-icon i');
-            
+
             // Format key (XXXXX-XXXXX-XXXXX-XXXXX)
             if (key.length > 0) {
                 const formatted = key.replace(/(.{5})(?=.)/g, '$1-');
                 input.value = formatted.substring(0, 23); // Max 19 chars + 4 dashes
             }
-            
+
             // Validate format: 12-20 alphanumeric characters
             const cleanKey = key.replace(/[^A-Z0-9]/g, '');
             const isValid = cleanKey.length >= 12 && cleanKey.length <= 20 && /^[A-Z0-9]+$/.test(cleanKey);
-            
+
             if (cleanKey === '') {
                 input.classList.remove('success', 'error');
                 icon.className = 'fas fa-key';
                 return false;
             }
-            
+
             if (isValid) {
                 input.classList.remove('error');
                 input.classList.add('success');
@@ -1271,7 +1291,7 @@
                 input.classList.add('error');
                 icon.className = 'fas fa-exclamation-circle error';
             }
-            
+
             return isValid;
         }
 
@@ -1280,53 +1300,55 @@
             const email = document.getElementById('recoveryEmail').value;
             const sendBtn = document.getElementById('sendCodeBtn');
             const originalText = sendBtn.innerHTML;
-            
+
             // Show loading
             sendBtn.innerHTML = '<span class="spinner"></span><span> Enviando...</span>';
             sendBtn.disabled = true;
-            
+
             // Simulate API call
             setTimeout(() => {
                 // Reset button
                 sendBtn.innerHTML = originalText;
                 sendBtn.disabled = false;
-                
+
                 // Show success message
                 const successMsg = document.getElementById('successMessage');
-                successMsg.innerHTML = `<i class="fas fa-check-circle"></i><span>Código enviado para <strong>${email}</strong></span>`;
+                successMsg.innerHTML =
+                    `<i class="fas fa-check-circle"></i><span>Código enviado para <strong>${email}</strong></span>`;
                 successMsg.classList.add('active');
-                
+
                 // Show verification section
                 document.getElementById('verificationSection').style.display = 'block';
-                
+
                 // Start timer
                 startTimer(10); // 10 minutes
-                
+
                 // Disable resend button for 60 seconds
                 const resendBtn = document.getElementById('resendCodeBtn');
                 resendBtn.disabled = true;
                 let cooldown = 60;
-                
+
                 const cooldownInterval = setInterval(() => {
-                    resendBtn.innerHTML = `<i class="fas fa-redo"></i><span>Reenviar (${cooldown}s)</span>`;
+                    resendBtn.innerHTML =
+                        `<i class="fas fa-redo"></i><span>Reenviar (${cooldown}s)</span>`;
                     cooldown--;
-                    
+
                     if (cooldown < 0) {
                         clearInterval(cooldownInterval);
                         resendBtn.innerHTML = '<i class="fas fa-redo"></i><span>Reenviar Código</span>';
                         resendBtn.disabled = false;
                     }
                 }, 1000);
-                
+
                 // Auto-focus first code input
                 const firstInput = document.querySelector('.code-input');
                 if (firstInput) firstInput.focus();
-                
+
                 // Generate and log a test code (for demo purposes)
                 const testCode = Math.floor(100000 + Math.random() * 900000);
                 console.log(`Código de verificação para ${email}: ${testCode}`);
                 console.log('Em produção, este código seria enviado por email');
-                
+
             }, 1500);
         }
 
@@ -1336,29 +1358,30 @@
             const timeLeftElement = document.getElementById('timeLeft');
             const verifyBtn = document.getElementById('verifyCodeBtn');
             const resendBtn = document.getElementById('resendCodeBtn');
-            
+
             let timeLeft = minutes * 60; // Convert to seconds
-            
+
             const timerInterval = setInterval(() => {
                 const minutesLeft = Math.floor(timeLeft / 60);
                 const secondsLeft = timeLeft % 60;
-                
-                timeLeftElement.textContent = `${minutesLeft.toString().padStart(2, '0')}:${secondsLeft.toString().padStart(2, '0')}`;
-                
+
+                timeLeftElement.textContent =
+                    `${minutesLeft.toString().padStart(2, '0')}:${secondsLeft.toString().padStart(2, '0')}`;
+
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     timerElement.classList.add('expired');
                     timeLeftElement.textContent = '00:00';
                     verifyBtn.disabled = true;
                     resendBtn.disabled = false;
-                    
+
                     // Mark all code inputs as expired
                     document.querySelectorAll('.code-input').forEach(input => {
                         input.classList.add('error');
                         input.disabled = true;
                     });
                 }
-                
+
                 timeLeft--;
             }, 1000);
         }
@@ -1368,17 +1391,17 @@
             const inputs = document.querySelectorAll('.code-input');
             const verifyBtn = document.getElementById('verifyCodeBtn');
             const originalText = verifyBtn.innerHTML;
-            
+
             // Get entered code
             let enteredCode = '';
             inputs.forEach(input => {
                 enteredCode += input.value;
             });
-            
+
             // Show loading
             verifyBtn.innerHTML = '<span class="spinner"></span><span> Verificando...</span>';
             verifyBtn.disabled = true;
-            
+
             // Simulate API verification
             setTimeout(() => {
                 // In a real app, this would verify against the backend
@@ -1392,24 +1415,24 @@
                     // Error
                     verifyBtn.innerHTML = originalText;
                     verifyBtn.disabled = false;
-                    
+
                     // Show error on inputs
                     inputs.forEach(input => {
                         input.classList.add('error');
                     });
-                    
+
                     // Shake animation
                     const container = document.getElementById('codeContainer');
                     container.style.animation = 'none';
                     setTimeout(() => {
                         container.style.animation = 'shake 0.5s ease';
                     }, 10);
-                    
+
                     // Remove animation after it plays
                     setTimeout(() => {
                         container.style.animation = '';
                     }, 500);
-                    
+
                     alert('Código inválido. Por favor, tente novamente.');
                 }
             }, 1500);
@@ -1419,54 +1442,56 @@
         function resendVerificationCode() {
             const email = document.getElementById('recoveryEmail').value;
             const resendBtn = document.getElementById('resendCodeBtn');
-            
+
             if (!email) {
                 alert('Por favor, insira seu email primeiro.');
                 return;
             }
-            
+
             // Show loading
             resendBtn.innerHTML = '<span class="spinner"></span><span> Reenviando...</span>';
             resendBtn.disabled = true;
-            
+
             // Simulate API call
             setTimeout(() => {
                 // Reset resend button with new cooldown
                 let cooldown = 60;
-                
+
                 const cooldownInterval = setInterval(() => {
-                    resendBtn.innerHTML = `<i class="fas fa-redo"></i><span>Reenviar (${cooldown}s)</span>`;
+                    resendBtn.innerHTML =
+                        `<i class="fas fa-redo"></i><span>Reenviar (${cooldown}s)</span>`;
                     cooldown--;
-                    
+
                     if (cooldown < 0) {
                         clearInterval(cooldownInterval);
                         resendBtn.innerHTML = '<i class="fas fa-redo"></i><span>Reenviar Código</span>';
                         resendBtn.disabled = false;
                     }
                 }, 1000);
-                
+
                 // Show success message
                 const successMsg = document.getElementById('successMessage');
-                successMsg.innerHTML = `<i class="fas fa-check-circle"></i><span>Novo código enviado para <strong>${email}</strong></span>`;
+                successMsg.innerHTML =
+                    `<i class="fas fa-check-circle"></i><span>Novo código enviado para <strong>${email}</strong></span>`;
                 successMsg.classList.add('active');
-                
+
                 // Clear existing code inputs
                 document.querySelectorAll('.code-input').forEach(input => {
                     input.value = '';
                     input.classList.remove('filled', 'error');
                 });
-                
+
                 // Update verification button state
                 document.getElementById('verifyCodeBtn').disabled = true;
-                
+
                 // Focus first input
                 const firstInput = document.querySelector('.code-input');
                 if (firstInput) firstInput.focus();
-                
+
                 // Generate and log new test code
                 const newCode = Math.floor(100000 + Math.random() * 900000);
                 console.log(`Novo código de verificação para ${email}: ${newCode}`);
-                
+
             }, 1500);
         }
 
@@ -1474,14 +1499,14 @@
         function validateKeyRecovery() {
             const username = document.getElementById('recoveryUsername').value.trim();
             const key = document.getElementById('recoveryKey').value.replace(/[^A-Z0-9]/g, '');
-            
+
             let isValid = true;
-            
+
             if (!username) {
                 showValidationError('recoveryUsername', 'Nome de usuário é obrigatório');
                 isValid = false;
             }
-            
+
             if (!key) {
                 showValidationError('recoveryKey', 'Chave de recuperação é obrigatória');
                 isValid = false;
@@ -1489,7 +1514,7 @@
                 showValidationError('recoveryKey', 'Chave deve ter entre 12 e 20 dígitos');
                 isValid = false;
             }
-            
+
             return isValid;
         }
 
@@ -1497,18 +1522,18 @@
         function verifyRecoveryKey() {
             const verifyBtn = document.getElementById('verifyKeyBtn');
             const originalText = verifyBtn.innerHTML;
-            
+
             // Show loading
             verifyBtn.innerHTML = '<span class="spinner"></span><span> Verificando...</span>';
             verifyBtn.disabled = true;
-            
+
             // Simulate API verification
             setTimeout(() => {
                 // In a real app, this would verify against the backend
                 // For demo, accept any valid format
                 const key = document.getElementById('recoveryKey').value.replace(/[^A-Z0-9]/g, '');
                 const username = document.getElementById('recoveryUsername').value;
-                
+
                 if (key.length >= 12 && key.length <= 20 && username) {
                     // Success - redirect to password reset page
                     alert('Chave verificada com sucesso! Redirecionando para redefinição de senha...');
@@ -1527,21 +1552,21 @@
         function showValidationError(fieldId, message) {
             const field = document.getElementById(fieldId);
             field.classList.add('error');
-            
+
             // Show temporary error message
             const errorDiv = document.createElement('div');
             errorDiv.className = 'validation-message error';
             errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i><span>${message}</span>`;
             errorDiv.style.animation = 'fadeIn 0.3s ease';
-            
+
             const parent = field.parentElement.parentElement;
             const existingError = parent.querySelector('.validation-message.error');
             if (existingError) {
                 existingError.remove();
             }
-            
+
             parent.appendChild(errorDiv);
-            
+
             // Remove error after 3 seconds
             setTimeout(() => {
                 errorDiv.remove();
@@ -1571,4 +1596,5 @@
         document.head.appendChild(style);
     </script>
 </body>
+
 </html>

@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Site Temporariamente Suspenso | José Mbenga</title>
 
     <!-- SEO -->
@@ -21,7 +22,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -114,7 +116,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: 
+            background:
                 radial-gradient(circle at 20% 30%, rgba(107, 114, 128, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(156, 163, 175, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 40% 80%, rgba(75, 85, 99, 0.08) 0%, transparent 60%);
@@ -126,6 +128,7 @@
                 opacity: 1;
                 filter: brightness(1);
             }
+
             100% {
                 opacity: 0.95;
                 filter: brightness(0.95);
@@ -141,7 +144,7 @@
             height: 100%;
             z-index: -1;
             opacity: 0.03;
-            background-image: 
+            background-image:
                 linear-gradient(90deg, rgba(107, 114, 128, 0.2) 2px, transparent 2px),
                 linear-gradient(rgba(107, 114, 128, 0.2) 2px, transparent 2px);
             background-size: 80px 80px;
@@ -152,6 +155,7 @@
             0% {
                 transform: translate(0, 0);
             }
+
             100% {
                 transform: translate(-80px, -80px);
             }
@@ -199,15 +203,20 @@
         }
 
         @keyframes elementFloat {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0) rotate(0deg) scale(1);
             }
+
             25% {
                 transform: translateY(-15px) rotate(45deg) scale(1.1);
             }
+
             50% {
                 transform: translateY(0) rotate(90deg) scale(1);
             }
+
             75% {
                 transform: translateY(15px) rotate(135deg) scale(0.9);
             }
@@ -275,9 +284,12 @@
         }
 
         @keyframes bannerPulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 1;
             }
+
             50% {
                 opacity: 0.5;
             }
@@ -352,10 +364,13 @@
         }
 
         @keyframes circlePulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
                 opacity: 0.3;
             }
+
             50% {
                 transform: scale(1.05);
                 opacity: 0.2;
@@ -363,12 +378,16 @@
         }
 
         @keyframes iconSuspension {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translate(-50%, -50%) scale(1) rotate(0deg);
             }
+
             33% {
                 transform: translate(-50%, -50%) scale(1.05) rotate(120deg);
             }
+
             66% {
                 transform: translate(-50%, -50%) scale(1.05) rotate(240deg);
             }
@@ -571,9 +590,12 @@
         }
 
         @keyframes statusActive {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 1;
             }
+
             50% {
                 opacity: 0.6;
             }
@@ -1066,10 +1088,13 @@
         }
 
         @keyframes noticePulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 1;
                 transform: scale(1);
             }
+
             50% {
                 opacity: 0.5;
                 transform: scale(1.2);
@@ -1190,7 +1215,7 @@
     <!-- Background Animations -->
     <div class="suspension-bg"></div>
     <div class="suspension-grid"></div>
-    
+
     <!-- Suspension Elements -->
     <div class="suspension-element element-pause">
         <i class="fas fa-pause-circle"></i>
@@ -1264,7 +1289,7 @@
                     Pedimos desculpas pelo inconveniente
                 </p>
                 <p class="suspension-description">
-                    Este site está temporariamente indisponível devido a circunstâncias técnicas necessárias. 
+                    Este site está temporariamente indisponível devido a circunstâncias técnicas necessárias.
                     Estamos trabalhando para resolver a situação e retomar o serviço o mais breve possível.
                 </p>
 
@@ -1278,8 +1303,8 @@
                     </div>
                     <div class="reason-content">
                         <p id="suspensionReason">
-                            Estamos realizando atualizações críticas de infraestrutura e segurança para garantir 
-                            a melhor experiência e proteção dos dados. Esta suspensão preventiva é necessária 
+                            Estamos realizando atualizações críticas de infraestrutura e segurança para garantir
+                            a melhor experiência e proteção dos dados. Esta suspensão preventiva é necessária
                             para implementar melhorias significativas.
                         </p>
                         <div class="reason-details">
@@ -1328,7 +1353,8 @@
                     </div>
                     <div style="color: var(--text-muted); font-size: 0.875rem;">
                         <i class="fas fa-calendar-check"></i>
-                        <span>Previsão de retorno: <strong id="returnDate">--/--/----</strong> às <strong id="returnTime">--:--</strong></span>
+                        <span>Previsão de retorno: <strong id="returnDate">--/--/----</strong> às <strong
+                                id="returnTime">--:--</strong></span>
                     </div>
                 </div>
 
@@ -1428,7 +1454,8 @@
                             <div class="alternative-content">
                                 <h3>Portfólio no GitHub</h3>
                                 <p>Acesse meus projetos e código-fonte enquanto o site está suspenso</p>
-                                <a href="https://github.com/josembenga" target="_blank" class="btn btn-secondary btn-sm" style="min-width: auto; padding: 0.5rem 1rem;">
+                                <a href="https://github.com/josembenga" target="_blank" class="btn btn-secondary btn-sm"
+                                    style="min-width: auto; padding: 0.5rem 1rem;">
                                     Acessar GitHub
                                 </a>
                             </div>
@@ -1440,7 +1467,8 @@
                             <div class="alternative-content">
                                 <h3>Perfil no LinkedIn</h3>
                                 <p>Conecte-se profissionalmente e veja minhas experiências</p>
-                                <a href="https://linkedin.com/in/jose-mbenga-da-costa" target="_blank" class="btn btn-secondary btn-sm" style="min-width: auto; padding: 0.5rem 1rem;">
+                                <a href="https://linkedin.com/in/jose-mbenga-da-costa" target="_blank"
+                                    class="btn btn-secondary btn-sm" style="min-width: auto; padding: 0.5rem 1rem;">
                                     Acessar LinkedIn
                                 </a>
                             </div>
@@ -1452,7 +1480,8 @@
                             <div class="alternative-content">
                                 <h3>Currículo (PDF)</h3>
                                 <p>Baixe uma cópia do meu currículo atualizado em PDF</p>
-                                <a href="cv-jose-mbenga.pdf" download class="btn btn-secondary btn-sm" style="min-width: auto; padding: 0.5rem 1rem;">
+                                <a href="cv-jose-mbenga.pdf" download class="btn btn-secondary btn-sm"
+                                    style="min-width: auto; padding: 0.5rem 1rem;">
                                     Baixar CV
                                 </a>
                             </div>
@@ -1469,8 +1498,7 @@
                     <form id="contactForm" novalidate>
                         <div class="form-group">
                             <label for="email" class="form-label">Seu Email</label>
-                            <input type="email" id="email" class="form-input" 
-                                   placeholder="seu@email.com" required>
+                            <input type="email" id="email" class="form-input" placeholder="seu@email.com" required>
                             <div class="error-message" id="emailError"></div>
                         </div>
                         <div class="form-group">
@@ -1493,8 +1521,8 @@
                         </div>
                         <div class="form-group">
                             <label for="message" class="form-label">Mensagem (Opcional)</label>
-                            <textarea id="message" class="form-textarea" 
-                                      placeholder="Deixe sua mensagem ou pergunta..."></textarea>
+                            <textarea id="message" class="form-textarea"
+                                placeholder="Deixe sua mensagem ou pergunta..."></textarea>
                         </div>
                         <div class="form-checkbox">
                             <input type="checkbox" id="notifyReturn" checked>
@@ -1532,13 +1560,15 @@
                 </div>
 
                 <!-- Important Notice -->
-                <div style="margin-top: 3rem; padding: 1.5rem; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--danger); border-radius: 0.75rem; color: var(--danger); font-size: 0.875rem; text-align: left;">
+                <div
+                    style="margin-top: 3rem; padding: 1.5rem; background: rgba(239, 68, 68, 0.1); border: 1px solid var(--danger); border-radius: 0.75rem; color: var(--danger); font-size: 0.875rem; text-align: left;">
                     <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
                         <i class="fas fa-exclamation-circle" style="font-size: 1.25rem;"></i>
                         <div>
                             <strong style="display: block; margin-bottom: 0.5rem;">Importante:</strong>
                             <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">
-                                Durante esta suspensão, todos os serviços relacionados ao site estão temporariamente indisponíveis. 
+                                Durante esta suspensão, todos os serviços relacionados ao site estão temporariamente
+                                indisponíveis.
                                 Dados críticos estão seguros e serão restaurados integralmente após a resolução.
                             </p>
                             <p style="color: var(--text-muted); font-size: 0.75rem;">
@@ -1582,7 +1612,9 @@
             reason: "Atualização crítica de segurança e infraestrutura",
             type: "Manutenção Planejada",
             severity: "medium", // low, medium, high, critical
-            affectedServices: ["Site Principal", "API", "Banco de Dados", "CDN", "Email", "Autenticação", "Backups", "Monitoramento"],
+            affectedServices: ["Site Principal", "API", "Banco de Dados", "CDN", "Email", "Autenticação", "Backups",
+                "Monitoramento"
+            ],
             teamSize: 5,
             protocol: "SSP-2024",
             updateInterval: 30000 // 30 segundos
@@ -1657,10 +1689,10 @@
 
         function initSuspensionTimer() {
             const expectedEnd = SUSPENSION_CONFIG.expectedEndDate;
-            
+
             // Atualizar datas de exibição
             updateDisplayDates();
-            
+
             // Iniciar timer
             updateSuspensionTimer();
             const timerInterval = setInterval(updateSuspensionTimer, 1000);
@@ -1678,21 +1710,21 @@
 
             function updateDisplayDates() {
                 // Data de início
-                document.getElementById('suspensionStart').textContent = 
+                document.getElementById('suspensionStart').textContent =
                     formatDateTime(SUSPENSION_CONFIG.startDate);
-                
+
                 // Data de retorno
-                document.getElementById('returnDate').textContent = 
+                document.getElementById('returnDate').textContent =
                     formatDate(expectedEnd);
-                document.getElementById('returnTime').textContent = 
+                document.getElementById('returnTime').textContent =
                     formatTime(expectedEnd);
-                
+
                 // Banner ETA
-                document.getElementById('bannerEta').textContent = 
+                document.getElementById('bannerEta').textContent =
                     `${formatDate(expectedEnd)} às ${formatTime(expectedEnd)}`;
-                
+
                 // Última atualização
-                document.getElementById('lastUpdate').textContent = 
+                document.getElementById('lastUpdate').textContent =
                     formatDateTime(new Date());
             }
 
@@ -1708,7 +1740,7 @@
                     document.getElementById('durationHours').textContent = '00';
                     document.getElementById('durationMinutes').textContent = '00';
                     document.getElementById('durationSeconds').textContent = '00';
-                    
+
                     // Atualizar progresso para 100%
                     document.getElementById('durationProgress').style.width = '100%';
                     return;
@@ -1780,11 +1812,12 @@
 
             const banner = document.querySelector('.status-banner');
             if (banner) {
-                banner.style.background = `linear-gradient(135deg, ${severityColors[SUSPENSION_CONFIG.severity]} 0%, ${severityColors[SUSPENSION_CONFIG.severity]}90 100%)`;
+                banner.style.background =
+                    `linear-gradient(135deg, ${severityColors[SUSPENSION_CONFIG.severity]} 0%, ${severityColors[SUSPENSION_CONFIG.severity]}90 100%)`;
             }
 
             // Atualizar nível de segurança
-            document.getElementById('securityLevel').textContent = 
+            document.getElementById('securityLevel').textContent =
                 SUSPENSION_CONFIG.severity.toUpperCase();
         }
 
@@ -1805,7 +1838,8 @@
                 const element = document.getElementById(`timelineDate${index + 1}`);
                 if (element) {
                     if (date <= new Date()) {
-                        element.textContent = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+                        element.textContent =
+                            `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
                     } else {
                         element.textContent = '--/-- --:--';
                     }
@@ -1818,7 +1852,7 @@
             setInterval(() => {
                 const now = new Date();
                 const timelineItems = document.querySelectorAll('.timeline-item');
-                
+
                 // Atualizar status baseado no tempo
                 if (now >= SUSPENSION_CONFIG.expectedEndDate) {
                     // Todas concluídas
@@ -1871,7 +1905,7 @@
                     const current = parseInt(usersElement.textContent);
                     const increment = Math.floor(Math.random() * 10); // 0-9 novos usuários
                     usersElement.textContent = current + increment;
-                    
+
                     // Formatar com K se necessário
                     if (current + increment >= 1000) {
                         usersElement.textContent = `${((current + increment) / 1000).toFixed(1)}K`;
@@ -1946,16 +1980,16 @@
                     // Sucesso
                     submitBtn.innerHTML = '<i class="fas fa-check"></i> Solicitação Enviada!';
                     submitBtn.style.background = 'var(--gradient-secondary)';
-                    
+
                     // Mostrar confirmação
                     const urgencyText = {
                         low: 'baixa urgência',
                         medium: 'média urgência',
                         high: 'alta urgência'
-                    }[urgency];
+                    } [urgency];
 
                     showNotification(
-                        `Solicitação registrada com sucesso! Você será contatado com ${urgencyText}.`, 
+                        `Solicitação registrada com sucesso! Você será contatado com ${urgencyText}.`,
                         'success'
                     );
 
@@ -2012,16 +2046,17 @@
 
             function showEmergencyWhatsAppButton(email, message) {
                 const whatsappButton = document.createElement('a');
-                whatsappButton.href = `https://wa.me/244922030116?text=Emergência%20Suspensão%20-%20Email:%20${encodeURIComponent(email)}%20-%20Mensagem:%20${encodeURIComponent(message.substring(0, 100))}`;
+                whatsappButton.href =
+                    `https://wa.me/244922030116?text=Emergência%20Suspensão%20-%20Email:%20${encodeURIComponent(email)}%20-%20Mensagem:%20${encodeURIComponent(message.substring(0, 100))}`;
                 whatsappButton.target = '_blank';
                 whatsappButton.className = 'btn btn-primary';
                 whatsappButton.style.marginTop = '1rem';
                 whatsappButton.style.width = '100%';
                 whatsappButton.innerHTML = '<i class="fab fa-whatsapp"></i> Contato Imediato via WhatsApp';
-                
+
                 const contactContainer = document.querySelector('.contact-container');
                 contactContainer.appendChild(whatsappButton);
-                
+
                 // Remover após 5 minutos
                 setTimeout(() => {
                     whatsappButton.remove();
@@ -2070,7 +2105,7 @@
 
         function initStatusRefresh() {
             const refreshBtn = document.getElementById('refreshStatus');
-            
+
             if (refreshBtn) {
                 refreshBtn.addEventListener('click', function () {
                     // Simular verificação de status
@@ -2084,15 +2119,20 @@
                         const minutesLeft = Math.floor(timeLeft / (1000 * 60));
 
                         if (minutesLeft <= 0) {
-                            showNotification('A suspensão foi concluída! O site está retornando...', 'success');
+                            showNotification('A suspensão foi concluída! O site está retornando...',
+                                'success');
                         } else if (minutesLeft <= 30) {
-                            showNotification(`Status: Suspensão em fase final. ${minutesLeft} minutos restantes.`, 'info');
+                            showNotification(
+                                `Status: Suspensão em fase final. ${minutesLeft} minutos restantes.`,
+                                'info');
                         } else {
-                            showNotification(`Status: Suspensão ainda em andamento. ${Math.floor(minutesLeft / 60)}h ${minutesLeft % 60}min restantes.`, 'info');
+                            showNotification(
+                                `Status: Suspensão ainda em andamento. ${Math.floor(minutesLeft / 60)}h ${minutesLeft % 60}min restantes.`,
+                                'info');
                         }
 
                         // Atualizar última atualização
-                        document.getElementById('lastUpdate').textContent = 
+                        document.getElementById('lastUpdate').textContent =
                             formatDateTime(new Date());
 
                         // Restaurar botão
@@ -2110,7 +2150,7 @@
         function initAutoUpdates() {
             // Atualizar hora da última atualização
             setInterval(() => {
-                document.getElementById('lastUpdate').textContent = 
+                document.getElementById('lastUpdate').textContent =
                     formatDateTime(new Date());
             }, 60000); // A cada minuto
 
@@ -2120,12 +2160,12 @@
                 const timePassed = now - SUSPENSION_CONFIG.startDate;
                 const totalDuration = SUSPENSION_CONFIG.expectedEndDate - SUSPENSION_CONFIG.startDate;
                 const progressPercent = (timePassed / totalDuration) * 100;
-                
+
                 if (progressPercent <= 100) {
                     const progressBar = document.getElementById('durationProgress');
                     if (progressBar) {
                         progressBar.style.width = `${progressPercent}%`;
-                        
+
                         // Mudar cor baseado no progresso
                         if (progressPercent >= 90) {
                             progressBar.style.background = 'var(--gradient-secondary)';
@@ -2206,13 +2246,13 @@
                 function updateCriticalCountdown() {
                     const now = new Date();
                     const timeLeft = SUSPENSION_CONFIG.expectedEndDate - now;
-                    
+
                     if (timeLeft > 0) {
                         const hours = Math.floor(timeLeft / (1000 * 60 * 60));
                         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                        
-                        criticalCountdown.textContent = 
+
+                        criticalCountdown.textContent =
                             `TEMPO CRÍTICO: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                     } else {
                         criticalCountdown.textContent = 'TEMPO ESGOTADO - RESOLUÇÃO EM CURSO';
@@ -2277,7 +2317,7 @@
             const countdownInterval = setInterval(() => {
                 countdown--;
                 countdownElement.textContent = countdown;
-                
+
                 if (countdown <= 0) {
                     clearInterval(countdownInterval);
                     window.location.href = '/';
@@ -2302,7 +2342,7 @@
         function notifySubscribersOfRestoration() {
             const requests = JSON.parse(localStorage.getItem('suspensionContactRequests') || '[]');
             const subscribers = requests.filter(r => r.notifyReturn);
-            
+
             subscribers.forEach(sub => {
                 console.log(`Notificando ${sub.email} sobre restauração`);
                 // Em produção, enviaria email real aqui
@@ -2321,13 +2361,13 @@
             };
 
             alert(`RELATÓRIO DE SUSPENSÃO\n\n` +
-                  `Duração: ${Math.floor(reportData.duration / (1000 * 60))} minutos\n` +
-                  `Motivo: ${reportData.reason}\n` +
-                  `Tipo: ${reportData.type}\n` +
-                  `Severidade: ${reportData.severity.toUpperCase()}\n` +
-                  `Serviços Afetados: ${reportData.affectedServices}\n` +
-                  `Resolução: ${reportData.resolution}\n\n` +
-                  `Relatório completo foi salvo no sistema.`);
+                `Duração: ${Math.floor(reportData.duration / (1000 * 60))} minutos\n` +
+                `Motivo: ${reportData.reason}\n` +
+                `Tipo: ${reportData.type}\n` +
+                `Severidade: ${reportData.severity.toUpperCase()}\n` +
+                `Serviços Afetados: ${reportData.affectedServices}\n` +
+                `Resolução: ${reportData.resolution}\n\n` +
+                `Relatório completo foi salvo no sistema.`);
         }
 
         // ============================================
@@ -2337,10 +2377,10 @@
         function showNotification(message, type = 'info') {
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
-            
+
             let icon = 'fa-info-circle';
             let bgColor = 'var(--primary)';
-            
+
             switch (type) {
                 case 'success':
                     icon = 'fa-check-circle';
@@ -2403,7 +2443,7 @@
             const originalText = title.textContent;
             title.textContent = '';
             let i = 0;
-            
+
             function typeTitle() {
                 if (i < originalText.length) {
                     title.textContent += originalText.charAt(i);
@@ -2411,7 +2451,7 @@
                     setTimeout(typeTitle, 50);
                 }
             }
-            
+
             setTimeout(typeTitle, 500);
         }
 
@@ -2419,7 +2459,7 @@
         const elements = document.querySelectorAll('.suspension-element');
         elements.forEach((el, index) => {
             el.style.animationDelay = `${index * 2}s`;
-            
+
             // Adicionar efeito de piscar aleatório
             setInterval(() => {
                 if (Math.random() > 0.8) {

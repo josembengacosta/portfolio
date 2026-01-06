@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Cadastro | Portfólio José Mbenga</title>
 
     <!-- SEO -->
-    <meta name="description" content="Cadastre-se para acessar o dashboard administrativo, gerenciar projetos e receber atualizações. José Mbenga - Desenvolvedor Full Stack Angola.">
-    
+    <meta name="description"
+        content="Cadastre-se para acessar o dashboard administrativo, gerenciar projetos e receber atualizações. José Mbenga - Desenvolvedor Full Stack Angola.">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon_jm.png" type="image/x-icon">
 
@@ -18,7 +20,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -115,7 +118,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: 
+            background:
                 radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
@@ -123,15 +126,20 @@
         }
 
         @keyframes gradientMove {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translate(0, 0);
             }
+
             25% {
                 transform: translate(-5%, 5%);
             }
+
             50% {
                 transform: translate(5%, -5%);
             }
+
             75% {
                 transform: translate(-5%, -5%);
             }
@@ -174,12 +182,16 @@
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0) rotate(0deg);
             }
+
             33% {
                 transform: translateY(-20px) rotate(120deg);
             }
+
             66% {
                 transform: translateY(20px) rotate(240deg);
             }
@@ -613,9 +625,17 @@
             box-shadow: var(--shadow);
         }
 
-        .social-btn.google:hover { color: #DB4437; }
-        .social-btn.github:hover { color: #333; }
-        .social-btn.linkedin:hover { color: #0077b5; }
+        .social-btn.google:hover {
+            color: #DB4437;
+        }
+
+        .social-btn.github:hover {
+            color: #333;
+        }
+
+        .social-btn.linkedin:hover {
+            color: #0077b5;
+        }
 
         /* Login Link */
         .login-link {
@@ -726,6 +746,7 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -827,9 +848,12 @@
         }
 
         @keyframes successPulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(1.05);
             }
@@ -897,28 +921,29 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+
             .register-left,
             .register-right {
                 padding: 2rem;
             }
-            
+
             .welcome-title {
                 font-size: 1.75rem;
             }
-            
+
             .social-login {
                 grid-template-columns: 1fr;
             }
-            
+
             .step-navigation {
                 flex-direction: column;
             }
-            
+
             .theme-toggle {
                 top: 1rem;
                 right: 1rem;
             }
-            
+
             .theme-btn {
                 width: 40px;
                 height: 40px;
@@ -930,16 +955,16 @@
             .register-container {
                 margin: 1rem auto;
             }
-            
+
             .register-left,
             .register-right {
                 padding: 1.5rem;
             }
-            
+
             .logo {
                 font-size: 1.5rem;
             }
-            
+
             .form-title {
                 font-size: 1.5rem;
             }
@@ -967,7 +992,7 @@
 <body>
     <!-- Background Animation -->
     <div class="bg-animation"></div>
-    
+
     <!-- Floating Elements -->
     <div class="floating-element float-1"></div>
     <div class="floating-element float-2"></div>
@@ -990,15 +1015,16 @@
                         <i class="fas fa-user-plus"></i>
                         <span>JM</span>benga
                     </div>
-                    
+
                     <h1 class="welcome-title">
                         Junte-se à Comunidade Tech
                     </h1>
-                    
+
                     <p class="welcome-subtitle">
-                        Cadastre-se para acessar recursos exclusivos, gerenciar seus projetos e fazer parte da rede de desenvolvedores Angolanos.
+                        Cadastre-se para acessar recursos exclusivos, gerenciar seus projetos e fazer parte da rede de
+                        desenvolvedores Angolanos.
                     </p>
-                    
+
                     <ul class="features-list">
                         <li>
                             <i class="fas fa-check"></i>
@@ -1021,7 +1047,7 @@
                             <span>Suporte Técnico Prioritário</span>
                         </li>
                     </ul>
-                    
+
                     <div class="illustration">
                         <i class="fas fa-user-astronaut"></i>
                     </div>
@@ -1033,17 +1059,17 @@
                 <!-- Progress Steps -->
                 <div class="progress-steps">
                     <div class="progress-bar" id="progressBar" style="width: 33.33%"></div>
-                    
+
                     <div class="step active" id="step1">
                         <div class="step-number">1</div>
                         <div class="step-label">Informações</div>
                     </div>
-                    
+
                     <div class="step" id="step2">
                         <div class="step-number">2</div>
                         <div class="step-label">Conta</div>
                     </div>
-                    
+
                     <div class="step" id="step3">
                         <div class="step-number">3</div>
                         <div class="step-label">Confirmar</div>
@@ -1074,7 +1100,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="lastName">Sobrenome *</label>
@@ -1177,7 +1203,7 @@
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </div>
-                            
+
                             <!-- Password Strength Meter -->
                             <div class="password-strength">
                                 <div class="strength-meter">
@@ -1188,7 +1214,7 @@
                                     <span id="strengthText">Fraca</span>
                                 </div>
                             </div>
-                            
+
                             <!-- Password Requirements -->
                             <div class="strength-requirements">
                                 <div class="requirement" id="reqLength">
@@ -1267,14 +1293,16 @@
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="newsletter">
                             <label class="form-check-label" for="newsletter">
-                                Desejo receber atualizações sobre novos projetos, dicas de desenvolvimento e oportunidades de trabalho por email.
+                                Desejo receber atualizações sobre novos projetos, dicas de desenvolvimento e
+                                oportunidades de trabalho por email.
                             </label>
                         </div>
 
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="terms" required>
                             <label class="form-check-label" for="terms">
-                                Concordo com os <a href="#" target="_blank">Termos de Serviço</a> e <a href="#" target="_blank">Política de Privacidade</a>. *
+                                Concordo com os <a href="#" target="_blank">Termos de Serviço</a> e <a href="#"
+                                    target="_blank">Política de Privacidade</a>. *
                             </label>
                         </div>
 
@@ -1324,25 +1352,25 @@
             <div class="success-icon">
                 <i class="fas fa-check"></i>
             </div>
-            
+
             <h2 class="success-title">Conta Criada com Sucesso!</h2>
-            
+
             <p class="success-message">
                 Enviamos um email de confirmação para <strong id="confirmedEmail"></strong>.
                 Clique no link no email para ativar sua conta.
             </p>
-            
+
             <div class="confirmation-code" id="confirmationCode">
                 <!-- Código será gerado aqui -->
             </div>
-            
+
             <p class="success-message">
                 <small>
                     <i class="fas fa-info-circle"></i>
                     Guarde este código de confirmação caso não receba o email.
                 </small>
             </p>
-            
+
             <div class="step-navigation">
                 <button class="step-btn prev" id="closeSuccessModal">
                     <i class="fas fa-times"></i>
@@ -1358,10 +1386,10 @@
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
         // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             initThemeToggle();
             initInputMask();
             initFormValidation();
@@ -1374,13 +1402,14 @@
         // Theme Toggle
         function initThemeToggle() {
             const themeToggle = document.getElementById('themeToggle');
-            themeToggle.addEventListener('click', function() {
+            themeToggle.addEventListener('click', function () {
                 document.body.classList.toggle('light-theme');
                 const icon = this.querySelector('i');
-                icon.className = document.body.classList.contains('light-theme') 
-                    ? 'fas fa-sun' 
-                    : 'fas fa-moon';
-                localStorage.setItem('registerTheme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+                icon.className = document.body.classList.contains('light-theme') ?
+                    'fas fa-sun' :
+                    'fas fa-moon';
+                localStorage.setItem('registerTheme', document.body.classList.contains('light-theme') ?
+                    'light' : 'dark');
             });
 
             // Load saved theme
@@ -1413,27 +1442,27 @@
             const confirmPassword = document.getElementById('confirmPassword');
 
             // Real-time validation for email
-            email.addEventListener('input', function() {
+            email.addEventListener('input', function () {
                 validateEmail(this);
             });
 
             // Real-time validation for phone
-            phone.addEventListener('input', function() {
+            phone.addEventListener('input', function () {
                 validatePhone(this);
             });
 
             // Real-time validation for username
-            username.addEventListener('input', function() {
+            username.addEventListener('input', function () {
                 validateUsername(this);
             });
 
             // Confirm password validation
-            confirmPassword.addEventListener('input', function() {
+            confirmPassword.addEventListener('input', function () {
                 validateConfirmPassword();
             });
 
             // Form submission
-            document.getElementById('preferencesForm').addEventListener('submit', function(e) {
+            document.getElementById('preferencesForm').addEventListener('submit', function (e) {
                 e.preventDefault();
                 if (validateAll()) {
                     showSuccessModal();
@@ -1446,17 +1475,18 @@
             const email = input.value.trim();
             const validation = document.getElementById('emailValidation');
             const icon = input.parentElement.querySelector('.input-icon i');
-            
+
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
+
             if (email === '') {
                 input.classList.remove('success', 'error');
                 icon.className = 'fas fa-envelope';
                 validation.className = 'validation-message info';
-                validation.innerHTML = '<i class="fas fa-info-circle"></i><span>Usaremos para confirmar sua conta</span>';
+                validation.innerHTML =
+                    '<i class="fas fa-info-circle"></i><span>Usaremos para confirmar sua conta</span>';
                 return false;
             }
-            
+
             if (!emailRegex.test(email)) {
                 input.classList.remove('success');
                 input.classList.add('error');
@@ -1465,11 +1495,11 @@
                 validation.innerHTML = '<i class="fas fa-times-circle"></i><span>Email inválido</span>';
                 return false;
             }
-            
+
             // Simulate email availability check
             const commonDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com'];
             const domain = email.split('@')[1];
-            
+
             if (commonDomains.includes(domain)) {
                 input.classList.remove('error');
                 input.classList.add('success');
@@ -1502,7 +1532,7 @@
             const phone = input.value.replace(/\D/g, '');
             const validation = document.getElementById('phoneValidation');
             const icon = input.parentElement.querySelector('.input-icon i');
-            
+
             // Angola phone number format: +244 9XX XXX XXX
             if (phone === '') {
                 input.classList.remove('success', 'error');
@@ -1511,7 +1541,7 @@
                 validation.innerHTML = '<i class="fas fa-info-circle"></i><span>Formato: (+244) XXX XXX XXX</span>';
                 return false;
             }
-            
+
             if (phone.length === 12 && phone.startsWith('2449')) {
                 input.classList.remove('error');
                 input.classList.add('success');
@@ -1534,17 +1564,18 @@
             const username = input.value.trim();
             const validation = document.getElementById('usernameValidation');
             const icon = input.parentElement.querySelector('.input-icon i');
-            
+
             const usernameRegex = /^[a-zA-Z0-9.]{3,20}$/;
-            
+
             if (username === '') {
                 input.classList.remove('success', 'error');
                 icon.className = 'fas fa-at';
                 validation.className = 'validation-message info';
-                validation.innerHTML = '<i class="fas fa-info-circle"></i><span>3-20 caracteres, letras, números e pontos</span>';
+                validation.innerHTML =
+                    '<i class="fas fa-info-circle"></i><span>3-20 caracteres, letras, números e pontos</span>';
                 return false;
             }
-            
+
             if (!usernameRegex.test(username)) {
                 input.classList.remove('success');
                 input.classList.add('error');
@@ -1553,26 +1584,28 @@
                 validation.innerHTML = '<i class="fas fa-times-circle"></i><span>Username inválido</span>';
                 return false;
             }
-            
+
             // Simulate username availability check
             const takenUsernames = ['admin', 'jose', 'mbenga', 'teste', 'user'];
-            
+
             setTimeout(() => {
                 if (takenUsernames.includes(username.toLowerCase())) {
                     input.classList.remove('success');
                     input.classList.add('error');
                     icon.className = 'fas fa-exclamation-circle error';
                     validation.className = 'validation-message error';
-                    validation.innerHTML = '<i class="fas fa-times-circle"></i><span>Username já está em uso</span>';
+                    validation.innerHTML =
+                        '<i class="fas fa-times-circle"></i><span>Username já está em uso</span>';
                 } else {
                     input.classList.remove('error');
                     input.classList.add('success');
                     icon.className = 'fas fa-check-circle success';
                     validation.className = 'validation-message success';
-                    validation.innerHTML = '<i class="fas fa-check-circle"></i><span>Username disponível</span>';
+                    validation.innerHTML =
+                    '<i class="fas fa-check-circle"></i><span>Username disponível</span>';
                 }
             }, 500);
-            
+
             return true;
         }
 
@@ -1581,46 +1614,46 @@
             const passwordInput = document.getElementById('password');
             const strengthFill = document.getElementById('strengthFill');
             const strengthText = document.getElementById('strengthText');
-            
+
             // Password requirements elements
             const reqLength = document.getElementById('reqLength');
             const reqUppercase = document.getElementById('reqUppercase');
             const reqLowercase = document.getElementById('reqLowercase');
             const reqNumber = document.getElementById('reqNumber');
             const reqSpecial = document.getElementById('reqSpecial');
-            
-            passwordInput.addEventListener('input', function() {
+
+            passwordInput.addEventListener('input', function () {
                 const password = this.value;
                 const result = zxcvbn(password);
-                
+
                 // Update strength meter
                 const strength = result.score; // 0-4
                 const percentages = ['0%', '25%', '50%', '75%', '100%'];
                 const colors = ['#ef4444', '#f59e0b', '#f59e0b', '#10b981', '#10b981'];
                 const texts = ['Muito Fraca', 'Fraca', 'Média', 'Forte', 'Muito Forte'];
-                
+
                 strengthFill.style.width = percentages[strength];
                 strengthFill.style.backgroundColor = colors[strength];
                 strengthText.textContent = texts[strength];
                 strengthText.style.color = colors[strength];
-                
+
                 // Update requirements
                 const hasLength = password.length >= 8;
                 const hasUppercase = /[A-Z]/.test(password);
                 const hasLowercase = /[a-z]/.test(password);
                 const hasNumber = /[0-9]/.test(password);
                 const hasSpecial = /[^A-Za-z0-9]/.test(password);
-                
+
                 updateRequirement(reqLength, hasLength);
                 updateRequirement(reqUppercase, hasUppercase);
                 updateRequirement(reqLowercase, hasLowercase);
                 updateRequirement(reqNumber, hasNumber);
                 updateRequirement(reqSpecial, hasSpecial);
-                
+
                 // Validate confirm password in real-time
                 validateConfirmPassword();
             });
-            
+
             function updateRequirement(element, isValid) {
                 if (isValid) {
                     element.classList.add('valid');
@@ -1640,14 +1673,14 @@
             const confirmPassword = document.getElementById('confirmPassword');
             const confirmVal = confirmPassword.value;
             const validation = document.getElementById('confirmPasswordValidation');
-            
+
             if (confirmVal === '') {
                 confirmPassword.classList.remove('success', 'error');
                 validation.className = 'validation-message info';
                 validation.innerHTML = '<i class="fas fa-info-circle"></i><span>As senhas devem coincidir</span>';
                 return false;
             }
-            
+
             if (confirmVal === password && password.length >= 8) {
                 confirmPassword.classList.remove('error');
                 confirmPassword.classList.add('success');
@@ -1666,50 +1699,50 @@
         // Step Navigation
         function initStepNavigation() {
             let currentStep = 1;
-            
+
             // Next Step 1
-            document.getElementById('nextStep1').addEventListener('click', function() {
+            document.getElementById('nextStep1').addEventListener('click', function () {
                 if (validateStep1()) {
                     goToStep(2);
                 }
             });
-            
+
             // Next Step 2
-            document.getElementById('nextStep2').addEventListener('click', function() {
+            document.getElementById('nextStep2').addEventListener('click', function () {
                 if (validateStep2()) {
                     goToStep(3);
                 }
             });
-            
+
             // Previous Step 2
-            document.getElementById('prevStep2').addEventListener('click', function() {
+            document.getElementById('prevStep2').addEventListener('click', function () {
                 goToStep(1);
             });
-            
+
             // Previous Step 3
-            document.getElementById('prevStep3').addEventListener('click', function() {
+            document.getElementById('prevStep3').addEventListener('click', function () {
                 goToStep(2);
             });
-            
+
             function goToStep(step) {
                 // Hide all steps
                 document.querySelectorAll('.step-form').forEach(form => {
                     form.classList.remove('active');
                 });
-                
+
                 // Remove active class from all steps
                 document.querySelectorAll('.step').forEach(stepEl => {
                     stepEl.classList.remove('active', 'completed');
                 });
-                
+
                 // Show target step
                 document.getElementById('stepForm' + step).classList.add('active');
-                
+
                 // Update progress bar
                 const progressBar = document.getElementById('progressBar');
                 const progressWidth = ((step - 1) / 2) * 100 + '%';
                 progressBar.style.width = progressWidth;
-                
+
                 // Update step indicators
                 for (let i = 1; i <= 3; i++) {
                     const stepEl = document.getElementById('step' + i);
@@ -1719,81 +1752,84 @@
                         stepEl.classList.add('active');
                     }
                 }
-                
+
                 currentStep = step;
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             }
-            
+
             function validateStep1() {
                 const firstName = document.getElementById('firstName').value.trim();
                 const lastName = document.getElementById('lastName').value.trim();
                 const email = document.getElementById('email').value.trim();
                 const phone = document.getElementById('phone').value.replace(/\D/g, '');
-                
+
                 let isValid = true;
-                
+
                 if (!firstName) {
                     showValidationError('firstName', 'Nome é obrigatório');
                     isValid = false;
                 }
-                
+
                 if (!lastName) {
                     showValidationError('lastName', 'Sobrenome é obrigatório');
                     isValid = false;
                 }
-                
+
                 if (!validateEmail(document.getElementById('email'))) {
                     isValid = false;
                 }
-                
+
                 if (!validatePhone(document.getElementById('phone'))) {
                     isValid = false;
                 }
-                
+
                 return isValid;
             }
-            
+
             function validateStep2() {
                 const username = document.getElementById('username').value.trim();
                 const password = document.getElementById('password').value;
-                
+
                 let isValid = true;
-                
+
                 if (!username) {
                     showValidationError('username', 'Username é obrigatório');
                     isValid = false;
                 }
-                
+
                 if (password.length < 8) {
                     showValidationError('password', 'Senha deve ter pelo menos 8 caracteres');
                     isValid = false;
                 }
-                
+
                 if (!validateConfirmPassword()) {
                     isValid = false;
                 }
-                
+
                 return isValid;
             }
-            
+
             function showValidationError(fieldId, message) {
                 const field = document.getElementById(fieldId);
                 field.classList.add('error');
-                
+
                 // Show temporary error message
                 const errorDiv = document.createElement('div');
                 errorDiv.className = 'validation-message error';
                 errorDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i><span>${message}</span>`;
                 errorDiv.style.animation = 'fadeIn 0.3s ease';
-                
+
                 const parent = field.parentElement.parentElement;
                 const existingError = parent.querySelector('.validation-message.error');
                 if (existingError) {
                     existingError.remove();
                 }
-                
+
                 parent.appendChild(errorDiv);
-                
+
                 // Remove error after 3 seconds
                 setTimeout(() => {
                     errorDiv.remove();
@@ -1804,12 +1840,12 @@
         // Validate All Forms
         function validateAll() {
             const terms = document.getElementById('terms').checked;
-            
+
             if (!terms) {
                 alert('Você deve aceitar os Termos de Serviço e Política de Privacidade.');
                 return false;
             }
-            
+
             return validateStep1() && validateStep2();
         }
 
@@ -1817,17 +1853,17 @@
         function showSuccessModal() {
             const email = document.getElementById('email').value;
             const firstName = document.getElementById('firstName').value;
-            
+
             // Generate confirmation code
             const code = Math.random().toString(36).substring(2, 8).toUpperCase();
-            
+
             // Update modal content
             document.getElementById('confirmedEmail').textContent = email;
             document.getElementById('confirmationCode').textContent = code;
-            
+
             // Show modal
             document.getElementById('successModal').classList.add('active');
-            
+
             // Simulate sending confirmation email
             console.log(`Email de confirmação enviado para: ${email}`);
             console.log(`Código de confirmação: ${code}`);
@@ -1836,10 +1872,10 @@
         // Event Listeners
         function initEventListeners() {
             // Toggle Password Visibility
-            document.getElementById('togglePassword').addEventListener('click', function() {
+            document.getElementById('togglePassword').addEventListener('click', function () {
                 const passwordInput = document.getElementById('password');
                 const icon = this.querySelector('i');
-                
+
                 if (passwordInput.type === 'password') {
                     passwordInput.type = 'text';
                     icon.className = 'fas fa-eye-slash';
@@ -1848,11 +1884,11 @@
                     icon.className = 'fas fa-eye';
                 }
             });
-            
-            document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+
+            document.getElementById('toggleConfirmPassword').addEventListener('click', function () {
                 const confirmInput = document.getElementById('confirmPassword');
                 const icon = this.querySelector('i');
-                
+
                 if (confirmInput.type === 'password') {
                     confirmInput.type = 'text';
                     icon.className = 'fas fa-eye-slash';
@@ -1861,22 +1897,22 @@
                     icon.className = 'fas fa-eye';
                 }
             });
-            
+
             // Close Success Modal
-            document.getElementById('closeSuccessModal').addEventListener('click', function() {
+            document.getElementById('closeSuccessModal').addEventListener('click', function () {
                 document.getElementById('successModal').classList.remove('active');
                 resetForm();
             });
-            
+
             // Go to Dashboard
-            document.getElementById('goToDashboard').addEventListener('click', function() {
+            document.getElementById('goToDashboard').addEventListener('click', function () {
                 // In a real app, this would redirect to dashboard
                 alert('Redirecionando para o Dashboard...');
                 window.location.href = 'dashboard-admin.html';
             });
-            
+
             // Login Link
-            document.getElementById('loginLink').addEventListener('click', function(e) {
+            document.getElementById('loginLink').addEventListener('click', function (e) {
                 e.preventDefault();
                 alert('Página de login será implementada em breve!');
                 // In real app: window.location.href = 'login.html';
@@ -1886,10 +1922,10 @@
         // Social Login Buttons
         function initSocialButtons() {
             document.querySelectorAll('.social-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const provider = this.classList.contains('google') ? 'Google' :
-                                   this.classList.contains('github') ? 'GitHub' : 'LinkedIn';
-                    
+                        this.classList.contains('github') ? 'GitHub' : 'LinkedIn';
+
                     alert(`Login com ${provider} será implementado em breve!`);
                 });
             });
@@ -1901,14 +1937,14 @@
             document.querySelectorAll('.step-form').forEach((form, index) => {
                 form.classList.toggle('active', index === 0);
             });
-            
+
             document.querySelectorAll('.step').forEach((step, index) => {
                 step.classList.remove('active', 'completed');
                 if (index === 0) step.classList.add('active');
             });
-            
+
             document.getElementById('progressBar').style.width = '33.33%';
-            
+
             // Clear all form fields
             document.querySelectorAll('input, select').forEach(field => {
                 if (field.type !== 'submit' && field.type !== 'button') {
@@ -1916,11 +1952,11 @@
                     field.classList.remove('success', 'error');
                 }
             });
-            
+
             // Reset password strength
             document.getElementById('strengthFill').style.width = '0%';
             document.getElementById('strengthText').textContent = 'Fraca';
-            
+
             // Reset requirements
             document.querySelectorAll('.requirement').forEach(req => {
                 req.classList.remove('valid');
@@ -1930,4 +1966,5 @@
         }
     </script>
 </body>
+
 </html>

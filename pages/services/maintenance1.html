@@ -3,17 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Manutenção de Sites e Apps | José Mbenga</title>
 
     <!-- SEO -->
-    <meta name="description" content="Manutenção preventiva e corretiva para sites e aplicativos. Suporte técnico, atualizações, segurança e backup. José Mbenga - Especialista em Manutenção Angola.">
-    <meta name="keywords" content="manutenção de sites, suporte técnico, atualizações, segurança web, backup, Angola, Luanda">
-    
+    <meta name="description"
+        content="Manutenção preventiva e corretiva para sites e aplicativos. Suporte técnico, atualizações, segurança e backup. José Mbenga - Especialista em Manutenção Angola.">
+    <meta name="keywords"
+        content="manutenção de sites, suporte técnico, atualizações, segurança web, backup, Angola, Luanda">
+
     <!-- Open Graph -->
     <meta property="og:title" content="Manutenção de Sites e Apps | José Mbenga">
-    <meta property="og:description" content="Manutenção preventiva e suporte técnico para manter seu site ou app sempre funcionando perfeitamente.">
-    
+    <meta property="og:description"
+        content="Manutenção preventiva e suporte técnico para manter seu site ou app sempre funcionando perfeitamente.">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="../favicon_jm.png" type="image/x-icon">
 
@@ -23,7 +27,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -351,7 +356,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
+            background:
                 radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);
             z-index: -1;
@@ -403,10 +408,21 @@
             color: var(--text-muted);
         }
 
-        .metric-good { color: var(--success); }
-        .metric-warning { color: var(--warning); }
-        .metric-danger { color: var(--danger); }
-        .metric-info { color: var(--primary); }
+        .metric-good {
+            color: var(--success);
+        }
+
+        .metric-warning {
+            color: var(--warning);
+        }
+
+        .metric-danger {
+            color: var(--danger);
+        }
+
+        .metric-info {
+            color: var(--primary);
+        }
 
         .dashboard-alerts {
             padding: 1.5rem;
@@ -435,13 +451,32 @@
             font-size: 0.875rem;
         }
 
-        .alert-success { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); }
-        .alert-warning { background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.3); }
-        .alert-danger { background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); }
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
 
-        .alert-icon.success { background: var(--success); }
-        .alert-icon.warning { background: var(--warning); }
-        .alert-icon.danger { background: var(--danger); }
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .alert-icon.success {
+            background: var(--success);
+        }
+
+        .alert-icon.warning {
+            background: var(--warning);
+        }
+
+        .alert-icon.danger {
+            background: var(--danger);
+        }
 
         /* FAQ */
         .faq-item {
@@ -511,15 +546,15 @@
             .section-title {
                 font-size: 2rem;
             }
-            
+
             .pricing-card.popular {
                 transform: none;
             }
-            
+
             .service-card {
                 margin-bottom: 1.5rem;
             }
-            
+
             .dashboard-metrics {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -529,7 +564,7 @@
             .dashboard-metrics {
                 grid-template-columns: 1fr;
             }
-            
+
             .metric-card {
                 padding: 0.75rem;
             }
@@ -537,8 +572,15 @@
 
         /* Animations */
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .floating-element {
@@ -546,8 +588,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
         }
 
         .pulse {
@@ -563,10 +612,21 @@
             margin-right: 8px;
         }
 
-        .status-online { background: var(--success); }
-        .status-warning { background: var(--warning); }
-        .status-offline { background: var(--danger); }
-        .status-maintenance { background: var(--maintenance); }
+        .status-online {
+            background: var(--success);
+        }
+
+        .status-warning {
+            background: var(--warning);
+        }
+
+        .status-offline {
+            background: var(--danger);
+        }
+
+        .status-maintenance {
+            background: var(--maintenance);
+        }
 
         /* Timeline */
         .timeline {
@@ -638,7 +698,8 @@
                         Manutenção <span class="text-gradient">Preventiva</span> para Sites & Apps
                     </h1>
                     <p class="lead mb-4 text-muted">
-                        Mantenha seu site ou aplicativo sempre seguro, rápido e atualizado. Evite problemas e focque no que realmente importa: seu negócio.
+                        Mantenha seu site ou aplicativo sempre seguro, rápido e atualizado. Evite problemas e focque no
+                        que realmente importa: seu negócio.
                     </p>
                     <div class="d-flex flex-wrap gap-2 mb-4">
                         <span class="badge bg-success bg-opacity-10 text-success px-3 py-2">
@@ -721,7 +782,8 @@
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="section-title">Por Que Manutenção é Essencial?</h2>
-                <p class="section-subtitle">Seu site ou app precisa de cuidados constantes como qualquer outro ativo do seu negócio</p>
+                <p class="section-subtitle">Seu site ou app precisa de cuidados constantes como qualquer outro ativo do
+                    seu negócio</p>
             </div>
             <div class="row g-4">
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
@@ -775,7 +837,8 @@
                         </div>
                         <h4 class="mb-3">Segurança</h4>
                         <p class="text-muted mb-0">
-                            Firewall, SSL, proteção contra hackers, scans de vulnerabilidade e atualizações de segurança.
+                            Firewall, SSL, proteção contra hackers, scans de vulnerabilidade e atualizações de
+                            segurança.
                         </p>
                     </div>
                 </div>
@@ -923,7 +986,8 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
-                    <div class="p-4" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, transparent 100%); border-radius: 1rem;">
+                    <div class="p-4"
+                        style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, transparent 100%); border-radius: 1rem;">
                         <h2 class="section-title mb-4">
                             <i class="fas fa-ambulance me-2 text-danger"></i>
                             Suporte de <span class="text-danger">Emergência</span>
@@ -933,7 +997,8 @@
                         </p>
                         <div class="mb-4">
                             <div class="d-flex align-items-center mb-3">
-                                <div class="service-icon me-3" style="width: 48px; height: 48px; background: var(--danger);">
+                                <div class="service-icon me-3"
+                                    style="width: 48px; height: 48px; background: var(--danger);">
                                     <i class="fas fa-clock"></i>
                                 </div>
                                 <div>
@@ -942,7 +1007,8 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-center mb-3">
-                                <div class="service-icon me-3" style="width: 48px; height: 48px; background: var(--warning);">
+                                <div class="service-icon me-3"
+                                    style="width: 48px; height: 48px; background: var(--warning);">
                                     <i class="fas fa-life-ring"></i>
                                 </div>
                                 <div>
@@ -951,7 +1017,8 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">
-                                <div class="service-icon me-3" style="width: 48px; height: 48px; background: var(--primary);">
+                                <div class="service-icon me-3"
+                                    style="width: 48px; height: 48px; background: var(--primary);">
                                     <i class="fas fa-shield-alt"></i>
                                 </div>
                                 <div>
@@ -960,8 +1027,8 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="https://wa.me/244922030116?text=EMERGÊNCIA:%20Meu%20site%20está%20com%20problemas" 
-                           target="_blank" class="btn btn-danger btn-lg w-100 pulse">
+                        <a href="https://wa.me/244922030116?text=EMERGÊNCIA:%20Meu%20site%20está%20com%20problemas"
+                            target="_blank" class="btn btn-danger btn-lg w-100 pulse">
                             <i class="fab fa-whatsapp me-2"></i>WhatsApp de Emergência
                         </a>
                     </div>
@@ -1085,7 +1152,7 @@
                     <i class="fas fa-info-circle me-2"></i>
                     <div class="text-start">
                         <small class="text-muted">
-                            <strong>Nota:</strong> Todos os planos incluem correção de bugs críticos. 
+                            <strong>Nota:</strong> Todos os planos incluem correção de bugs críticos.
                             <br>
                             <span class="text-primary">* Primeiro mês com 30% de desconto para novos clientes</span>
                         </small>
@@ -1110,7 +1177,9 @@
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>Sim, todos os planos são mensais sem fidelidade. Basta avisar com 7 dias de antecedência. O acesso aos backups realizados durante o período contratado é mantido por 30 dias após o cancelamento.</p>
+                            <p>Sim, todos os planos são mensais sem fidelidade. Basta avisar com 7 dias de antecedência.
+                                O acesso aos backups realizados durante o período contratado é mantido por 30 dias após
+                                o cancelamento.</p>
                         </div>
                     </div>
                     <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
@@ -1119,7 +1188,8 @@
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>Trabalho com horas extras a $40/hora para demandas não incluídas no plano. Sempre consulto antes de realizar qualquer trabalho extra e forneço orçamento prévio.</p>
+                            <p>Trabalho com horas extras a $40/hora para demandas não incluídas no plano. Sempre
+                                consulto antes de realizar qualquer trabalho extra e forneço orçamento prévio.</p>
                         </div>
                     </div>
                     <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
@@ -1128,7 +1198,9 @@
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>Os backups incluem banco de dados, arquivos, emails e configurações. São armazenados em servidores seguros na Europa com criptografia. Mantemos versões dos últimos 30 dias no plano Profissional e 90 dias no Enterprise.</p>
+                            <p>Os backups incluem banco de dados, arquivos, emails e configurações. São armazenados em
+                                servidores seguros na Europa com criptografia. Mantemos versões dos últimos 30 dias no
+                                plano Profissional e 90 dias no Enterprise.</p>
                         </div>
                     </div>
                     <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
@@ -1137,7 +1209,9 @@
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>Trabalho com WordPress, HTML/CSS/JS estático, React, Vue, Node.js, Laravel, e-commerce (Magento, WooCommerce), e aplicativos mobile. Se seu site usa uma tecnologia diferente, entre em contato para avaliar.</p>
+                            <p>Trabalho com WordPress, HTML/CSS/JS estático, React, Vue, Node.js, Laravel, e-commerce
+                                (Magento, WooCommerce), e aplicativos mobile. Se seu site usa uma tecnologia diferente,
+                                entre em contato para avaliar.</p>
                         </div>
                     </div>
                     <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
@@ -1146,7 +1220,9 @@
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>No plano Profissional e Enterprise, a limpeza de malware está incluída. Restauramos a versão limpa do backup mais recente, removemos todo código malicioso e fortalecemos a segurança para prevenir futuros ataques.</p>
+                            <p>No plano Profissional e Enterprise, a limpeza de malware está incluída. Restauramos a
+                                versão limpa do backup mais recente, removemos todo código malicioso e fortalecemos a
+                                segurança para prevenir futuros ataques.</p>
                         </div>
                     </div>
                 </div>
@@ -1174,10 +1250,13 @@
                                     <i class="star filled fas fa-star"></i>
                                 </div>
                             </div>
-                            <p class="mb-3">"Meu e-commerce foi hackeado e o José recuperou tudo em menos de 4 horas. Desde então, contrato a manutenção mensal e nunca mais tive problemas. A paz de espírito não tem preço."</p>
+                            <p class="mb-3">"Meu e-commerce foi hackeado e o José recuperou tudo em menos de 4 horas.
+                                Desde então, contrato a manutenção mensal e nunca mais tive problemas. A paz de espírito
+                                não tem preço."</p>
                             <div class="d-flex align-items-center">
                                 <div class="me-3">
-                                    <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                    <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                                        style="width: 40px; height: 40px;">
                                         <span class="text-white fw-bold">AC</span>
                                     </div>
                                 </div>
@@ -1201,10 +1280,13 @@
                                     <i class="star filled fas fa-star"></i>
                                 </div>
                             </div>
-                            <p class="mb-3">"Tinha constantes problemas com meu site institucional lento e com erros. Desde que contrato a manutenção, o site carrega 3x mais rápido e nunca mais tive downtime. O ROI é evidente."</p>
+                            <p class="mb-3">"Tinha constantes problemas com meu site institucional lento e com erros.
+                                Desde que contrato a manutenção, o site carrega 3x mais rápido e nunca mais tive
+                                downtime. O ROI é evidente."</p>
                             <div class="d-flex align-items-center">
                                 <div class="me-3">
-                                    <div class="rounded-circle bg-success d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                    <div class="rounded-circle bg-success d-flex align-items-center justify-content-center"
+                                        style="width: 40px; height: 40px;">
                                         <span class="text-white fw-bold">MP</span>
                                     </div>
                                 </div>
@@ -1228,10 +1310,13 @@
                                     <i class="star filled fas fa-star"></i>
                                 </div>
                             </div>
-                            <p class="mb-3">"Como startup, não podíamos ter um desenvolvedor em tempo integral. A manutenção do José é a solução perfeita: custo-benefício excelente e qualidade profissional. Nosso app nunca esteve tão estável."</p>
+                            <p class="mb-3">"Como startup, não podíamos ter um desenvolvedor em tempo integral. A
+                                manutenção do José é a solução perfeita: custo-benefício excelente e qualidade
+                                profissional. Nosso app nunca esteve tão estável."</p>
                             <div class="d-flex align-items-center">
                                 <div class="me-3">
-                                    <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                    <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center"
+                                        style="width: 40px; height: 40px;">
                                         <span class="text-white fw-bold">TS</span>
                                     </div>
                                 </div>
@@ -1258,7 +1343,8 @@
                     </p>
                     <div class="mb-4">
                         <div class="d-flex align-items-center mb-3">
-                            <div class="service-icon me-3" style="width: 48px; height: 48px; background: var(--gradient-maintenance);">
+                            <div class="service-icon me-3"
+                                style="width: 48px; height: 48px; background: var(--gradient-maintenance);">
                                 <i class="fas fa-calendar-check"></i>
                             </div>
                             <div>
@@ -1267,7 +1353,8 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center mb-3">
-                            <div class="service-icon me-3" style="width: 48px; height: 48px; background: var(--gradient-maintenance);">
+                            <div class="service-icon me-3"
+                                style="width: 48px; height: 48px; background: var(--gradient-maintenance);">
                                 <i class="fas fa-percentage"></i>
                             </div>
                             <div>
@@ -1276,7 +1363,8 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center">
-                            <div class="service-icon me-3" style="width: 48px; height: 48px; background: var(--gradient-maintenance);">
+                            <div class="service-icon me-3"
+                                style="width: 48px; height: 48px; background: var(--gradient-maintenance);">
                                 <i class="fab fa-whatsapp"></i>
                             </div>
                             <div>
@@ -1332,7 +1420,8 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Descreva suas Necessidades</label>
-                                <textarea class="form-control form-control-custom" rows="4" placeholder="Fale sobre seu site, problemas atuais, e o que espera da manutenção..."></textarea>
+                                <textarea class="form-control form-control-custom" rows="4"
+                                    placeholder="Fale sobre seu site, problemas atuais, e o que espera da manutenção..."></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary-custom w-100">
                                 <i class="fas fa-paper-plane me-2"></i>Solicitar Análise Gratuita
@@ -1362,7 +1451,8 @@
                         <a href="https://github.com/josembenga" class="btn btn-outline-custom btn-sm" target="_blank">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://linkedin.com/in/jose-mbenga-da-costa" class="btn btn-outline-custom btn-sm" target="_blank">
+                        <a href="https://linkedin.com/in/jose-mbenga-da-costa" class="btn btn-outline-custom btn-sm"
+                            target="_blank">
                             <i class="fab fa-linkedin"></i>
                         </a>
                         <a href="mailto:josembengadacosta@gmail.com" class="btn btn-outline-custom btn-sm">
@@ -1409,7 +1499,7 @@
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
+
     <script>
         // Initialize AOS
         AOS.init({
@@ -1418,12 +1508,12 @@
         });
 
         // Theme Toggle
-        document.getElementById('themeToggle').addEventListener('click', function() {
+        document.getElementById('themeToggle').addEventListener('click', function () {
             document.body.classList.toggle('light-theme');
             const icon = this.querySelector('i');
-            icon.className = document.body.classList.contains('light-theme') 
-                ? 'fas fa-sun' 
-                : 'fas fa-moon';
+            icon.className = document.body.classList.contains('light-theme') ?
+                'fas fa-sun' :
+                'fas fa-moon';
             localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
         });
 
@@ -1436,22 +1526,22 @@
 
         // FAQ Toggle
         document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
+            question.addEventListener('click', function () {
                 const item = this.parentElement;
                 item.classList.toggle('active');
             });
         });
 
         // Emergency Form
-        document.getElementById('emergencyForm').addEventListener('submit', function(e) {
+        document.getElementById('emergencyForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
-            
+
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando Emergência...';
             submitBtn.disabled = true;
-            
+
             setTimeout(() => {
                 // Get emergency type
                 const emergencyType = this.querySelector('select').value;
@@ -1463,12 +1553,14 @@
                     'backup': 'Restauração de backup',
                     'other': 'Outro problema'
                 };
-                
-                alert(`EMERGÊNCIA REGISTRADA!\n\nTipo: ${emergencyLabels[emergencyType]}\n\nAcabei de receber seu pedido de emergência e já estou analisando. Entrarei em contato pelo WhatsApp em até 2 horas.\n\nEnquanto isso, não faça alterações no site.`);
-                
+
+                alert(
+                    `EMERGÊNCIA REGISTRADA!\n\nTipo: ${emergencyLabels[emergencyType]}\n\nAcabei de receber seu pedido de emergência e já estou analisando. Entrarei em contato pelo WhatsApp em até 2 horas.\n\nEnquanto isso, não faça alterações no site.`);
+
                 // Also open WhatsApp as fallback
-                window.open('https://wa.me/244922030116?text=EMERGÊNCIA%20REGISTRADA:%20' + emergencyLabels[emergencyType], '_blank');
-                
+                window.open('https://wa.me/244922030116?text=EMERGÊNCIA%20REGISTRADA:%20' +
+                    emergencyLabels[emergencyType], '_blank');
+
                 setTimeout(() => {
                     this.reset();
                     submitBtn.innerHTML = originalText;
@@ -1478,15 +1570,15 @@
         });
 
         // Maintenance Contact Form
-        document.getElementById('maintenanceContactForm').addEventListener('submit', function(e) {
+        document.getElementById('maintenanceContactForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
-            
+
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Solicitando Análise...';
             submitBtn.disabled = true;
-            
+
             setTimeout(() => {
                 const plan = this.querySelector('select').value;
                 const planLabels = {
@@ -1495,9 +1587,10 @@
                     'enterprise': 'Enterprise ($399/mês)',
                     'custom': 'Personalizado'
                 };
-                
-                alert(`ANÁLISE GRATUITA SOLICITADA!\n\nPlano de interesse: ${planLabels[plan]}\n\nObrigado! Recebi sua solicitação de análise gratuita. Em até 24 horas úteis entrarei em contato com:\n\n1. Relatório completo do seu site\n2. Recomendações específicas\n3. Orçamento personalizado\n4. 30% desconto no primeiro mês`);
-                
+
+                alert(
+                    `ANÁLISE GRATUITA SOLICITADA!\n\nPlano de interesse: ${planLabels[plan]}\n\nObrigado! Recebi sua solicitação de análise gratuita. Em até 24 horas úteis entrarei em contato com:\n\n1. Relatório completo do seu site\n2. Recomendações específicas\n3. Orçamento personalizado\n4. 30% desconto no primeiro mês`);
+
                 setTimeout(() => {
                     this.reset();
                     submitBtn.innerHTML = originalText;
@@ -1514,7 +1607,7 @@
                 if (text.includes('%') || text.includes('s') || text === '24/7' || text === '0') {
                     metric.style.opacity = '0';
                     metric.style.transform = 'translateY(20px)';
-                    
+
                     setTimeout(() => {
                         metric.style.transition = 'all 0.5s ease';
                         metric.style.opacity = '1';
@@ -1533,7 +1626,7 @@
             setTimeout(() => {
                 alert.style.opacity = '0';
                 alert.style.transform = 'translateX(-20px)';
-                
+
                 setTimeout(() => {
                     alert.style.transition = 'all 0.5s ease';
                     alert.style.opacity = '1';
@@ -1552,14 +1645,14 @@
 
         // Service card hover effects
         document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
+            card.addEventListener('mouseenter', function () {
                 const icon = this.querySelector('.service-icon');
                 if (icon) {
                     icon.style.transform = 'scale(1.1) rotate(5deg)';
                 }
             });
-            
-            card.addEventListener('mouseleave', function() {
+
+            card.addEventListener('mouseleave', function () {
                 const icon = this.querySelector('.service-icon');
                 if (icon) {
                     icon.style.transform = 'scale(1) rotate(0deg)';
@@ -1569,14 +1662,14 @@
 
         // Pricing card hover effect
         document.querySelectorAll('.pricing-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
+            card.addEventListener('mouseenter', function () {
                 const price = this.querySelector('.h2');
                 if (price) {
                     price.style.transform = 'scale(1.1)';
                 }
             });
-            
-            card.addEventListener('mouseleave', function() {
+
+            card.addEventListener('mouseleave', function () {
                 const price = this.querySelector('.h2');
                 if (price) {
                     price.style.transform = 'scale(1)';
@@ -1585,4 +1678,5 @@
         });
     </script>
 </body>
+
 </html>

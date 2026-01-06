@@ -1674,11 +1674,11 @@
                 if (isLightTheme) {
                     themeIcon.className = 'fas fa-sun';
                     localStorage.setItem('theme', 'light');
-                    showNotification('Tema claro ativado');
+                    showNotification('Tema claro ativado <i class="fas fa-sun"></i>');
                 } else {
                     themeIcon.className = 'fas fa-moon';
                     localStorage.setItem('theme', 'dark');
-                    showNotification('Tema escuro ativado');
+                    showNotification('Tema escuro ativado <i class="fas fa-moon"></i>');
                 }
             });
         }
@@ -1948,7 +1948,7 @@
                 }
 
                 if (!concern) {
-                    showNotification('Por favor, selecione seu interesse', 'warning');
+                    showNotification('Por favor, selecione seu interesse <i class="fas fa-exclamation-triangle"></i>', 'warning');
                     document.getElementById('concern').focus();
                     return;
                 }
@@ -1989,7 +1989,7 @@
                     } [urgency];
 
                     showNotification(
-                        `Solicitação registrada com sucesso! Você será contatado com ${urgencyText}.`,
+                        `Solicitação registrada com sucesso! Você será contatado com ${urgencyText}. Obrigado! <i class="fas fa-check-circle"></i>`,
                         'success'
                     );
 
@@ -2119,15 +2119,15 @@
                         const minutesLeft = Math.floor(timeLeft / (1000 * 60));
 
                         if (minutesLeft <= 0) {
-                            showNotification('A suspensão foi concluída! O site está retornando...',
+                            showNotification('A suspensão foi concluída! O site está retornando... <i class="fas fa-check-circle"></i>',
                                 'success');
                         } else if (minutesLeft <= 30) {
                             showNotification(
-                                `Status: Suspensão em fase final. ${minutesLeft} minutos restantes.`,
+                                `Status: Suspensão em fase final. ${minutesLeft} minutos restantes. <i class="fas fa-info-circle"></i>`,
                                 'info');
                         } else {
                             showNotification(
-                                `Status: Suspensão ainda em andamento. ${Math.floor(minutesLeft / 60)}h ${minutesLeft % 60}min restantes.`,
+                                `Status: Suspensão ainda em andamento. ${Math.floor(minutesLeft / 60)}h ${minutesLeft % 60}min restantes. <i class="fas fa-info-circle"></i>`,
                                 'info');
                         }
 
@@ -2485,7 +2485,7 @@
             // Ctrl + S para status
             if (e.ctrlKey && e.key === 's') {
                 e.preventDefault();
-                showNotification('Status da suspensão atualizado', 'info');
+                showNotification('Status da suspensão atualizado <i class="fas fa-info-circle"></i>', 'info');
                 document.getElementById('lastUpdate').textContent = formatDateTime(new Date());
             }
 

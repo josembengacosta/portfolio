@@ -134,13 +134,13 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("✅ App sendo instalado...");
         isInstalled = true;
         showNotification(
-          " App instalado! Encontre-o na sua tela inicial.",
+          " App instalado! Encontre-o na sua tela inicial. <i class='fas fa-check-circle'></i>",
           "success"
         );
       } else {
         console.log("❌ Instalação cancelada");
         showNotification(
-          "Instalação cancelada. Você pode instalar depois!",
+          "Instalação cancelada. Você pode instalar depois! <i class='fas fa-info-circle'></i>",
           "info"
         );
       }
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
       message =
         'No menu do Chrome (⋮), toque em "Adicionar à tela inicial" ou "Instalar app"';
     } else {
-      message = "No Chrome Desktop: Clique no ícone 📥 na barra de endereço";
+      message = "No Chrome Desktop: Clique no ícone <i class='fas fa-download'></i> na barra de endereço";
     }
 
     showNotification(message, "info");
@@ -271,7 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Evento beforeinstallprompt (Chrome)
   window.addEventListener("beforeinstallprompt", (e) => {
-    console.log("🎪 Evento beforeinstallprompt disparado!");
+    console.log("Evento beforeinstallprompt disparado!");
 
     // Prevenir prompt automático
     e.preventDefault();
@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Verificar se pode mostrar botão
     if (checkRequirements()) {
-      console.log("✅ Pode instalar, mostrando botão em 3 segundos...");
+      console.log("Pode instalar, mostrando botão em 3 segundos...");
       setTimeout(() => {
         if (!isInstalled && deferredPrompt) {
           showInstallButton();
@@ -292,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Quando o app é instalado
   window.addEventListener("appinstalled", (evt) => {
-    console.log("✅ PWA instalado com sucesso!");
+    console.log("PWA instalado com sucesso!");
     isInstalled = true;
     deferredPrompt = null;
     hideInstallButton();
@@ -309,26 +309,26 @@ document.addEventListener("DOMContentLoaded", function () {
     navigator.serviceWorker
       .register("./sw.js")
       .then((registration) => {
-        console.log("✅ Service Worker registrado:", registration.scope);
+        console.log("Service Worker registrado:", registration.scope);
 
         // Verificar se há atualizações
         registration.addEventListener("updatefound", () => {
-          console.log("🔄 Nova versão do Service Worker encontrada!");
+          console.log("Nova versão do Service Worker encontrada!");
           showNotification(
-            "Nova versão disponível! Recarregue para atualizar.",
+            "Nova versão disponível! Recarregue para atualizar. <i class='fas fa-sync-alt'></i>",
             "info"
           );
         });
       })
       .catch((error) => {
-        console.error("❌ Erro no Service Worker:", error);
+        console.error("Erro no Service Worker:", error);
       });
   }
 
   // 3. Verificar requisitos iniciais
   setTimeout(() => {
     if (checkRequirements() && !isInstalled && deferredPrompt) {
-      console.log("🔼 Mostrando botão de instalação...");
+      console.log("Mostrando botão de instalação...");
       showInstallButton();
     }
   }, 2000);

@@ -46,7 +46,7 @@
 
             // Mostrar notificação de boas-vindas
             setTimeout(() => {
-                showNotification('Bem-vindo ao meu portfólio! <i class="fas fa-hand fs-4 text-gradient"></i> ', 'info');
+                showNotification('Bem-vindo ao meu portfólio! <i class="fas fa-hand-wave fs-4 text-gradient"></i> ', 'info');
             }, 2000);
         });
 
@@ -478,7 +478,7 @@
                 }
 
                 if (!isValid) {
-                    showNotification('Por favor, corrija os erros no formulário <i class="fas fa-x"></i>', 'error');
+                    showNotification('Por favor, corrija os erros no formulário <i class="fas fa-circle-exclamation"></i>', 'error');
 
                     // Scroll para primeiro erro
                     if (errors.length > 0) {
@@ -518,7 +518,7 @@
                     await new Promise(resolve => setTimeout(resolve, 1500));
 
                     // Sucesso
-                    showNotification('Mensagem enviada com sucesso! Entrarei em contato em breve. <i class="fas fa-check"></i>',
+                    showNotification('Mensagem enviada com sucesso! Entrarei em contato em breve. <i class="fas fa-gift"></i>',
                         'success');
 
                     // Resetar formulário
@@ -532,7 +532,7 @@
 
                 } catch (error) {
                     showNotification(
-                        'Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente por email. <i class="fas fa-x"></i>',
+                        'Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente por email. <i class="fas fa-circle-exclamation"></i>',
                         'error');
                     console.error('Erro no formulário:', error);
                 } finally {
@@ -597,7 +597,7 @@
             if (closeBtn) {
                 closeBtn.addEventListener('click', function () {
                     whatsappFloat.classList.remove('show');
-                    showNotification('WhatsApp minimizado. Clique no ícone para abrir novamente.', 'info');
+                    showNotification('WhatsApp minimizado. Clique no ícone para abrir novamente. <i class="fas fa-comment-dots"></i>', 'info');
                 });
             }
         }
@@ -740,14 +740,14 @@
                 const email = newsletterEmail.value.trim();
 
                 if (!email) {
-                    showNotification('Por favor, insira seu email', 'warning');
+                    showNotification('Por favor, insira seu email <i class="fas fa-envelope"></i>', 'warning');
                     newsletterEmail.focus();
                     return;
                 }
 
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(email)) {
-                    showNotification('Email inválido', 'error');
+                    showNotification('Email inválido <i class="fas fa-envelope-open-text"></i>', 'error');
                     newsletterEmail.focus();
                     return;
                 }
@@ -757,7 +757,7 @@
                 newsletterBtn.disabled = true;
 
                 setTimeout(() => {
-                    showNotification('Inscrição realizada com sucesso! Obrigado! <i class="fas fa-user"></i>', 'success');
+                    showNotification('Inscrição realizada com sucesso! Obrigado! <i class="fas fa-user-check"></i>', 'success');
                     newsletterEmail.value = '';
                     newsletterBtn.innerHTML = 'Inscrever';
                     newsletterBtn.disabled = false;
@@ -855,9 +855,9 @@
         // Copiar email para clipboard
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
-                showNotification('Copiado para a área de transferência!', 'success');
+                showNotification('Copiado para a área de transferência! <i class="fas fa-clipboard"></i>', 'success');
             }).catch(err => {
-                showNotification('Erro ao copiar texto', 'error');
+                showNotification('Erro ao copiar texto <i class="fas fa-circle-exclamation"></i>', 'error');
             });
         }
 

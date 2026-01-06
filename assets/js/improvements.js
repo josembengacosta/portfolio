@@ -400,7 +400,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 };
                 
                 if (window.Portfolio && window.Portfolio.showNotification) {
-                    window.Portfolio.showNotification(`${tech}: ${messages[tech] || 'Tecnologia dominada'}`, 'info');
+                    window.Portfolio.showNotification(`${tech}: ${messages[tech] || 'Tecnologia dominada.'}`, 'info');
                 }
             });
         });

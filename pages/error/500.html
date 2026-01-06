@@ -1207,11 +1207,11 @@
                 if (isLightTheme) {
                     themeIcon.className = 'fas fa-sun';
                     localStorage.setItem('theme', 'light');
-                    showNotification('Tema claro ativado');
+                    showNotification('Tema claro ativado <i class="fas fa-sun"></i>');
                 } else {
                     themeIcon.className = 'fas fa-moon';
                     localStorage.setItem('theme', 'dark');
-                    showNotification('Tema escuro ativado');
+                    showNotification('Tema escuro ativado <i class="fas fa-moon"></i>');
                 }
             });
         }
@@ -1412,14 +1412,14 @@
                 const email = emailInput.value.trim();
 
                 if (!email) {
-                    showNotification('Por favor, insira seu email', 'warning');
+                    showNotification('Por favor, insira seu email <i class="fas fa-exclamation-triangle"></i>', 'warning');
                     emailInput.focus();
                     return;
                 }
 
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(email)) {
-                    showNotification('Email inválido', 'error');
+                    showNotification('Email inválido <i class="fas fa-exclamation-triangle"></i>', 'error');
                     emailInput.focus();
                     return;
                 }
@@ -1429,14 +1429,14 @@
                 subscribeBtn.disabled = true;
 
                 setTimeout(() => {
-                    showNotification('Inscrição realizada! Você receberá atualizações por email.',
+                    showNotification('Inscrição realizada! Você receberá atualizações por email. <i class="fas fa-check-circle"></i>',
                         'success');
                     emailInput.value = '';
                     subscribeBtn.innerHTML = '<i class="fas fa-check"></i> Inscrito com Sucesso';
 
                     // Simular notificação de resolução
                     setTimeout(() => {
-                        showNotification('Problema resolvido! O serviço foi restaurado.',
+                        showNotification('Problema resolvido! O serviço foi restaurado. <i class="fas fa-check-circle"></i>',
                             'success');
                         updateStatusToResolved();
                     }, 60000); // Após 1 minuto (em produção seria tempo real)
@@ -1601,7 +1601,7 @@
         // Simular recuperação automática após 2 minutos
         setTimeout(() => {
             if (window.location.pathname.includes('500')) {
-                showNotification('Serviço está sendo restaurado automaticamente...', 'info');
+                showNotification('Serviço está sendo restaurado automaticamente... <i class="fas fa-info-circle"></i>', 'info');
 
                 setTimeout(() => {
                     // Redirecionar para home após recuperação

@@ -292,7 +292,7 @@
                 e.preventDefault();
 
                 if (!validateForm()) {
-                    showNotification('Por favor, corrija os erros no formulário.', 'error');
+                    showNotification('Por favor, corrija os erros no formulário. <i class="fas fa-circle-exclamation"></i>', 'error');
                     return;
                 }
 
@@ -324,11 +324,11 @@
 
                 try {
                     await new Promise(resolve => setTimeout(resolve, 2000));
-                    showNotification('Solicitação enviada com sucesso! Entrarei em contato em até 24 horas.', 'success');
+                    showNotification('Solicitação enviada com sucesso! Entrarei em contato em até 24 horas. <i class="fas fa-gift"></i>', 'success');
                     form.reset();
                     document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth' });
                 } catch (error) {
-                    showNotification('Erro ao enviar solicitação. Tente novamente ou entre em contato diretamente.', 'error');
+                    showNotification('Erro ao enviar solicitação. Tente novamente ou entre em contato diretamente. <i class="fas fa-circle-exclamation"></i>', 'error');
                     console.error('Erro no formulário:', error);
                 } finally {
                     submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Enviar Solicitação';
@@ -340,9 +340,9 @@
             const downloadBtn = document.getElementById('downloadAssets');
             if (downloadBtn) {
                 downloadBtn.addEventListener('click', function() {
-                    showNotification('Iniciando download dos assets do projeto...', 'info');
+                    showNotification('Iniciando download dos assets do projeto... <i class="fas fa-download"></i>', 'info');
                     setTimeout(() => {
-                        showNotification('Assets baixados com sucesso!', 'success');
+                        showNotification('Assets baixados com sucesso! <i class="fas fa-check"></i>', 'success');
                     }, 1500);
                 });
             }
@@ -475,7 +475,7 @@
                 } else {
                     const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent('Confira este projeto incrível!')}&url=${encodeURIComponent(window.location.href)}`;
                     window.open(shareUrl, '_blank', 'width=600,height=400');
-                    showNotification('Link copiado para compartilhamento!', 'success');
+                    showNotification('Link copiado para compartilhamento! <i class="fas fa-share-alt"></i>', 'success');
                 }
             });
         }
@@ -563,7 +563,7 @@
         // Utilitários
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
-                showNotification('Copiado para a área de transferência!', 'success');
+                showNotification('Copiado para a área de transferência! <i class="fas fa-clipboard"></i>', 'success');
             });
         }
 

@@ -1524,11 +1524,11 @@
                 if (isLightTheme) {
                     themeIcon.className = 'fas fa-sun';
                     localStorage.setItem('theme', 'light');
-                    showNotification('Tema claro ativado');
+                    showNotification('Tema claro ativado <i class="fas fa-sun"></i>');
                 } else {
                     themeIcon.className = 'fas fa-moon';
                     localStorage.setItem('theme', 'dark');
-                    showNotification('Tema escuro ativado');
+                    showNotification('Tema escuro ativado <i class="fas fa-moon"></i>');
                 }
             });
         }
@@ -1774,7 +1774,7 @@
 
                     // Mostrar confirmação
                     showNotification(
-                        `Ótimo! Vamos te notificar em <strong>${email}</strong> quando o site voltar.`,
+                        `Ótimo! Vamos te notificar em <strong>${email}</strong> quando o site voltar. <i class="fas fa-check-circle"></i>`,
                         'success'
                     );
 
@@ -1909,14 +1909,14 @@
             // Botão de verificar status
             document.querySelector('a[href="javascript:location.reload()"]').addEventListener('click', function (e) {
                 e.preventDefault();
-                showNotification('Verificando status da manutenção...', 'info');
+                showNotification('Verificando status da manutenção... <i class="fas fa-info-circle"></i>', 'info');
 
                 setTimeout(() => {
                     if (Math.random() > 0.8) {
                         // Simular manutenção concluída
                         checkMaintenanceCompletion(true);
                     } else {
-                        showNotification('A manutenção ainda está em andamento.', 'info');
+                        showNotification('A manutenção ainda está em andamento. <i class="fas fa-info-circle"></i>', 'info');
                     }
                 }, 1000);
             });

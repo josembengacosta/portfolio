@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" 
+  <meta name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover">
   <title>José Mbenga da Costa | Desenvolvedor Web Full Stack</title>
 
@@ -213,32 +213,33 @@
     }
 
     /* ========== FIX PWA SCROLL ========== */
-html, body {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    height: 100% !important;
-    position: relative !important;
-}
-
-/* Quando PWA instalado */
-@media (display-mode: standalone) {
+    html,
     body {
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      height: 100% !important;
+      position: relative !important;
+    }
+
+    /* Quando PWA instalado */
+    @media (display-mode: standalone) {
+      body {
         padding-top: env(safe-area-inset-top);
         padding-bottom: env(safe-area-inset-bottom);
         touch-action: pan-y !important;
         overscroll-behavior-y: auto !important;
-    }
-    
-    .header {
+      }
+
+      .header {
         padding-top: env(safe-area-inset-top);
-    }
-    
-    /* Ajuste para conteúdo não ficar atrás do header */
-    .hero {
+      }
+
+      /* Ajuste para conteúdo não ficar atrás do header */
+      .hero {
         padding-top: calc(6rem + env(safe-area-inset-top)) !important;
+      }
     }
-}
   </style>
 </head>
 
@@ -295,13 +296,41 @@ html, body {
 
         <!-- Desktop Navigation -->
         <div class="nav-desktop">
-          <a href="index.html" class="nav-link active">Home</a>
-          <a href="#about" class="nav-link">Sobre</a>
-          <a href="#skills" class="nav-link">Skills</a>
-          <a href="#projects" class="nav-link">Projetos</a>
-          <a href="#testimonials" class="nav-link">Depoimentos</a>
-          <a href="pages/reviews-feedback.html" class="nav-link">Feedback</a>
-          <a href="#contact" class="nav-link">Contato</a>
+          <!-- Home -->
+          <a href="index.html" class="nav-link active">
+            <i class="fa-solid fa-house"></i> Home
+          </a>
+
+          <!-- Sobre -->
+          <a href="#about" class="nav-link">
+            <i class="fa-solid fa-user"></i> Sobre
+          </a>
+
+          <!-- Skills -->
+          <a href="#skills" class="nav-link">
+            <i class="fa-solid fa-gears"></i> Skills
+          </a>
+
+          <!-- Projetos -->
+          <a href="#projects" class="nav-link">
+            <i class="fa-solid fa-briefcase"></i> Projetos
+          </a>
+
+          <!-- Depoimentos -->
+          <a href="#testimonials" class="nav-link">
+            <i class="fa-solid fa-quote-left"></i> Depoimentos
+          </a>
+
+          <!-- Feedback -->
+          <a href="pages/reviews-feedback.html" class="nav-link">
+            <i class="fa-solid fa-comment-dots"></i> Feedback
+          </a>
+
+          <!-- Contato -->
+          <a href="#contact" class="nav-link">
+            <i class="fa-solid fa-envelope"></i> Contato
+          </a>
+
         </div>
 
         <!-- Mobile Toggle -->
@@ -328,12 +357,36 @@ html, body {
     </div>
 
     <div class="offcanvas-body">
-      <a href="#home" class="offcanvas-link" data-offcanvas>Home</a>
-      <a href="#about" class="offcanvas-link" data-offcanvas>Sobre</a>
-      <a href="#skills" class="offcanvas-link" data-offcanvas>Skills</a>
-      <a href="#projects" class="offcanvas-link" data-offcanvas>Projetos</a>
-      <a href="#testimonials" class="offcanvas-link" data-offcanvas>Depoimentos</a>
-      <a href="#contact" class="offcanvas-link" data-offcanvas>Contato</a>
+      <!-- Home -->
+      <a href="#home" class="offcanvas-link" data-offcanvas>
+        <i class="fa-solid fa-house"></i> Home
+      </a>
+
+      <!-- Sobre -->
+      <a href="#about" class="offcanvas-link" data-offcanvas>
+        <i class="fa-solid fa-user-astronaut"></i> Sobre
+      </a>
+
+      <!-- Skills -->
+      <a href="#skills" class="offcanvas-link" data-offcanvas>
+        <i class="fa-solid fa-code"></i> Skills
+      </a>
+
+      <!-- Projetos -->
+      <a href="#projects" class="offcanvas-link" data-offcanvas>
+        <i class="fa-solid fa-laptop-code"></i> Projetos
+      </a>
+
+      <!-- Depoimentos -->
+      <a href="#testimonials" class="offcanvas-link" data-offcanvas>
+        <i class="fa-solid fa-comments"></i> Depoimentos
+      </a>
+
+      <!-- Contato -->
+      <a href="#contact" class="offcanvas-link" data-offcanvas>
+        <i class="fa-solid fa-paper-plane"></i> Contato
+      </a>
+
 
       <div class="offcanvas-social">
         <a href="https://github.com/josembengacosta" class="social-link" target="_blank" rel="noopener noreferrer"

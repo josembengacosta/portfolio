@@ -3,9 +3,10 @@
 
 <head>
   <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>José Mbenga da Costa | Desenvolvedor Web Full Stack</title>
-  
+
   <!-- Theme Color Dinâmico -->
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc">
@@ -22,14 +23,14 @@
   <!-- ========== PWA CONFIG ========== -->
   <!-- Manifest (IMPORTANTE: usar caminho RELATIVO) -->
   <link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
-  
+
   <!-- Meta PWA -->
   <meta name="application-name" content="JMbenga Dev">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="JMbenga">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  
+
   <!-- MS (Windows) -->
   <meta name="msapplication-TileColor" content="#2563eb">
   <meta name="msapplication-TileImage" content="./assets/img/icons/icon-144x144.png">
@@ -40,13 +41,11 @@
   <!-- Favicon padrão -->
   <link rel="shortcut icon" href="./assets/img/svg/favicon_jm.ico" type="image/x-icon" />
 
-<!-- Splash Screen para iOS -->
-<link rel="apple-touch-startup-image" 
-      href="./assets/img/icons/apple-launch-1242x2688.png" 
-      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
-<link rel="apple-touch-startup-image" 
-      href="./assets/img/icons/apple-launch-828x1792.png" 
-      media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+  <!-- Splash Screen para iOS -->
+  <link rel="apple-touch-startup-image" href="./assets/img/icons/apple-launch-1242x2688.png"
+    media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="./assets/img/icons/apple-launch-828x1792.png"
+    media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
 
   <!-- Ícones para PWA -->
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/icons/favicon-32x32.png">
@@ -55,11 +54,11 @@
   <link rel="apple-touch-icon" sizes="167x167" href="./assets/img/icons/apple-touch-icon-167x167.png">
   <link rel="apple-touch-icon" sizes="152x152" href="./assets/img/icons/apple-touch-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="120x120" href="./assets/img/icons/apple-touch-icon-120x120.png">
-  
+
   <!-- Ícones obrigatórios para PWA -->
   <link rel="icon" type="image/png" sizes="192x192" href="./assets/img/icons/icon-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="./assets/img/icons/icon-512x512.png">
-  
+
   <!-- Safari pinned tab -->
   <link rel="mask-icon" href="./assets/img/icons/safari-pinned-tab.svg" color="#2563eb">
 
@@ -100,7 +99,7 @@
   <link rel="stylesheet" href="./assets/css/main.css" />
   <link rel="stylesheet" href="./assets/css/improvements.css" />
   <link rel="stylesheet" href="./assets/css/particles.css" />
-  
+
   <!-- PWA Styles -->
   <style>
     /* Estilos PWA inline para carregamento rápido */
@@ -125,40 +124,62 @@
       opacity: 0;
       transform: translateY(20px);
     }
-    
+
     .pwa-install-btn.show {
       opacity: 1;
       transform: translateY(0);
     }
-    
+
     .pwa-install-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 12px 30px rgba(37, 99, 235, 0.6);
     }
-    
+
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+      }
+
+      70% {
+        box-shadow: 0 0 0 15px rgba(37, 99, 235, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+      }
     }
-    
+
     @keyframes slideInRight {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
-    
+
     @keyframes slideOutRight {
-      from { transform: translateX(0); opacity: 1; }
-      to { transform: translateX(100%); opacity: 0; }
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateX(100%);
+        opacity: 0;
+      }
     }
-    
+
     /* Para modo standalone (app instalado) */
     @media (display-mode: standalone) {
       body {
         padding-top: env(safe-area-inset-top);
         padding-bottom: env(safe-area-inset-bottom);
       }
-      
+
       header {
         padding-top: env(safe-area-inset-top);
       }
@@ -1354,13 +1375,22 @@
     </div>
   </footer>
 
+  <!-- Botão Flutuante para Desktop -->
+
+  <div id="pwaInstallFloat" class="pwa-float-btn">
+    <button id="pwaFloatBtn">
+      <i class="fas fa-plus-circle"></i>
+      <span>Instalar App</span>
+    </button>
+  </div>
+
   <!-- JavaScript Libraries -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script src="./assets/js/improvements.js"></script>
-<script src="./assets/js/main.js"></script>
-<script src="./assets/js/pwa-install.js"></script>
-<script src="./assets/js/pwa-native.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="./assets/js/improvements.js"></script>
+  <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/pwa-install.js"></script>
+  <script src="./assets/js/pwa-native.js"></script>
 
   <!-- Schema Markup for SEO -->
   <script type="application/ld+json">

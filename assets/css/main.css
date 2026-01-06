@@ -2664,297 +2664,61 @@ textarea.form-input {
     background: var(--primary-dark);
 }
 
-/* ============================================
-   ESTILOS PWA
-   ============================================ */
+/* ========== PWA STYLES ========== */
+.pwa-installed .pwa-install-btn {
+    display: none !important;
+}
 
-.pwa-modal {
-    display: none;
+.pwa-notification {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 23, 42, 0.95);
-    z-index: 10000;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    padding: 20px;
-}
-
-.pwa-modal.show {
-    display: flex;
-    opacity: 1;
-}
-
-.pwa-modal-content {
-    background: #1e293b;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-}
-
-.pwa-modal-header {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.pwa-icon {
-    width: 40px;
-    height: 40px;
-    background: #2563eb;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: white;
-    margin-right: 15px;
-}
-
-.pwa-modal-header h3 {
-    flex: 1;
-    margin: 0;
-    color: white;
-    font-size: 1.2rem;
-}
-
-.pwa-close-btn {
-    background: none;
-    border: none;
-    color: #94a3b8;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 5px;
-}
-
-.pwa-modal-body {
-    padding: 20px;
-}
-
-.pwa-features {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.feature-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #cbd5e1;
-    font-size: 0.9rem;
-}
-
-.feature-item i {
-    color: #2563eb;
-}
-
-.pwa-preview {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    padding: 15px;
-    margin: 20px 0;
-    text-align: center;
-}
-
-.pwa-preview-mockup {
-    width: 150px;
-    background: #0f172a;
-    border-radius: 15px;
-    padding: 10px;
-    margin: 0 auto;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-}
-
-.mockup-header {
-    display: flex;
-    justify-content: space-between;
-    color: white;
-    font-size: 11px;
-    margin-bottom: 10px;
-}
-
-.mockup-battery {
-    color: #10b981;
-}
-
-.app-icon {
-    width: 50px;
-    height: 50px;
-    background: #8b5cf6;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 10px;
-    font-size: 24px;
-    color: white;
-}
-
-.mockup-content h4 {
-    color: white;
-    margin: 5px 0;
-    font-size: 1rem;
-}
-
-.mockup-content p {
-    color: #94a3b8;
-    font-size: 0.8rem;
-    margin: 0;
-}
-
-.pwa-benefits {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    padding: 15px;
-    margin: 15px 0;
-}
-
-.pwa-benefits p {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #e2e8f0;
-    margin: 8px 0;
-    font-size: 0.9rem;
-}
-
-.pwa-benefits i {
-    color: #10b981;
-}
-
-.pwa-modal-footer {
-    padding: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-}
-
-.btn-install {
-    background: #10b981;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin: 0 auto 10px;
-    width: 100%;
-    transition: all 0.3s ease;
-}
-
-.btn-install:hover {
-    background: #059669;
-    transform: translateY(-2px);
-}
-
-.btn-later {
-    background: none;
-    border: none;
-    color: #94a3b8;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-.pwa-note {
-    display: block;
-    color: #64748b;
-    font-size: 0.8rem;
-    margin-top: 10px;
-}
-
-/* Botão Flutuante */
-.pwa-float-btn {
-    position: fixed;
-    bottom: 100px;
+    top: 20px;
     right: 20px;
-    z-index: 9999;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-    display: none;
-}
-
-.pwa-float-btn.show {
-    opacity: 1;
-    transform: translateY(0);
-    display: block;
-}
-
-#pwaFloatBtn {
-    background: #2563eb;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-    transition: all 0.3s ease;
+    padding: 15px 20px;
+    border-radius: 10px;
+    z-index: 10000;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+    animation: slideInRight 0.3s ease;
+    max-width: 350px;
+    border-left: 4px solid #10b981;
 }
 
-#pwaFloatBtn:hover {
-    background: #1d4ed8;
-    transform: translateY(-2px);
+.pwa-notification.success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-left-color: #2563eb;
 }
 
-/* Badge no logo */
-.install-badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background: #10b981;
-    color: white;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 9px;
+.pwa-notification.info {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    border-left-color: #f59e0b;
 }
 
-/* Animações */
-@keyframes slideIn {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes slideOut {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(100%); opacity: 0; }
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-    .pwa-modal-content {
-        margin: 10px;
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
     }
-    
-    .pwa-float-btn {
-        bottom: 80px;
-        right: 15px;
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Para Chrome install badge */
+@media (display-mode: standalone) {
+    body {
+        padding-top: env(safe-area-inset-top);
     }
 }

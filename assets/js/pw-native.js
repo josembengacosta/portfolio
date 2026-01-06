@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const splash = document.createElement('div');
         splash.className = 'app-splash';
         splash.innerHTML = `
-            <div class="splash-content">
+            <div class="splash-content" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; display: flex; justify-content: center; align-items: center; z-index: 9999;">
                 <div class="splash-logo">
                     <i class="fas fa-code fa-3x" style="color: #2563eb;"></i>
                     <h2 style="color: white; margin-top: 20px;">JMbenga</h2>

@@ -34,6 +34,7 @@
             initNewsletter();
             initEasterEgg();
             initPerformanceOptimizations();
+            initPWASystem();
 
             // Inicializar AOS (Animate On Scroll)
             if (typeof AOS !== 'undefined') {
@@ -916,6 +917,107 @@
             const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
         }
+
+        // ============================================
+// 18. SISTEMA PWA PREMIUM (adicionar ao main.js)
+// ============================================
+
+function initPWASystem() {
+    // Verificar se já instalado
+    const isPWAInstalled = () => {
+        return window.matchMedia('(display-mode: standalone)').matches ||
+               window.navigator.standalone ||
+               document.referrer.includes('android-app://');
+    };
+    
+    // Se já instalado, adicionar classe
+    if (isPWAInstalled()) {
+        document.body.classList.add('pwa-installed');
+        console.log('PWA detectado como instalado');
+    }
+    
+    // Verificar Service Worker
+    if ('serviceWorker' in navigator) {
+        // Registrar SW
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('SW registrado:', registration.scope);
+                
+                // Verificar atualizações
+                registration.onupdatefound = () => {
+                    const installingWorker = registration.installing;
+                    installingWorker.onstatechange = () => {
+                        if (installingWorker.state === 'installed') {
+                            if (navigator.serviceWorker.controller) {
+                                console.log('Nova versão disponível!');
+                                showUpdateNotification();
+                            }
+                        }
+                    };
+                };
+            })
+            .catch(err => console.error('SW erro:', err));
+    }
+    
+    // Mostrar notificação de atualização
+    function showUpdateNotification() {
+        const notification = document.createElement('div');
+        notification.className = 'pwa-update-notification';
+        notification.innerHTML = `
+            <div class="update-content">
+                <i class="fas fa-sync-alt"></i>
+                <span>Nova versão disponível!</span>
+                <button onclick="location.reload()" class="btn-update">
+                    Atualizar
+                </button>
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Estilos inline
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+            z-index: 10000;
+            animation: slideInUp 0.3s ease;
+        `;
+        
+        const updateContent = notification.querySelector('.update-content');
+        updateContent.style.cssText = `
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        `;
+        
+        const btnUpdate = notification.querySelector('.btn-update');
+        btnUpdate.style.cssText = `
+            background: white;
+            color: #d97706;
+            border: none;
+            padding: 6px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        `;
+        
+        btnUpdate.addEventListener('mouseenter', () => {
+            btnUpdate.style.transform = 'translateY(-2px)';
+        });
+        
+        btnUpdate.addEventListener('mouseleave', () => {
+            btnUpdate.style.transform = 'translateY(0)';
+        });
+    }
+}
 
         // ============================================
         // EXPORT PARA USO GLOBAL (se necessário)

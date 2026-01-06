@@ -1,87 +1,75 @@
-// ============================================
-// JOSÉ MBENGA PORTFOLIO - SERVICE WORKER PREMIUM
-// ============================================
-
+// sw.js - PWA Premium com Instalação Avançada
 const APP_VERSION = '3.0.0';
-const CACHE_NAME = `jmbenga-portfolio-v${APP_VERSION}`;
+const CACHE_NAME = `jmbenga-premium-${APP_VERSION}`;
 
-// URLs para cache (estratégia: Cache First)
-const PRECACHE_URLS = [
+// URLs para cache com prioridades
+const ESSENTIAL_CACHE = [
     '/',
     '/index.html',
-    '/dashboard/home.html',
+    '/manifest.json',
+    
+    // Assets críticos
+    '/assets/css/main.css',
+    '/assets/css/improvements.css',
+    '/assets/css/particles.css',
+    '/assets/js/main.js',
+    '/assets/js/improvements.js',
+    
+    // Ícones
+    '/assets/img/svg/favicon_jm.png',
+    '/assets/img/photo/josembengadacosta.png'
+];
+
+const OPTIONAL_CACHE = [
+    // Páginas principais
     '/pages/all-projects.html',
     '/pages/reviews-feedback.html',
     '/pages/project-demo.html',
+    '/dashboard/home.html',
     
-    // Páginas de autenticação
-    '/auth/signup.html',
+    // Auth pages
     '/auth/login.html',
+    '/auth/signup.html',
     '/auth/recovery.html',
-    '/auth/reset-password.html',
-    
-    // Páginas de serviços
-    '/pages/services/web-development.html',
-    '/pages/services/mobile-apps.html',
-    '/pages/services/maintenance1.html',
-    '/pages/services/ui-ux-design.html',
-    '/pages/services/tech-consulting.html',
-    
-    // Assets principais
-    '/manifest.json',
-    '/assets/img/svg/favicon_jm.png',
-    '/assets/img/icons/icon-192x192.png',
-    '/assets/img/icons/icon-512x512.png',
-    
-    // CSS e JS principais
-    '/assets/css/main.css',
-    '/assets/js/main.js',
-    '/assets/js/auth.js',
-    '/assets/js/all-projects.js',
-      '/assets/css/all-projects.css',
-    '/assets/js/improvements.js',
-    '/assets/css/improvements.css',
-    '/assets/js/project-demo.js',
-    '/assets/css/project-demo.css',
-    
-    // Fontes
-    'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap',
-    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
-    
-    // Libraries
-    'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css',
-    'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js',
-    'https://unpkg.com/aos@2.3.1/dist/aos.css',
-    'https://unpkg.com/aos@2.3.1/dist/aos.js'
+    '/auth/reset-password.html'
 ];
-
-// Estratégias de cache
-const CACHE_STRATEGIES = {
-    STATIC: 'cache-first',    // Arquivos estáticos
-    API: 'network-first',     // Dados de API
-    IMAGES: 'cache-first',    // Imagens
-    FONTS: 'cache-first'      // Fontes
-};
 
 // ============================================
 // INSTALAÇÃO
 // ============================================
 
 self.addEventListener('install', event => {
-    console.log(`[Service Worker ${APP_VERSION}] Instalando...`);
+    console.log('🚀 Instalando PWA Premium v' + APP_VERSION);
     
     event.waitUntil(
-        Promise.all([
-            // Cache de recursos críticos
-            caches.open(CACHE_NAME)
-                .then(cache => {
-                    console.log('[Service Worker] Cache aberto:', CACHE_NAME);
-                    return cache.addAll(PRECACHE_URLS);
-                }),
+        caches.open(CACHE_NAME)
+            .then(cache => {
+                console.log('📦 Cache aberto:', CACHE_NAME);
                 
-            // Pular espera para ativação imediata
-            self.skipWaiting()
-        ])
+                // Cache apenas essenciais primeiro
+                return cache.addAll(ESSENTIAL_CACHE)
+                    .then(() => {
+                        console.log('✅ Cache essencial completo');
+                        
+                        // Cache opcional em background
+                        return Promise.all(
+                            OPTIONAL_CACHE.map(url => 
+                                fetch(url).then(response => {
+                                    if (response.ok) {
+                                        return cache.put(url, response);
+                                    }
+                                }).catch(() => {})
+                            )
+                        );
+                    });
+            })
+            .then(() => {
+                console.log('⚡ Pular espera ativado');
+                return self.skipWaiting();
+            })
+            .catch(err => {
+                console.error('❌ Erro na instalação:', err);
+            })
     );
 });
 
@@ -90,7 +78,7 @@ self.addEventListener('install', event => {
 // ============================================
 
 self.addEventListener('activate', event => {
-    console.log(`[Service Worker ${APP_VERSION}] Ativando...`);
+    console.log('🎯 Service Worker ativado');
     
     event.waitUntil(
         Promise.all([
@@ -99,211 +87,190 @@ self.addEventListener('activate', event => {
                 return Promise.all(
                     cacheNames.map(cacheName => {
                         if (cacheName !== CACHE_NAME) {
-                            console.log('[Service Worker] Removendo cache antigo:', cacheName);
+                            console.log('🗑️ Removendo cache antigo:', cacheName);
                             return caches.delete(cacheName);
                         }
                     })
                 );
             }),
             
-            // Tomar controle de todas as abas
+            // Tomar controle imediato
             self.clients.claim(),
             
             // Enviar mensagem para todos os clients
-            sendMessageToAllClients({ type: 'SW_ACTIVATED', version: APP_VERSION })
+            self.clients.matchAll().then(clients => {
+                clients.forEach(client => {
+                    client.postMessage({
+                        type: 'SW_ACTIVATED',
+                        version: APP_VERSION,
+                        installed: true
+                    });
+                });
+            })
         ])
+        .then(() => {
+            console.log('✅ SW ativado com sucesso');
+        })
     );
 });
 
 // ============================================
-// FETCH - ESTRATÉGIAS INTELIGENTES
+// FETCH - Estratégia inteligente
 // ============================================
 
 self.addEventListener('fetch', event => {
-    const requestUrl = new URL(event.request.url);
+    // Ignorar requests não-GET
+    if (event.request.method !== 'GET') return;
     
-    // Ignorar navegador e extensões
-    if (requestUrl.protocol === 'chrome-extension:') {
-        return;
-    }
+    const url = new URL(event.request.url);
     
-    // Estratégia baseada no tipo de recurso
-    if (isStaticAsset(requestUrl)) {
-        event.respondWith(cacheFirstStrategy(event.request));
-    } else if (isApiRequest(requestUrl)) {
-        event.respondWith(networkFirstStrategy(event.request));
-    } else if (isImageRequest(requestUrl)) {
-        event.respondWith(imageCacheStrategy(event.request));
+    // Ignorar chrome extensions
+    if (url.protocol === 'chrome-extension:') return;
+    
+    // Estratégia: Cache First para assets, Network First para API
+    if (isStaticAsset(url)) {
+        event.respondWith(cacheFirst(event.request));
     } else {
-        event.respondWith(networkFirstStrategy(event.request));
+        event.respondWith(networkFirst(event.request));
     }
 });
 
-// ============================================
-// ESTRATÉGIAS DE CACHE
-// ============================================
-
-// Cache First (para estáticos)
-async function cacheFirstStrategy(request) {
+async function cacheFirst(request) {
+    const cached = await caches.match(request);
+    
+    if (cached) {
+        // Atualizar cache em background
+        updateCache(request);
+        return cached;
+    }
+    
     try {
-        // Tentar cache primeiro
-        const cachedResponse = await caches.match(request);
-        if (cachedResponse) {
-            console.log('[Cache First] Servindo do cache:', request.url);
-            
-            // Buscar atualização em background
-            fetchAndUpdateCache(request);
-            
-            return cachedResponse;
-        }
+        const response = await fetch(request);
         
-        // Se não tem no cache, buscar na rede
-        console.log('[Cache First] Buscando da rede:', request.url);
-        const networkResponse = await fetch(request);
-        
-        // Adicionar ao cache (exceto se for navegação)
-        if (networkResponse.ok && request.method === 'GET') {
+        // Cache se for sucesso
+        if (response.ok) {
             const cache = await caches.open(CACHE_NAME);
-            cache.put(request, networkResponse.clone());
+            await cache.put(request, response.clone());
         }
         
-        return networkResponse;
+        return response;
     } catch (error) {
-        console.error('[Cache First] Erro:', error);
-        
-        // Fallback para página offline
+        // Fallback para offline
         if (request.mode === 'navigate') {
-            return caches.match('/offline.html');
+            return caches.match('/offline.html') || 
+                   caches.match('/index.html');
         }
         
-        // Fallback genérico
-        return new Response('Recurso offline', {
+        return new Response('Conecte-se à internet', {
             status: 503,
             headers: { 'Content-Type': 'text/plain' }
         });
     }
 }
 
-// Network First (para dados dinâmicos)
-async function networkFirstStrategy(request) {
+async function networkFirst(request) {
     try {
-        // Tentar rede primeiro
-        console.log('[Network First] Buscando da rede:', request.url);
-        const networkResponse = await fetch(request);
+        const response = await fetch(request);
         
-        // Atualizar cache se sucesso
-        if (networkResponse.ok) {
+        if (response.ok) {
             const cache = await caches.open(CACHE_NAME);
-            cache.put(request, networkResponse.clone());
+            await cache.put(request, response.clone());
         }
         
-        return networkResponse;
+        return response;
     } catch (error) {
-        console.log('[Network First] Rede falhou, tentando cache:', request.url);
-        
-        // Fallback para cache
-        const cachedResponse = await caches.match(request);
-        if (cachedResponse) {
-            return cachedResponse;
-        }
-        
-        // Se é uma página, mostrar offline page
-        if (request.mode === 'navigate') {
-            return caches.match('/offline.html');
-        }
+        const cached = await caches.match(request);
+        if (cached) return cached;
         
         throw error;
     }
 }
 
-// Estratégia para imagens
-async function imageCacheStrategy(request) {
-    const cache = await caches.open('images-cache');
-    
-    // Verificar cache primeiro
-    const cachedResponse = await cache.match(request);
-    if (cachedResponse) {
-        // Atualizar cache em background
-        fetchAndUpdateCache(request, 'images-cache');
-        return cachedResponse;
-    }
-    
-    // Buscar da rede
-    try {
-        const networkResponse = await fetch(request);
-        if (networkResponse.ok) {
-            // Armazenar no cache
-            cache.put(request, networkResponse.clone());
-        }
-        return networkResponse;
-    } catch (error) {
-        // Fallback para imagem placeholder
-        return fetch('/images/placeholder.jpg');
-    }
-}
-
-// ============================================
-// FUNÇÕES AUXILIARES
-// ============================================
-
-function isStaticAsset(url) {
-    return url.pathname.endsWith('.html') ||
-           url.pathname.endsWith('.css') ||
-           url.pathname.endsWith('.js') ||
-           url.pathname.includes('/css/') ||
-           url.pathname.includes('/js/') ||
-           url.pathname.includes('/assets/img/icons/');
-}
-
-function isApiRequest(url) {
-    return url.pathname.includes('/api/') ||
-           url.hostname === 'api.jmbenga.com';
-}
-
-function isImageRequest(url) {
-    return url.pathname.match(/\.(jpg|jpeg|png|gif|webp|svg)$/i);
-}
-
-async function fetchAndUpdateCache(request, cacheName = CACHE_NAME) {
+async function updateCache(request) {
     try {
         const response = await fetch(request);
         if (response.ok) {
-            const cache = await caches.open(cacheName);
+            const cache = await caches.open(CACHE_NAME);
             await cache.put(request, response);
-            console.log('[Background] Cache atualizado:', request.url);
         }
     } catch (error) {
-        console.log('[Background] Falha ao atualizar cache:', error);
+        // Silenciar erros de atualização
     }
 }
 
+function isStaticAsset(url) {
+    return url.pathname.match(/\.(html|css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)$/i) ||
+           url.pathname.includes('/assets/') ||
+           url.pathname === '/' ||
+           url.pathname === '/index.html';
+}
+
 // ============================================
-// MENSAGENS (COMMUNICATION API)
+// MANIFEST DINÂMICO
+// ============================================
+
+self.addEventListener('fetch', event => {
+    const url = new URL(event.request.url);
+    
+    // Interceptar manifest para adicionar versão dinâmica
+    if (url.pathname.endsWith('/manifest.json')) {
+        event.respondWith(
+            fetch(event.request)
+                .then(response => response.json())
+                .then(manifest => {
+                    // Adicionar versão dinâmica
+                    manifest.version = APP_VERSION;
+                    
+                    return new Response(JSON.stringify(manifest, null, 2), {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-PWA-Version': APP_VERSION
+                        }
+                    });
+                })
+                .catch(() => {
+                    // Fallback para manifest básico
+                    const basicManifest = {
+                        name: "José Mbenga",
+                        short_name: "JMbenga",
+                        start_url: "/",
+                        display: "standalone",
+                        background_color: "#0f172a",
+                        theme_color: "#2563eb",
+                        version: APP_VERSION
+                    };
+                    
+                    return new Response(JSON.stringify(basicManifest), {
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                })
+        );
+    }
+});
+
+// ============================================
+// MENSAGENS DO APP
 // ============================================
 
 self.addEventListener('message', event => {
-    const { type, data } = event.data;
+    const { type, data } = event.data || {};
     
     switch (type) {
         case 'GET_VERSION':
-            event.ports[0].postMessage({ version: APP_VERSION });
+            event.ports?.[0]?.postMessage({ version: APP_VERSION });
+            break;
+            
+        case 'CHECK_INSTALLATION':
+            event.ports?.[0]?.postMessage({ 
+                installed: true,
+                version: APP_VERSION,
+                canPrompt: true
+            });
             break;
             
         case 'CLEAR_CACHE':
             caches.delete(CACHE_NAME).then(() => {
-                event.ports[0].postMessage({ success: true });
-            });
-            break;
-            
-        case 'GET_CACHE_STATS':
-            caches.open(CACHE_NAME).then(cache => {
-                cache.keys().then(keys => {
-                    event.ports[0].postMessage({
-                        cacheName: CACHE_NAME,
-                        cacheSize: keys.length,
-                        urls: keys.map(req => req.url)
-                    });
-                });
+                event.ports?.[0]?.postMessage({ success: true });
             });
             break;
             
@@ -313,123 +280,4 @@ self.addEventListener('message', event => {
     }
 });
 
-async function sendMessageToAllClients(message) {
-    const clients = await self.clients.matchAll();
-    clients.forEach(client => {
-        client.postMessage(message);
-    });
-}
-
-// ============================================
-// SYNC BACKGROUND (PARA DADOS OFFLINE)
-// ============================================
-
-self.addEventListener('sync', event => {
-    console.log('[Background Sync] Sincronizando:', event.tag);
-    
-    if (event.tag === 'sync-contact-form') {
-        event.waitUntil(syncContactForms());
-    }
-});
-
-async function syncContactForms() {
-    // Implementar sync de formulários offline
-    console.log('[Sync] Sincronizando formulários...');
-}
-
-// ============================================
-// PUSH NOTIFICATIONS
-// ============================================
-
-self.addEventListener('push', event => {
-    if (!event.data) return;
-    
-    const data = event.data.json();
-    
-    const options = {
-        body: data.body || 'Nova notificação do portfólio',
-        icon: '/assets/img/icons/icon-192x192.png',
-        badge: '/assets/img/icons/badge-72x72.png',
-        image: data.image,
-        vibrate: [100, 50, 100],
-        data: {
-            url: data.url || '/',
-            dateOfArrival: Date.now()
-        },
-        actions: [
-            {
-                action: 'open',
-                title: 'Abrir'
-            },
-            {
-                action: 'close',
-                title: 'Fechar'
-            }
-        ]
-    };
-    
-    event.waitUntil(
-        self.registration.showNotification(data.title || 'José Mbenga', options)
-    );
-});
-
-self.addEventListener('notificationclick', event => {
-    event.notification.close();
-    
-    if (event.action === 'open') {
-        event.waitUntil(
-            clients.openWindow(event.notification.data.url)
-        );
-    }
-});
-
-// ============================================
-// MANIFEST DINÂMICO
-// ============================================
-
-self.addEventListener('fetch', event => {
-    const url = new URL(event.request.url);
-    
-    // Interceptar requests do manifest para versão dinâmica
-    if (url.pathname.endsWith('/manifest.json')) {
-        event.respondWith(
-            fetch(event.request).then(response => {
-                if (response.ok) {
-                    return response.json().then(manifest => {
-                        // Adicionar versão dinâmica
-                        manifest.version = APP_VERSION;
-                        
-                        return new Response(JSON.stringify(manifest, null, 2), {
-                            headers: response.headers
-                        });
-                    });
-                }
-                return response;
-            })
-        );
-    }
-});
-
-// ============================================
-// HEALTH CHECK
-// ============================================
-
-// Endpoint para verificar status do service worker
-self.addEventListener('fetch', event => {
-    const url = new URL(event.request.url);
-    
-    if (url.pathname === '/sw-health') {
-        event.respondWith(
-            new Response(JSON.stringify({
-                status: 'active',
-                version: APP_VERSION,
-                timestamp: new Date().toISOString(),
-                cacheSize: 'N/A'
-            }), {
-                headers: { 'Content-Type': 'application/json' }
-            })
-        );
-    }
-});
-
-console.log(`[Service Worker ${APP_VERSION}] Carregado e pronto!`);
+console.log('🎯 Service Worker Premium v' + APP_VERSION + ' carregado!');

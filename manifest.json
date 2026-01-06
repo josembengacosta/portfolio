@@ -1,158 +1,21 @@
 {
-    "name": "José Mbenga | Full Stack Developer",
-    "short_name": "JMbenga",
-    "description": "Portfólio profissional de José Mbenga - Desenvolvedor Web Full Stack, UI/UX Designer e Consultor Tech",
-    "start_url": "/index.html",
-    "scope": "/",
-    
-    "display": "standalone",
-    "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
-    "orientation": "portrait-primary",
-    
-    "background_color": "#0f172a",
-    "theme_color": "#2563eb",
-    
-    "categories": ["business", "productivity", "developer-tools", "education"],
-    "lang": "pt-BR",
-    "dir": "ltr",
-    
-    "icons": [
-        {
-            "src": "/assets/img/svg/favicon_jm.png",
-            "sizes": "72x72",
-            "type": "image/png",
-            "purpose": "any"
-        },
-        {
-            "src": "/assets/img/svg/favicon_jm.png",
-            "sizes": "96x96",
-            "type": "image/png",
-            "purpose": "any"
-        },
-        {
-            "src": "/assets/img/svg/favicon_jm.png",
-            "sizes": "128x128",
-            "type": "image/png",
-            "purpose": "any"
-        },
-        {
-            "src": "/assets/img/svg/favicon_jm.png",
-            "sizes": "144x144",
-            "type": "image/png",
-            "purpose": "any"
-        },
-        {
-            "src": "/assets/img/svg/favicon_jm.png",
-            "sizes": "152x152",
-            "type": "image/png",
-            "purpose": "any"
-        },
-        {
-            "src": "/assets/img/svg/favicon_jm.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "any maskable"
-        },
-        {
-            "src": "/assets/img/svg/favicon_jm.png",
-            "sizes": "384x384",
-            "type": "image/png",
-            "purpose": "any"
-        },
-        {
-            "src": "/assets/img/svg/favicon_jm.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "any maskable"
-        }
-    ],
-    
-    "shortcuts": [
-        {
-            "name": "Meus Projetos",
-            "short_name": "Projetos",
-            "description": "Veja todos os 50+ projetos",
-            "url": "/pages/all-projects.html",
-            "icons": [
-                {
-                    "src": "/assets/img/svg/favicon_jm.png",
-                    "sizes": "96x96",
-                    "type": "image/png"
-                }
-            ]
-        },
-        {
-            "name": "Dashboard",
-            "short_name": "Dashboard",
-            "description": "Acesso ao painel administrativo",
-            "url": "/dashboard/home.html",
-            "icons": [
-                {
-                    "src": "/assets/img/svg/favicon_jm.png",
-                    "sizes": "96x96",
-                    "type": "image/png"
-                }
-            ]
-        },
-        {
-            "name": "Contato",
-            "short_name": "Contato",
-            "description": "Entre em contato rapidamente",
-            "url": "/index.html#contact",
-            "icons": [
-                {
-                    "src": "/assets/img/svg/favicon_jm.png",
-                    "sizes": "96x96",
-                    "type": "image/png"
-                }
-            ]
-        }
-    ],
-    
-    "screenshots": [
-        {
-            "src": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-            "sizes": "1280x720",
-            "type": "image/jpeg",
-            "form_factor": "wide",
-            "label": "Home page em desktop"
-        },
-        {
-            "src": "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-            "sizes": "750x1334",
-            "type": "image/jpeg",
-            "form_factor": "narrow",
-            "label": "Projetos em mobile"
-        }
-    ],
-    
-    "share_target": {
-        "action": "/pages/reviews-feedback.html",
-        "method": "GET",
-        "params": {
-            "title": "name",
-            "text": "description",
-            "url": "link"
-        }
+  "name": "José Mbenga Dev",
+  "short_name": "JMbenga",
+  "description": "Portfólio de José Mbenga",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/assets/img/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
     },
-    
-    "protocol_handlers": [
-        {
-            "protocol": "web+jmbenga",
-            "url": "/index.html?protocol=%s"
-        }
-    ],
-    
-    "launch_handler": {
-        "client_mode": ["navigate-existing", "auto"]
-    },
-    
-    "edge_side_panel": {
-        "preferred_width": 400
-    },
-    
-    "handle_links": "preferred",
-    "prefer_related_applications": false,
-    
-    "related_applications": []
+    {
+      "src": "/assets/img/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }

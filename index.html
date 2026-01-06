@@ -1622,9 +1622,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Verificar atualizações
                 registration.addEventListener('updatefound', () => {
-                    console.log('🔄 Nova versão do Service Worker encontrada!');
+                    console.log(' Nova versão do Service Worker encontrada!');
                     window.pwaInstaller?.showNotification(
-                        'Nova versão disponível! Atualizando... 🔄',
+                        'Nova versão disponível! Atualizando... ',
                         'info'
                     );
                 });
@@ -1871,7 +1871,7 @@ function addPWAStyles() {
             display: none;
             position: fixed;
             bottom: 30px;
-            right: 30px;
+            left: 30px;
             z-index: 9999;
             opacity: 0;
             transform: translateY(20px);

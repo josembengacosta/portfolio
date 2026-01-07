@@ -1,632 +1,391 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="dark-theme">
-
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover">
-    <title>Offline | José Mbenga</title>
-    <meta name="theme-color" content="#0f172a" />
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline | JMbenga Portfolio</title>
+    <meta name="theme-color" content="#0f172a">
+    
     <style>
-        :root {
-            /* Cores principais - Dark Theme */
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #8b5cf6;
-            --accent: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-
-            /* Backgrounds */
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-tertiary: #334155;
-
-            /* Textos */
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-
-            /* Bordas */
-            --border: #475569;
-
-            /* Gradientes */
-            --gradient-primary: linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%);
-            --gradient-secondary: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
-
-            /* Sombras */
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-
-            /* Transições */
-            --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Light Theme */
-        .light-theme {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8fafc;
-            --bg-tertiary: #f1f5f9;
-            --text-primary: #0f172a;
-            --text-secondary: #334155;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: 20px;
             text-align: center;
-            transition: background-color var(--transition), color var(--transition);
         }
-
-        /* Container */
-        .offline-container {
+        
+        .container {
             max-width: 500px;
             width: 100%;
-            padding: 3rem 2rem;
-            background: var(--bg-secondary);
-            border-radius: 1.5rem;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow-xl);
+            padding: 40px 30px;
+            background: #1e293b;
+            border-radius: 20px;
+            border: 1px solid #475569;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             position: relative;
-            overflow: hidden;
         }
-
-        .offline-container::before {
+        
+        .container::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            right: 0;
             height: 6px;
-            background: var(--gradient-primary);
+            background: linear-gradient(90deg, #2563eb, #8b5cf6);
+            border-radius: 20px 20px 0 0;
         }
-
-        /* Icon Animation */
-        .offline-icon {
-            font-size: 5rem;
-            margin-bottom: 1.5rem;
-            color: var(--warning);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        /* Typography */
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-        }
-
-        .subtitle {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .offline-info {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            text-align: left;
-        }
-
-        .offline-info h3 {
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .offline-info ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .offline-info li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .offline-info i {
-            color: var(--accent);
-            font-size: 0.875rem;
-        }
-
-        /* Buttons */
-        .button-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            padding: 0.875rem 2rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-            border-radius: 0.75rem;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all var(--transition);
-            text-decoration: none;
+        
+        .icon-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
             position: relative;
-            overflow: hidden;
-            z-index: 1;
         }
-
-        .btn::before {
-            content: '';
+        
+        .icon-bg {
             position: absolute;
             top: 0;
             left: 0;
-            width: 0;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transition: width var(--transition);
-            z-index: -1;
-        }
-
-        .btn:hover::before {
             width: 100%;
+            height: 100%;
+            background: rgba(245, 158, 11, 0.1);
+            border-radius: 50%;
+            animation: pulse 3s infinite ease-in-out;
         }
-
-        .btn-primary {
-            background: var(--gradient-primary);
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 0.4; }
+        }
+        
+        .icon-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 8px rgba(245, 158, 11, 0.3));
+        }
+        
+        h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #2563eb, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        button {
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .retry-btn {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
             color: white;
         }
-
-        .btn-primary:hover {
+        
+        .retry-btn:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
         }
-
-        .btn-outline {
+        
+        .home-btn {
             background: transparent;
-            border-color: var(--border);
-            color: var(--text-primary);
+            border: 2px solid #475569;
+            color: #cbd5e1;
         }
-
-        .btn-outline:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-2px);
+        
+        .home-btn:hover {
+            border-color: #2563eb;
+            color: #2563eb;
         }
-
-        /* Connection Status */
-        .connection-status {
-            margin-top: 2rem;
-            padding: 1rem;
+        
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 10px;
             background: rgba(37, 99, 235, 0.1);
             border: 1px solid rgba(37, 99, 235, 0.2);
-            border-radius: 0.75rem;
+            font-size: 14px;
             display: none;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
-            animation: fadeIn 0.3s ease;
+            gap: 8px;
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .connection-status.connected {
+        
+        .status.online {
             background: rgba(16, 185, 129, 0.1);
             border-color: rgba(16, 185, 129, 0.2);
         }
-
-        .connection-status i {
-            font-size: 1.25rem;
+        
+        .status-icon {
+            width: 18px;
+            height: 18px;
         }
-
-        /* Progress Indicator */
-        .progress-indicator {
-            width: 100%;
-            height: 4px;
-            background: var(--bg-tertiary);
-            border-radius: 2px;
-            overflow: hidden;
-            margin-top: 1.5rem;
-            display: none;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: var(--gradient-primary);
-            width: 0%;
-            transition: width 0.3s ease;
-            border-radius: 2px;
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            width: 48px;
-            height: 48px;
-            background: var(--gradient-primary);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            cursor: pointer;
-            transition: all var(--transition);
-            z-index: 10;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1) rotate(180deg);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .offline-container {
-                padding: 2rem 1.5rem;
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
             }
-
+            
             h1 {
-                font-size: 2rem;
+                font-size: 28px;
             }
-
-            .offline-icon {
-                font-size: 4rem;
+            
+            .icon-container {
+                width: 100px;
+                height: 100px;
             }
-
-            .button-group {
+            
+            .actions {
                 flex-direction: column;
             }
-
-            .btn {
+            
+            button {
                 width: 100%;
             }
-
-            .theme-toggle {
-                top: 1rem;
-                right: 1rem;
-                width: 44px;
-                height: 44px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 1rem;
-            }
-
-            .offline-container {
-                padding: 1.5rem 1rem;
-            }
-
-            h1 {
-                font-size: 1.75rem;
-            }
-
-            .offline-icon {
-                font-size: 3.5rem;
-            }
-        }
-
-        /* Selection */
-        ::selection {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
         }
     </style>
 </head>
-
 <body>
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="themeToggle">
-        <i class="fas fa-moon"></i>
-    </button>
-
-    <div class="offline-container">
-        <div class="offline-icon">
-            <i class="fas fa-wifi-slash"></i>
+    <div class="container">
+        <div class="icon-container">
+            <div class="icon-bg"></div>
+            <svg class="icon-svg" viewBox="0 0 100 100">
+                <!-- Wifi Slash Icon -->
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="5,5"/>
+                
+                <!-- Signal waves -->
+                <circle cx="50" cy="50" r="35" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="0.6"/>
+                <circle cx="50" cy="50" r="25" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="0.4"/>
+                <circle cx="50" cy="50" r="15" fill="none" stroke="#f59e0b" stroke-width="2" stroke-opacity="0.2"/>
+                
+                <!-- Slash line -->
+                <line x1="30" y1="30" x2="70" y2="70" stroke="#ef4444" stroke-width="4" stroke-linecap="round"/>
+                
+                <!-- Center dot -->
+                <circle cx="50" cy="50" r="6" fill="#f59e0b"/>
+            </svg>
         </div>
-
+        
         <h1>Você está offline</h1>
-
-        <p class="subtitle">
-            Parece que sua conexão com a internet foi interrompida.
-            Mas não se preocupe, ainda há coisas que você pode fazer!
+        
+        <p>
+            Não é possível acessar o conteúdo no momento.<br>
+            Verifique sua conexão com a internet e tente novamente.
         </p>
-
-        <div class="offline-info">
-            <h3><i class="fas fa-lightbulb"></i> O que você ainda pode fazer:</h3>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> Navegar nos projetos já visitados</li>
-                <li><i class="fas fa-check-circle"></i> Visualizar seu histórico local</li>
-                <li><i class="fas fa-check-circle"></i> Verificar suas conexões de rede</li>
-                <li><i class="fas fa-check-circle"></i> Aguardar reconexão automática</li>
-            </ul>
+        
+        <div class="status" id="status">
+            <svg class="status-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+            <span id="statusText"></span>
         </div>
-
-        <!-- Progress Indicator -->
-        <div class="progress-indicator" id="progressIndicator">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-
-        <!-- Connection Status -->
-        <div class="connection-status" id="connectionStatus">
-            <i class="fas fa-spinner fa-spin"></i>
-            <span>Verificando conexão...</span>
-        </div>
-
-        <div class="button-group">
-            <button class="btn btn-primary" id="retryBtn">
-                <i class="fas fa-sync-alt"></i>
-                Tentar reconectar
+        
+        <div class="actions">
+            <button class="retry-btn" id="retryBtn">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="white">
+                    <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                </svg>
+                Tentar novamente
             </button>
-
-            <button class="btn btn-outline" id="backBtn">
-                <i class="fas fa-arrow-left"></i>
-                Voltar à página anterior
-            </button>
-
-            <button class="btn btn-outline" id="homeBtn">
-                <i class="fas fa-home"></i>
-                Ir para a página inicial
+            
+            <button class="home-btn" id="homeBtn">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                Página inicial
             </button>
         </div>
     </div>
 
     <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = themeToggle.querySelector('i');
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('jm-theme') || 'dark';
-        if (savedTheme === 'light') {
-            document.body.classList.add('light-theme');
-            themeIcon.className = 'fas fa-sun';
-        }
-
-        themeToggle.addEventListener('click', function () {
-            const isLight = document.body.classList.toggle('light-theme');
-
-            if (isLight) {
-                themeIcon.className = 'fas fa-sun';
-                localStorage.setItem('jm-theme', 'light');
-            } else {
-                themeIcon.className = 'fas fa-moon';
-                localStorage.setItem('jm-theme', 'dark');
-            }
-        });
-
-        // DOM Elements
+        // Elementos
         const retryBtn = document.getElementById('retryBtn');
-        const backBtn = document.getElementById('backBtn');
         const homeBtn = document.getElementById('homeBtn');
-        const connectionStatus = document.getElementById('connectionStatus');
-        const progressIndicator = document.getElementById('progressIndicator');
-        const progressBar = document.getElementById('progressBar');
-
-        // Check Connection Status
+        const status = document.getElementById('status');
+        const statusText = document.getElementById('statusText');
+        const statusIcon = status.querySelector('.status-icon');
+        
+        // Ícones SVG (inline para troca dinâmica)
+        const icons = {
+            loading: `<path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>`,
+            success: `<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>`,
+            error: `<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>`,
+            wifi: `<path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/>`
+        };
+        
+        // Função para verificar conexão
         function checkConnection() {
-            connectionStatus.style.display = 'flex';
-            connectionStatus.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Verificando conexão...</span>';
-            connectionStatus.classList.remove('connected');
-
-            // Simulate progress
-            let progress = 0;
-            progressIndicator.style.display = 'block';
-
-            const progressInterval = setInterval(() => {
-                progress += 10;
-                progressBar.style.width = `${progress}%`;
-
-                if (progress >= 100) {
-                    clearInterval(progressInterval);
-                    simulateNetworkCheck();
-                }
-            }, 100);
-        }
-
-        function simulateNetworkCheck() {
-            setTimeout(() => {
-                if (navigator.onLine) {
-                    // Connection restored
-                    connectionStatus.innerHTML =
-                        '<i class="fas fa-check-circle"></i><span>Conexão restaurada! Redirecionando...</span>';
-                    connectionStatus.classList.add('connected');
-
-                    // Redirect to home after 2 seconds
-                    setTimeout(() => {
-                        window.location.href = '/';
-                    }, 2000);
-                } else {
-                    // Still offline
-                    connectionStatus.innerHTML =
-                        '<i class="fas fa-times-circle"></i><span>Ainda offline. Tente verificar sua rede.</span>';
-                    connectionStatus.classList.remove('connected');
-
-                    // Hide progress after 3 seconds
-                    setTimeout(() => {
-                        connectionStatus.style.display = 'none';
-                        progressIndicator.style.display = 'none';
-                        progressBar.style.width = '0%';
-                    }, 3000);
-                }
-            }, 1000);
-        }
-
-        // Retry Connection
-        retryBtn.addEventListener('click', function () {
-            retryBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Reconectando...';
-            retryBtn.disabled = true;
-
-            checkConnection();
-
-            // Reset button after check
-            setTimeout(() => {
-                retryBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Tentar reconectar';
-                retryBtn.disabled = false;
-            }, 4000);
-        });
-
-        // Back Button
-        backBtn.addEventListener('click', function () {
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                window.location.href = '/';
-            }
-        });
-
-        // Home Button
-        homeBtn.addEventListener('click', function () {
-            window.location.href = '/';
-        });
-
-        // Online/Offline Events
-        window.addEventListener('online', function () {
-            connectionStatus.innerHTML =
-                '<i class="fas fa-wifi"></i><span>Conectado! A página será recarregada...</span>';
-            connectionStatus.classList.add('connected');
-            connectionStatus.style.display = 'flex';
-
-            setTimeout(() => {
-                window.location.reload();
-            }, 1500);
-        });
-
-        window.addEventListener('offline', function () {
-            connectionStatus.innerHTML =
-                '<i class="fas fa-wifi-slash"></i><span>Você ficou offline novamente</span>';
-            connectionStatus.classList.remove('connected');
-            connectionStatus.style.display = 'flex';
-
-            setTimeout(() => {
-                connectionStatus.style.display = 'none';
-            }, 3000);
-        });
-
-        // Initial connection check
-        setTimeout(checkConnection, 1000);
-
-        // Auto-retry every 30 seconds
-        setInterval(() => {
-            if (!navigator.onLine) {
-                checkConnection();
-            }
-        }, 30000);
-
-        // Add some interactive elements
-        document.addEventListener('DOMContentLoaded', function () {
-            // Add click effect to buttons
-            const buttons = document.querySelectorAll('.btn');
-            buttons.forEach(btn => {
-                btn.addEventListener('mousedown', function () {
-                    this.style.transform = 'scale(0.95)';
-                });
-
-                btn.addEventListener('mouseup', function () {
-                    this.style.transform = '';
-                });
-
-                btn.addEventListener('mouseleave', function () {
-                    this.style.transform = '';
-                });
-            });
-
-            // Add animation to icon
-            const icon = document.querySelector('.offline-icon');
-            setInterval(() => {
-                icon.style.animation = 'none';
+            if (navigator.onLine) {
+                showStatus('Conectado! Redirecionando...', 'success', true);
                 setTimeout(() => {
-                    icon.style.animation = 'pulse 2s ease-in-out infinite';
-                }, 10);
-            }, 8000);
+                    if (window.history.length > 1) {
+                        window.history.back();
+                    } else {
+                        window.location.href = './index.html';
+                    }
+                }, 1500);
+            } else {
+                showStatus('Ainda offline. Verifique sua conexão.', 'error', false);
+            }
+        }
+        
+        // Mostrar status com ícone SVG
+        function showStatus(message, iconType, isOnline) {
+            statusText.textContent = message;
+            statusIcon.innerHTML = icons[iconType] || icons.error;
+            status.className = 'status ' + (isOnline ? 'online' : '');
+            status.style.display = 'flex';
+            
+            if (!isOnline) {
+                setTimeout(() => {
+                    status.style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        // Botão de tentar novamente
+        retryBtn.addEventListener('click', function() {
+            const originalHTML = retryBtn.innerHTML;
+            retryBtn.disabled = true;
+            retryBtn.querySelector('.btn-icon').innerHTML = icons.loading;
+            retryBtn.querySelector('.btn-icon').style.animation = 'spin 1s linear infinite';
+            
+            // Adicionar animação spin
+            if (!document.querySelector('#spin-animation')) {
+                const style = document.createElement('style');
+                style.id = 'spin-animation';
+                style.textContent = `
+                    @keyframes spin {
+                        from { transform: rotate(0deg); }
+                        to { transform: rotate(360deg); }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            checkConnection();
+            
+            setTimeout(() => {
+                retryBtn.disabled = false;
+                retryBtn.innerHTML = originalHTML;
+                retryBtn.querySelector('.btn-icon').style.animation = '';
+            }, 2000);
         });
+        
+        // Botão página inicial
+        homeBtn.addEventListener('click', function() {
+            window.location.href = './index.html';
+        });
+        
+        // Ouvir eventos de conexão
+        window.addEventListener('online', function() {
+            showStatus('Conexão restaurada! Atualizando...', 'wifi', true);
+            setTimeout(() => {
+                window.location.href = './index.html';
+            }, 1000);
+        });
+        
+        window.addEventListener('offline', function() {
+            showStatus('Você ficou offline', 'error', false);
+        });
+        
+        // Verificar conexão inicial
+        setTimeout(() => {
+            statusIcon.innerHTML = icons.loading;
+            showStatus('Verificando conexão...', 'loading', false);
+            setTimeout(checkConnection, 1000);
+        }, 500);
+        
+        // Auto-verificação a cada 10 segundos
+        setInterval(checkConnection, 10000);
+        
+        // Tecla Enter para tentar reconectar
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !retryBtn.disabled) {
+                retryBtn.click();
+            }
+        });
+        
+        // Animar o ícone principal
+        function animateMainIcon() {
+            const svg = document.querySelector('.icon-svg');
+            const circles = svg.querySelectorAll('circle');
+            const slash = svg.querySelector('line');
+            
+            // Animar ondas
+            circles.forEach((circle, index) => {
+                const radius = circle.getAttribute('r');
+                circle.style.animation = `pulseWave ${2 + index * 0.5}s infinite ease-in-out`;
+                circle.style.animationDelay = `${index * 0.3}s`;
+            });
+            
+            // Animar slash
+            slash.style.animation = 'slashPulse 2s infinite';
+            
+            // Adicionar animações CSS
+            if (!document.querySelector('#icon-animations')) {
+                const style = document.createElement('style');
+                style.id = 'icon-animations';
+                style.textContent = `
+                    @keyframes pulseWave {
+                        0%, 100% { stroke-opacity: 0.2; transform: scale(1); }
+                        50% { stroke-opacity: 0.6; transform: scale(1.05); }
+                    }
+                    @keyframes slashPulse {
+                        0%, 100% { stroke-opacity: 0.8; }
+                        50% { stroke-opacity: 0.4; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+        
+        // Iniciar animações
+        setTimeout(animateMainIcon, 100);
     </script>
 </body>
-
 </html>

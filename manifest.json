@@ -16,7 +16,7 @@
   "icons": [
     {
       "src": "./assets/img/icons/icon-72x72.png",
-      "sizes": "32x32",
+      "sizes": "72x72",
       "type": "image/png",
       "purpose": "any maskable"
     },
@@ -95,18 +95,18 @@
       "description": "Explore meus projetos",
       "url": "./pages/all-projects.html",
       "icons": [{
-        "src": "./assets/img/icons/project-96x96.svg",
+        "src": "./assets/img/icons/file-graph.svg",
         "sizes": "96x96",
         "type": "image/svg+xml"
       }]
     },
     { 
-      "name": "Feeback e Avaliações",
-      "short_name": "Feedback",
-      "description": "Deixe seu feedback e avaliações",
-      "url": "./pages/reviews-feedback.html",
+      "name": "Baixar CV",
+      "short_name": "CV",
+      "description": "Baixe meu currículo",
+      "url": "./descarregar/descarregar_jmbenga.pdf",
       "icons": [{
-        "src": "./assets/img/icons/feedback-96x96.svg",
+        "src": "./assets/img/icons/file-cv.svg",
         "sizes": "96x96",
         "type": "image/svg+xml"
       }]
@@ -117,7 +117,7 @@
       "description": "Entre em contato",
       "url": "./index.html#contact",
       "icons": [{
-        "src": "./assets/img/icons/contact-96x96.svg",
+        "src": "./assets/img/icons/contact.svg",
         "sizes": "96x96",
         "type": "image/svg+xml"
       }]
@@ -128,7 +128,7 @@
       "description": "Veja minhas habilidades",
       "url": "./index.html#skills",
       "icons": [{
-        "src": "./assets/img/icons/skills-96x96.svg",
+        "src": "./assets/img/icons/skills.svg",
         "sizes": "96x96",
         "type": "image/svg+xml"
       }]
@@ -139,7 +139,7 @@
       "description": "Conheça minha jornada",
       "url": "./index.html#about",
       "icons": [{
-        "src": "./assets/img/icons/about-96x96.svg",
+        "src": "./assets/img/icons/about.svg",
         "sizes": "96x96",
         "type": "image/svg+xml"
       }]

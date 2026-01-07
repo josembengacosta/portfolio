@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     isInstalled = isStandalone || isInWebApp;
 
     if (isInstalled) {
-      console.log("📱 App já está instalado");
+      console.log("App já está instalado");
       document.body.classList.add("pwa-installed");
     }
   }

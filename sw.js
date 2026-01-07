@@ -12,11 +12,12 @@ const CORE_CACHE = [
   "./manifest.json",
   "./offline.html",
   "./sw.js",
-  "./assets/img/icons/project-96x96.svg",
-  "./assets/img/icons/feedback-96x96.svg",
-  "./assets/img/icons/contact-96x96.svg",
-  "./assets/img/icons/skills-96x96.svg",
-  "./assets/img/icons/about-96x96.svg",
+  "./assets/img/icons/file-graph.svg",
+  "./assets/img/icons/file-cv.svg",
+  "./assets/img/icons/contact.svg",
+  "./assets/img/icons/skills.svg",
+  "./assets/img/icons/about.svg",
+  "./assets/img/icons/feedback.svg",
 
   // Páginas principais
   "./pages/all-projects.html",

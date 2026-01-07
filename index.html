@@ -116,6 +116,38 @@
         display: none !important;
       }
     }
+
+    /* Estilos específicos para mobile */
+    @media (max-width: 768px) {
+      .mobile-buttons {
+        display: flex;
+        flex-direction: row !important;
+        /* Força direção horizontal */
+        flex-wrap: nowrap !important;
+        /* Impede quebra */
+        justify-content: space-between;
+        /* Distribui espaço */
+        width: 100%;
+      }
+
+      .mobile-btn {
+        flex: 1;
+        /* Ambos ocupam igual espaço */
+        margin: 0 5px;
+        /* Pequeno espaçamento */
+        text-align: center;
+      }
+
+      /* Primeiro botão */
+      .mobile-buttons .btn:first-child {
+        margin-left: 0;
+      }
+
+      /* Último botão */
+      .mobile-buttons .btn:last-child {
+        margin-right: 0;
+      }
+    }
   </style>
 </head>
 
@@ -529,12 +561,12 @@
             </div>
           </div>
 
-          <div class="d-flex flex-wrap gap-3 mt-4">
-            <a href="descarregar/descarregar_jmbenga.pdf" download class="btn btn-primary">
+          <div class="d-flex flex-wrap gap-3 mt-4 mobile-buttons">
+            <a href="descarregar/descarregar_jmbenga.pdf" download class="btn btn-primary mobile-btn">
               <i class="fas fa-download"></i>
               Baixar CV
             </a>
-            <a href="#contact" class="btn btn-outline">
+            <a href="#contact" class="btn btn-outline mobile-btn">
               <i class="fas fa-comment"></i>
               Fale Comigo
             </a>
@@ -543,6 +575,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- Skills Section -->
   <section class="section" id="skills">

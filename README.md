@@ -66,7 +66,7 @@ Olá! Sou **José Mbenga**, um Desenvolvedor Full Stack apaixonado por tecnologi
 - 🎯 **UI/UX cuidadosamente projetada**
 - 🌀 **Animações suaves e performáticas**
 - 🎭 **Gradientes e efeitos visuais modernos**
-- 📊 **Componentes interativos**
+-  **Componentes interativos**
 
 ## 📂 **Estrutura do Projeto**
 
@@ -171,7 +171,7 @@ npx serve .
 | **Offline Mode** |  Funcional | Cache inteligente |
 | **Cross-browser** |  Compatível | Chrome, Safari, Firefox, Edge |
 
-## 📊 **Estatísticas**
+##  **Estatísticas**
 
 - **50+** Projetos Completados
 - **100+** Clientes Satisfeitos  

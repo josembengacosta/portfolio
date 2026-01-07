@@ -187,7 +187,7 @@ function initThemeSystem() {
 
   // Detectar tema preferido
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-  const savedTheme = localStorage.getItem("theme");
+  const savedTheme = localStorage.getItem("jm-theme");
 
   // Aplicar tema
   function applyTheme(theme, silent = false) {
@@ -201,10 +201,10 @@ function initThemeSystem() {
       themeIcon.className = "fas fa-moon";
     }
 
-    localStorage.setItem("theme", theme);
+    localStorage.setItem("jm-theme", theme);
 
     // Salvar também no sessionStorage para PWA
-    sessionStorage.setItem("theme", theme);
+    sessionStorage.setItem("jm-theme", theme);
 
     // Disparar evento customizado
     document.dispatchEvent(
@@ -230,14 +230,14 @@ function initThemeSystem() {
 
   // Alternar tema
   themeToggle.addEventListener("click", () => {
-    const currentTheme = localStorage.getItem("theme") || "dark";
+    const currentTheme = localStorage.getItem("jm-theme") || "dark";
     const newTheme = currentTheme === "light" ? "dark" : "light";
     applyTheme(newTheme);
   });
 
   // Ouvir mudanças do sistema
   prefersDark.addEventListener("change", (e) => {
-    if (!localStorage.getItem("theme")) {
+    if (!localStorage.getItem("jm-theme")) {
       applyTheme(e.matches ? "dark" : "light", true);
     }
   });
@@ -1090,7 +1090,7 @@ window.addEventListener("load", () => {
 
   if (CONFIG.debugMode) {
     console.log(" Portfólio carregado com sucesso!");
-    console.log("📊 Configurações:", CONFIG);
+    console.log(" Configurações:", CONFIG);
   }
 });
 

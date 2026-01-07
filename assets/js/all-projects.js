@@ -262,7 +262,7 @@
             const icon = themeToggle.querySelector('i');
 
             // Load saved theme
-            const savedTheme = localStorage.getItem('portfolioTheme');
+            const savedTheme = localStorage.getItem('jm-theme');
             if (savedTheme === 'light') {
                 document.body.classList.add('light-theme');
                 icon.className = 'fas fa-sun';
@@ -273,7 +273,7 @@
                 document.body.classList.toggle('light-theme');
                 const isLight = document.body.classList.contains('light-theme');
                 icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
-                localStorage.setItem('portfolioTheme', isLight ? 'light' : 'dark');
+                localStorage.setItem('jm-theme', isLight ? 'light' : 'dark');
             });
         }
 

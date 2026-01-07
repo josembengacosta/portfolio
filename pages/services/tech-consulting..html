@@ -1650,11 +1650,11 @@
             icon.className = document.body.classList.contains('light-theme') ?
                 'fas fa-sun' :
                 'fas fa-moon';
-            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+            localStorage.setItem('jm-theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
         });
 
         // Load saved theme
-        const savedTheme = localStorage.getItem('theme');
+        const savedTheme = localStorage.getItem('jm-theme');
         if (savedTheme === 'light') {
             document.body.classList.add('light-theme');
             document.getElementById('themeToggle').querySelector('i').className = 'fas fa-sun';

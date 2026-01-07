@@ -101,12 +101,12 @@
   ],
   
 
-  "shortcuts": [
+    "shortcuts": [
     {
       "name": "Ver Projetos",
       "short_name": "Projetos",
       "description": "Explore todos os meus projetos",
-      "url": "./pages/all-projects.html",
+      "url": "/portfolio/pages/all-projects.html",
       "icons": [{
         "src": "./assets/img/icons/file-graph.svg",
         "sizes": "96x96",
@@ -117,18 +117,18 @@
       "name": "Baixar Currículo",
       "short_name": "CV",
       "description": "Baixe meu currículo em PDF",
-      "url": "./descarregar/descarregar_jmbenga.pdf",
+      "url": "/portfolio/descarregar/descarregar_jmbenga.pdf",
       "icons": [{
         "src": "./assets/img/icons/file-cv.svg",
         "sizes": "96x96",
-        "type": "image/svg+xml"
+        "type": "image/png"
       }]
     },
     {
       "name": "Entre em Contato",
       "short_name": "Contato",
       "description": "Envie uma mensagem",
-      "url": "./index.html#contact",
+      "url": "/portfolio/index.html#contact",
       "icons": [{
         "src": "./assets/img/icons/contact.svg",
         "sizes": "96x96",
@@ -139,7 +139,7 @@
       "name": "Minhas Habilidades",
       "short_name": "Skills",
       "description": "Veja minhas tecnologias",
-      "url": "./index.html#skills",
+      "url": "/portfolio/index.html#skills",
       "icons": [{
         "src": "./assets/img/icons/skills.svg",
         "sizes": "96x96",
@@ -149,8 +149,9 @@
   ],
   
   "share_target": {
-    "action": "./index.html",
+    "action": "/portfolio/index.html",
     "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
     "params": {
       "title": "title",
       "text": "text",

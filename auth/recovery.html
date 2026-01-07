@@ -984,12 +984,12 @@
                 icon.className = document.body.classList.contains('light-theme') ?
                     'fas fa-sun' :
                     'fas fa-moon';
-                localStorage.setItem('recoveryTheme', document.body.classList.contains('light-theme') ?
+                localStorage.setItem('jm-theme', document.body.classList.contains('light-theme') ?
                     'light' : 'dark');
             });
 
             // Load saved theme
-            const savedTheme = localStorage.getItem('recoveryTheme') || 'dark';
+            const savedTheme = localStorage.getItem('jm-theme') || 'dark';
             if (savedTheme === 'light') {
                 document.body.classList.add('light-theme');
                 themeToggle.querySelector('i').className = 'fas fa-sun';

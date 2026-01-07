@@ -1,51 +1,202 @@
+
 <!DOCTYPE html>
-<html lang="pt-br" class="dark-theme">
-
+<html lang="pt-BR" class="dark-theme">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover">
-    <title>Live Demo - Plataforma E-commerce | José Mbenga</title>
+    <meta charset="UTF-8" />
+    
+    <!-- VIEWPORT OTIMIZADO -->
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    
+    <!-- TITLE OTIMIZADO -->
+    <title>Live Demo: Plataforma E-commerce Moderna | Projeto por José Mbenga - Desenvolvedor Full Stack</title>
+    
+    <!-- THEME COLOR DARK/LIGHT -->
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+    <meta name="color-scheme" content="dark light">
 
-    <!-- SEO -->
-    <meta name="description" content="Live Demo da Plataforma de E-commerce Moderna - Desenvolvido por José Mbenga">
-    <meta name="robots" content="index, follow">
+    <!-- PREFETCH CRÍTICO -->
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
+    <!-- ========== SEO OTIMIZADO ========== -->
+    <meta name="description" 
+          content="Live demo completa da plataforma de e-commerce moderna desenvolvida por José Mbenga. Veja funcionalidades, código e performance em tempo real.">
+    <meta name="keywords" 
+          content="demo e-commerce, live demo projeto, plataforma e-commerce Angola, loja virtual, carrinho de compras, checkout online, José Mbenga demo">
+    <meta name="author" content="José Mbenga">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    <!-- CANONICAL URL -->
+    <link rel="canonical" href="https://josembengacosta.github.io/portfolio/pages/project-demo.html">
+
+    <!-- ========== OPEN GRAPH & TWITTER OTIMIZADO ========== -->
     <!-- Open Graph -->
-    <meta property="og:title" content="Live Demo - Plataforma E-commerce | José Mbenga">
-    <meta property="og:description"
-        content="Veja esta plataforma de e-commerce em ação. Desenvolvido por José Mbenga, Desenvolvedor Full Stack.">
+    <meta property="og:title" content="Live Demo: Plataforma E-commerce Moderna | José Mbenga">
+    <meta property="og:description" 
+          content="Veja esta plataforma de e-commerce completa em ação com carrinho, checkout, admin dashboard e muito mais.">
+    <meta property="og:image" 
+          content="https://josembengacosta.github.io/portfolio/assets/img/social/ecommerce-demo-1200x630.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Demo Plataforma E-commerce - José Mbenga">
+    <meta property="og:url" content="https://josembengacosta.github.io/portfolio/pages/project-demo.html">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://jmbenga.com/project-thumbnail.jpg">
+    <meta property="og:site_name" content="JMbenga Portfolio">
+    <meta property="og:locale" content="pt_BR">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="../assets/img/svg/favicon_jm.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="../assets/img/svg/favicon_jm.png" />
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Live Demo: Plataforma E-commerce | José Mbenga">
+    <meta name="twitter:description" 
+          content="Demo interativa de plataforma e-commerce desenvolvida com tecnologias modernas.">
+    <meta name="twitter:image" 
+          content="https://josembengacosta.github.io/portfolio/assets/img/social/ecommerce-twitter-1200x600.jpg">
+    <meta name="twitter:image:alt" content="Demo E-commerce - José Mbenga">
+    <meta name="twitter:creator" content="@josembenga">
+    <meta name="twitter:site" content="@josembenga">
 
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- ========== PWA CONFIG ========== -->
+    <link rel="manifest" href="../manifest.json" crossorigin="use-credentials">
+    <meta name="application-name" content="JMbenga Portfolio">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="E-commerce Demo">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- APPLE TOUCH ICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/icons/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="../assets/img/icons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../assets/img/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../assets/img/icons/apple-touch-icon-120x120.png">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <!-- ========== ÍCONES ========== -->
+    <link rel="icon" type="image/svg+xml" href="../assets/img/svg/favicon.svg">
+    <link rel="shortcut icon" href="../assets/img/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="../assets/img/icons/safari-pinned-tab.svg" color="#2563eb">
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../assets/fontawesome-free/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap-icons.css">
+    <!-- ========== BOOTSTRAP 5 OTIMIZADO ========== -->
+    <!-- Bootstrap CSS (preload apenas se necessário) -->
+    <link rel="preload" 
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          as="style"
+          onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" 
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+          media="print" 
+          onload="this.media='all'"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" 
+          crossorigin="anonymous">
+    <noscript>
+        <link rel="stylesheet" 
+              href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    </noscript>
 
+    <!-- ========== FONTS OTIMIZADAS ========== -->
+    <link rel="preload" 
+          as="style" 
+          onload="this.onload=null;this.rel='stylesheet'"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" 
+              rel="stylesheet">
+    </noscript>
+
+    <!-- ========== ICONS OTIMIZADOS ========== -->
+    <!-- Font Awesome -->
+    <link rel="preload" 
+          as="style" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Bootstrap Icons (apenas se necessário) -->
+    <link rel="preload" 
+          as="style" 
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+          onload="this.onload=null;this.rel='stylesheet'">
+
+    <!-- ========== CSS DEFERIDO ========== -->
     <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preload" 
+          as="style" 
+          href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
+          onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Lightbox (apenas se necessário) -->
+    <link rel="preload" 
+          as="style" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css"
+          onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- CSS específico da página -->
+    <link rel="preload" 
+          href="../assets/css/project-demo.css" 
+          as="style" 
+          onload="this.onload=null;this.rel='stylesheet'">
 
-    <!-- Lightbox for Images -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <!-- Noscript fallback -->
+    <noscript>
+        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+        <link rel="stylesheet" href="../assets/css/project-demo.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    </noscript>
 
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="../assets/css/project-demo.css" />
+    <!-- ========== SCRIPT PRELOADS ========== -->
+    <!-- Bootstrap JS Bundle (defer) -->
+    <link rel="preload" 
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+          as="script">
+    
+    <!-- AOS JS -->
+    <link rel="preload" 
+          href="https://unpkg.com/aos@2.3.1/dist/aos.js" 
+          as="script">
+    
+    <!-- Lightbox JS -->
+    <link rel="preload" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" 
+          as="script">
+    
+    <!-- Script específico da página -->
+    <link rel="preload" 
+          href="../assets/js/project-demo.js" 
+          as="script">
+
+    <!-- Schema Markup para página de demo -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Live Demo: Plataforma E-commerce Moderna",
+        "description": "Demonstração interativa de plataforma de e-commerce desenvolvida por José Mbenga",
+        "url": "https://josembengacosta.github.io/portfolio/pages/project-demo.html",
+        "image": "https://josembengacosta.github.io/portfolio/assets/img/social/ecommerce-demo-1200x630.jpg",
+        "author": {
+            "@type": "Person",
+            "name": "José Mbenga",
+            "jobTitle": "Desenvolvedor Full Stack",
+            "url": "https://josembengacosta.github.io/portfolio/"
+        },
+        "about": {
+            "@type": "SoftwareApplication",
+            "name": "Plataforma E-commerce",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web",
+            "offers": {
+                "@type": "Offer",
+                "availability": "https://schema.org/OnlineOnly"
+            }
+        },
+        "interactivityType": "active",
+        "learningResourceType": "demo"
+    }
+    </script>
 </head>
 
 <body>
@@ -59,7 +210,7 @@
                 <i class="fas fa-paper-plane"></i>
                 <span>Contato</span>
             </a>
-            <button class="btn btn-outline btn-icon" id="themeToggle" title="Alternar tema">
+            <button class="btn btn-outline btn-icon theme-toggle" id="themeToggle" title="Alternar tema">
                 <i class="fas fa-moon"></i>
             </button>
         </div>
@@ -652,11 +803,8 @@
         </section>
     </main>
 
-
-
     <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <script src="../assets/js/project-demo.js"></script>

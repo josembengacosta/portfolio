@@ -1723,7 +1723,7 @@
             const themeIcon = themeToggle.querySelector('i');
 
             // Load saved theme
-            const savedTheme = localStorage.getItem('dashboardTheme') || 'dark';
+            const savedTheme = localStorage.getItem('jm-theme') || 'dark';
             if (savedTheme === 'light') {
                 document.body.classList.remove('dark-theme');
                 document.body.classList.add('light-theme');
@@ -1743,14 +1743,14 @@
                     document.body.classList.remove('dark-theme');
                     document.body.classList.add('light-theme');
                     themeIcon.className = 'fas fa-sun';
-                    localStorage.setItem('dashboardTheme', 'light');
+                    localStorage.setItem('jm-theme', 'light');
                     showToast('Tema claro ativado', 'info');
                 } else {
                     // Switch to dark
                     document.body.classList.remove('light-theme');
                     document.body.classList.add('dark-theme');
                     themeIcon.className = 'fas fa-moon';
-                    localStorage.setItem('dashboardTheme', 'dark');
+                    localStorage.setItem('jm-theme', 'dark');
                     showToast('Tema escuro ativado', 'info');
                 }
             });

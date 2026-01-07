@@ -100,51 +100,52 @@ class PWAInstallManager {
     });
   }
 
+  handleBeforeInstallPrompt(e) {
+    console.log("📱 Evento beforeinstallprompt recebido (mobile)");
 
-handleBeforeInstallPrompt(e) {
-  console.log("📱 Evento beforeinstallprompt recebido (mobile)");
+    // Prevenir o prompt automático
+    e.preventDefault();
+    this.deferredPrompt = e;
+    this.supportsPWA = true;
 
-  // Prevenir o prompt automático
-  e.preventDefault();
-  this.deferredPrompt = e;
-  this.supportsPWA = true;
+    // PARA MOBILE: Mostrar botão IMEDIATAMENTE após interação
+    if (this.isMobile()) {
+      // Esperar pequena interação primeiro
+      const showOnInteraction = () => {
+        if (!this.isInstalled && this.deferredPrompt) {
+          this.showInstallButton();
+        }
+        // Remover listeners após usar
+        document.removeEventListener("click", showOnInteraction);
+        document.removeEventListener("touchstart", showOnInteraction);
+      };
 
-  // PARA MOBILE: Mostrar botão IMEDIATAMENTE após interação
-  if (this.isMobile()) {
-    // Esperar pequena interação primeiro
-    const showOnInteraction = () => {
-      if (!this.isInstalled && this.deferredPrompt) {
-        this.showInstallButton();
-      }
-      // Remover listeners após usar
-      document.removeEventListener('click', showOnInteraction);
-      document.removeEventListener('touchstart', showOnInteraction);
-    };
+      // Mostrar após primeira interação do usuário
+      document.addEventListener("click", showOnInteraction, { once: true });
+      document.addEventListener("touchstart", showOnInteraction, {
+        once: true,
+      });
 
-    // Mostrar após primeira interação do usuário
-    document.addEventListener('click', showOnInteraction, { once: true });
-    document.addEventListener('touchstart', showOnInteraction, { once: true });
-    
-    // Fallback: mostrar após 30 segundos mesmo sem interação
-    setTimeout(() => {
-      if (!this.isInstalled && this.deferredPrompt) {
-        this.showInstallButton();
-      }
-    }, 30000);
-  } else {
-    // Para desktop: esperar 5 segundos
-    setTimeout(() => {
-      if (!this.isInstalled && this.deferredPrompt) {
-        this.showInstallButton();
-      }
-    }, 5000);
+      // Fallback: mostrar após 30 segundos mesmo sem interação
+      setTimeout(() => {
+        if (!this.isInstalled && this.deferredPrompt) {
+          this.showInstallButton();
+        }
+      }, 30000);
+    } else {
+      // Para desktop: esperar 5 segundos
+      setTimeout(() => {
+        if (!this.isInstalled && this.deferredPrompt) {
+          this.showInstallButton();
+        }
+      }, 5000);
+    }
   }
-}
 
-// Adicione este método para detectar mobile:
-isMobile() {
-  return this.isIOS || this.isAndroid;
-}
+  // Adicione este método para detectar mobile:
+  isMobile() {
+    return this.isIOS || this.isAndroid;
+  }
 
   handleAppInstalled() {
     console.log(" PWA instalado com sucesso!");
@@ -429,7 +430,7 @@ isMobile() {
     const status = this.getStatus();
 
     if (this.debug) {
-      console.log("📊 PWA Status:", status);
+      console.log(" PWA Status:", status);
     }
 
     return status;

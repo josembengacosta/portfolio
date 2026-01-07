@@ -1,51 +1,156 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="dark-theme">
-
+<html lang="pt-BR" class="dark-theme">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover">
-    <title>Portfólio Completo | José Mbenga</title>
-    <meta name="theme-color" content="#0f172a" />
+    <meta charset="UTF-8" />
+    
+    <!-- VIEWPORT OTIMIZADO -->
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    
+    <!-- TITLE OTIMIZADO PARA SEO -->
+    <title>Portfólio Completo - 35+ Projetos | José Mbenga - Desenvolvedor Full Stack</title>
+    
+    <!-- THEME COLOR DARK/LIGHT -->
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+    <meta name="color-scheme" content="dark light">
 
-    <!-- SEO -->
-    <meta name="description"
-        content="Portfólio completo com 35+ projetos de desenvolvimento web, mobile, UI/UX design e consultoria tech por José Mbenga">
-    <meta name="keywords"
-        content="portfólio projetos, desenvolvimento web Angola, José Mbenga projetos, web developer Angola, full stack developer">
-    <meta name="author" content="José Mbenga" />
-    <meta name="robots" content="index, follow" />
+    <!-- PREFETCH CRÍTICO -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
+    <!-- ========== SEO OTIMIZADO ========== -->
+    <meta name="description" 
+          content="Explore 35+ projetos de desenvolvimento web, mobile e UI/UX design por José Mbenga. Portfólio completo de soluções digitais inovadoras.">
+    <meta name="keywords" 
+          content="portfólio desenvolvedor, projetos web Angola, José Mbenga portfolio, desenvolvimento full stack, react projetos, vue.js projetos, aplicações web">
+    <meta name="author" content="José Mbenga">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    
+    <!-- CANONICAL URL -->
+    <link rel="canonical" href="https://josembengacosta.github.io/portfolio/pages/all-projects.html">
+
+    <!-- ========== OPEN GRAPH & TWITTER OTIMIZADO ========== -->
     <!-- Open Graph -->
-    <meta property="og:title" content="José Mbenga | Desenvolvedor Web Full Stack" />
-    <meta property="og:description"
-        content="Transformo ideias em experiências digitais excepcionais com código limpo e design moderno." />
-    <meta property="og:image" content="https://jmbenga.com/og-image.jpg" />
-    <meta property="og:url" content="https://jmbenga.com" />
-    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Portfólio Completo - 35+ Projetos | José Mbenga">
+    <meta property="og:description" 
+          content="Explore projetos reais de desenvolvimento web, mobile e design. Soluções digitais que entregam resultados.">
+    <meta property="og:image" 
+          content="https://josembengacosta.github.io/portfolio/assets/img/social/projects-og-1200x630.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Portfólio de Projetos - José Mbenga">
+    <meta property="og:url" content="https://josembengacosta.github.io/portfolio/pages/all-projects.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="JMbenga Portfolio">
+    <meta property="og:locale" content="pt_BR">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="José Mbenga | Desenvolvedor Web Full Stack" />
-    <meta name="twitter:description" content="Especialista em desenvolvimento web moderno e performático." />
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portfólio - 35+ Projetos | José Mbenga">
+    <meta name="twitter:description" 
+          content="Coleção completa de projetos web, mobile e design desenvolvidos por José Mbenga.">
+    <meta name="twitter:image" 
+          content="https://josembengacosta.github.io/portfolio/assets/img/social/projects-twitter-1200x600.jpg">
+    <meta name="twitter:image:alt" content="Projetos José Mbenga">
+    <meta name="twitter:creator" content="@josembenga">
+    <meta name="twitter:site" content="@josembenga">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="../assets/img/svg/favicon_jm.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="../assets/img/svg/favicon_jm.png" />
+    <!-- ========== PWA CONFIG ========== -->
+    <link rel="manifest" href="../manifest.json" crossorigin="use-credentials">
+    <meta name="application-name" content="JMbenga Portfolio">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="JMbenga Projects">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- APPLE TOUCH ICONS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/icons/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="../assets/img/icons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../assets/img/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../assets/img/icons/apple-touch-icon-120x120.png">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <!-- ========== ÍCONES ========== -->
+    <link rel="icon" type="image/svg+xml" href="../assets/img/svg/favicon.svg">
+    <link rel="shortcut icon" href="../assets/img/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="../assets/img/icons/safari-pinned-tab.svg" color="#2563eb">
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../assets/fontawesome-free/css/all.min.css" />
+    <!-- ========== FONTS OTIMIZADAS ========== -->
+    <link rel="preload" 
+          as="style" 
+          onload="this.onload=null;this.rel='stylesheet'"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" 
+              rel="stylesheet">
+    </noscript>
 
+    <!-- ========== ICONS OTIMIZADOS ========== -->
+    <link rel="preload" 
+          as="style" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+          media="print" 
+          onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+
+    <!-- ========== CSS DEFERIDO ========== -->
     <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/all-projects.css" />
+    <link rel="preload" 
+          as="style" 
+          href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
+          onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- CSS específico da página -->
+    <link rel="preload" 
+          href="../assets/css/all-projects.css" 
+          as="style" 
+          onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" 
+          href="../assets/css/all-projects.css" 
+          media="print" 
+          onload="this.media='all'">
+    
+    
+    <!-- Noscript fallback -->
+    <noscript>
+        <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+        <link rel="stylesheet" href="../assets/css/all-projects.css">
+    </noscript>
+
+    <!-- ========== SCRIPT PRELOADS ========== -->
+    <link rel="preload" href="../assets/js/all-projects.js" as="script">
+    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.js" as="script">
+    
+    <!-- Schema Markup para página de projetos -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Portfólio Completo de Projetos",
+        "description": "Coleção de 35+ projetos de desenvolvimento web e mobile por José Mbenga",
+        "url": "https://josembengacosta.github.io/portfolio/pages/all-projects.html",
+        "image": "https://josembengacosta.github.io/portfolio/assets/img/social/projects-og-1200x630.jpg",
+        "author": {
+            "@type": "Person",
+            "name": "José Mbenga",
+            "jobTitle": "Desenvolvedor Full Stack",
+            "url": "https://josembengacosta.github.io/portfolio/"
+        },
+        "about": {
+            "@type": "Thing",
+            "name": "Desenvolvimento Web"
+        },
+        "numberOfItems": 35,
+        "keywords": "desenvolvimento web, projetos react, vue.js, javascript, full stack"
+    }
+    </script>
 </head>
 
 <body>
@@ -59,7 +164,7 @@
                 <i class="fas fa-paper-plane"></i>
                 <span>Contato</span>
             </a>
-            <button class="btn btn-outline btn-icon" id="themeToggle" title="Alternar tema">
+            <button class="btn btn-outline btn-icon theme-toggle" id="themeToggle" title="Alternar tema">
                 <i class="fas fa-moon"></i>
             </button>
         </div>
@@ -194,6 +299,7 @@
     <!-- AOS Animation -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../assets/js/all-projects.js"></script>
+   
 </body>
 
 </html>

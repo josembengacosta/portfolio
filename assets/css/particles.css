@@ -3,23 +3,23 @@
    ============================================ */
 
 #particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* Hero particles */
 .hero .particles-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
 /* Ensure text is readable over particles */
@@ -28,69 +28,69 @@
 .typing-container,
 .floating-tech-stack,
 .hero-cta {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 }
 
 /* Text shadow for better readability */
 .hero-text h1,
 .hero-text .hero-subtitle,
 .typing-container {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .light-theme .hero-text h1,
 .light-theme .hero-text .hero-subtitle,
 .light-theme .typing-container {
-    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
 }
 
 /* Testimonials particles */
 .testimonials-section {
-    position: relative;
+  position: relative;
 }
 
 #testimonials-particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
 
 /* Adjust content over particles */
 .testimonials-slider {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 /* Optional: Add blur effect to particles background */
 .particles-container.with-blur {
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
 }
 
 /* Adjust for light theme */
 .light-theme .particles-container {
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
-    #particles-js {
-        opacity: 0.5;
-    }
-    
-    .hero-text h1,
-    .hero-text .hero-subtitle {
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-    }
+  #particles-js {
+    opacity: 0.5;
+  }
+
+  .hero-text h1,
+  .hero-text .hero-subtitle {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
 }
 
 /* Performance optimization */
 @media (prefers-reduced-motion: reduce) {
-    #particles-js {
-        display: none;
-    }
+  #particles-js {
+    display: none;
+  }
 }

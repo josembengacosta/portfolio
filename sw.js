@@ -42,11 +42,13 @@ const LAZY_CACHE = [
   // Additional CSS
   "/portfolio/assets/css/particles.css",
   "/portfolio/assets/css/all-projects.css",
+  "/portfolio/assets/css/project-demo.css",
 
   // Additional JS
   "/portfolio/assets/js/pwa-install.js",
   "/portfolio/assets/js/pwa-native.js",
   "/portfolio/assets/js/project-demo.js",
+  "/portfolio/assets/js/all-projects.js",
 
   // Important images
   "/portfolio/assets/img/photo/josembengadacosta.png",
@@ -58,7 +60,6 @@ const EXTERNAL_RESOURCES = [
   "https://unpkg.com/aos@2.3.1/dist/aos.css",
   "https://unpkg.com/aos@2.3.1/dist/aos.js",
   "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
-  "https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js",
 ];
 
 // 4. NETWORK ONLY - Nunca cache

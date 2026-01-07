@@ -88,16 +88,16 @@
     }
   ],
   
-  "shortcuts": [
+   "shortcuts": [
     {
       "name": "Todos os Projetos",
       "short_name": "Projetos",
       "description": "Explore meus projetos",
       "url": "./pages/all-projects.html",
       "icons": [{
-        "src": "./assets/img/icons/project-96x96.png",
+        "src": "./assets/img/icons/project-96x96.svg",
         "sizes": "96x96",
-        "type": "image/png"
+        "type": "image/svg+xml"
       }]
     },
     { 
@@ -106,11 +106,10 @@
       "description": "Deixe seu feedback e avaliações",
       "url": "./pages/reviews-feedback.html",
       "icons": [{
-        "src": "./assets/img/icons/reviews-feedback-96x96.png",
+        "src": "./assets/img/icons/feedback-96x96.svg",
         "sizes": "96x96",
-        "type": "image/png"
+        "type": "image/svg+xml"
       }]
-    
     },
     {
       "name": "Contato",
@@ -118,9 +117,9 @@
       "description": "Entre em contato",
       "url": "./index.html#contact",
       "icons": [{
-        "src": "./assets/img/icons/contact-96x96.png",
+        "src": "./assets/img/icons/contact-96x96.svg",
         "sizes": "96x96",
-        "type": "image/png"
+        "type": "image/svg+xml"
       }]
     },
     {
@@ -129,9 +128,9 @@
       "description": "Veja minhas habilidades",
       "url": "./index.html#skills",
       "icons": [{
-        "src": "./assets/img/icons/skills-96x96.png",
+        "src": "./assets/img/icons/skills-96x96.svg",
         "sizes": "96x96",
-        "type": "image/png"
+        "type": "image/svg+xml"
       }]
     },
     {
@@ -140,9 +139,9 @@
       "description": "Conheça minha jornada",
       "url": "./index.html#about",
       "icons": [{
-        "src": "./assets/img/icons/about-96x96.png",
+        "src": "./assets/img/icons/about-96x96.svg",
         "sizes": "96x96",
-        "type": "image/png"
+        "type": "image/svg+xml"
       }]
     }
   ],

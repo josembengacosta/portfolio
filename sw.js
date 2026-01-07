@@ -1,393 +1,373 @@
-// Service Worker PARA SUA ESTRUTURA - José Mbenga Portfolio
-const APP_VERSION = "6.0.0";
-const CACHE_NAME = `jmbenga-v6-${APP_VERSION}`;
+// ============================================
+// SERVICE WORKER - PORTFÓLIO JOSÉ MBENDA (OTIMIZADO)
+// ============================================
 
-// ========== CATEGORIAS DE CACHE ==========
+const APP_VERSION = "1.0.0";
+const CACHE_NAME = `jmbenga-pwa-v${APP_VERSION.replace(/\./g, "-")}`;
 
-// 1. CORE: Arquivos essenciais que SEMPRE devem estar em cache
-const CORE_CACHE = [
-  // Raiz
-  "./",
-  "./index.html",
-  "./manifest.json",
-  "./offline.html",
-  "./sw.js",
-  "./assets/img/icons/file-graph.svg",
-  "./assets/img/icons/file-cv.svg",
-  "./assets/img/icons/contact.svg",
-  "./assets/img/icons/skills.svg",
-  "./assets/img/icons/about.svg",
-  "./assets/img/icons/feedback.svg",
+// ========== CACHE STRATEGIES ==========
 
-  // Páginas principais
-  "./pages/all-projects.html",
-  "./pages/project-demo.html",
-  "./pages/reviews-feedback.html",
+// 1. CACHE IMMEDIATELY - Recursos essenciais
+const IMMEDIATE_CACHE = [
+  // HTML Core
+  "/portfolio/index.html",
+  "/portfolio/offline.html",
 
-  // CSS Principal
-  "./assets/css/main.css",
-  "./assets/css/improvements.css",
-  "./assets/css/particles.css",
+  // Manifest & Icons
+  "/portfolio/manifest.json",
+  "/portfolio/assets/img/icons/icon-192x192.png",
+  "/portfolio/assets/img/icons/icon-512x512.png",
+  "/portfolio/assets/img/svg/favicon_jm.ico",
 
-  // JS Principal
-  "./assets/js/main.js",
-  "./assets/js/improvements.js",
-  "./assets/js/pwa-install.js",
-  "./assets/js/pwa-native.js",
+  // Core CSS
+  "/portfolio/assets/css/main.css",
+  "/portfolio/assets/css/improvements.css",
 
-  // Ícones essenciais
-  "./assets/img/icons/icon-192x192.png",
-  "./assets/img/icons/icon-512x512.png",
-  "./assets/img/svg/favicon_jm.ico",
-  "./assets/img/photo/josembengadacosta.png",
+  // Core JS
+  "/portfolio/assets/js/main.js",
+  "/portfolio/assets/js/improvements.js",
+
+  // Fonts (Font Awesome)
+  "/portfolio/assets/fontawesome-free/webfonts/fa-solid-900.woff2",
+  "/portfolio/assets/fontawesome-free/webfonts/fa-brands-400.woff2",
 ];
 
-// 2. CSS: Todos os arquivos CSS
-const CSS_CACHE = [
-  "./assets/css/all-projects.css",
-  "./assets/css/project-demo.css",
-  "./assets/fontawesome-free/css/all.min.css",
-  "./assets/fontawesome-free/css/brands.min.css",
-  "./assets/fontawesome-free/css/fontawesome.min.css",
-  "./assets/fontawesome-free/css/regular.min.css",
-  "./assets/fontawesome-free/css/solid.min.css",
-  "./assets/fontawesome-free/css/v4-shims.min.css",
+// 2. CACHE LAZY - Recursos importantes (cache após instalação)
+const LAZY_CACHE = [
+  // Other HTML pages
+  "/portfolio/pages/all-projects.html",
+  "/portfolio/pages/project-demo.html",
+
+  // Additional CSS
+  "/portfolio/assets/css/particles.css",
+  "/portfolio/assets/css/all-projects.css",
+
+  // Additional JS
+  "/portfolio/assets/js/pwa-install.js",
+  "/portfolio/assets/js/pwa-native.js",
+  "/portfolio/assets/js/project-demo.js",
+
+  // Important images
+  "/portfolio/assets/img/photo/josembengadacosta.png",
+];
+
+// 3. EXTERNAL RESOURCES
+const EXTERNAL_RESOURCES = [
   "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
   "https://unpkg.com/aos@2.3.1/dist/aos.css",
-];
-
-// 3. JS: Todos os arquivos JavaScript
-const JS_CACHE = [
-  "./assets/js/all-projects.js",
-  "./assets/js/project-demo.js",
   "https://unpkg.com/aos@2.3.1/dist/aos.js",
-  "https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js",
+  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
 ];
 
-// 4. FONTES: Webfonts do FontAwesome
-const FONT_CACHE = [
-  "./assets/fontawesome-free/webfonts/fa-brands-400.woff2",
-  "./assets/fontawesome-free/webfonts/fa-regular-400.woff2",
-  "./assets/fontawesome-free/webfonts/fa-solid-900.woff2",
+// 4. NETWORK ONLY - Nunca cache
+const NETWORK_ONLY = [
+  // Form submissions, APIs, etc
+  /\/submit/i,
+  /\/api\//i,
+  /contact-form/i,
 ];
 
-// 5. IMAGES: Imagens importantes (cache sob demanda)
-const IMAGE_CACHE_PATTERNS = [
-  /\.(png|jpg|jpeg|gif|svg|ico|webp)$/i,
-  /\/assets\/img\//i,
-  /\/icons\//i,
-];
+// 5. PATTERNS FOR DYNAMIC CACHING
+const PATTERNS = {
+  html: /\.html$/i,
+  css: /\.css$/i,
+  js: /\.js$/i,
+  images: /\.(png|jpg|jpeg|gif|svg|ico|webp)$/i,
+  fonts: /\.(woff|woff2|ttf|eot)$/i,
+  pdf: /\.pdf$/i,
+};
 
-// 6. PAGES: Outras páginas (cache sob demanda)
-const PAGE_CACHE = [
-  "./auth/login.html",
-  "./auth/recovery.html",
-  "./auth/signup.html",
-  "./pages/services/web-development.html",
-  "./pages/services/mobile-apps.html",
-  "./pages/services/ui-ux-design.html",
-  "./pages/error/404.html",
-];
+// ========== INSTALL - Cache Immediate Resources ==========
 
-// ========== INSTALAÇÃO INTELIGENTE ==========
 self.addEventListener("install", (event) => {
-  console.log(`SW v${APP_VERSION} instalando...`);
+  console.log(`⚙️ SW v${APP_VERSION} instalando...`);
 
   event.waitUntil(
     caches
       .open(CACHE_NAME)
       .then((cache) => {
-        // Cache apenas CORE imediatamente (rápido)
-        console.log(`Cacheando ${CORE_CACHE.length} recursos essenciais...`);
-        return cache.addAll(CORE_CACHE);
+        console.log(" Cacheando recursos essenciais...");
+        return cache
+          .addAll(
+            IMMEDIATE_CACHE.map((url) => {
+              // Handle both local and GitHub Pages paths
+              if (
+                self.location.hostname === "localhost" ||
+                self.location.hostname === "127.0.0.1"
+              ) {
+                return url.replace("/portfolio/", "./");
+              }
+              return url;
+            })
+          )
+          .catch((err) => {
+            console.warn(" Alguns recursos não puderam ser cacheados:", err);
+            // Continue mesmo com erros
+          });
       })
       .then(() => {
-        console.log("Cache essencial pronto!");
-        return self.skipWaiting();
-      })
-      .catch((error) => {
-        console.error("Erro na instalação:", error);
-        // Continua mesmo com erro
+        console.log("✅ Instalação completa!");
         return self.skipWaiting();
       })
   );
 });
 
-// ========== ATIVAÇÃO ==========
+// ========== ACTIVATE - Cleanup & Claim ==========
+
 self.addEventListener("activate", (event) => {
-  console.log(`SW v${APP_VERSION} ativado`);
+  console.log(` SW v${APP_VERSION} ativado`);
 
   event.waitUntil(
     Promise.all([
-      // Limpar caches antigos
+      // Clean up old caches
       caches.keys().then((cacheNames) => {
         return Promise.all(
           cacheNames.map((cacheName) => {
             if (cacheName !== CACHE_NAME && cacheName.startsWith("jmbenga-")) {
-              console.log(`Removendo cache antigo: ${cacheName}`);
+              console.log(`🗑️ Removendo cache antigo: ${cacheName}`);
               return caches.delete(cacheName);
             }
           })
         );
       }),
 
-      // Tomar controle imediato
+      // Take control immediately
       self.clients.claim(),
 
-      // Cachear recursos secundários em background
-      cacheSecondaryResources(),
+      // Cache lazy resources in background
+      cacheLazyResources(),
     ])
   );
 });
 
+// ========== FETCH - Intelligent Caching Strategy ==========
 
-// ========== FETCH INTELIGENTE ==========
-self.addEventListener('fetch', event => {
-  const url = new URL(event.request.url);
-  const request = event.request;
-  
-  // Ignorar requisições não-GET e não-HTTP
-  if (request.method !== 'GET' || !url.protocol.startsWith('http')) {
+self.addEventListener("fetch", (event) => {
+  const { request } = event;
+  const url = new URL(request.url);
+
+  // Skip non-GET requests
+  if (request.method !== "GET") return;
+
+  // Skip browser extensions and chrome:// URLs
+  if (url.protocol === "chrome-extension:" || url.protocol === "chrome:")
     return;
-  }
-  
-  // Ignorar navegador e extensões
-  if (url.protocol === 'chrome-extension:') return;
-  
-  // FUNÇÃO PARA HTML COM TEMA DINÂMICO
-  async function serveWithTheme(req) {
-    try {
-      const response = await fetch(req);
-      const contentType = response.headers.get('content-type');
-      
-      // HTML NUNCA em cache (para temas funcionarem)
-      if (contentType && contentType.includes('text/html')) {
-        return response;
-      }
-      
-      // Outros recursos podem ser cacheados
-      if (response.ok) {
-        const cache = await caches.open(CACHE_NAME);
-        cache.put(req, response.clone()).catch(() => {});
-      }
-      
-      return response;
-    } catch (error) {
-      console.log('🌐 Offline - usando cache para:', req.url);
-      const cached = await caches.match(req);
-      if (cached) return cached;
-      
-      // Fallback para offline.html
-      if (req.mode === 'navigate') {
-        const offlinePage = await caches.match('./offline.html');
-        if (offlinePage) return offlinePage;
-      }
-      
-      throw error;
-    }
-  }
-  
-  // Estratégia baseada no tipo de recurso
-  if (request.mode === 'navigate') {
-    // Navegação: serveWithTheme (HTML sem cache)
-    event.respondWith(serveWithTheme(request));
-  } else if (isStaticAsset(url)) {
-    // Assets estáticos: Cache First
-    event.respondWith(cacheFirst(request));
-  } else if (isExternalAsset(url)) {
-    // Recursos externos: Stale While Revalidate
-    event.respondWith(staleWhileRevalidate(request));
-  } else {
-    // Demais: Network First
-    event.respondWith(networkFirst(request));
+
+  // Skip data URLs
+  if (url.protocol === "data:") return;
+
+  // Determine strategy based on URL
+  const strategy = getStrategy(url, request);
+
+  // Apply strategy
+  switch (strategy) {
+    case "network-only":
+      event.respondWith(networkOnly(request));
+      break;
+
+    case "cache-first":
+      event.respondWith(cacheFirst(request));
+      break;
+
+    case "stale-while-revalidate":
+      event.respondWith(staleWhileRevalidate(request));
+      break;
+
+    case "network-first":
+    default:
+      event.respondWith(networkFirst(request));
+      break;
   }
 });
 
-// ========== ESTRATÉGIAS POR TIPO ==========
-async function handleFetch(request, url) {
-  // 1. NAVEGAÇÃO (páginas HTML)
+// ========== STRATEGY DETECTION ==========
+
+function getStrategy(url, request) {
+  // Network only patterns
+  for (const pattern of NETWORK_ONLY) {
+    if (pattern.test(url.pathname)) {
+      return "network-only";
+    }
+  }
+
+  // External resources
+  if (url.hostname !== self.location.hostname) {
+    return "stale-while-revalidate";
+  }
+
+  // Navigation (HTML pages)
   if (request.mode === "navigate") {
-    return networkFirstWithOffline(request);
+    return "network-first";
   }
 
-  // 2. API/Dados (sempre network)
-  if (url.pathname.includes("/api/") || url.pathname.includes("/submit")) {
-    return fetch(request);
+  // Static assets
+  if (PATTERNS.images.test(url.pathname)) {
+    return "cache-first";
   }
 
-  // 3. CSS
-  if (
-    url.pathname.match(/\.css$/i) ||
-    url.hostname.includes("fonts.googleapis.com") ||
-    url.hostname.includes("unpkg.com")
-  ) {
-    return staleWhileRevalidate(request);
+  if (PATTERNS.css.test(url.pathname)) {
+    return "stale-while-revalidate";
   }
 
-  // 4. JS
-  if (
-    url.pathname.match(/\.js$/i) ||
-    url.hostname.includes("cdn.jsdelivr.net")
-  ) {
-    return cacheFirst(request);
+  if (PATTERNS.js.test(url.pathname)) {
+    return "cache-first";
   }
 
-  // 5. FONTES
-  if (
-    url.pathname.match(/\.(woff|woff2|ttf|eot)$/i) ||
-    url.hostname.includes("fonts.gstatic.com")
-  ) {
-    return cacheFirst(request);
+  if (PATTERNS.fonts.test(url.pathname)) {
+    return "cache-first";
   }
 
-  // 6. IMAGENS
-  if (
-    url.pathname.match(/\.(png|jpg|jpeg|gif|svg|ico|webp)$/i) ||
-    IMAGE_CACHE_PATTERNS.some((pattern) => pattern.test(url.pathname))
-  ) {
-    return cacheFirstWithExpiration(request, 7 * 24 * 60 * 60 * 1000); // 7 dias
+  if (PATTERNS.pdf.test(url.pathname)) {
+    return "network-first";
   }
 
-  // 7. PDF
-  if (url.pathname.match(/\.pdf$/i)) {
-    return networkFirst(request);
-  }
-
-  // 8. DEFAULT: Cache First
-  return cacheFirst(request);
+  // Default: network first
+  return "network-first";
 }
 
-// ========== ESTRATÉGIAS IMPLEMENTADAS ==========
+// ========== CACHING STRATEGIES IMPLEMENTATION ==========
 
-// A. Network First com fallback offline
-async function networkFirstWithOffline(request) {
+// 1. NETWORK ONLY
+async function networkOnly(request) {
+  return fetch(request);
+}
+
+// 2. NETWORK FIRST (with offline fallback)
+async function networkFirst(request) {
   try {
-    const response = await fetch(request);
+    // Try network first
+    const networkResponse = await fetch(request);
 
-    // Se for HTML, verificar se é erro 404/500
-    const contentType = response.headers.get("content-type");
-    if (contentType && contentType.includes("text/html")) {
-      const text = await response.clone().text();
-      if (
-        text.includes("error-") ||
-        text.includes("404") ||
-        text.includes("500") ||
-        response.status >= 400
-      ) {
-        throw new Error("Page error");
-      }
-    }
-
-    // Cachear resposta bem-sucedida
-    if (response.ok) {
+    // Cache successful responses
+    if (networkResponse.ok) {
       const cache = await caches.open(CACHE_NAME);
-      cache.put(request, response.clone()).catch(() => {});
-    }
-
-    return response;
-  } catch (error) {
-    console.log("Offline - Tentando cache:", request.url);
-
-    // 1. Tentar cache da página solicitada
-    const cached = await caches.match(request);
-    if (cached) return cached;
-
-    // 2. Para páginas de erro específicas
-    const path = new URL(request.url).pathname;
-    if (path.includes("/error/") || path.includes("/404")) {
-      const errorPage = await caches.match("./pages/error/404.html");
-      if (errorPage) return errorPage;
-    }
-
-    // 3. Offline page customizada
-    const offlinePage = await caches.match("./offline.html");
-    if (offlinePage) {
-      return new Response(offlinePage.body, {
-        status: 200,
-        statusText: "OK (Offline)",
-        headers: {
-          "Content-Type": "text/html; charset=utf-8",
-          "X-Offline-Mode": "true",
-        },
+      cache.put(request, networkResponse.clone()).catch((err) => {
+        console.warn(" Não pude cachear resposta:", err);
       });
     }
 
-    // 4. Fallback para index.html
-    const indexPage = await caches.match("./index.html");
-    if (indexPage) return indexPage;
+    return networkResponse;
+  } catch (error) {
+    // Network failed, try cache
+    console.log(" Offline, buscando no cache:", request.url);
 
-    // 5. Fallback genérico
-    return new Response(
-      `
-      <!DOCTYPE html>
-      <html><body>
-        <h1>Offline</h1>
-        <p>Conecte-se à internet para acessar ${
-          new URL(request.url).pathname
-        }</p>
-      </body></html>
-    `,
-      {
-        status: 503,
-        headers: { "Content-Type": "text/html" },
-      }
-    );
-  }
-}
-
-// B. Cache First (para assets estáticos)
-async function cacheFirst(request) {
-  const cached = await caches.match(request);
-  if (cached) {
-    // Atualizar cache em background
-    updateCacheInBackground(request);
-    return cached;
-  }
-
-  const response = await fetch(request);
-  if (response.ok) {
-    const cache = await caches.open(CACHE_NAME);
-    cache.put(request, response.clone()).catch(() => {});
-  }
-  return response;
-}
-
-// C. Cache First com expiração (para imagens)
-async function cacheFirstWithExpiration(request, maxAge) {
-  const cached = await caches.match(request);
-  const now = Date.now();
-
-  if (cached) {
-    const cachedDate = new Date(cached.headers.get("date") || now);
-    const age = now - cachedDate.getTime();
-
-    if (age < maxAge) {
-      return cached;
+    const cachedResponse = await caches.match(request);
+    if (cachedResponse) {
+      return cachedResponse;
     }
+
+    // If it's a page request and no cache, show offline page
+    if (request.mode === "navigate") {
+      return getOfflinePage();
+    }
+
+    // For other requests, return error
+    return new Response("Offline", {
+      status: 408,
+      headers: { "Content-Type": "text/plain" },
+    });
+  }
+}
+
+// 3. CACHE FIRST (for static assets)
+async function cacheFirst(request) {
+  // Try cache first
+  const cachedResponse = await caches.match(request);
+  if (cachedResponse) {
+    // Update cache in background
+    updateCacheInBackground(request);
+    return cachedResponse;
   }
 
-  const response = await fetch(request);
-  if (response.ok) {
-    const cache = await caches.open(CACHE_NAME);
-    const headers = new Headers(response.headers);
-    headers.set("date", new Date().toUTCString());
+  // Not in cache, try network
+  try {
+    const networkResponse = await fetch(request);
 
-    const cacheResponse = new Response(response.body, {
-      status: response.status,
-      statusText: response.statusText,
-      headers: headers,
+    if (networkResponse.ok) {
+      const cache = await caches.open(CACHE_NAME);
+      cache.put(request, networkResponse.clone()).catch((err) => {
+        console.warn(" Não pude cachear asset:", err);
+      });
+    }
+
+    return networkResponse;
+  } catch (error) {
+    // Network failed, no cache
+    if (PATTERNS.images.test(request.url)) {
+      // Return placeholder for images
+      return new Response(
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+          <rect width="100" height="100" fill="#f1f5f9"/>
+          <text x="50" y="50" text-anchor="middle" fill="#64748b">Image</text>
+        </svg>`,
+        {
+          headers: { "Content-Type": "image/svg+xml" },
+        }
+      );
+    }
+
+    return new Response("", { status: 404 });
+  }
+}
+
+// 4. STALE WHILE REVALIDATE (for CSS, external resources)
+async function staleWhileRevalidate(request) {
+  const cache = await caches.open(CACHE_NAME);
+  const cachedResponse = await cache.match(request);
+
+  // Return cached response immediately
+  const fetchPromise = fetch(request)
+    .then((networkResponse) => {
+      if (networkResponse.ok) {
+        cache.put(request, networkResponse.clone());
+      }
+      return networkResponse;
+    })
+    .catch(() => {
+      // Ignore fetch errors
     });
 
-    cache.put(request, cacheResponse).catch(() => {});
-  }
-  return response;
+  return cachedResponse || fetchPromise || fetch(request);
 }
 
-// D. Stale While Revalidate (para CSS, fonts)
-async function staleWhileRevalidate(request) {
-  const cached = await caches.match(request);
+// ========== HELPER FUNCTIONS ==========
 
-  // Buscar atualização em background
+async function cacheLazyResources() {
+  try {
+    const cache = await caches.open(CACHE_NAME);
+    const alreadyCached = await cache.keys();
+    const cachedUrls = alreadyCached.map((req) => req.url);
+
+    const resourcesToCache = LAZY_CACHE.map((url) => {
+      if (
+        self.location.hostname === "localhost" ||
+        self.location.hostname === "127.0.0.1"
+      ) {
+        return url.replace("/portfolio/", "./");
+      }
+      return url;
+    });
+
+    const batchSize = 5;
+    for (let i = 0; i < resourcesToCache.length; i += batchSize) {
+      const batch = resourcesToCache.slice(i, i + batchSize);
+      await Promise.allSettled(
+        batch.map((url) =>
+          cache.add(url).catch((err) => {
+            console.log(` Não cacheado: ${url}`, err.message);
+          })
+        )
+      );
+    }
+
+    console.log(" Cache lazy completo!");
+  } catch (error) {
+    console.error("❌ Erro no cache lazy:", error);
+  }
+}
+
+async function updateCacheInBackground(request) {
+  // Don't wait for this to complete
   fetch(request)
     .then((response) => {
       if (response.ok) {
@@ -397,125 +377,147 @@ async function staleWhileRevalidate(request) {
           .catch(() => {});
       }
     })
-    .catch(() => {}); // Ignorar erros
-
-  return cached || fetch(request);
+    .catch(() => {});
 }
 
-// E. Network First (para PDFs, dados)
-async function networkFirst(request) {
-  try {
-    return await fetch(request);
-  } catch {
-    return await caches.match(request);
+async function getOfflinePage() {
+  const cache = await caches.open(CACHE_NAME);
+  const offlinePage = await cache.match(
+    self.location.hostname === "localhost"
+      ? "./offline.html"
+      : "/portfolio/offline.html"
+  );
+
+  if (offlinePage) {
+    return offlinePage;
   }
-}
 
-// ========== FUNÇÕES AUXILIARES ==========
-
-async function cacheSecondaryResources() {
-  try {
-    const cache = await caches.open(CACHE_NAME);
-    const alreadyCached = await cache.keys();
-    const cachedUrls = alreadyCached.map((req) => req.url);
-
-    // Combinar todos os recursos secundários
-    const allSecondary = [
-      ...CSS_CACHE,
-      ...JS_CACHE,
-      ...FONT_CACHE,
-      ...PAGE_CACHE,
-    ];
-
-    // Filtrar apenas os que não estão em cache
-    const toCache = allSecondary.filter((url) => {
-      const fullUrl = new URL(url, self.location.origin).href;
-      return !cachedUrls.includes(fullUrl);
-    });
-
-    if (toCache.length > 0) {
-      console.log(
-        ` Cacheando ${toCache.length} recursos secundários em background...`
-      );
-
-      // Cachear em lotes para não bloquear
-      const batchSize = 10;
-      for (let i = 0; i < toCache.length; i += batchSize) {
-        const batch = toCache.slice(i, i + batchSize);
-        await Promise.allSettled(
-          batch.map((url) =>
-            cache
-              .add(url)
-              .catch((err) =>
-                console.log(`⚠️ Não pude cachear ${url}:`, err.message)
-              )
-          )
-        );
-      }
-
-      console.log("Cache secundário completo!");
+  // Create a simple offline page
+  return new Response(
+    `<!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Offline | JMbenga Portfolio</title>
+      <style>
+        body {
+          font-family: 'Inter', sans-serif;
+          background: #0f172a;
+          color: #f8fafc;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          margin: 0;
+          padding: 20px;
+          text-align: center;
+        }
+        .container {
+          max-width: 500px;
+        }
+        h1 {
+          color: #2563eb;
+          margin-bottom: 20px;
+        }
+        p {
+          margin-bottom: 30px;
+          line-height: 1.6;
+        }
+        .icon {
+          font-size: 4rem;
+          margin-bottom: 20px;
+          color: #64748b;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="icon">📡</div>
+        <h1>Você está offline</h1>
+        <p>Conecte-se à internet para acessar o conteúdo completo do portfólio.</p>
+        <p>Algumas funcionalidades podem não estar disponíveis.</p>
+      </div>
+    </body>
+    </html>`,
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "text/html; charset=utf-8",
+        "X-Offline-Mode": "true",
+      },
     }
-  } catch (error) {
-    console.error("Erro no cache secundário:", error);
-  }
+  );
 }
 
-async function updateCacheInBackground(request) {
-  try {
-    const response = await fetch(request);
-    if (response.ok) {
-      const cache = await caches.open(CACHE_NAME);
-      await cache.put(request, response);
-    }
-  } catch (error) {
-    // Silenciosamente falhar
-  }
-}
+// ========== MESSAGE HANDLING ==========
 
-async function offlineFallback(request) {
-  // Para HTML, retornar offline page
-  if (request.mode === "navigate") {
-    const offlinePage = await caches.match("./offline.html");
-    if (offlinePage) return offlinePage;
-  }
+self.addEventListener("message", (event) => {
+  const { type, data } = event.data || {};
 
-  // Para outros recursos, retornar resposta vazia
-  return new Response("", {
-    status: 408,
-    statusText: "Offline",
-  });
-}
+  switch (type) {
+    case "GET_VERSION":
+      event.source.postMessage({
+        type: "VERSION_INFO",
+        version: APP_VERSION,
+        cacheName: CACHE_NAME,
+      });
+      break;
 
-// ========== BACKGROUND SYNC ==========
-self.addEventListener("sync", (event) => {
-  if (event.tag === "sync-forms") {
-    console.log("Background sync para formulários");
-    event.waitUntil(syncPendingData());
+    case "CLEAR_CACHE":
+      caches
+        .delete(CACHE_NAME)
+        .then(() => {
+          event.source.postMessage({
+            type: "CACHE_CLEARED",
+            success: true,
+          });
+        })
+        .catch((error) => {
+          event.source.postMessage({
+            type: "CACHE_CLEARED",
+            success: false,
+            error: error.message,
+          });
+        });
+      break;
+
+    case "UPDATE_SW":
+      self.skipWaiting();
+      event.source.postMessage({
+        type: "SW_UPDATED",
+        success: true,
+      });
+      break;
   }
 });
 
-async function syncPendingData() {
-  // Aqui você sincronizaria dados pendentes (formulários, etc.)
-  console.log("📡 Sincronizando dados...");
-}
+// ========== PUSH NOTIFICATIONS (Optional) ==========
 
-// ========== PUSH NOTIFICATIONS ==========
 self.addEventListener("push", (event) => {
   if (!event.data) return;
 
   const data = event.data.json();
+
   const options = {
-    body: data.body || "Novo conteúdo disponível!",
-    icon: "./assets/img/icons/icon-192x192.png",
-    badge: "./assets/img/icons/icon-72x72.png",
-    data: { url: data.url || "./" },
+    body: data.body || "Novo conteúdo disponível no meu portfólio!",
+    icon: "/portfolio/assets/img/icons/icon-192x192.png",
+    badge: "/portfolio/assets/img/icons/icon-72x72.png",
+    vibrate: [200, 100, 200],
+    data: {
+      url: data.url || "/portfolio/",
+      date: new Date().toISOString(),
+    },
     actions: [
-      { action: "open", title: "Abrir" },
-      { action: "close", title: "Fechar" },
+      {
+        action: "open",
+        title: "Abrir",
+      },
+      {
+        action: "close",
+        title: "Fechar",
+      },
     ],
-    tag: "portfolio-update",
-    renotify: true,
-    requireInteraction: false,
   };
 
   event.waitUntil(
@@ -531,58 +533,8 @@ self.addEventListener("notificationclick", (event) => {
   }
 });
 
-// ========== MENSAGENS ==========
-self.addEventListener("message", (event) => {
-  const { type, data } = event.data || {};
+// ========== CONSOLE LOG ==========
 
-  switch (type) {
-    case "GET_CACHE_INFO":
-      caches
-        .open(CACHE_NAME)
-        .then((cache) => cache.keys())
-        .then((keys) => {
-          event.source.postMessage({
-            type: "CACHE_INFO",
-            version: APP_VERSION,
-            totalCached: keys.length,
-            categories: {
-              html: keys.filter((k) => k.url.includes(".html")).length,
-              css: keys.filter((k) => k.url.includes(".css")).length,
-              js: keys.filter((k) => k.url.includes(".js")).length,
-              images: keys.filter((k) =>
-                k.url.match(/\.(png|jpg|jpeg|gif|svg|ico)$/i)
-              ).length,
-              fonts: keys.filter((k) => k.url.match(/\.(woff|woff2|ttf|eot)$/i))
-                .length,
-            },
-          });
-        });
-      break;
-
-    case "CLEAR_CACHE":
-      caches.delete(CACHE_NAME).then(() => {
-        event.source.postMessage({
-          type: "CACHE_CLEARED",
-          success: true,
-        });
-      });
-      break;
-
-    case "UPDATE_SW":
-      self.skipWaiting();
-      break;
-
-    case "TEST_OFFLINE":
-      // Simular offline para testes
-      console.log("Teste offline solicitado");
-      event.source.postMessage({
-        type: "OFFLINE_TEST_READY",
-        offlinePage: "./offline.html",
-      });
-      break;
-  }
-});
-
-console.log(
-  `Service Worker v${APP_VERSION} carregado para estrutura complexa!`
-);
+console.log(` Service Worker v${APP_VERSION} carregado e pronto!`);
+console.log(` Cache: ${CACHE_NAME}`);
+console.log(` Host: ${self.location.hostname}`);

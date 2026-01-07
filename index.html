@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="pt-br" class="dark-theme">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover">
-    <meta name="viewport" 
-      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover, user-scalable=yes">
+
+  <!-- VIEWPORT CORRETO -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
   <title>José Mbenga da Costa | Desenvolvedor Web Full Stack</title>
 
-  <!-- Theme Color Dinâmico -->
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a">
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc">
+  <!-- THEME COLOR CORRETO -->
+  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
   <meta name="color-scheme" content="dark light">
 
   <!-- ========== SEO ========== -->
@@ -23,7 +20,6 @@
   <meta name="robots" content="index, follow" />
 
   <!-- ========== PWA CONFIG ========== -->
-  <!-- Manifest (IMPORTANTE: usar caminho RELATIVO) -->
   <link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
 
   <!-- Meta PWA -->
@@ -33,35 +29,15 @@
   <meta name="apple-mobile-web-app-title" content="JMbenga">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <!-- MS (Windows) -->
+  <!-- MS (Windows) - Opcional -->
   <meta name="msapplication-TileColor" content="#2563eb">
   <meta name="msapplication-TileImage" content="./assets/img/icons/icon-144x144.png">
-  <meta name="msapplication-starturl" content="./index.html">
-  <meta name="msapplication-config" content="./browserconfig.xml">
 
-  <!-- ========== ÍCONES ========== -->
-  <!-- Favicon padrão -->
-  <link rel="shortcut icon" href="./assets/img/svg/favicon_jm.ico" type="image/x-icon" />
-
-  <!-- Splash Screen para iOS -->
-  <link rel="apple-touch-startup-image" href="./assets/img/icons/apple-launch-1242x2688.png"
-    media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
-  <link rel="apple-touch-startup-image" href="./assets/img/icons/apple-launch-828x1792.png"
-    media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
-
-  <!-- Ícones para PWA -->
+  <!-- ========== ÍCONES SIMPLIFICADOS ========== -->
+  <link rel="shortcut icon" href="./assets/img/svg/favicon_jm.ico" type="image/x-icon">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/icons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./assets/img/icons/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/img/icons/apple-touch-icon.png">
-  <link rel="apple-touch-icon" sizes="167x167" href="./assets/img/icons/apple-touch-icon-167x167.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="./assets/img/icons/apple-touch-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="./assets/img/icons/apple-touch-icon-120x120.png">
-
-  <!-- Ícones obrigatórios para PWA -->
-  <link rel="icon" type="image/png" sizes="192x192" href="./assets/img/icons/icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="./assets/img/icons/icon-512x512.png">
-
-  <!-- Safari pinned tab -->
+  <link rel="apple-touch-icon" href="./assets/img/icons/apple-touch-icon.png">
   <link rel="mask-icon" href="./assets/img/icons/safari-pinned-tab.svg" color="#2563eb">
 
   <!-- ========== OPEN GRAPH & TWITTER ========== -->
@@ -74,7 +50,6 @@
   <meta property="og:site_name" content="JMbenga Portfolio" />
   <meta property="og:locale" content="pt_BR" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="José Mbenga | Desenvolvedor Web Full Stack" />
   <meta name="twitter:description" content="Especialista em desenvolvimento web moderno e performático." />
@@ -83,7 +58,6 @@
   <meta name="twitter:site" content="@josembenga" />
 
   <!-- ========== FONTS & ICONS ========== -->
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
@@ -91,41 +65,22 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="./assets/fontawesome-free/css/all.min.css" />
 
   <!-- ========== STYLES ========== -->
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-  <!-- Seus estilos -->
+  <!-- CSS principal -->
   <link rel="stylesheet" href="./assets/css/main.css" />
   <link rel="stylesheet" href="./assets/css/improvements.css" />
   <link rel="stylesheet" href="./assets/css/particles.css" />
 
+  <!-- PRELOAD para performance -->
+  <link rel="preload" href="./assets/css/main.css" as="style">
+  <link rel="preload" href="./assets/js/main.js" as="script">
 
-<script>
-  // Detectar PWA standalone imediatamente
-  (function() {
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
-                        window.navigator.standalone;
-    
-    if (isStandalone) {
-      document.documentElement.classList.add('pwa-installed', 'pwa-standalone');
-      
-      // Aplicar tema salvo imediatamente
-      try {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-          document.body.classList.add('light-theme');
-        }
-      } catch (e) {}
-    }
-  })();
-</script>
-
-  <!-- PWA Styles -->
+  <!-- PWA Styles MINIMAL -->
   <style>
-    /* Estilos PWA inline para carregamento rápido */
     .pwa-install-btn {
       position: fixed;
       bottom: 100px;
@@ -142,7 +97,6 @@
       align-items: center;
       gap: 10px;
       box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
-      animation: pulse 2s infinite;
       transition: all 0.3s ease;
       opacity: 0;
       transform: translateY(20px);
@@ -153,123 +107,13 @@
       transform: translateY(0);
     }
 
-    .pwa-install-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.6);
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
-      }
-
-      70% {
-        box-shadow: 0 0 0 15px rgba(37, 99, 235, 0);
-      }
-
-      100% {
-        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
-      }
-    }
-
-    @keyframes slideInRight {
-      from {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes slideOutRight {
-      from {
-        transform: translateX(0);
-        opacity: 1;
-      }
-
-      to {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-    }
-
-    /* Para modo standalone (app instalado) */
     @media (display-mode: standalone) {
       body {
         padding-top: env(safe-area-inset-top);
-        padding-bottom: env(safe-area-inset-bottom);
       }
 
-      header {
-        padding-top: env(safe-area-inset-top);
-      }
-    }
-  </style>
-
-  <!-- No <head> do seu HTML, adicione: -->
-  <style>
-    /* OVERRIDE PARA SPLASH CENTRALIZADO */
-    .app-splash {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      text-align: center !important;
-    }
-
-    .app-splash div {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
-    }
-
-    /* Garantir que o ícone e texto fiquem no centro */
-    .app-splash i,
-    .app-splash h2,
-    .app-splash p {
-      text-align: center !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-    }
-
-    /* ========== FIX PWA SCROLL ========== */
-    html,
-    body {
-      overflow-x: hidden !important;
-      overflow-y: auto !important;
-      position: relative !important;
-    }
-
-    /* Quando PWA instalado */
-    @media (display-mode: standalone) {
-      body {
-        padding-top: env(safe-area-inset-top);
-        padding-bottom: env(safe-area-inset-bottom);
-        touch-action: pan-y !important;
-        overscroll-behavior-y: auto !important;
-      }
-
-      .header {
-        padding-top: env(safe-area-inset-top);
-      }
-
-      /* Ajuste para conteúdo não ficar atrás do header */
-      .hero {
-        padding-top: calc(6rem + env(safe-area-inset-top)) !important;
-      }
-    }
-
-    /* Melhorar scroll no mobile */
-    @media (max-width: 768px) {
-      html {
-        -webkit-overflow-scrolling: touch;
-      }
-
-      body {
-        overflow-x: hidden;
+      .pwa-install-btn {
+        display: none !important;
       }
     }
   </style>
@@ -462,7 +306,7 @@
 
           <div class="typing-container">
             <span class="typed-text">Especialista em </span>
-            <span class="typing"
+            <span class="typing text-gradient"
               data-words='["React.js", "Vue.js", "Node.js", "UI/UX Design", "Sistemas Escaláveis", "APIs REST", "Mobile Apps"]'></span>
           </div>
 
@@ -1515,58 +1359,6 @@
     </div>
   </footer>
 
-  <script>
-// DEBUG: Informações do Service Worker
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.ready.then(reg => {
-    console.log('✅ SW registrado:', reg.active?.scriptURL);
-    
-    // Pedir informações do cache
-    reg.active?.postMessage({ type: 'GET_CACHE_INFO' });
-  });
-  
-  // Ouvir respostas do SW
-  navigator.serviceWorker.addEventListener('message', event => {
-    const { type, data } = event.data;
-    if (type === 'CACHE_INFO') {
-      console.log('📊 Cache Info:', data);
-    }
-  });
-}
-
-// Teste offline
-function testOfflineMode() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready.then(reg => {
-      reg.active?.postMessage({ type: 'TEST_OFFLINE' });
-      alert('Teste offline iniciado! Desconecte a internet e recarregue.');
-    });
-  }
-}
-
-// Limpar cache (para desenvolvimento)
-function clearCache() {
-  if (confirm('Tem certeza que quer limpar todo o cache?')) {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.ready.then(reg => {
-        reg.active?.postMessage({ type: 'CLEAR_CACHE' });
-        alert('Cache limpo! Recarregando...');
-        setTimeout(() => location.reload(), 1000);
-      });
-    }
-  }
-}
-</script>
-
-<!-- Botões de debug (remova em produção) -->
-<div style="position:fixed;bottom:20px;left:20px;z-index:9999;display:none;">
-  <button onclick="testOfflineMode()" style="background:#f59e0b;color:white;border:none;padding:8px 12px;border-radius:6px;margin:4px;">
-    🧪 Testar Offline
-  </button>
-  <button onclick="clearCache()" style="background:#ef4444;color:white;border:none;padding:8px 12px;border-radius:6px;margin:4px;">
-    🗑️ Limpar Cache
-  </button>
-</div>
 
   <!-- JavaScript Libraries -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

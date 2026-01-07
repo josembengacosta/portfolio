@@ -1,5 +1,5 @@
 // ============================================
-// PORTFÓLIO JOSÉ MBENGA
+// PORTFÓLIO JOSÉ MBENGA - JS OTIMIZADO
 // ============================================
 
 // Configurações globais
@@ -8,130 +8,192 @@ const CONFIG = {
   email: "josembengadacosta@gmail.com",
   github: "https://github.com/josembengacosta",
   linkedin: "https://linkedin.com/in/josembengadacosta",
-  projects: {
-    perPage: 6,
-    categories: ["all", "web", "mobile", "fullstack"],
-  },
+  enableNotifications: true,
+  enableServiceWorker: true,
+  debugMode: false,
 };
 
-// ============================================
-// PWA INIT FIXES
-// ============================================
-
-// Verificar se está em modo standalone
-const isPWA = window.matchMedia('(display-mode: standalone)').matches || 
-              window.navigator.standalone;
-
-if (isPWA) {
-  console.log('📱 Modo PWA detectado - aplicando fixes');
-  
-  // Adicionar classe ao body
-  document.documentElement.classList.add('pwa-standalone');
-  
-  // Fix para iOS standalone
-  if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-    document.documentElement.classList.add('pwa-ios');
-    
-    // Fix viewport para iOS
-    const viewport = document.querySelector('meta[name="viewport"]');
-    if (viewport) {
-      viewport.setAttribute('content', 
-        'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
-    }
-  }
-  
-  // Fix para Android
-  if (/Android/.test(navigator.userAgent)) {
-    document.documentElement.classList.add('pwa-android');
-  }
-  
-  // Garantir que tema seja aplicado após load
-  window.addEventListener('load', function() {
-    setTimeout(() => {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'light') {
-        document.body.classList.add('light-theme');
-      }
-      
-      // Forçar reflow
-      document.body.style.opacity = '0.99';
-      setTimeout(() => {
-        document.body.style.opacity = '1';
-      }, 10);
-    }, 100);
-  });
-}
+// Cache global de elementos
+let DOM_CACHE = {};
 
 // ============================================
-// 1. INICIALIZAÇÃO
+// 1. INICIALIZAÇÃO PRINCIPAL
 // ============================================
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Inicializar todas as funcionalidades
-  initLoadingScreen();
+  // Cache de elementos DOM usados frequentemente
+  cacheDOMElements();
+
+  // Verificar modo PWA primeiro
+  checkPWAMode();
+
+  // Inicializar funcionalidades
+  initCoreFeatures();
+
+  // Inicializar funcionalidades secundárias (com delay para performance)
+  setTimeout(() => {
+    initSecondaryFeatures();
+  }, 100);
+
+  // Configurar analytics se disponível
+  setupAnalytics();
+});
+
+// Cache elementos DOM
+function cacheDOMElements() {
+  DOM_CACHE = {
+    // Header & Navigation
+    header: document.getElementById("header"),
+    mobileToggle: document.getElementById("mobileToggle"),
+    offcanvas: document.getElementById("offcanvas"),
+    closeCanvas: document.getElementById("closeCanvas"),
+
+    // Theme
+    themeToggle: document.getElementById("themeToggle"),
+    themeIcon: document.querySelector("#themeToggle i"),
+
+    // Forms
+    contactForm: document.getElementById("contactForm"),
+    newsletterBtn: document.getElementById("newsletterBtn"),
+    newsletterEmail: document.getElementById("newsletterEmail"),
+
+    // UI Elements
+    backToTop: document.getElementById("backToTop"),
+    scrollProgress: document.getElementById("scrollProgress"),
+    whatsappFloat: document.getElementById("whatsappFloat"),
+    notificationContainer:
+      document.getElementById("notificationContainer") ||
+      createNotificationContainer(),
+
+    // Stats
+    counters: document.querySelectorAll("[data-count]"),
+    skillBars: document.querySelectorAll(".skill-progress"),
+
+    // Projects
+    filterBtns: document.querySelectorAll(".filter-btn"),
+    projectCards: document.querySelectorAll(".project-card"),
+  };
+}
+
+// ============================================
+// 2. SISTEMA PWA
+// ============================================
+
+function checkPWAMode() {
+  const isStandalone =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone;
+
+  if (isStandalone) {
+    document.documentElement.classList.add("pwa-installed", "pwa-standalone");
+
+    // iOS specific fixes
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+      document.documentElement.classList.add("pwa-ios");
+      fixIOSViewport();
+    }
+
+    // Android specific fixes
+    if (/Android/.test(navigator.userAgent)) {
+      document.documentElement.classList.add("pwa-android");
+    }
+
+    console.log("📱 PWA Standalone Mode Detected");
+  }
+}
+
+function fixIOSViewport() {
+  const viewportMeta = document.querySelector('meta[name="viewport"]');
+  if (viewportMeta) {
+    viewportMeta.content =
+      "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover";
+  }
+}
+
+// ============================================
+// 3. FUNCIONALIDADES CORE (carregam primeiro)
+// ============================================
+
+function initCoreFeatures() {
   initThemeSystem();
   initNavigation();
+  initLoadingScreen();
   initHeroAnimations();
+  initPerformanceOptimizations();
+
+  // Iniciar Service Worker se habilitado
+  if (CONFIG.enableServiceWorker) {
+    initServiceWorker();
+  }
+}
+
+function initSecondaryFeatures() {
   initSkillsAnimation();
   initProjectsFilter();
   initContactForm();
   initWhatsAppFloat();
   initScrollProgress();
   initBackToTop();
-  initNotifications();
   initNewsletter();
-  initPerformanceOptimizations();
-  initPWASystem();
 
-  // Inicializar AOS (Animate On Scroll)
+  // Iniciar AOS se disponível
   if (typeof AOS !== "undefined") {
     AOS.init({
       duration: 800,
       once: true,
       offset: 100,
+      disable: window.innerWidth < 768,
     });
   }
 
-  // Mostrar notificação de boas-vindas
-  setTimeout(() => {
-    showNotification(
-      'Bem-vindo ao meu portfólio! <i class="fas fa-hand-wave fs-4 text-gradient"></i> ',
-      "info"
-    );
-  }, 2000);
-});
+  // Notificação de boas-vindas
+  if (CONFIG.enableNotifications) {
+    setTimeout(() => {
+      showNotification(
+        'Bem-vindo ao meu portfólio! Explore meus projetos e habilidades. <i class="fas fa-hand-paper"></i>',
+        "info",
+        3000
+      );
+    }, 1500);
+  }
+}
 
 // ============================================
-// 2. LOADING SCREEN
+// 4. LOADING SCREEN OTIMIZADA
 // ============================================
 
 function initLoadingScreen() {
   const loading = document.getElementById("loading");
   if (!loading) return;
 
-  // Simular loading
-  setTimeout(() => {
+  // Usar requestAnimationFrame para animação suave
+  requestAnimationFrame(() => {
     loading.classList.add("hidden");
-    document.body.classList.add("loaded");
-  }, 1000);
+
+    setTimeout(() => {
+      loading.style.display = "none";
+      document.body.classList.add("loaded");
+    }, 500);
+  });
 }
 
 // ============================================
-// 3. SISTEMA DE TEMA (DARK/LIGHT)
+// 5. SISTEMA DE TEMA MELHORADO
 // ============================================
 
 function initThemeSystem() {
-  const themeToggle = document.getElementById("themeToggle");
-  const themeIcon = themeToggle?.querySelector("i");
-
+  const { themeToggle, themeIcon } = DOM_CACHE;
   if (!themeToggle || !themeIcon) return;
 
-  // Detectar se é PWA standalone
-  const isStandalone = window.matchMedia("(display-mode: standalone)").matches;
+  // Detectar tema preferido
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+  const savedTheme = localStorage.getItem("theme");
 
-  // Função para aplicar tema
-  function applyTheme(theme) {
-    if (theme === "light") {
+  // Aplicar tema
+  function applyTheme(theme, silent = false) {
+    const isLight = theme === "light";
+
+    if (isLight) {
       document.body.classList.add("light-theme");
       themeIcon.className = "fas fa-sun";
     } else {
@@ -139,358 +201,366 @@ function initThemeSystem() {
       themeIcon.className = "fas fa-moon";
     }
 
-    // Salvar no localStorage
     localStorage.setItem("theme", theme);
 
-    // Forçar repaint no PWA
-    if (isStandalone) {
-      document.body.style.display = "none";
-      setTimeout(() => {
-        document.body.style.display = "block";
-      }, 10);
+    // Salvar também no sessionStorage para PWA
+    sessionStorage.setItem("theme", theme);
+
+    // Disparar evento customizado
+    document.dispatchEvent(
+      new CustomEvent("themechange", { detail: { theme } })
+    );
+
+    // Notificação
+    if (!silent) {
+      showNotification(
+        `Tema ${isLight ? "claro" : "escuro"} ativado`,
+        "success",
+        2000
+      );
     }
   }
 
-  // Carregar tema salvo ou detectar
-  const savedTheme = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-
+  // Determinar tema inicial
   if (savedTheme) {
-    applyTheme(savedTheme);
-  } else if (prefersDark.matches) {
-    applyTheme("dark");
+    applyTheme(savedTheme, true);
   } else {
-    applyTheme("light");
+    applyTheme(prefersDark.matches ? "dark" : "light", true);
   }
 
   // Alternar tema
-  themeToggle.addEventListener("click", function () {
-    const isLightTheme = document.body.classList.contains("light-theme");
-
-    if (isLightTheme) {
-      applyTheme("dark");
-      showNotification(
-        'Tema escuro ativado <i class="fas fa-moon"></i>',
-        "success"
-      );
-    } else {
-      applyTheme("light");
-      showNotification(
-        'Tema claro ativado <i class="fas fa-sun"></i>',
-        "success"
-      );
-    }
-
-    // Forçar refresh de elementos no PWA
-    if (isStandalone) {
-      // Refresh hero background
-      const heroBg = document.querySelector(".hero-bg");
-      if (heroBg) {
-        heroBg.style.backgroundImage = getComputedStyle(heroBg).backgroundImage;
-      }
-    }
+  themeToggle.addEventListener("click", () => {
+    const currentTheme = localStorage.getItem("theme") || "dark";
+    const newTheme = currentTheme === "light" ? "dark" : "light";
+    applyTheme(newTheme);
   });
 
-  // Observar mudanças no sistema
+  // Ouvir mudanças do sistema
   prefersDark.addEventListener("change", (e) => {
     if (!localStorage.getItem("theme")) {
-      applyTheme(e.matches ? "dark" : "light");
+      applyTheme(e.matches ? "dark" : "light", true);
     }
   });
 }
 
 // ============================================
-// 4. NAVEGAÇÃO E MENU MOBILE
+// 6. NAVEGAÇÃO OTIMIZADA
 // ============================================
 
 function initNavigation() {
-  const mobileToggle = document.getElementById("mobileToggle");
-  const closeCanvas = document.getElementById("closeCanvas");
-  const offcanvas = document.getElementById("offcanvas");
-  const navLinks = document.querySelectorAll(".nav-link, .offcanvas-link");
-  const header = document.getElementById("header");
+  const { mobileToggle, closeCanvas, offcanvas, header } = DOM_CACHE;
 
-  // Menu Mobile Toggle
-  if (mobileToggle) {
-    mobileToggle.addEventListener("click", function () {
-      this.classList.toggle("active");
-      offcanvas.classList.toggle("active");
-      document.body.style.overflow = offcanvas.classList.contains("active")
-        ? "hidden"
-        : "";
-    });
+  if (!mobileToggle || !offcanvas) return;
+
+  // Estado do menu
+  let isMenuOpen = false;
+
+  // Toggle menu
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    mobileToggle.classList.toggle("active");
+    offcanvas.classList.toggle("active");
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+
+    // Adicionar/remover listener para fechar com ESC
+    if (isMenuOpen) {
+      document.addEventListener("keydown", handleEscapeKey);
+    } else {
+      document.removeEventListener("keydown", handleEscapeKey);
+    }
   }
 
-  // Fechar Menu
+  // Fechar com ESC
+  function handleEscapeKey(e) {
+    if (e.key === "Escape" && isMenuOpen) {
+      toggleMenu();
+    }
+  }
+
+  // Event listeners
+  mobileToggle.addEventListener("click", toggleMenu);
+
   if (closeCanvas) {
-    closeCanvas.addEventListener("click", function () {
-      mobileToggle?.classList.remove("active");
-      offcanvas.classList.remove("active");
-      document.body.style.overflow = "";
-    });
+    closeCanvas.addEventListener("click", toggleMenu);
   }
+
+  // Fechar menu ao clicar fora
+  offcanvas.addEventListener("click", (e) => {
+    if (e.target === offcanvas) {
+      toggleMenu();
+    }
+  });
 
   // Fechar menu ao clicar em link
+  const navLinks = document.querySelectorAll(".offcanvas-link");
   navLinks.forEach((link) => {
-    link.addEventListener("click", function (e) {
-      // Fechar menu mobile se aberto
-      if (offcanvas.classList.contains("active")) {
-        mobileToggle?.classList.remove("active");
-        offcanvas.classList.remove("active");
-        document.body.style.overflow = "";
-      }
-
-      // Atualizar link ativo
-      if (this.hash && !this.classList.contains("btn")) {
-        e.preventDefault();
-        const target = document.querySelector(this.hash);
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: "smooth",
-          });
-
-          // Atualizar navegação ativa
-          updateActiveNav(this.hash);
-        }
-      }
-    });
+    link.addEventListener("click", toggleMenu);
   });
 
   // Header scroll effect
-  window.addEventListener("scroll", function () {
+  function handleHeaderScroll() {
     if (window.scrollY > 100) {
       header?.classList.add("scrolled");
     } else {
       header?.classList.remove("scrolled");
     }
+  }
+
+  // Debounced scroll handler
+  let scrollTimeout;
+  window.addEventListener("scroll", () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(handleHeaderScroll, 10);
   });
 
-  // Atualizar navegação ativa no scroll
-  window.addEventListener("scroll", updateActiveNavOnScroll);
-}
+  // Atualizar navegação ativa
+  function updateActiveNav() {
+    const sections = document.querySelectorAll("section[id]");
+    const scrollPos = window.scrollY + 100;
 
-function updateActiveNav(hash) {
-  document.querySelectorAll(".nav-link, .offcanvas-link").forEach((link) => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === hash) {
-      link.classList.add("active");
-    }
-  });
-}
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute("id");
 
-function updateActiveNavOnScroll() {
-  const sections = document.querySelectorAll("section[id]");
-  const scrollPos = window.scrollY + 100;
+      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+        document
+          .querySelectorAll(".nav-link, .offcanvas-link")
+          .forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${sectionId}`) {
+              link.classList.add("active");
+            }
+          });
+      }
+    });
+  }
 
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
-    const sectionId = section.getAttribute("id");
-
-    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-      updateActiveNav("#" + sectionId);
-    }
+  // Debounced scroll para atualizar navegação
+  let navScrollTimeout;
+  window.addEventListener("scroll", () => {
+    clearTimeout(navScrollTimeout);
+    navScrollTimeout = setTimeout(updateActiveNav, 50);
   });
 }
 
 // ============================================
-// 5. ANIMAÇÕES DO HERO
+// 7. ANIMAÇÕES DO HERO (Performance)
 // ============================================
 
 function initHeroAnimations() {
-  // Animar contadores
-  const counters = document.querySelectorAll("[data-count]");
+  const { counters } = DOM_CACHE;
+  if (!counters.length) return;
 
-  function animateCounters() {
-    counters.forEach((counter) => {
-      const rect = counter.getBoundingClientRect();
-      const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
-
-      if (isVisible && !counter.classList.contains("animated")) {
-        const target = parseInt(counter.getAttribute("data-count"));
-        const duration = 2000;
-        const increment = target / (duration / 16);
-        let current = 0;
-
-        const updateCounter = () => {
-          current += increment;
-          if (current >= target) {
-            counter.textContent = target;
-            counter.classList.add("animated");
-          } else {
-            counter.textContent = Math.floor(current);
-            requestAnimationFrame(updateCounter);
-          }
-        };
-
-        updateCounter();
-      }
-    });
-  }
-
-  // Observador de interseção para os contadores
-  const observer = new IntersectionObserver(
+  // Observer para contadores
+  const counterObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          animateCounters();
+          const counter = entry.target;
+          if (!counter.classList.contains("animated")) {
+            animateCounter(counter);
+            counterObserver.unobserve(counter);
+          }
         }
       });
     },
-    {
-      threshold: 0.5,
-    }
+    { threshold: 0.5 }
   );
 
-  counters.forEach((counter) => observer.observe(counter));
+  counters.forEach((counter) => counterObserver.observe(counter));
+
+  // Função de animação de contador
+  function animateCounter(counter) {
+    const target = parseInt(counter.getAttribute("data-count"));
+    const duration = 1500;
+    const startTime = Date.now();
+    const startValue = 0;
+
+    function update() {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Easing function
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const currentValue = Math.floor(
+        startValue + (target - startValue) * easeOutQuart
+      );
+
+      counter.textContent = currentValue;
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        counter.textContent = target;
+        counter.classList.add("animated");
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
 }
 
 // ============================================
-// 6. ANIMAÇÃO DE SKILLS
+// 8. SKILLS ANIMATION (Otimizado)
 // ============================================
 
 function initSkillsAnimation() {
-  const skillBars = document.querySelectorAll(".skill-progress");
+  const { skillBars } = DOM_CACHE;
+  if (!skillBars.length) return;
 
-  function animateSkillBars() {
-    skillBars.forEach((bar) => {
-      const rect = bar.getBoundingClientRect();
-      const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
-
-      if (isVisible && !bar.classList.contains("animated")) {
-        const width = bar.getAttribute("data-width");
-        bar.style.width = width + "%";
-        bar.classList.add("animated");
-      }
-    });
-  }
-
-  // Observador de interseção para as barras de skill
-  const observer = new IntersectionObserver(
+  const skillObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          animateSkillBars();
+          const skillContainer = entry.target;
+          const bars = skillContainer.querySelectorAll(".skill-progress");
+
+          bars.forEach((bar) => {
+            if (!bar.classList.contains("animated")) {
+              const width = bar.getAttribute("data-width");
+              bar.style.width = width + "%";
+              bar.classList.add("animated");
+            }
+          });
+
+          skillObserver.unobserve(skillContainer);
         }
       });
     },
-    {
-      threshold: 0.3,
-    }
+    { threshold: 0.3, rootMargin: "0px 0px -100px 0px" }
   );
 
-  skillBars.forEach((bar) => observer.observe(bar.parentElement.parentElement));
+  // Observar containers de skills
+  document.querySelectorAll(".skill-category").forEach((container) => {
+    skillObserver.observe(container);
+  });
 }
 
 // ============================================
-// 7. FILTRO DE PROJETOS
+// 9. FILTRO DE PROJETOS (Performance)
 // ============================================
 
 function initProjectsFilter() {
-  const filterBtns = document.querySelectorAll(".filter-btn");
-  const projectCards = document.querySelectorAll(".project-card");
+  const { filterBtns, projectCards } = DOM_CACHE;
+  if (!filterBtns.length || !projectCards.length) return;
 
-  if (filterBtns.length === 0) return;
+  let activeFilter = "all";
 
-  filterBtns.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      // Remove active de todos os botões
-      filterBtns.forEach((b) => b.classList.remove("active"));
-      // Adiciona active ao botão clicado
-      this.classList.add("active");
+  function filterProjects(filter) {
+    if (filter === activeFilter) return;
 
-      const filterValue = this.getAttribute("data-filter");
+    activeFilter = filter;
 
-      // Filtra projetos
+    // Animar saída
+    projectCards.forEach((card) => {
+      const category = card.getAttribute("data-category");
+      const shouldShow = filter === "all" || category === filter;
+
+      if (!shouldShow) {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(20px)";
+      }
+    });
+
+    // Animar entrada após delay
+    setTimeout(() => {
       projectCards.forEach((card) => {
         const category = card.getAttribute("data-category");
+        const shouldShow = filter === "all" || category === filter;
 
-        if (filterValue === "all" || category === filterValue) {
+        if (shouldShow) {
           card.style.display = "block";
-          setTimeout(() => {
+          requestAnimationFrame(() => {
             card.style.opacity = "1";
             card.style.transform = "translateY(0)";
-          }, 10);
+          });
         } else {
-          card.style.opacity = "0";
-          card.style.transform = "translateY(20px)";
-          setTimeout(() => {
-            card.style.display = "none";
-          }, 300);
+          card.style.display = "none";
         }
       });
+    }, 200);
+  }
+
+  // Event listeners para botões
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      filterProjects(btn.getAttribute("data-filter"));
     });
   });
 }
 
 // ============================================
-// 8. FORMULÁRIO DE CONTATO
+// 10. FORMULÁRIO DE CONTATO (Melhorado)
 // ============================================
 
 function initContactForm() {
-  const contactForm = document.getElementById("contactForm");
+  const { contactForm } = DOM_CACHE;
   if (!contactForm) return;
 
-  // Elementos do formulário
-  const formInputs = {
+  // Cache de elementos do formulário
+  const formElements = {
     name: contactForm.querySelector("#name"),
     email: contactForm.querySelector("#email"),
     phone: contactForm.querySelector("#phone"),
     subject: contactForm.querySelector("#subject"),
     message: contactForm.querySelector("#message"),
+    submitBtn: contactForm.querySelector('button[type="submit"]'),
   };
 
   // Validação em tempo real
-  Object.values(formInputs).forEach((input) => {
-    if (input) {
-      input.addEventListener("blur", validateField);
-      input.addEventListener("input", clearFieldError);
+  Object.entries(formElements).forEach(([key, element]) => {
+    if (element && key !== "submitBtn") {
+      element.addEventListener("blur", () => validateField(key, element));
+      element.addEventListener("input", () => clearFieldError(element));
     }
   });
 
-  // Validação de campo específico
-  function validateField(e) {
-    const field = e.target;
-    const value = field.value.trim();
-    const fieldName = field.id;
-
+  // Validação de campo
+  function validateField(fieldName, element) {
+    const value = element.value.trim();
     let isValid = true;
     let message = "";
 
     switch (fieldName) {
       case "name":
-        if (value === "") return;
-        isValid = value.length >= 3;
-        message = "Nome precisa ter pelo menos 3 caracteres";
+        if (value && value.length < 3) {
+          isValid = false;
+          message = "Nome precisa ter pelo menos 3 caracteres";
+        }
         break;
       case "email":
-        if (value === "") return;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        isValid = emailRegex.test(value);
-        message = "Por favor, insira um email válido";
+        if (value) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(value)) {
+            isValid = false;
+            message = "Por favor, insira um email válido";
+          }
+        }
         break;
       case "phone":
-        if (value === "") return;
-        const phoneRegex = /^\(?\d{2}\)?[\s-]?\d{4,5}[\s-]?\d{4}$/;
-        isValid = phoneRegex.test(value);
-        message = "Formato inválido. Use (XX) XXXXX-XXXX";
-        break;
-      case "subject":
-        isValid = value !== "";
-        message = "Por favor, selecione um assunto";
+        if (value) {
+          const phoneRegex = /^\(?\d{2}\)?[\s-]?\d{4,5}[\s-]?\d{4}$/;
+          if (!phoneRegex.test(value)) {
+            isValid = false;
+            message = "Formato inválido. Use (XX) XXXXX-XXXX";
+          }
+        }
         break;
       case "message":
-        if (value === "") return;
-        isValid = value.length >= 10;
-        message = "Mensagem muito curta (mínimo 10 caracteres)";
+        if (value && value.length < 10) {
+          isValid = false;
+          message = "Mensagem muito curta (mínimo 10 caracteres)";
+        }
         break;
     }
 
-    if (!isValid) {
-      showFieldError(field, message);
+    if (!isValid && value) {
+      showFieldError(element, message);
     } else {
-      clearFieldError(field);
+      clearFieldError(element);
     }
   }
 
@@ -499,7 +569,6 @@ function initContactForm() {
     field.classList.add("error");
     field.classList.remove("success");
 
-    // Criar ou atualizar mensagem de erro
     let errorElement = field.parentNode.querySelector(".error-message");
     if (!errorElement) {
       errorElement = document.createElement("div");
@@ -521,232 +590,204 @@ function initContactForm() {
   }
 
   // Envio do formulário
-  contactForm.addEventListener("submit", async function (e) {
+  contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Validar todos os campos
+    // Validar todos os campos obrigatórios
+    const requiredFields = ["name", "email", "subject", "message"];
     let isValid = true;
-    const errors = [];
 
-    if (
-      !formInputs.name.value.trim() ||
-      formInputs.name.value.trim().length < 3
-    ) {
-      showFieldError(
-        formInputs.name,
-        "Nome precisa ter pelo menos 3 caracteres"
-      );
-      isValid = false;
-      errors.push("name");
-    }
-
-    if (!formInputs.email.value.trim()) {
-      showFieldError(formInputs.email, "Email é obrigatório");
-      isValid = false;
-      errors.push("email");
-    } else {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formInputs.email.value.trim())) {
-        showFieldError(formInputs.email, "Email inválido");
-        isValid = false;
-        errors.push("email");
-      }
-    }
-
-    if (!formInputs.subject.value) {
-      showFieldError(formInputs.subject, "Assunto é obrigatório");
-      isValid = false;
-      errors.push("subject");
-    }
-
-    if (
-      !formInputs.message.value.trim() ||
-      formInputs.message.value.trim().length < 10
-    ) {
-      showFieldError(
-        formInputs.message,
-        "Mensagem precisa ter pelo menos 10 caracteres"
-      );
-      isValid = false;
-      errors.push("message");
-    }
-
-    if (!isValid) {
-      showNotification(
-        'Por favor, corrija os erros no formulário <i class="fas fa-circle-exclamation"></i>',
-        "error"
-      );
-
-      // Scroll para primeiro erro
-      if (errors.length > 0) {
-        const firstErrorField = formInputs[errors[0]];
-        if (firstErrorField) {
-          firstErrorField.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-          });
-          firstErrorField.focus();
+    requiredFields.forEach((fieldName) => {
+      const element = formElements[fieldName];
+      if (element) {
+        const value = element.value.trim();
+        if (!value) {
+          showFieldError(element, "Este campo é obrigatório");
+          isValid = false;
+        } else if (fieldName === "name" && value.length < 3) {
+          showFieldError(element, "Nome precisa ter pelo menos 3 caracteres");
+          isValid = false;
+        } else if (fieldName === "email") {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(value)) {
+            showFieldError(element, "Email inválido");
+            isValid = false;
+          }
+        } else if (fieldName === "message" && value.length < 10) {
+          showFieldError(
+            element,
+            "Mensagem muito curta (mínimo 10 caracteres)"
+          );
+          isValid = false;
         }
       }
+    });
 
+    if (!isValid) {
+      showNotification("Por favor, corrija os erros no formulário", "error");
       return;
     }
 
-    // Preparar dados do formulário
+    // Preparar dados
     const formData = {
-      name: formInputs.name.value.trim(),
-      email: formInputs.email.value.trim(),
-      phone: formInputs.phone?.value.trim() || "",
-      subject: formInputs.subject.value,
-      message: formInputs.message.value.trim(),
+      name: formElements.name.value.trim(),
+      email: formElements.email.value.trim(),
+      phone: formElements.phone?.value.trim() || "",
+      subject: formElements.subject.value,
+      message: formElements.message.value.trim(),
       timestamp: new Date().toISOString(),
-      page: window.location.href,
     };
 
-    // Simular envio (substituir por API real)
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-    submitBtn.disabled = true;
+    // Simular envio
+    const originalText = formElements.submitBtn.innerHTML;
+    formElements.submitBtn.innerHTML =
+      '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+    formElements.submitBtn.disabled = true;
 
     try {
-      // Simular chamada API
+      // Aqui você substituiria por uma chamada API real
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       // Sucesso
       showNotification(
-        'Mensagem enviada com sucesso! Entrarei em contato em breve. <i class="fas fa-gift"></i>',
+        "Mensagem enviada com sucesso! Entrarei em contato em breve.",
         "success"
       );
-
-      // Resetar formulário
       contactForm.reset();
-      Object.values(formInputs).forEach((input) => {
-        if (input) clearFieldError(input);
+
+      // Limpar erros
+      Object.values(formElements).forEach((element) => {
+        if (element && element !== formElements.submitBtn) {
+          clearFieldError(element);
+        }
       });
 
-      // Log para desenvolvimento (remover em produção)
-      console.log("Dados do formulário:", formData);
+      // Log para desenvolvimento
+      if (CONFIG.debugMode) {
+        console.log("Form data:", formData);
+      }
     } catch (error) {
-      showNotification(
-        'Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente por email. <i class="fas fa-circle-exclamation"></i>',
-        "error"
-      );
-      console.error("Erro no formulário:", error);
+      showNotification("Erro ao enviar mensagem. Tente novamente.", "error");
+      console.error("Form error:", error);
     } finally {
-      submitBtn.innerHTML = originalText;
-      submitBtn.disabled = false;
+      formElements.submitBtn.innerHTML = originalText;
+      formElements.submitBtn.disabled = false;
     }
   });
-
-  // Download de CV
-  const downloadCV = document.querySelector("a[download]");
-  if (downloadCV) {
-    downloadCV.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      showNotification(
-        'Iniciando download do currículo...<i class="fas fa-file"></i>',
-        "info"
-      );
-
-      // Simular download
-      setTimeout(() => {
-        // Em produção, este seria o link real do PDF
-        const link = document.createElement("a");
-        link.href = "../../descarregar/descarregar_jmbenga.pdf"; // Arquivo fictício
-        link.download = "../../descarregar/descarregar_jmbenga.pdf";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        showNotification(
-          'Currículo baixado com sucesso! <i class="fas fa-file"></i>',
-          "success"
-        );
-      }, 1000);
-    });
-  }
 }
 
 // ============================================
-// 9. WHATSAPP FLUTUANTE
+// 11. WHATSAPP FLUTUANTE (Melhorado)
 // ============================================
 
 function initWhatsAppFloat() {
-  const whatsappFloat = document.getElementById("whatsappFloat");
+  const { whatsappFloat } = DOM_CACHE;
   if (!whatsappFloat) return;
 
+  let isVisible = false;
+  let lastScrollY = 0;
+  let scrollTimeout;
+
+  function toggleWhatsApp(show) {
+    if (show === isVisible) return;
+
+    isVisible = show;
+    if (show) {
+      whatsappFloat.classList.add("show");
+    } else {
+      whatsappFloat.classList.remove("show");
+    }
+  }
+
   // Mostrar após 3 segundos
-  setTimeout(() => {
-    whatsappFloat.classList.add("show");
-  }, 3000);
+  setTimeout(() => toggleWhatsApp(true), 3000);
 
   // Esconder ao rolar para baixo
-  let lastScroll = 0;
-  window.addEventListener("scroll", function () {
-    const currentScroll = window.pageYOffset;
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
 
-    if (currentScroll > lastScroll && currentScroll > 300) {
-      whatsappFloat.classList.remove("show");
-    } else if (currentScroll < lastScroll) {
-      whatsappFloat.classList.add("show");
-    }
-
-    lastScroll = currentScroll;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      if (currentScrollY > lastScrollY && currentScrollY > 300) {
+        toggleWhatsApp(false);
+      } else if (currentScrollY < lastScrollY) {
+        toggleWhatsApp(true);
+      }
+      lastScrollY = currentScrollY;
+    }, 100);
   });
 
   // Botão de fechar
   const closeBtn = whatsappFloat.querySelector(".close-whatsapp");
   if (closeBtn) {
-    closeBtn.addEventListener("click", function () {
-      whatsappFloat.classList.remove("show");
+    closeBtn.addEventListener("click", () => {
+      toggleWhatsApp(false);
       showNotification(
-        'WhatsApp minimizado. Clique no ícone para abrir novamente. <i class="fas fa-comment-dots"></i>',
-        "info"
+        "WhatsApp minimizado. Clique no ícone flutuante para abrir novamente.",
+        "info",
+        2000
       );
     });
   }
 }
 
 // ============================================
-// 10. SCROLL PROGRESS
+// 12. SCROLL PROGRESS (Otimizado)
 // ============================================
 
 function initScrollProgress() {
-  const scrollProgress = document.getElementById("scrollProgress");
+  const { scrollProgress } = DOM_CACHE;
   if (!scrollProgress) return;
 
-  window.addEventListener("scroll", function () {
+  let rafId = null;
+
+  function updateProgress() {
     const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
+      document.documentElement.scrollTop || document.body.scrollTop;
     const height =
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
     const scrolled = (winScroll / height) * 100;
 
     scrollProgress.style.width = scrolled + "%";
-  });
+    rafId = null;
+  }
+
+  function onScroll() {
+    if (rafId === null) {
+      rafId = requestAnimationFrame(updateProgress);
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
 }
 
 // ============================================
-// 11. BACK TO TOP
+// 13. BACK TO TOP (Melhorado)
 // ============================================
 
 function initBackToTop() {
-  const backToTop = document.getElementById("backToTop");
+  const { backToTop } = DOM_CACHE;
   if (!backToTop) return;
 
-  window.addEventListener("scroll", function () {
-    if (window.pageYOffset > 300) {
+  let isVisible = false;
+
+  function toggleBackToTop(show) {
+    if (show === isVisible) return;
+
+    isVisible = show;
+    if (show) {
       backToTop.classList.add("show");
     } else {
       backToTop.classList.remove("show");
     }
+  }
+
+  window.addEventListener("scroll", () => {
+    toggleBackToTop(window.pageYOffset > 300);
   });
 
-  backToTop.addEventListener("click", function () {
+  backToTop.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -755,62 +796,87 @@ function initBackToTop() {
 }
 
 // ============================================
-// 12. SISTEMA DE NOTIFICAÇÕES
+// 14. NEWSLETTER (Simples)
 // ============================================
 
-function initNotifications() {
-  const notificationContainer = document.getElementById(
-    "notificationContainer"
-  );
+function initNewsletter() {
+  const { newsletterBtn, newsletterEmail } = DOM_CACHE;
+  if (!newsletterBtn || !newsletterEmail) return;
 
-  // Criar container se não existir
-  if (!notificationContainer) {
-    const container = document.createElement("div");
-    container.id = "notificationContainer";
-    container.className = "notification-container";
-    document.body.appendChild(container);
-  }
+  newsletterBtn.addEventListener("click", () => {
+    const email = newsletterEmail.value.trim();
+
+    if (!email) {
+      showNotification("Por favor, insira seu email", "warning");
+      newsletterEmail.focus();
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      showNotification("Email inválido", "error");
+      newsletterEmail.focus();
+      return;
+    }
+
+    // Simular inscrição
+    const originalText = newsletterBtn.innerHTML;
+    newsletterBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    newsletterBtn.disabled = true;
+
+    setTimeout(() => {
+      showNotification("Inscrição realizada com sucesso! Obrigado!", "success");
+      newsletterEmail.value = "";
+      newsletterBtn.innerHTML = originalText;
+      newsletterBtn.disabled = false;
+    }, 1500);
+  });
+
+  newsletterEmail.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      newsletterBtn.click();
+    }
+  });
 }
 
-function showNotification(message, type = "info") {
-  const container =
-    document.getElementById("notificationContainer") ||
-    document.querySelector(".notification-container");
+// ============================================
+// 15. SISTEMA DE NOTIFICAÇÕES
+// ============================================
 
-  if (!container) {
-    console.log(`[${type.toUpperCase()}] ${message}`);
-    return;
-  }
+function createNotificationContainer() {
+  const container = document.createElement("div");
+  container.id = "notificationContainer";
+  container.className = "notification-container";
+  document.body.appendChild(container);
+  return container;
+}
+
+function showNotification(message, type = "info", duration = 5000) {
+  if (!CONFIG.enableNotifications) return;
+
+  const { notificationContainer } = DOM_CACHE;
+  if (!notificationContainer) return;
 
   const notification = document.createElement("div");
   notification.className = `notification ${type}`;
 
-  // Ícone baseado no tipo
-  let icon = "fa-info-circle";
-  switch (type) {
-    case "success":
-      icon = "fa-check-circle";
-      break;
-    case "error":
-      icon = "fa-exclamation-circle";
-      break;
-    case "warning":
-      icon = "fa-exclamation-triangle";
-      break;
-    case "info":
-      icon = "fa-info-circle";
-      break;
-  }
+  // Ícones por tipo
+  const icons = {
+    success: "fa-check-circle",
+    error: "fa-exclamation-circle",
+    warning: "fa-exclamation-triangle",
+    info: "fa-info-circle",
+  };
 
   notification.innerHTML = `
-                <i class="fas ${icon}"></i>
-                <span>${message}</span>
-                <button class="close-notification" aria-label="Fechar">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
+    <i class="fas ${icons[type] || icons.info}"></i>
+    <span>${message}</span>
+    <button class="close-notification" aria-label="Fechar">
+      <i class="fas fa-times"></i>
+    </button>
+  `;
 
-  container.appendChild(notification);
+  notificationContainer.appendChild(notification);
 
   // Animar entrada
   requestAnimationFrame(() => {
@@ -818,17 +884,31 @@ function showNotification(message, type = "info") {
   });
 
   // Botão de fechar
-  const closeBtn = notification.querySelector(".close-notification");
-  closeBtn.addEventListener("click", () => {
-    removeNotification(notification);
-  });
+  notification
+    .querySelector(".close-notification")
+    .addEventListener("click", () => {
+      removeNotification(notification);
+    });
 
-  // Auto-remover após 5 segundos
-  setTimeout(() => {
+  // Auto-remover
+  const autoRemove = setTimeout(() => {
     if (notification.parentNode) {
       removeNotification(notification);
     }
-  }, 5000);
+  }, duration);
+
+  // Pausar timeout ao passar mouse
+  notification.addEventListener("mouseenter", () => {
+    clearTimeout(autoRemove);
+  });
+
+  notification.addEventListener("mouseleave", () => {
+    setTimeout(() => {
+      if (notification.parentNode) {
+        removeNotification(notification);
+      }
+    }, duration);
+  });
 }
 
 function removeNotification(notification) {
@@ -841,88 +921,94 @@ function removeNotification(notification) {
 }
 
 // ============================================
-// 13. NEWSLETTER
+// 16. SERVICE WORKER (Otimizado)
 // ============================================
 
-function initNewsletter() {
-  const newsletterBtn = document.getElementById("newsletterBtn");
-  const newsletterEmail = document.getElementById("newsletterEmail");
+function initServiceWorker() {
+  if (!("serviceWorker" in navigator)) return;
 
-  if (!newsletterBtn || !newsletterEmail) return;
+  window.addEventListener("load", () => {
+    const swUrl = "/sw.js";
 
-  newsletterBtn.addEventListener("click", function () {
-    const email = newsletterEmail.value.trim();
+    navigator.serviceWorker
+      .register(swUrl)
+      .then((registration) => {
+        if (CONFIG.debugMode) {
+          console.log(
+            "✅ Service Worker registrado com sucesso:",
+            registration.scope
+          );
+        }
 
-    if (!email) {
-      showNotification(
-        'Por favor, insira seu email <i class="fas fa-envelope"></i>',
-        "warning"
-      );
-      newsletterEmail.focus();
-      return;
-    }
+        // Verificar atualizações
+        registration.addEventListener("updatefound", () => {
+          const newWorker = registration.installing;
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      showNotification(
-        'Email inválido <i class="fas fa-envelope-open-text"></i>',
-        "error"
-      );
-      newsletterEmail.focus();
-      return;
-    }
-
-    // Simular inscrição
-    newsletterBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-    newsletterBtn.disabled = true;
-
-    setTimeout(() => {
-      showNotification(
-        'Inscrição realizada com sucesso! Obrigado! <i class="fas fa-user-check"></i>',
-        "success"
-      );
-      newsletterEmail.value = "";
-      newsletterBtn.innerHTML = "Inscrever";
-      newsletterBtn.disabled = false;
-    }, 1500);
-  });
-
-  // Permitir Enter para enviar
-  newsletterEmail.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-      newsletterBtn.click();
-    }
+          newWorker.addEventListener("statechange", () => {
+            if (
+              newWorker.state === "installed" &&
+              navigator.serviceWorker.controller
+            ) {
+              showUpdateNotification();
+            }
+          });
+        });
+      })
+      .catch((error) => {
+        console.error("❌ Service Worker falhou:", error);
+      });
   });
 }
 
+function showUpdateNotification() {
+  if (!CONFIG.enableNotifications) return;
+
+  showNotification("Nova versão disponível! Clique para atualizar.", "warning");
+
+  // Adicionar listener para atualizar ao clicar
+  const lastNotification = document.querySelector(
+    ".notification.warning:last-child"
+  );
+  if (lastNotification) {
+    lastNotification.style.cursor = "pointer";
+    lastNotification.addEventListener("click", () => {
+      window.location.reload();
+    });
+  }
+}
+
 // ============================================
-// 15. OTIMIZAÇÕES DE PERFORMANCE
+// 17. OTIMIZAÇÕES DE PERFORMANCE
 // ============================================
 
 function initPerformanceOptimizations() {
-  // Lazy loading para imagens
+  // Lazy loading otimizado
   if ("IntersectionObserver" in window) {
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    const lazyObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.style.opacity = "1";
+            lazyObserver.unobserve(img);
+          }
+        });
+      },
+      {
+        rootMargin: "50px 0px",
+        threshold: 0.1,
+      }
+    );
 
-    const imageObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.style.opacity = "1";
-          imageObserver.unobserve(img);
-        }
-      });
-    });
-
-    lazyImages.forEach((img) => {
+    document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
       img.style.opacity = "0";
       img.style.transition = "opacity 0.3s ease";
-      imageObserver.observe(img);
+      lazyObserver.observe(img);
     });
   }
 
-  // Debounce para eventos de scroll
-  function debounce(func, wait = 100) {
+  // Debounce helper
+  function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
       const later = () => {
@@ -935,178 +1021,56 @@ function initPerformanceOptimizations() {
   }
 
   // Otimizar eventos de scroll
-  const optimizableEvents = ["scroll", "resize"];
-  optimizableEvents.forEach((event) => {
-    window.addEventListener(
-      event,
-      debounce(() => {
-        // Recalcular elementos visíveis
-      }, 50)
-    );
-  });
+  const optimizations = debounce(() => {
+    // Recalcular elementos visíveis se necessário
+  }, 100);
+
+  window.addEventListener("scroll", optimizations, { passive: true });
+  window.addEventListener("resize", optimizations, { passive: true });
 }
 
 // ============================================
-// 16. SERVICE WORKER (PWA)
+// 18. ANALYTICS (Opcional)
 // ============================================
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function () {
-    navigator.serviceWorker.register("../../sw.js").then(
-      function (registration) {
-        console.log("ServiceWorker registration successful");
-      },
-      function (err) {
-        console.log("ServiceWorker registration failed: ", err);
-      }
-    );
-  });
+function setupAnalytics() {
+  // Google Analytics (opcional)
+  if (typeof gtag !== "undefined") {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-XXXXXXXXXX"); // Substituir pelo seu ID
+  }
 }
 
 // ============================================
-// 17. FUNÇÕES UTILITÁRIAS
+// 19. UTILITÁRIOS
 // ============================================
 
-// Formatar telefone
 function formatPhoneNumber(phone) {
   const cleaned = ("" + phone).replace(/\D/g, "");
   const match = cleaned.match(/^(\d{2})(\d{5})(\d{4})$/);
-  if (match) {
-    return "(" + match[1] + ") " + match[2] + "-" + match[3];
-  }
-  return phone;
+  return match ? `(${match[1]}) ${match[2]}-${match[3]}` : phone;
 }
 
-// Copiar email para clipboard
 function copyToClipboard(text) {
   navigator.clipboard
     .writeText(text)
-    .then(() => {
-      showNotification(
-        'Copiado para a área de transferência! <i class="fas fa-clipboard"></i>',
-        "success"
-      );
-    })
-    .catch((err) => {
-      showNotification(
-        'Erro ao copiar texto <i class="fas fa-circle-exclamation"></i>',
-        "error"
-      );
-    });
+    .then(() =>
+      showNotification("Copiado para área de transferência!", "success")
+    )
+    .catch(() => showNotification("Erro ao copiar", "error"));
 }
 
-// Validar email
 function isValidEmail(email) {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(email);
 }
 
 // ============================================
-// 18. SISTEMA PWA PREMIUM (adicionar ao main.js)
-// ============================================
-
-function initPWASystem() {
-  // Verificar se já instalado
-  const isPWAInstalled = () => {
-    return (
-      window.matchMedia("(display-mode: standalone)").matches ||
-      window.navigator.standalone ||
-      document.referrer.includes("android-app://")
-    );
-  };
-
-  // Se já instalado, adicionar classe
-  if (isPWAInstalled()) {
-    document.body.classList.add("pwa-installed");
-    console.log("PWA detectado como instalado");
-  }
-
-  // Verificar Service Worker
-  if ("serviceWorker" in navigator) {
-    // Registrar SW
-    navigator.serviceWorker
-      .register("/sw.js")
-      .then((registration) => {
-        console.log("SW registrado:", registration.scope);
-
-        // Verificar atualizações
-        registration.onupdatefound = () => {
-          const installingWorker = registration.installing;
-          installingWorker.onstatechange = () => {
-            if (installingWorker.state === "installed") {
-              if (navigator.serviceWorker.controller) {
-                console.log("Nova versão disponível!");
-                showUpdateNotification();
-              }
-            }
-          };
-        };
-      })
-      .catch((err) => console.error("SW erro:", err));
-  }
-
-  // Mostrar notificação de atualização
-  function showUpdateNotification() {
-    const notification = document.createElement("div");
-    notification.className = "pwa-update-notification";
-    notification.innerHTML = `
-            <div class="update-content">
-                <i class="fas fa-sync-alt"></i>
-                <span>Nova versão disponível!</span>
-                <button onclick="location.reload()" class="btn-update">
-                    Atualizar
-                </button>
-            </div>
-        `;
-
-    document.body.appendChild(notification);
-
-    // Estilos inline
-    notification.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
-            z-index: 10000;
-            animation: slideInUp 0.3s ease;
-        `;
-
-    const updateContent = notification.querySelector(".update-content");
-    updateContent.style.cssText = `
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 600;
-        `;
-
-    const btnUpdate = notification.querySelector(".btn-update");
-    btnUpdate.style.cssText = `
-            background: white;
-            color: #d97706;
-            border: none;
-            padding: 6px 15px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s;
-        `;
-
-    btnUpdate.addEventListener("mouseenter", () => {
-      btnUpdate.style.transform = "translateY(-2px)";
-    });
-
-    btnUpdate.addEventListener("mouseleave", () => {
-      btnUpdate.style.transform = "translateY(0)";
-    });
-  }
-}
-
-// ============================================
-// EXPORT PARA USO GLOBAL (se necessário)
+// 20. EXPORT PARA USO GLOBAL
 // ============================================
 
 window.Portfolio = {
@@ -1118,22 +1082,18 @@ window.Portfolio = {
 };
 
 // ============================================
-// INICIALIZAR QUANDO A PÁGINA CARREGAR
+// 21. FINALIZAÇÃO
 // ============================================
 
-window.addEventListener("load", function () {
-  // Verificar se todos os scripts carregaram
-  console.log("Portfólio José Mbenga carregado com sucesso!");
-
-  // Adicionar classe loaded para CSS
+window.addEventListener("load", () => {
   document.body.classList.add("page-loaded");
 
-  // Inicializar analytics se configurado
-  if (typeof gtag !== "undefined") {
-    // Inicializar Google Analytics
+  if (CONFIG.debugMode) {
+    console.log(" Portfólio carregado com sucesso!");
+    console.log("📊 Configurações:", CONFIG);
   }
 });
 
 // ============================================
-// FIM DO SCRIPT PRINCIPAL
+// FIM DO SCRIPT
 // ============================================

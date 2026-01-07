@@ -12,27 +12,8 @@
     pointer-events: none;
 }
 
-.hero {
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-}
-
-/* Adjust existing hero elements */
-.hero-bg {
-    z-index: 0;
-}
-
-.floating-element {
-    z-index: 1;
-}
-
-/* Particle container specific */
-.particles-container {
+/* Hero particles */
+.hero .particles-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -45,19 +26,26 @@
 .hero-text h1,
 .hero-text p,
 .typing-container,
-.floating-tech-stack {
+.floating-tech-stack,
+.hero-cta {
     position: relative;
     z-index: 2;
+}
+
+/* Text shadow for better readability */
+.hero-text h1,
+.hero-text .hero-subtitle,
+.typing-container {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .light-theme .hero-text h1,
-.light-theme .hero-text p,
+.light-theme .hero-text .hero-subtitle,
 .light-theme .typing-container {
     text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
 }
 
-/* Testimonials with particles */
+/* Testimonials particles */
 .testimonials-section {
     position: relative;
 }
@@ -69,10 +57,40 @@
     top: 0;
     left: 0;
     z-index: 0;
-    opacity: 0.3;
 }
 
+/* Adjust content over particles */
 .testimonials-slider {
     position: relative;
     z-index: 1;
+}
+
+/* Optional: Add blur effect to particles background */
+.particles-container.with-blur {
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+}
+
+/* Adjust for light theme */
+.light-theme .particles-container {
+    opacity: 0.7;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    #particles-js {
+        opacity: 0.5;
+    }
+    
+    .hero-text h1,
+    .hero-text .hero-subtitle {
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* Performance optimization */
+@media (prefers-reduced-motion: reduce) {
+    #particles-js {
+        display: none;
+    }
 }

@@ -1,9 +1,10 @@
 {
   "name": "JMbenga Dev",
   "short_name": "JMbenga",
-  "description": "Portfólio de José Mbenga - Desenvolvedor Full Stack",
-  "start_url": "./index.html",
-  "scope": "./",
+  "description": "Portfólio de José Mbenga - Desenvolvedor Full Stack & UI/UX Designer",
+  
+  "start_url": "/portfolio/",
+  "scope": "/portfolio/",
   
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
@@ -14,6 +15,14 @@
   "orientation": "portrait-primary",
   
   "icons": [
+ 
+    {
+      "src": "./assets/img/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+
     {
       "src": "./assets/img/icons/icon-72x72.png",
       "sizes": "72x72",
@@ -44,6 +53,7 @@
       "type": "image/png",
       "purpose": "any maskable"
     },
+
     {
       "src": "./assets/img/icons/icon-192x192.png",
       "sizes": "192x192",
@@ -64,35 +74,38 @@
     }
   ],
   
-  "categories": ["business", "productivity", "utilities"],
+  "categories": ["business", "productivity", "education", "utilities"],
   
   "lang": "pt-BR",
   "dir": "ltr",
   
   "prefer_related_applications": false,
-  
   "related_applications": [],
   
+
   "screenshots": [
-     {
+    {
       "src": "./assets/img/screenshots/mobile-screenshot.png",
       "sizes": "375x667",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "narrow",
+      "label": "Mobile View"
     },
     {
       "src": "./assets/img/screenshots/desktop-screenshot.png",
       "sizes": "1280x720",
       "type": "image/png",
-      "form_factor": "wide"
+      "form_factor": "wide",
+      "label": "Desktop View"
     }
   ],
   
-   "shortcuts": [
+
+  "shortcuts": [
     {
-      "name": "Todos os Projetos",
+      "name": "Ver Projetos",
       "short_name": "Projetos",
-      "description": "Explore meus projetos",
+      "description": "Explore todos os meus projetos",
       "url": "./pages/all-projects.html",
       "icons": [{
         "src": "./assets/img/icons/file-graph.svg",
@@ -100,10 +113,10 @@
         "type": "image/svg+xml"
       }]
     },
-    { 
-      "name": "Baixar CV",
+    {
+      "name": "Baixar Currículo",
       "short_name": "CV",
-      "description": "Baixe meu currículo",
+      "description": "Baixe meu currículo em PDF",
       "url": "./descarregar/descarregar_jmbenga.pdf",
       "icons": [{
         "src": "./assets/img/icons/file-cv.svg",
@@ -112,9 +125,9 @@
       }]
     },
     {
-      "name": "Contato",
+      "name": "Entre em Contato",
       "short_name": "Contato",
-      "description": "Entre em contato",
+      "description": "Envie uma mensagem",
       "url": "./index.html#contact",
       "icons": [{
         "src": "./assets/img/icons/contact.svg",
@@ -123,33 +136,21 @@
       }]
     },
     {
-      "name": "Habilidades",
-      "short_name": "Habilidades",
-      "description": "Veja minhas habilidades",
+      "name": "Minhas Habilidades",
+      "short_name": "Skills",
+      "description": "Veja minhas tecnologias",
       "url": "./index.html#skills",
       "icons": [{
         "src": "./assets/img/icons/skills.svg",
         "sizes": "96x96",
         "type": "image/svg+xml"
       }]
-    },
-    {
-      "name": "Sobre Mim",
-      "short_name": "Sobre",
-      "description": "Conheça minha jornada",
-      "url": "./index.html#about",
-      "icons": [{
-        "src": "./assets/img/icons/about.svg",
-        "sizes": "96x96",
-        "type": "image/svg+xml"
-      }]
     }
   ],
   
- "share_target": {
-    "action": "./index.html?share=true",
+  "share_target": {
+    "action": "./index.html",
     "method": "GET",
-    "enctype": "application/x-www-form-urlencoded",
     "params": {
       "title": "title",
       "text": "text",
@@ -165,10 +166,8 @@
     "client_mode": ["focus-existing", "navigate-new"]
   },
   
-  "handle_links": "preferred",
-  
   "protocol_handlers": [
-     {
+    {
       "protocol": "web+jmbenga",
       "url": "./index.html?protocol=%s"
     }

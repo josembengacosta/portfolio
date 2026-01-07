@@ -217,8 +217,6 @@
     body {
       overflow-x: hidden !important;
       overflow-y: auto !important;
-      -webkit-overflow-scrolling: touch !important;
-      height: 100% !important;
       position: relative !important;
     }
 
@@ -238,6 +236,17 @@
       /* Ajuste para conteúdo não ficar atrás do header */
       .hero {
         padding-top: calc(6rem + env(safe-area-inset-top)) !important;
+      }
+    }
+
+    /* Melhorar scroll no mobile */
+    @media (max-width: 768px) {
+      html {
+        -webkit-overflow-scrolling: touch;
+      }
+
+      body {
+        overflow-x: hidden;
       }
     }
   </style>
@@ -1483,6 +1492,58 @@
     </div>
   </footer>
 
+  <script>
+// DEBUG: Informações do Service Worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.ready.then(reg => {
+    console.log('✅ SW registrado:', reg.active?.scriptURL);
+    
+    // Pedir informações do cache
+    reg.active?.postMessage({ type: 'GET_CACHE_INFO' });
+  });
+  
+  // Ouvir respostas do SW
+  navigator.serviceWorker.addEventListener('message', event => {
+    const { type, data } = event.data;
+    if (type === 'CACHE_INFO') {
+      console.log('📊 Cache Info:', data);
+    }
+  });
+}
+
+// Teste offline
+function testOfflineMode() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.ready.then(reg => {
+      reg.active?.postMessage({ type: 'TEST_OFFLINE' });
+      alert('Teste offline iniciado! Desconecte a internet e recarregue.');
+    });
+  }
+}
+
+// Limpar cache (para desenvolvimento)
+function clearCache() {
+  if (confirm('Tem certeza que quer limpar todo o cache?')) {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.ready.then(reg => {
+        reg.active?.postMessage({ type: 'CLEAR_CACHE' });
+        alert('Cache limpo! Recarregando...');
+        setTimeout(() => location.reload(), 1000);
+      });
+    }
+  }
+}
+</script>
+
+<!-- Botões de debug (remova em produção) -->
+<div style="position:fixed;bottom:20px;left:20px;z-index:9999;display:none;">
+  <button onclick="testOfflineMode()" style="background:#f59e0b;color:white;border:none;padding:8px 12px;border-radius:6px;margin:4px;">
+    🧪 Testar Offline
+  </button>
+  <button onclick="clearCache()" style="background:#ef4444;color:white;border:none;padding:8px 12px;border-radius:6px;margin:4px;">
+    🗑️ Limpar Cache
+  </button>
+</div>
 
   <!-- JavaScript Libraries -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

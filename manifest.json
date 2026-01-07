@@ -1,22 +1,58 @@
 {
   "name": "JMbenga Dev",
   "short_name": "JMbenga",
-  "description": "Portfólio de José Mbenga",
+  "description": "Portfólio de José Mbenga - Desenvolvedor Full Stack",
   "start_url": "./index.html",
   "scope": "./",
   
   "display": "standalone",
-  "display_override": ["window-controls-overlay", "standalone"],
+  "display_override": ["standalone", "minimal-ui"],
   
   "background_color": "#0f172a",
-  "theme_color": "#0f172a",  
+  "theme_color": "#2563eb",
   
   "orientation": "portrait-primary",
   
   "icons": [
     {
+      "src": "./assets/img/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/img/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/img/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/img/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/img/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
       "src": "./assets/img/icons/icon-192x192.png",
       "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/img/icons/icon-384x384.png",
+      "sizes": "384x384",
       "type": "image/png",
       "purpose": "any maskable"
     },
@@ -28,27 +64,40 @@
     }
   ],
   
-  "categories": ["productivity", "developer-tools", "utilities"],
+  "categories": ["business", "productivity", "utilities"],
   
-  "edge_side_panel": {
-    "preferred_width": 400
-  },
+  "lang": "pt-BR",
+  "dir": "ltr",
   
-  "launch_handler": {
-    "client_mode": ["focus-existing", "auto"]
-  },
+  "prefer_related_applications": false,
   
-  "handle_links": "preferred",
+  "related_applications": [],
+  
+  "screenshots": [
+     {
+      "src": "./assets/img/screenshots/mobile-screenshot.png",
+      "sizes": "375x667",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "./assets/img/screenshots/desktop-screenshot.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
   
   "shortcuts": [
     {
-      "name": "Ver Projetos",
+      "name": "Todos os Projetos",
       "short_name": "Projetos",
       "description": "Explore meus projetos",
-      "url": "./index.html#projects",
+      "url": "./pages/projects.html",
       "icons": [{
-        "src": "./assets/img/icons/projects-icon-96x96.png",
-        "sizes": "96x96"
+        "src": "./assets/img/icons/project-96x96.png",
+        "sizes": "96x96",
+        "type": "image/png"
       }]
     },
     {
@@ -57,9 +106,60 @@
       "description": "Entre em contato",
       "url": "./index.html#contact",
       "icons": [{
-        "src": "./assets/img/icons/contact-icon-96x96.png",
-        "sizes": "96x96"
+        "src": "./assets/img/icons/contact-96x96.png",
+        "sizes": "96x96",
+        "type": "image/png"
       }]
+    },
+    {
+      "name": "Habilidades",
+      "short_name": "Habilidades",
+      "description": "Veja minhas habilidades",
+      "url": "./index.html#skills",
+      "icons": [{
+        "src": "./assets/img/icons/skills-96x96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      }]
+    },
+    {
+      "name": "Sobre Mim",
+      "short_name": "Sobre",
+      "description": "Conheça minha jornada",
+      "url": "./index.html#about",
+      "icons": [{
+        "src": "./assets/img/icons/about-96x96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      }]
+    }
+  ],
+  
+ "share_target": {
+    "action": "./index.html?share=true",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  
+  "launch_handler": {
+    "client_mode": ["focus-existing", "navigate-new"]
+  },
+  
+  "handle_links": "preferred",
+  
+  "protocol_handlers": [
+     {
+      "protocol": "web+jmbenga",
+      "url": "./index.html?protocol=%s"
     }
   ]
 }

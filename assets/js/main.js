@@ -98,7 +98,7 @@ function checkPWAMode() {
       document.documentElement.classList.add("pwa-android");
     }
 
-    console.log("📱 PWA Standalone Mode Detected");
+    console.log(" PWA Standalone Mode Detected");
   }
 }
 
@@ -935,7 +935,7 @@ function initServiceWorker() {
       .then((registration) => {
         if (CONFIG.debugMode) {
           console.log(
-            "✅ Service Worker registrado com sucesso:",
+            " Service Worker registrado com sucesso:",
             registration.scope
           );
         }
@@ -955,7 +955,7 @@ function initServiceWorker() {
         });
       })
       .catch((error) => {
-        console.error("❌ Service Worker falhou:", error);
+        console.error(" Service Worker falhou:", error);
       });
   });
 }

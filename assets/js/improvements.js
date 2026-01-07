@@ -211,7 +211,7 @@ function loadParticlesJS() {
     connection &&
     (connection.saveData === true || connection.effectiveType === "slow-2g")
   ) {
-    console.log("📱 Skipping particles.js due to slow connection");
+    console.log(" Skipping particles.js due to slow connection");
     return;
   }
 
@@ -220,7 +220,7 @@ function loadParticlesJS() {
   script.async = true;
   script.onload = setupParticles;
   script.onerror = () => {
-    console.warn("❌ Failed to load particles.js");
+    console.warn(" Failed to load particles.js");
     // Fallback: add CSS effects
     addParticlesFallback();
   };
@@ -786,7 +786,7 @@ function setupResizeHandlers() {
       initResponsiveHero();
 
       if (IMPROVEMENTS_CONFIG.debug) {
-        console.log("🔄 Resize handled");
+        console.log(" Resize handled");
       }
     }, IMPROVEMENTS_CONFIG.slider.resizeDebounce);
   }
@@ -915,7 +915,7 @@ if (IMPROVEMENTS_CONFIG.debug) {
 
 window.addEventListener("error", function (e) {
   if (IMPROVEMENTS_CONFIG.debug) {
-    console.error("❌ Improvements.js error:", e.error);
+    console.error(" Improvements.js error:", e.error);
   }
 });
 

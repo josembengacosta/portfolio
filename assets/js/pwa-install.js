@@ -16,7 +16,7 @@ class PWAInstallManager {
   }
 
   async init() {
-    console.log("🚀 Inicializando PWA Install Manager...");
+    console.log(" Inicializando PWA Install Manager...");
 
     // 1. Verificar se já está instalado
     await this.checkInstallation();
@@ -48,7 +48,7 @@ class PWAInstallManager {
     this.isInstalled = isStandalone || isInWebApp || isReferrer;
 
     if (this.isInstalled) {
-      console.log("✅ PWA já está instalado");
+      console.log(" PWA já está instalado");
       document.documentElement.classList.add("pwa-installed");
     }
 
@@ -68,7 +68,7 @@ class PWAInstallManager {
 
     this.supportsPWA = Object.values(requirements).every((req) => req === true);
 
-    console.log("📋 Suporte PWA:", {
+    console.log(" Suporte PWA:", {
       ...requirements,
       supported: this.supportsPWA,
       platform: this.isIOS ? "iOS" : this.isAndroid ? "Android" : "Desktop",
@@ -100,30 +100,54 @@ class PWAInstallManager {
     });
   }
 
-  handleBeforeInstallPrompt(e) {
-    console.log("🎪 Evento beforeinstallprompt recebido");
 
-    // Prevenir o prompt automático do navegador
-    e.preventDefault();
+handleBeforeInstallPrompt(e) {
+  console.log("📱 Evento beforeinstallprompt recebido (mobile)");
 
-    // Guardar o evento para usar depois
-    this.deferredPrompt = e;
+  // Prevenir o prompt automático
+  e.preventDefault();
+  this.deferredPrompt = e;
+  this.supportsPWA = true;
 
-    // Atualizar suporte PWA
-    this.supportsPWA = true;
+  // PARA MOBILE: Mostrar botão IMEDIATAMENTE após interação
+  if (this.isMobile()) {
+    // Esperar pequena interação primeiro
+    const showOnInteraction = () => {
+      if (!this.isInstalled && this.deferredPrompt) {
+        this.showInstallButton();
+      }
+      // Remover listeners após usar
+      document.removeEventListener('click', showOnInteraction);
+      document.removeEventListener('touchstart', showOnInteraction);
+    };
 
-    // Mostrar botão após delay (melhor UX)
-    if (!this.isInstalled) {
-      setTimeout(() => {
-        if (this.deferredPrompt && !this.isInstalled) {
-          this.showInstallButton();
-        }
-      }, 5000); // 5 segundos - tempo para usuário explorar o site primeiro
-    }
+    // Mostrar após primeira interação do usuário
+    document.addEventListener('click', showOnInteraction, { once: true });
+    document.addEventListener('touchstart', showOnInteraction, { once: true });
+    
+    // Fallback: mostrar após 30 segundos mesmo sem interação
+    setTimeout(() => {
+      if (!this.isInstalled && this.deferredPrompt) {
+        this.showInstallButton();
+      }
+    }, 30000);
+  } else {
+    // Para desktop: esperar 5 segundos
+    setTimeout(() => {
+      if (!this.isInstalled && this.deferredPrompt) {
+        this.showInstallButton();
+      }
+    }, 5000);
   }
+}
+
+// Adicione este método para detectar mobile:
+isMobile() {
+  return this.isIOS || this.isAndroid;
+}
 
   handleAppInstalled() {
-    console.log("🎉 PWA instalado com sucesso!");
+    console.log(" PWA instalado com sucesso!");
     this.isInstalled = true;
     this.deferredPrompt = null;
     this.hideInstallButton();
@@ -144,7 +168,7 @@ class PWAInstallManager {
       return;
     }
 
-    console.log("🔼 Mostrando botão de instalação...");
+    console.log(" Mostrando botão de instalação...");
 
     const installBtn = document.createElement("button");
     installBtn.id = "pwaInstallBtn";
@@ -208,13 +232,13 @@ class PWAInstallManager {
 
   async installApp() {
     if (!this.deferredPrompt) {
-      console.log("⚠️ Nenhum prompt disponível, mostrando instruções...");
+      console.log(" Nenhum prompt disponível, mostrando instruções...");
       this.showPlatformInstructions();
       return;
     }
 
     try {
-      console.log("🎪 Mostrando prompt de instalação...");
+      console.log(" Mostrando prompt de instalação...");
 
       // Mostrar o prompt nativo do navegador
       this.deferredPrompt.prompt();
@@ -222,13 +246,13 @@ class PWAInstallManager {
       // Esperar a escolha do usuário
       const { outcome } = await this.deferredPrompt.userChoice;
 
-      console.log("👤 Usuário escolheu:", outcome);
+      console.log(" Usuário escolheu:", outcome);
 
       if (outcome === "accepted") {
-        console.log("✅ Instalação iniciada...");
+        console.log(" Instalação iniciada...");
         // O evento appinstalled será disparado depois
       } else {
-        console.log("❌ Instalação recusada");
+        console.log(" Instalação recusada");
         this.showNotification(
           "Instalação cancelada. Você pode instalar depois pelo botão ou menu do navegador.",
           "info"
@@ -239,7 +263,7 @@ class PWAInstallManager {
       this.deferredPrompt = null;
       this.hideInstallButton();
     } catch (error) {
-      console.error("❌ Erro na instalação:", error);
+      console.error(" Erro na instalação:", error);
       this.showPlatformInstructions();
     }
   }
@@ -251,7 +275,7 @@ class PWAInstallManager {
     let title = "";
 
     if (this.isIOS) {
-      title = "📱 Instalar no iPhone/iPad";
+      title = '<i class="fas fa-mobile-alt"></i> Instalar no iPhone/iPad';
       message = `
         <ol style="margin: 10px 0; padding-left: 20px;">
           <li>Toque no ícone <i class="fas fa-share"></i> (compartilhar)</li>
@@ -261,7 +285,7 @@ class PWAInstallManager {
         <small><i class="fas fa-info-circle"></i> Use o Safari para instalar</small>
       `;
     } else if (this.isAndroid) {
-      title = "🤖 Instalar no Android";
+      title = '<i class="fas fa-android"></i> Instalar no Android';
       message = `
         <ol style="margin: 10px 0; padding-left: 20px;">
           <li>Toque no menu (⋮) no Chrome</li>
@@ -270,7 +294,7 @@ class PWAInstallManager {
         </ol>
       `;
     } else {
-      title = "💻 Instalar no Computador";
+      title = '<i class="fas fa-desktop"></i> Instalar no Computador';
       message = `
         <ol style="margin: 10px 0; padding-left: 20px;">
           <li>Clique no ícone <i class="fas fa-download"></i> na barra de endereço</li>
@@ -424,7 +448,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.checkPWAStatus = () => window.pwaManager?.checkStatus();
     window.forceShowPWAButton = () => window.pwaManager?.forceShowButton();
 
-    console.log("🚀 PWA Install Manager inicializado");
+    console.log(" PWA Install Manager inicializado");
   }, 1000);
 });
 
@@ -439,11 +463,11 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register(swUrl)
       .then((registration) => {
-        console.log("✅ Service Worker registrado:", registration.scope);
+        console.log(" Service Worker registrado:", registration.scope);
 
         // Verificar atualizações
         registration.addEventListener("updatefound", () => {
-          console.log("🔄 Nova versão do Service Worker encontrada!");
+          console.log(" Nova versão do Service Worker encontrada!");
 
           // Notificar usuário sobre atualização
           if (window.pwaManager) {
@@ -455,7 +479,7 @@ if ("serviceWorker" in navigator) {
         });
       })
       .catch((error) => {
-        console.error("❌ Erro no Service Worker:", error);
+        console.error(" Erro no Service Worker:", error);
       });
   });
 }
@@ -465,7 +489,7 @@ if ("serviceWorker" in navigator) {
 // Adicionar classe ao body quando for lançado como PWA
 if (window.matchMedia("(display-mode: standalone)").matches) {
   document.documentElement.classList.add("pwa-launched");
-  console.log("📱 Aplicativo lançado como PWA standalone");
+  console.log(" Aplicativo lançado como PWA standalone");
 }
 
 // ========== FALLBACK STYLES (se o CSS não carregar) ==========

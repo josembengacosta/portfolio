@@ -1,7 +1,7 @@
 # 🎯 **JMbenga Portfolio - README.md PROFISSIONAL**
 
 ```markdown
-# 🚀 JMbenga Portfolio - Desenvolvedor Full Stack
+#  JMbenga Portfolio - Desenvolvedor Full Stack
 
 ![Portfolio Preview](https://img.shields.io/badge/Portfolio-Live-brightgreen)
 ![PWA Ready](https://img.shields.io/badge/PWA-Ready-blue)
@@ -49,18 +49,18 @@ Olá! Sou **José Mbenga**, um Desenvolvedor Full Stack apaixonado por tecnologi
 
 ## ✨ **Características do Portfólio**
 
-### **🚀 Performance Otimizada**
+### ** Performance Otimizada**
 - ⚡ **Carregamento ultrarrápido** (Score Lighthouse >90)
-- 📱 **100% Responsivo** (Mobile First Design)
+-  **100% Responsivo** (Mobile First Design)
 - 🎨 **Tema Dark/Light** automático
 - 🌐 **SEO Otimizado** para Google
 
-### **📱 Experiência PWA (Progressive Web App)**
-- ✅ **Instalável como app nativo** (Android/iOS/Desktop)
+### ** Experiência PWA (Progressive Web App)**
+-  **Instalável como app nativo** (Android/iOS/Desktop)
 - 📶 **Funciona offline** completamente
 - 🔔 **Notificações push** (opcional)
 - 🏠 **Ícone na tela inicial**
-- 🔄 **Atualizações automáticas**
+-  **Atualizações automáticas**
 
 ### **🎨 Design Moderno**
 - 🎯 **UI/UX cuidadosamente projetada**
@@ -99,7 +99,7 @@ portfolio/
 - Estatísticas em tempo real
 - Editor de código com syntax highlighting
 
-### **2. 👤 Sobre Mim**
+### **2.  Sobre Mim**
 - Timeline interativa da minha jornada
 - Destaques de conquistas
 - Experiência e formação
@@ -126,7 +126,7 @@ portfolio/
 - Informações de contato direto
 - Links para redes sociais
 
-## 🚀 **Como Executar Localmente**
+##  **Como Executar Localmente**
 
 ```bash
 # 1. Clone o repositório
@@ -144,7 +144,7 @@ python -m http.server 8000
 npx serve .
 ```
 
-## 📱 **Instalação como PWA**
+##  **Instalação como PWA**
 
 ### **Android (Chrome)**
 1. Acesse `https://josembengacosta.github.io/portfolio/`
@@ -165,11 +165,11 @@ npx serve .
 
 | Teste | Resultado | Detalhes |
 |-------|-----------|----------|
-| **Lighthouse PWA** | ✅ 100/100 | Perfect PWA score |
-| **Responsividade** | ✅ Excelente | 375px - 4K screens |
-| **Performance** | ✅ 95+ | Otimizado para mobile |
-| **Offline Mode** | ✅ Funcional | Cache inteligente |
-| **Cross-browser** | ✅ Compatível | Chrome, Safari, Firefox, Edge |
+| **Lighthouse PWA** |  100/100 | Perfect PWA score |
+| **Responsividade** |  Excelente | 375px - 4K screens |
+| **Performance** |  95+ | Otimizado para mobile |
+| **Offline Mode** |  Funcional | Cache inteligente |
+| **Cross-browser** |  Compatível | Chrome, Safari, Firefox, Edge |
 
 ## 📊 **Estatísticas**
 
@@ -185,7 +185,7 @@ npx serve .
 - 💼 **LinkedIn:** [linkedin.com/in/josembengadacosta](https://linkedin.com/in/josembengadacosta)
 - 💻 **GitHub:** [github.com/josembengacosta](https://github.com/josembengacosta)
 - 📧 **Email:** [josembengadacosta@gmail.com](mailto:josembengadacosta@gmail.com)
-- 📱 **WhatsApp:** [+244 922 030 116](https://wa.me/244922030116)
+-  **WhatsApp:** [+244 922 030 116](https://wa.me/244922030116)
 
 ## 📝 **Licença**
 

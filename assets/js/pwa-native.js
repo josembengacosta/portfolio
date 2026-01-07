@@ -452,14 +452,14 @@ class PWANativeManager {
     });
     
     window.addEventListener('offline', () => {
-      this.showToast('📶 Modo offline ativado', 'warning');
+      this.showToast('<i class="fas fa-wifi-slash"></i> Modo offline ativado', 'warning');
       this.vibrate([100, 50, 100]);
     });
     
     // Verificar status inicial
     if (!navigator.onLine) {
       setTimeout(() => {
-        this.showToast('Você está offline. Alguns recursos podem não estar disponíveis.', 'warning', 5000);
+        this.showToast('<i class="fas fa-wifi-slash"></i> Você está offline. Alguns recursos podem não estar disponíveis.', 'warning', 5000);
       }, 1000);
     }
   }
@@ -546,7 +546,7 @@ class PWANativeManager {
       copyToClipboard: async (text) => {
         if (this.hasClipboard) {
           await navigator.clipboard.writeText(text);
-          this.showToast('Copiado para área de transferência!', 'success');
+          this.showToast('Copiado para área de transferência! <i class="fas fa-clipboard-check"></i>', 'success');
           return true;
         }
         return false;

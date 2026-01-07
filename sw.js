@@ -22,6 +22,7 @@ const IMMEDIATE_CACHE = [
   // Core CSS
   "/portfolio/assets/css/main.css",
   "/portfolio/assets/css/improvements.css",
+  "/portfolio/assets/css/particles.css",
 
   // Core JS
   "/portfolio/assets/js/main.js",
@@ -57,6 +58,7 @@ const EXTERNAL_RESOURCES = [
   "https://unpkg.com/aos@2.3.1/dist/aos.css",
   "https://unpkg.com/aos@2.3.1/dist/aos.js",
   "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+  "https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js",
 ];
 
 // 4. NETWORK ONLY - Nunca cache
@@ -106,7 +108,7 @@ self.addEventListener("install", (event) => {
           });
       })
       .then(() => {
-        console.log("✅ Instalação completa!");
+        console.log(" Instalação completa!");
         return self.skipWaiting();
       })
   );
@@ -362,7 +364,7 @@ async function cacheLazyResources() {
 
     console.log(" Cache lazy completo!");
   } catch (error) {
-    console.error("❌ Erro no cache lazy:", error);
+    console.error(" Erro no cache lazy:", error);
   }
 }
 

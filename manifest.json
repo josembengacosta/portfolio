@@ -16,7 +16,7 @@
   "icons": [
     {
       "src": "./assets/img/icons/icon-72x72.png",
-      "sizes": "72x72",
+      "sizes": "32x32",
       "type": "image/png",
       "purpose": "any maskable"
     },
@@ -93,12 +93,24 @@
       "name": "Todos os Projetos",
       "short_name": "Projetos",
       "description": "Explore meus projetos",
-      "url": "./pages/projects.html",
+      "url": "./pages/all-projects.html",
       "icons": [{
         "src": "./assets/img/icons/project-96x96.png",
         "sizes": "96x96",
         "type": "image/png"
       }]
+    },
+    { 
+      "name": "Feeback e Avaliações",
+      "short_name": "Feedback",
+      "description": "Deixe seu feedback e avaliações",
+      "url": "./pages/reviews-feedback.html",
+      "icons": [{
+        "src": "./assets/img/icons/reviews-feedback-96x96.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      }]
+    
     },
     {
       "name": "Contato",

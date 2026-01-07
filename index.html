@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" 
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover, user-scalable=yes">
   <title>José Mbenga da Costa | Desenvolvedor Web Full Stack</title>
 
   <!-- Theme Color Dinâmico -->
@@ -99,6 +101,27 @@
   <link rel="stylesheet" href="./assets/css/main.css" />
   <link rel="stylesheet" href="./assets/css/improvements.css" />
   <link rel="stylesheet" href="./assets/css/particles.css" />
+
+
+<script>
+  // Detectar PWA standalone imediatamente
+  (function() {
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
+                        window.navigator.standalone;
+    
+    if (isStandalone) {
+      document.documentElement.classList.add('pwa-installed', 'pwa-standalone');
+      
+      // Aplicar tema salvo imediatamente
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+          document.body.classList.add('light-theme');
+        }
+      } catch (e) {}
+    }
+  })();
+</script>
 
   <!-- PWA Styles -->
   <style>

@@ -140,26 +140,67 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+
 // ========== FETCH INTELIGENTE ==========
-self.addEventListener("fetch", (event) => {
+self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   const request = event.request;
-
+  
   // Ignorar requisições não-GET e não-HTTP
-  if (request.method !== "GET" || !url.protocol.startsWith("http")) {
+  if (request.method !== 'GET' || !url.protocol.startsWith('http')) {
     return;
   }
-
+  
   // Ignorar navegador e extensões
-  if (url.protocol === "chrome-extension:") return;
-
+  if (url.protocol === 'chrome-extension:') return;
+  
+  // FUNÇÃO PARA HTML COM TEMA DINÂMICO
+  async function serveWithTheme(req) {
+    try {
+      const response = await fetch(req);
+      const contentType = response.headers.get('content-type');
+      
+      // HTML NUNCA em cache (para temas funcionarem)
+      if (contentType && contentType.includes('text/html')) {
+        return response;
+      }
+      
+      // Outros recursos podem ser cacheados
+      if (response.ok) {
+        const cache = await caches.open(CACHE_NAME);
+        cache.put(req, response.clone()).catch(() => {});
+      }
+      
+      return response;
+    } catch (error) {
+      console.log('🌐 Offline - usando cache para:', req.url);
+      const cached = await caches.match(req);
+      if (cached) return cached;
+      
+      // Fallback para offline.html
+      if (req.mode === 'navigate') {
+        const offlinePage = await caches.match('./offline.html');
+        if (offlinePage) return offlinePage;
+      }
+      
+      throw error;
+    }
+  }
+  
   // Estratégia baseada no tipo de recurso
-  event.respondWith(
-    handleFetch(request, url).catch((error) => {
-      console.error("Fetch error:", error);
-      return offlineFallback(request);
-    })
-  );
+  if (request.mode === 'navigate') {
+    // Navegação: serveWithTheme (HTML sem cache)
+    event.respondWith(serveWithTheme(request));
+  } else if (isStaticAsset(url)) {
+    // Assets estáticos: Cache First
+    event.respondWith(cacheFirst(request));
+  } else if (isExternalAsset(url)) {
+    // Recursos externos: Stale While Revalidate
+    event.respondWith(staleWhileRevalidate(request));
+  } else {
+    // Demais: Network First
+    event.respondWith(networkFirst(request));
+  }
 });
 
 // ========== ESTRATÉGIAS POR TIPO ==========

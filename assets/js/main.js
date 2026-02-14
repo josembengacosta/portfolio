@@ -540,14 +540,15 @@ function initContactForm() {
           }
         }
         break;
-      case "phone":
-        if (value) {
-          const phoneRegex = /^\(?\d{2}\)?[\s-]?\d{4,5}[\s-]?\d{4}$/;
-          if (!phoneRegex.test(value)) {
-            isValid = false;
-            message = "Formato inválido. Use (XX) XXXXX-XXXX";
-          }
-        }
+     case "phone":
+  if (value) {
+    const phoneRegex = /^(\+?\d{1,3}[\s-]?)?(\(?\d{2,4}\)?[\s-]?)?(\d{3,5}[\s-]?\d{3,5}[\s-]?\d{0,4})$/;
+    if (!phoneRegex.test(value)) {
+      isValid = false;
+      message = "Formato inválido. Ex: +244 9XXXXXXX ou 9XXXXXXX";
+    }
+  }
+  break;
         break;
       case "message":
         if (value && value.length < 10) {
@@ -644,32 +645,27 @@ function initContactForm() {
       '<i class="fas fa-spinner fa-spin"></i> Enviando...';
     formElements.submitBtn.disabled = true;
 
-    try {
-      // Aqui você substituiria por uma chamada API real
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+  try {
+ const formDataToSend = new FormData(contactForm);
 
-      // Sucesso
-      showNotification(
-        "Mensagem enviada com sucesso! Entrarei em contato em breve.",
-        "success"
-      );
-      contactForm.reset();
+const response = await fetch("https://api.web3forms.com/submit", {
+  method: "POST",
+  body: formDataToSend
+});
 
-      // Limpar erros
-      Object.values(formElements).forEach((element) => {
-        if (element && element !== formElements.submitBtn) {
-          clearFieldError(element);
-        }
-      });
+const result = await response.json();
 
-      // Log para desenvolvimento
-      if (CONFIG.debugMode) {
-        console.log("Form data:", formData);
-      }
-    } catch (error) {
-      showNotification("Erro ao enviar mensagem. Tente novamente.", "error");
-      console.error("Form error:", error);
-    } finally {
+  if (result.success) {
+    showNotification("Mensagem enviada com sucesso!", "success");
+    contactForm.reset();
+  } else {
+    showNotification("Erro ao enviar mensagem. Tente novamente.", "error");
+    console.error(result);
+  }
+} catch (error) {
+  showNotification("Erro ao enviar mensagem. Tente novamente.", "error");
+  console.error(error);
+} finally {
       formElements.submitBtn.innerHTML = originalText;
       formElements.submitBtn.disabled = false;
     }

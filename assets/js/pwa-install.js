@@ -101,7 +101,7 @@ class PWAInstallManager {
   }
 
   handleBeforeInstallPrompt(e) {
-    console.log("📱 Evento beforeinstallprompt recebido (mobile)");
+    console.log("Evento beforeinstallprompt recebido (mobile)");
 
     // Prevenir o prompt automático
     e.preventDefault();
@@ -459,7 +459,7 @@ if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     // Registrar com escopo correto
     const swUrl =
-      window.location.hostname === "localhost" ? "./sw.js" : "/portfolio/sw.js";
+      window.location.hostname === "localhost" ? "./sw.js" : "https://jmbenga.vercel.app/sw.js";
 
     navigator.serviceWorker
       .register(swUrl)

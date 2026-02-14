@@ -10,48 +10,48 @@ const CACHE_NAME = `jmbenga-pwa-v${APP_VERSION.replace(/\./g, "-")}`;
 // 1. CACHE IMMEDIATELY - Recursos essenciais
 const IMMEDIATE_CACHE = [
   // HTML Core
-  "/portfolio/index.html",
-  "/portfolio/offline.html",
+  "https://jmbenga.vercel.app/index.html",
+  "https://jmbenga.vercel.app/offline.html",
 
   // Manifest & Icons
-  "/portfolio/manifest.json",
-  "/portfolio/assets/img/icons/icon-192x192.png",
-  "/portfolio/assets/img/icons/icon-512x512.png",
-  "/portfolio/assets/img/svg/favicon_jm.ico",
+  "https://jmbenga.vercel.app/manifest.json",
+  "https://jmbenga.vercel.app/assets/img/icons/icon-192x192.png",
+  "https://jmbenga.vercel.app/assets/img/icons/icon-512x512.png",
+  "https://jmbenga.vercel.app/assets/img/svg/favicon_jm.ico",
 
   // Core CSS
-  "/portfolio/assets/css/main.css",
-  "/portfolio/assets/css/improvements.css",
-  "/portfolio/assets/css/particles.css",
+  "https://jmbenga.vercel.app/assets/css/main.css",
+  "https://jmbenga.vercel.app/assets/css/improvements.css",
+  "https://jmbenga.vercel.app/assets/css/particles.css",
 
   // Core JS
-  "/portfolio/assets/js/main.js",
-  "/portfolio/assets/js/improvements.js",
+  "https://jmbenga.vercel.app/assets/js/main.js",
+  "https://jmbenga.vercel.app/assets/js/improvements.js",
 
   // Fonts (Font Awesome)
-  "/portfolio/assets/fontawesome-free/webfonts/fa-solid-900.woff2",
-  "/portfolio/assets/fontawesome-free/webfonts/fa-brands-400.woff2",
+  "https://jmbenga.vercel.app/assets/fontawesome-free/webfonts/fa-solid-900.woff2",
+  "https://jmbenga.vercel.app/assets/fontawesome-free/webfonts/fa-brands-400.woff2",
 ];
 
 // 2. CACHE LAZY - Recursos importantes (cache após instalação)
 const LAZY_CACHE = [
   // Other HTML pages
-  "/portfolio/pages/all-projects.html",
-  "/portfolio/pages/project-demo.html",
+  "https://jmbenga.vercel.app/pages/all-projects.html",
+  "https://jmbenga.vercel.app/pages/project-demo.html",
 
   // Additional CSS
-  "/portfolio/assets/css/particles.css",
-  "/portfolio/assets/css/all-projects.css",
-  "/portfolio/assets/css/project-demo.css",
+  "https://jmbenga.vercel.app/assets/css/particles.css",
+  "https://jmbenga.vercel.app/assets/css/all-projects.css",
+  "https://jmbenga.vercel.app/assets/css/project-demo.css",
 
   // Additional JS
-  "/portfolio/assets/js/pwa-install.js",
-  "/portfolio/assets/js/pwa-native.js",
-  "/portfolio/assets/js/project-demo.js",
-  "/portfolio/assets/js/all-projects.js",
+  "https://jmbenga.vercel.app/assets/js/pwa-install.js",
+  "https://jmbenga.vercel.app/assets/js/pwa-native.js",
+  "https://jmbenga.vercel.app/assets/js/project-demo.js",
+  "https://jmbenga.vercel.app/assets/js/all-projects.js",
 
   // Important images
-  "/portfolio/assets/img/photo/josembengadacosta.png",
+  "https://jmbenga.vercel.app/assets/img/photo/josembengadacosta.png",
 ];
 
 // 3. EXTERNAL RESOURCES
@@ -98,7 +98,7 @@ self.addEventListener("install", (event) => {
                 self.location.hostname === "localhost" ||
                 self.location.hostname === "127.0.0.1"
               ) {
-                return url.replace("/portfolio/", "./");
+                return url.replace("https://jmbenga.vercel.app/", "./");
               }
               return url;
             })
@@ -346,7 +346,7 @@ async function cacheLazyResources() {
         self.location.hostname === "localhost" ||
         self.location.hostname === "127.0.0.1"
       ) {
-        return url.replace("/portfolio/", "./");
+        return url.replace("https://jmbenga.vercel.app/", "./");
       }
       return url;
     });
@@ -388,7 +388,7 @@ async function getOfflinePage() {
   const offlinePage = await cache.match(
     self.location.hostname === "localhost"
       ? "./offline.html"
-      : "/portfolio/offline.html"
+      : "https://jmbenga.vercel.app/offline.html"
   );
 
   if (offlinePage) {
@@ -504,11 +504,11 @@ self.addEventListener("push", (event) => {
 
   const options = {
     body: data.body || "Novo conteúdo disponível no meu portfólio!",
-    icon: "/portfolio/assets/img/icons/icon-192x192.png",
-    badge: "/portfolio/assets/img/icons/icon-72x72.png",
+    icon: "https://jmbenga.vercel.app/assets/img/icons/icon-192x192.png",
+    badge: "https://jmbenga.vercel.app/assets/img/icons/icon-72x72.png",
     vibrate: [200, 100, 200],
     data: {
-      url: data.url || "/portfolio/",
+      url: data.url || "https://jmbenga.vercel.app/",
       date: new Date().toISOString(),
     },
     actions: [

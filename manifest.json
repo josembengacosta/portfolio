@@ -3,8 +3,8 @@
   "short_name": "JMbenga",
   "description": "Portfólio de José Mbenga - Desenvolvedor Full Stack & UI/UX Designer",
   
-  "start_url": "/portfolio/",
-  "scope": "/portfolio/",
+  "start_url": "https://jmbenga.vercel.app/",
+  "scope": "https://jmbenga.vercel.app/",
   
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
@@ -106,7 +106,7 @@
       "name": "Ver Projetos",
       "short_name": "Projetos",
       "description": "Explore todos os meus projetos",
-      "url": "/portfolio/pages/all-projects.html",
+      "url": "https://jmbenga.vercel.app/pages/all-projects.html",
       "icons": [{
         "src": "./assets/img/icons/file-graph.svg",
         "sizes": "96x96",
@@ -117,7 +117,7 @@
       "name": "Baixar Currículo",
       "short_name": "CV",
       "description": "Baixe meu currículo em PDF",
-      "url": "/portfolio/descarregar/descarregar_jmbenga.pdf",
+      "url": "https://jmbenga.vercel.app/descarregar/descarregar_jmbenga.pdf",
       "icons": [{
         "src": "./assets/img/icons/file-cv.svg",
         "sizes": "96x96",
@@ -128,7 +128,7 @@
       "name": "Entre em Contato",
       "short_name": "Contato",
       "description": "Envie uma mensagem",
-      "url": "/portfolio/index.html#contact",
+      "url": "https://jmbenga.vercel.app/index.html#contact",
       "icons": [{
         "src": "./assets/img/icons/contact.svg",
         "sizes": "96x96",
@@ -139,7 +139,7 @@
       "name": "Minhas Habilidades",
       "short_name": "Skills",
       "description": "Veja minhas tecnologias",
-      "url": "/portfolio/index.html#skills",
+      "url": "https://jmbenga.vercel.app/index.html#skills",
       "icons": [{
         "src": "./assets/img/icons/skills.svg",
         "sizes": "96x96",
@@ -149,7 +149,7 @@
   ],
   
   "share_target": {
-    "action": "/portfolio/index.html",
+    "action": "https://jmbenga.vercel.app/index.html",
     "method": "GET",
     "enctype": "application/x-www-form-urlencoded",
     "params": {

@@ -456,7 +456,7 @@ p {
     align-items: center;
     position: relative;
     overflow: hidden;
-    padding-top: 6rem;
+    padding-top: 7rem;
 }
 
 .hero-bg {
@@ -2194,7 +2194,7 @@ textarea.form-input {
     }
 
     .hero {
-        padding-top: 5rem;
+        padding-top: 10rem;
         padding-bottom: 3rem;
     }
     
